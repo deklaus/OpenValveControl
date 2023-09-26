@@ -1,6 +1,8 @@
 # OpenValveControl
 Low cost controller for motorized floor heating actuators (like VdMOT and similar)
 
+![grafik](https://github.com/deklaus/OpenValveControl/assets/134941062/b42d87d2-af50-4814-9df9-6a9d5a00cefc)
+
 # Purpose
 Our underfloor heating regulates the supply temperature by means of two characteristic curves (slope and offset). 
 This works reasonably well in steady state. However, if one additionally heats a room (e.g. visitor room), the 
