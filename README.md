@@ -28,13 +28,14 @@ to the community as an OpenSource project.
 - [x] 2 x MX1508 Brushed DC Motor Driver (each board supports 2 motors), ca. 3 EUR (e.g. Amazon)
 - [x] 1 x INA219 Bidirectional Current/Power Monitor With I2C Interface, ca. 4 EUR (e.g. Amazon)
 - [x] 1 x DC-DC-Converter TRACO TSR1-2433, ca. 6 EUR (e.g. Reichelt)
+- [x] 1 x OLED display 1,3" SH1106-OLED-I2C-128x64, ca. 8 EUR (e.g. AZ-Delivery)
 - [x] 4 x RJ11 connectors, ca. 3 EUR (e.g. Amazon B00TX440GO)
 - [x] PCB or breadboard, ca. 10 EUR
 - [x] Small parts (resistors, diodes, connectors, LED, ..), ca. 2 EUR
 - [x] 1 x WITTKOWARE KRA-Z109JFP, DIN rail housing, 90x88x65mm, ca. 7 EUR (+ 5 EUR PP, e.g. Amazon)
 - [x] 1 x 5 V / 1 A Power Supply, micro-USB, ca. 10 EUR
 
-Total: ca. 45 EUR
+Total: ca. 53 EUR
 
 # License
 - Still thinking about
