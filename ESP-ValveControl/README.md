@@ -56,11 +56,37 @@ The essential features of a **web server** are:
 - Display of data (measured values), if possible in real time.
 
 #### Input of parameters
+Input parameters can be realized in HTML as <forms>.
+If the page is reloaded, we currently generate in the module handleRoot() the HTML code 
+with the value to be displayed, in the example the current target position. <br>
+Example:
+``` 
+<form> 
+	<p class='label'>Sollposition [%] 
+	<input type='text' id='set_pos' value='35'>
+	</p>
+</form>
+```
+However, this is impractical if the page is to be loaded from an ESP file system, 
+then you would have to search the HTML code for parameters and replace the values.
+But if you give the input element an ID, e.g. ``id='set_pos' ```, then you can change 
+the <value> via JavaScript function without reloading the page. <br>
+Example:
 
-
-
+```
+function VZselected(sel) 
+{
+  document.getElementById('set_pos').value = set_pos[sel];
+}
+```
+However, this is only the initial value displayed. But how does a new input value reach the server,
+resp. how does the ESP get the input? In fact, this is not necessary for this application! <br>
+Only if an action is triggered, e.g. when the button 'Move to position' gets pressed, the momentary value of the 
+position is read from the form using ``` document.getElementById('set_pos').value ``` and sent to the 
+server together with the move command. See next paragraph.
 
 #### Activation of requests
+
 
 #### Display of measured values
 
