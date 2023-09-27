@@ -32,6 +32,9 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
 - Update OLED status display
 
 ## OLED.ino
+
+![grafik](https://github.com/deklaus/OpenValveControl/assets/134941062/381b864e-4c95-4f8c-b542-b32fa9c08f5e)
+
 #### OLED_init
 - Initializes the Display.
 
