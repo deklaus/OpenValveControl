@@ -49,9 +49,22 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
 
 ## webUI.ino
 This file creates the HTML Page of the webserver. Actually it is defined as String, but in the future it shall 
-be placed into LittleFS.
+be placed into LittleFS. The basic structure of an html web page is assumed to be known. 
+The essential features of a **web server** are:
+- Input of parameters (values)
+- Activation of requests
+- Display of data (measured values), if possible in real time.
 
-How does it work?
+#### Input of parameters
+
+
+
+
+#### Activation of requests
+
+#### Display of measured values
+
+
 
 
 
