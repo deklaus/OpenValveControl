@@ -69,8 +69,8 @@ Example:
 ```
 However, this is impractical if the page is to be loaded from an ESP file system, 
 then you would have to search the HTML code for parameters and replace the values.
-But if you give the input element an ID, e.g. ``id='set_pos' ```, then you can change 
-the <value> via JavaScript function without reloading the page. <br>
+But if you give the input element an ID, e.g. ```id='set_pos' ```, then you can change 
+the *value* via JavaScript function without reloading the page. <br>
 Example:
 
 ```
@@ -81,9 +81,9 @@ function VZselected(sel)
 ```
 However, this is only the initial value displayed. But how does a new input value reach the server,
 resp. how does the ESP get the input? In fact, this is not necessary for this application! <br>
-Only if an action is triggered, e.g. when the button 'Move to position' gets pressed, the momentary value of the 
-position is read from the form using ``` document.getElementById('set_pos').value ``` and sent to the 
-server together with the move command. See next paragraph.
+Only if an action is triggered, e.g. when the button 'Move to position' gets pressed, the momentary *value* of the 
+set position is read from the form using ``` document.getElementById('set_pos').value ``` and sent to the 
+server together with the move command and other required parameters. See next paragraph.
 
 #### Activation of requests
 
