@@ -4,12 +4,12 @@ Low cost controller for motorized floor heating actuators (like VdMOT and simila
 ![grafik](https://github.com/deklaus/OpenValveControl/assets/134941062/b42d87d2-af50-4814-9df9-6a9d5a00cefc)
 
 # Purpose
-Our underfloor heating regulates the supply temperature by means of two characteristic curves (slope and offset). 
-This works reasonably well in steady state. However, if one additionally heats a room (e.g. visitor room), the 
-charateristics are no longer correct. Or we prefer to have it half a degree warmer, hence our heating only knows 
-whole degrees. Up to now, we have turned the valves until it was more or less right again. 
-To automate this adjustments, we would like to be able to vary one or more heating circuits via WLAN or a SmartHome interface.
-Since our control valves are located on two floors, we believe that the cost of two Homematic FALMOT (or equivalent clones) 
+Our heating control regulates the supply temperature by means of two characteristic curves (slope and offset). 
+This works reasonably well in steady state. However, if we shut down one room (e.g. the visitor room), the 
+characteristic curves are no longer correct. And because our heating only knows whole degrees, it is not possible 
+to adjust the temperature by half a degree. So far, we've turned the valves until it was reasonably right again.
+To automate these settings, we would like to be able to vary one or more heating circuits via WLAN or a SmartHome interface.
+Since our floor valves are on two floors, we feel that the cost of two Homematic FALMOT (or equivalent clones) 
 is too high for this purpose and the documentation is not detailed enough in most cases.
 Since I am interested in the whole topic, I started to develop my own solution for the task and make it available 
 to the community as an OpenSource project.
