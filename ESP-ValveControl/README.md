@@ -60,7 +60,7 @@ Input parameters can be realized in HTML as <forms>.
 If the page is reloaded, we currently generate in the module handleRoot() the HTML code 
 with the value to be displayed, in the example the current target position. <br>
 Example:
-``` 
+``` html
 <form> 
 	<p class='label'>Sollposition [%] 
 	<input type='text' id='set_pos' value='35'>
@@ -73,7 +73,7 @@ But if you give the input element an ID, e.g. ```id='set_pos' ```, then you can 
 the *value* via JavaScript function without reloading the page. <br>
 Example:
 
-```
+``` javascript
 function VZselected(sel) 
 {
   document.getElementById('set_pos').value = set_pos[sel];
@@ -93,7 +93,7 @@ To achieve this, we must pass the name of the function as argument of the *oncli
 ``` <button class='btn' name='btn_move' onclick='f_move();'> Position anfahren</button> ```
 
 Example:
-```
+``` javascript
 function f_move() {
   var data = 'no response';	// init result string
 
@@ -102,10 +102,10 @@ function f_move() {
   set_pos[sel] = parseInt(document.getElementById('set_pos').value);
   max_mA[sel] = parseFloat(document.getElementById('max_mA').value);
 
-  // build the argument string, which will be appended to the URI and the request (/move?) and send to the ESP:
+  // build the argument string, which will be appended to the URI and the request (/move?) before being sent to the ESP:
   var query = 'vz=' + sel + '&set_pos=' + set_pos[sel] + '&max_mA=' + max_mA[sel].toFixed(1);
 
-  // send a XML HTTP request to the server, which can be evaluated by the "server.on" function (see the *setup* chapter).  
+  // send a XML HTTP request to the server, which can be evaluated by the "server.on" function (see the *setup* chapter).
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/move?'+query, true);
 
@@ -130,17 +130,37 @@ function f_move() {
 
 #### Display of measured values
 
-Similar to request activation, we can use XMLHttpRequest (short: XHR) to dynamically request data from 
-the web server without having to reload the HTML page.
+Slightly different to the request activation, we can use **fetch** to dynamically request data from 
+the web server. For this purpose, we define a javascript function **f_status()**. See the comments for
+an explanation of how it works:
 
+``` javascript
+function f_status() {
+  fetch('/status?')  // this is the fetch request, which can be evaluated by the "server.on" function (see the *setup* chapter).
+  // it returns a 'Promise' that resolves to the Response to that request — as soon as the server responds with headers
+  .then (function(response) {
+    if (!response.ok) {	// if the server response is an HTTP error status:
+      throw new Error('HTTP error ' + response.status);
+    }
+    return response.json();
+  })
+  // The Response object is the API wrapper for the fetched resource. We can parse the response body text as JSON.
+  .then (function(data) {
+    // parse mAmps and set value in user interface
+    mAmps = data.mAmps.valueOf();
+    document.querySelector('mAmps').innerText = data.mAmps;
 
+    // parse position data and set the global javascript variables 
+    position[1] = data.VZ1.Position;
+    position[2] = data.VZ2.Position;
+    position[3] = data.VZ3.Position;
+    position[4] = data.VZ4.Position;
+    update_allpos();  // this will update all sliders and numeric position display
+  });
+}
 ```
-setInterval(f_status, 1500);
-f_status();
-```
 
-
-
-
+To periodically update the measured values we can use the  javascript method **setInterval**:
+``` setInterval(f_status, 1500); ```
 
 
