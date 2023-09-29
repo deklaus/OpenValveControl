@@ -1,5 +1,5 @@
 # OpenValveControl
-Low cost control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and similar) with web interface.
+Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and similar) with web interface.
 
 ![grafik](https://github.com/deklaus/OpenValveControl/assets/134941062/c7453fc3-d5e5-40fb-8e91-af75df43da2d)
 
