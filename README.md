@@ -40,6 +40,8 @@ to the community as an OpenSource project.
 Total: ca. 53 EUR
 
 # License
-- Still thinking about
-- No commercial use
+- EUROPEAN UNION PUBLIC LICENCE v. 1.2 <br>
+  "The European Union Public Licence (EUPL) is a copyleft free/open source software license created on the initiative of and approved
+  by the European Commission in <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">23 official languages</a>
+  of the European Union."
 
