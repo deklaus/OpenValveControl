@@ -5,7 +5,7 @@
 - Documentation will be updated soon.
 
 ## Block diagram
-- insert picture here -
+- insert schematic picture here -
 
 ## Schematics
 
