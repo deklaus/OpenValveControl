@@ -1,7 +1,9 @@
-# This folder contains the hardware
+# This folder contains the schematics and hardware description
 
-- Actually, the prototype is built using a breadboard.
-- A first layout is ready (10 samples will be ordered in Oct 2023)
+- [x] A working sample is running using a breadboard.
+- [x] A first layout is ready (10 samples will be ordered in Oct 2023)
+- [ ] Prototype built into housing
+- [ ] Testing under real conditions
 
 ## Block diagram
 - insert schematic picture here -
@@ -10,3 +12,4 @@
 - Description will be updated as time permits
 
 ## Board and housing
+- 
