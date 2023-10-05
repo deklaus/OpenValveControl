@@ -26,7 +26,7 @@ to the community as an OpenSource project.
 
 # Bill of Materials
 - 1 x LOLIN(WEMOS) D1  mini (clone), ca. 5 EUR (e.g. AZ-Delivery)
-- 1 x PIC18F16Q41/P  (20-lead PDIP), ca. 2,50 EUR (e.g. Reichelt)
+- 1 x PIC18F16Q41-I/SO (20-lead SOIC), ca. 2,50 EUR (e.g. Reichelt)
 - 2 x MX1508 Brushed DC Motor Driver (each board supports 2 motors), ca. 3 EUR (e.g. Amazon)
 - 1 x INA219 Bidirectional Current/Power Monitor With I2C Interface, ca. 4 EUR (e.g. Amazon)
 - 1 x DC-DC-Converter TRACO TSR1-2433, ca. 6 EUR (e.g. Reichelt)
