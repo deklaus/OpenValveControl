@@ -37,7 +37,7 @@ to the community as an OpenSource project.
 - 1 x WITTKOWARE KRA-Z109JFP, DIN rail housing, 90x88x65mm, ca. 7 EUR (+ 5 EUR PP, e.g. Amazon)
 - 1 x 5 V / 1 A Power Supply, micro-USB, ca. 10 EUR
 
-Total: ca. 53 EUR
+Total: ca. 53 EUR (actuators not included - ca. 20 EUR each)
 
 # License
 - EUROPEAN UNION PUBLIC LICENCE v. 1.2 <br>
