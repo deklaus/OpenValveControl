@@ -1,0 +1,3 @@
+# ignore all files in any directory named debug, build
+debug/
+build/
