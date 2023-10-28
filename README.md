@@ -1,7 +1,22 @@
 # OpenValveControl
 Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and others) with web interface.
 
-![grafik](https://github.com/deklaus/OpenValveControl/assets/134941062/c7453fc3-d5e5-40fb-8e91-af75df43da2d)
+# OpenValveControl
+Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and others) with web interface.<br>
+All components are low cost and pluggable.
+
+<table>
+<tr>
+<td rowspan="2"><img src="./Photos/WebUI.png" alt="User Interface" title="Web UI" width="250"/></td>
+  <td><img src="./Photos/Assembly-1.jpg" alt="Assembly-1" title="Modules unplugged" width="250"/></td>
+  <td><img src="./Photos/Assembly-2.jpg" alt="Assembly-2" title="Modules installed" width="250"/></td>
+</tr>  
+<tr>
+  <td><img src="./Photos/Assembly-3.jpg" alt="Connected OLED and power" title="Adding OLED and power" width="250"/></td>
+  <td><img src="./Photos/Assembly-4.jpg" alt="Assembly complete" title="Assembly complete" width="250"/></td>  
+</tr>  
+</table>
+
 
 # Purpose
 The heating control of our home regulates the supply temperature by means of two characteristic curves (slope and offset). 
