@@ -10,7 +10,7 @@ Compiler:
 
 # Software
 See the doxygen documentation in sub folder ./ValveControl.X/doxygen/.
-The following chapters provide some insights into the software concept: <br>
+The following chapters provide some insights into the software concept:
 (in progress)
 
 ### main
