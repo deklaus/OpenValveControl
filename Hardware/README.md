@@ -1,8 +1,8 @@
 # This folder contains the schematics and hardware description
 
 - [x] A working sample is running using a breadboard.
-- [x] A first layout is ready (10 samples have been ordered in Oct 2023)
-- [ ] Prototype built into housing
+- [x] First layout and Gerber files are available
+- [x] PCB built into housing, first desktop tests have passed
 - [ ] Testing under real conditions
 
 ## Block diagram
