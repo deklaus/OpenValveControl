@@ -1,0 +1,275 @@
+/** @file   interrupt.c
+ *  @brief  Implementations of vectored interrupts (PIC18F..)
+ *  @par  (c) 2023 Klaus Deutschämer \n
+ *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
+ *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ */
+/*  ChangeLog:
+ * 17.10.2023 V0.1
+ * - Initial issue
+ */
+
+// *** includes
+#include <xc.h>
+#include <stdint.h>         // uint8_t ... (C99 standard types)
+
+#include "main.h"
+#include "daq.h"
+#include "init.h"
+#include "i2c.h"
+
+// *** data type, constant and macro definitions
+
+//#define IVT1_BASE_ADDRESS   0x0808 /* with bootloader (not yet implemented) */
+#define IVT1_BASE_ADDRESS   0x0008
+#define KLPASS      1       
+#define KLPASS_I    1       
+/*  Low Pass Filter
+    y(k) = a * u(k) + b * y(k-1);       b = 1 - a;
+    y(k) = a * u(k) + y(k-1) - a * y(k-1);
+A very fast implementation of 'a * u(k)' and '- b * y(k-1)' simply shifts 
+the values u(k) and y(k-1) by KLPASS bit to the right. This results in:
+KLPASS  1       2       3       4       5
+a:      1/2     1/4     1/8     1/16    1/32    = (1 >> KLPASS)
+Ts/T:	1.44	3.48	7.49	15.5	31.5    Time Constant / Sample Interval
+*/
+
+// *** global variables
+// *** private variables
+
+uint16_t emk[128];
+
+// *** private function prototypes
+// *** public function bodies
+
+/** @brief Vectored Interrupt Manager. \n
+ *         The interrupt sources are placed to high and low priorities:
+\verbatim
+ High Priority Interrupt |  Low Priority Interrupt \n
+ Vector |     Source     |  Vector  |    Source   \n
+ -------+----------------+----------+---------------------------------
+ 0x07   | IOC            |   0x1B   |  TMR2 (not used)
+        |                |   0x1C   |  TMR1 (wake-up from sleep)
+        |                |   0x1E   |  CCP1 (Capture/Compare)
+        |                |   0x1F   |  TMR0 (1 ms system clock)
+        |                |   0x20   |  U1RX (UART1 RX)
+\endverbatim
+ */ 
+
+
+void interrupt_initialize (void)
+{
+    INTCON0bits.IPEN = 1;   // Enable Interrupt Priority Vectors
+
+    // Set IVTBASE to XC8 default: 0x000008
+    IVTBASEU = 0x00;
+    IVTBASEH = 0x00;    // (0x08 when using BL)
+    IVTBASEL = 0x08;
+    
+    // Assign peripheral interrupt priorities (default after reset varies!!!)
+    IPR0bits.OSFIP = 1;     // OSFI - high priority (#0x02) default
+    IPR0bits.IOCIP = 1;     // IOCI - high priority (#0x07) default
+
+    /* more than one interrupt with the same user specified priority level 
+     * uses the natural order priority scheme, going from high-to-low with 
+     * increasing vector numbers, with 0 being the highest.
+     */
+    IPR3bits.TMR2IP = 0;    // TMR2 - low priority (#0x1B)
+    IPR3bits.TMR1IP = 0;    // TMR1 - low priority (#0x1C)
+    IPR3bits.CCP1IP = 0;    // CCP1 - low priority (#0x1E)
+    IPR3bits.TMR0IP = 0;    // TMR0 - low priority (#0x1F)
+    IPR4bits.U1TXIP = 0;    // U1RX - low priority (#0x20)
+    
+} // interrupt_initialize()
+
+
+/** @brief  The default interrup service routine. \n
+ *  - Handles unexpected interrupts.
+ */
+void __interrupt (irq(default), base(IVT1_BASE_ADDRESS), low_priority) 
+default_isr (void)
+{
+    g_ERRORflags.UNEXP_INT = 1;    // signal unexpected interrupt
+	
+} // default_isr (void)
+
+
+
+static uint8_t ns;
+
+/** @brief  Handles all IOC events. \n
+ *  We use several sources for IOC interrupt:
+ *  - on any rising  edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read current.
+ *  - on any falling edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read Back EMF.
+ */
+void __interrupt (irq(IRQ_IOC), base(IVT1_BASE_ADDRESS), high_priority)
+IOC_isr (void)
+{
+    int16_t     mAmps;
+    uint16_t    uk;
+    int8_t      f1a, f1b;
+            
+    // find cause of interrupt: any rising edge?
+    if (   (PORTA & 0x30)                       // RA5/4
+        || (PORTC & 0x30)                       // RC5/4    
+        || (PORTC & 0x48)                       // RC6/3    
+        || (PORTCbits.RC7 || PORTBbits.RB7))    // RC7/RB7
+    {
+        /** @todo Must wait 'til current has settled (use timer),
+         *  reading right after PWM ON gives results much too low! 
+         *  preliminary we stall and waste 2 (to 3) ms with delay */
+        __delay_ms(2);
+        
+        ina219_reg(1);          // exec time ca. 49 µs (@SCL 400 kHz)
+        mAmps  = ina219_read(); // exec time ca. 72 µs (@SCL 400 kHz)
+        if (mAmps < 0) mAmps = 0;   // offset may cause negative readings ??
+        
+        g_mAx10 += (mAmps - g_mAx10) >> KLPASS_I;   // LowPass Filter        
+#ifdef TEST_SETTINGS  
+        DAC1DATL = (uint8_t) (g_mAx10 >> 2);    // current monitor (16 -> 8 bit)
+#endif
+    }
+    
+    else    // if no rising edge, interrupt was caused by falling edge
+    {
+        __delay_us(500);     // allow vbemf to stabilize
+        uk = daq_vbemf(g_vz);
+        g_vbemf += ((int16_t)uk - (int16_t)g_vbemf) >> KLPASS;    // LP Filter, see also AN2749
+        // g_vbemf = uk;
+
+        // save new reading at end of shift register
+        for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = g_bemf8[i + 1];
+        g_bemf8[4] = (uint8_t) (g_vbemf >> 4);
+        
+        // calculate 1st and 2nd derivation (kind of)
+        f1a = g_bemf8[2] - ((g_bemf8[0] + g_bemf8[1]) >> 1);  // avg 1st 2 vals
+        f1b = g_bemf8[4] - ((g_bemf8[2] + g_bemf8[3]) >> 1);  // avg last 2 vals
+        
+        // if f1a < 0 and f1b > 0 it's an extremum,
+        // and if f1a < f1b then it is a local minimum
+        if (   (f1a < 0) && (f1b > 0) && (f1a < f1b) && g_zerocount > 3)
+        {   // increment position count of active axis
+            LATCbits.LATC1 = !LATCbits.LATC1;   // toggle
+            g_zerocount = 0;
+            g_zcd[g_vz] += g_dir;
+            if (g_zcd[g_vz] < 0) g_zcd[g_vz] = 0;
+        }
+        else if (g_zerocount < 127) g_zerocount++;
+        
+/**     @note Low pass filter could be initialized using the first reading
+        to avoid exponential course at the beginning. Alternatively, the 
+		low pass can be omitted, then there is also no phase shift. 
+		If the evaluation is done by SW, noise has to be suitably ignored.
+		Furthermore: two successive sampling moments cannot be a be a zero 
+		crossing - must be checked by algorithm.
+*/
+        
+        if((g_dir > 0) && (ns < sizeof(emk)/2))
+        {
+            emk[ns++] = g_vbemf;
+        }
+        if (ns == 25)
+        {
+            g_vbemf = 0;    // just to trigger
+        }
+
+        // TEST: monitor VBEMF (16 -> 8 bit) - requires DACout routed to a pin
+        // DAC1DATL = (uint8_t) (g_vbemf >> 4);    
+        /* see also: PIC datasheet 40.5.6 Low-Pass Filter Mode, Burst Average Mode */
+        
+    } // falling edge
+    
+    IOCAF = IOCBF = IOCCF = 0;  // clear all IOC Flags    
+
+} // IOC_isr()
+
+
+/** @brief Timer0 interrupt (1 ms system clock and timeout) \n
+ *  - Increments g_timer_ms (system timer)
+ */
+void __interrupt (irq(IRQ_TMR0), base(IVT1_BASE_ADDRESS), low_priority) 
+TMR0_isr (void)
+{
+    PIR3bits.TMR0IF = 0;    // on entry: clear interrupt flag
+    if (++g_timer_ms == 0x0000) g_tovfl_ms = true;  // > 65.535 ms elapsed
+    
+} // TMR0_isr()
+
+
+/** @brief Timer1 interrupt. \n
+ *  TMR1 is used for wake-up from sleep (not yet implemented).
+ */
+void __interrupt (irq(IRQ_TMR1), base(IVT1_BASE_ADDRESS), low_priority) 
+TMR1_isr (void)
+{
+    PIR3bits.TMR1IF = 0;    // on entry: clear interrupt flag
+    
+} // TMR1_isr()
+
+
+/** @brief Timer2 interrupt. \n
+ * - (not used yet)
+ */
+void __interrupt (irq(IRQ_TMR2), base(IVT1_BASE_ADDRESS), low_priority) 
+TMR2_isr (void)
+{
+    PIR3bits.TMR2IF = 0;    // on entry: clear interrupt flag
+    
+} // TMR2_isr()
+
+
+/** @brief  Handles UART receive events. \n
+ *  - Interrupt when receiving data from ESP via the UART
+ *  - Stores chars in g_rx232_buf[]
+ *  - Sets flag g_rs232_request = 1 after detection of CR or LF.
+ */
+void __interrupt (irq(IRQ_U1RX), base(IVT1_BASE_ADDRESS), low_priority)
+U1RX_isr (void)
+{
+    uint8_t  ch;    // received ascii char
+
+    // PIR4bits.U1RXIF = 0;    // U1RXIF cannot be cleared by software
+
+    if (U1ERRIRbits.RXFOIF || U1ERRIRbits.FERIF) 
+    {   // overrun or framing error?
+        U1ERRIRbits.RXFOIF = U1ERRIRbits.FERIF = 0;
+        ch = U1RXB;            
+        init_uart1();               // reset serial port
+    }
+    else 
+    {  // valid char received, save to buffer, check if CR
+        ch = U1RXB;
+        if (ch == '\r' || ch == '\n')  
+        {
+            ch = 0;
+            if (g_rx232_count > 1)  
+            {
+                g_rs232_request = 1;
+                PIE4bits.U1RXIE = 0;    // disable further U1RX interrupts
+            }                           // until cmd has been processed
+            else    // ignore leading CRLF
+            {
+                goto _exit;
+            }
+        } // EOL received
+        if (g_rx232_count < sizeof(g_rx232_buf)) 
+        {
+            g_rx232_buf[g_rx232_count++] = ch;    // save to buffer
+        }
+        else    // buffer overflow, flush RS232 buf
+        {
+            for (uint8_t i = 0; i < sizeof(g_rx232_buf); i++) g_rx232_buf[i] = 0;
+            g_rx232_count = 0;
+        }
+    } // valid char    
+_exit:
+    NOP();
+
+} // U1RX_isr()
+
+
+// *** private function bodies
+
+/**
+ End of File
+ */
