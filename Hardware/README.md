@@ -1,6 +1,11 @@
 # This folder contains the schematics and hardware description
 
-<img src="../Photos/Assembly-2.jpg" alt="Assembly-2" title="Modules installed" width="250"/>
+<table>
+<tr>
+  <td><img src="./PCB_preview.png" alt="PCB preview" title="PCB preview" height="130"/></td>
+  <td><img src="../Photos/Assembly-2.jpg" alt="Assembly-2" title="Modules installed" width="250"/></td>
+</tr>  
+</table>
 
 - [x] A working sample is running using a breadboard.
 - [x] First layout and Gerber files are available
