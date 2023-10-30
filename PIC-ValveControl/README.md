@@ -8,9 +8,10 @@ Compiler:
 - Optimization Level: 2
 - Device Family Pack **PIC18F-Q_DFP (v1.14.237)**
 
-
-
 # Software
+See the doxygen documentation in sub folder ./ValveControl.X/doxygen/.
+The following chapters give some insights into the software concept:
+[under way]
 
 ### main
 
