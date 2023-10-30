@@ -11,15 +11,13 @@
  */
 
 #include <xc.h>             /* XC8 General Include File */
-#include <stdint.h>         /* For uint8_t definition */
-#include <stdbool.h>        /* For true/false definition */
-
 #include "main.h"
 #include "i2c.h"
 
 
-/** 
- * + MODE 7-bit address
+/** @brief Initializes the I2C module.
+ *  - CLK: 400 kHz
+ *  - MODE: 7-bit address
  */
 void i2c_init (void)
 {
@@ -46,12 +44,13 @@ void i2c_init (void)
 } // i2c_init ()
 
 
-/**	Read 2 byte of data from INA219. NOTE: register must be set prior read!
+/**	@brief Read 2 byte of data from INA219. \n
+ *  NOTE: register must be set prior read! \n
  *  When ABD is set (ABD = 1), the address buffer is disabled. In this case, 
  *  the number of data bytes are loaded into I2CxCNT, and the client’s 7-bit 
  *  address and R/W bit are loaded into I2CxTXB. A write to I2CxTXB will cause 
  *  host hardware to automatically issue a Start condition once the bus is 
- *  Idle (BFRE = 1). Software writes to the Start bit are ignored.
+ *  Idle (BFRE = 1). Software writes to the Start bit are ignored. \n
  *  See datasheet (36.4.2.7.1), page 635.
  */
 int16_t ina219_read (void)
@@ -95,7 +94,7 @@ int16_t ina219_read (void)
 } // ina219_read()
 
 
-/**	Set INA219 register address.
+/**	@brief Set INA219 register address.
  */
 void ina219_reg (uint8_t ina219reg)
 {
@@ -128,7 +127,7 @@ void ina219_reg (uint8_t ina219reg)
 } // ina219_reg()
 
 
-/**	Write data to INA219 register.
+/**	@brief Write data to INA219 register. \n
  *  When ABD is set (ABD = 1), the address buffer is disabled. In this case, 
  *  the number of data bytes are loaded into I2CxCNT, and the client’s 7-bit 
  *  address and R/W bit are loaded into I2CxTXB. A write to I2CxTXB will cause 

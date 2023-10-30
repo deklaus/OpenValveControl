@@ -1,0 +1,7 @@
+<map id="i2c.h" name="i2c.h">
+<area shape="rect" id="node1" title="Deklarations for module i2c.c (project &quot;ValveControl&quot;)" alt="" coords="124,5,175,32"/>
+<area shape="rect" id="node2" href="$i2c_8c.html" title="Implementations for I2C operations." alt="" coords="5,80,56,107"/>
+<area shape="rect" id="node3" href="$init_8c.html" title="Initialization functions." alt="" coords="80,80,131,107"/>
+<area shape="rect" id="node4" href="$interrupt_8c.html" title="Implementations of vectored interrupts (PIC18F..)" alt="" coords="155,80,235,107"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Main program for Project &quot;ValveControl&quot;." alt="" coords="259,80,320,107"/>
+</map>

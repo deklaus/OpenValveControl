@@ -67,9 +67,6 @@
 
 
 #include <xc.h>             /* XC8 General Include File */
-#include <stdint.h>         /* For uint8_t definition */
-#include <stdbool.h>        /* For true/false definition */
-
 #include "main.h"
 #include "i2c.h"
 #include "init.h"
@@ -130,7 +127,7 @@ void init_system (void)
 
 /** @brief Init the FVR and enable the temperature indicator.
  * 
- * - Enables fixed volatge reference (FVR)
+ * - Enables fixed voltage reference (FVR)
  * - Enabels temperature indicator (TI): High Range (Vout = 3VT)
  * - FVR Buffer 1 (ADC):       2x (2.048 V)
  * - FVR Buffer 2 (CMP & DAC): 2x (2.048 V)
@@ -146,9 +143,18 @@ void init_fvr (void)
 } // init_fvr ()
 
 
-/* @brief Setup of the INA219 Module to measure current.
- * The default I2C address of the INA219 is 0x40
+/** @brief Setup of the INA219 Module to measure current.
+ * - The default I2C address of the INA219 is 0x40.
+ * - When using the INA219 in default mode, nothing has to be initialized. 
+ *   + See datasheet 8.5.3: \n
+ *     <i><b>Simple Current Shunt Monitor Usage:</b> \n
+ *     The INA219 can be used without any programming if it is only necessary 
+ *     to read a shunt voltage drop and bus voltage with the default 12-bit 
+ *     resolution, 320-mV shunt full-scale range (PGA = /8), 32-V bus full-scale 
+ *     range, and continuous conversion of shunt and bus voltage. \n
+ * => Without programming, current is measured by reading the shunt voltage.</i>
  * 
+ * \verbatim
  * Hex Register          POR       Type
  * 00  Configuration     0x399F    R/W
  * 01  Shunt voltage     -         R
@@ -156,24 +162,17 @@ void init_fvr (void)
  * 03  Power             0000      R
  * 04  Current           0000      R
  * 05  Calibration       0000     R/W
+ * \endverbatim
  */
 void init_ina219 (void)
 {
-    /* We are using the INA219 in default mode. Then nothing has to be 
-     * initialized, see datashett 8.5.3:
-     * 
-     * Simple Current Shunt Monitor Usage (No Programming Necessary)
-     * The INA219 can be used without any programming if it is only necessary to 
-     * read a shunt voltage drop and bus voltage with the default 12-bit resolution, 
-     * 320-mV shunt full-scale range (PGA = /8), 32-V bus full-scale range,
-     * and continuous conversion of shunt and bus voltage.
-     * Without programming, current is measured by reading the shunt voltage.
-     */ 
     // ina219_write(0x05, 10240);  // Calibration register (test)
 
 } // init_ina219 ()
 
 
+/** @brief Initialize sysclock as 16 MHz from internal HFINTOSC.
+ */
 void init_oscillator (void)
 {
     // NOSC HFINTOSC; NDIV 1; 
@@ -192,27 +191,32 @@ void init_oscillator (void)
 } // init_oscillator ()
 
 
-/* Pins assignments:
- * RA5: IN1
- * RA4: IN2
- * RA3: INP RESET
- * RA2: /LED
- * RA1: I/O ICSPCLK
- * RA0: I/O ICSPDAT
+/** @brief Initializes all ports as input/output, analog/digital, 
+ *  open drain/push pull, and assign peripheral functions as needed:
  * 
- * RB7: IN8
+ * <b>Pin assignments:</b>
+ * \verbatim
+ * RA5: OUT IN2
+ * RA4: OUT IN1
+ * RA3: INP RESET
+ * RA2: OUT /LED
+ * RA1: AIN V_BEMF1
+ * RA0: AIN V_BEMF2
+ * 
+ * RB7: OUT IN6
  * RB6: OUT SCL
- * RB5: RXD
+ * RB5: OUT RXD (esp pov)
  * RB4: I/O SDA
  * 
- * RC7: IN7
- * RC6: IN6
- * RC5: IN3
- * RC4: IN4
- * RC3: IN5
- * RC2: TXD
- * RC1: TEST
- * RC0: V_BEMF
+ * RC7: OUT IN5
+ * RC6: OUT IN8
+ * RC5: OUT IN4
+ * RC4: OUT IN3
+ * RC3: OUT IN7
+ * RC2: INP TXD (esp pov)
+ * RC1: AIN V_BEMF3
+ * RC0: AIN V_BEMF4
+ * \endverbatim
  */
 void init_pin_manager (void)
 {
@@ -263,6 +267,10 @@ void init_pin_manager (void)
 } // init_pin_manager())
 
 
+
+/** @brief Init the PMD (Peripheral Module Disable).
+    - Disabling the not required peripheral modules reduces power consumption.
+*/
 void init_pmd (void)
 {
     PMD0 = 0b00111010;  // Disable FOSC, FVR, HLVD, CRC, SCAN, -, CLKR, IOC
@@ -274,13 +282,13 @@ void init_pmd (void)
 } // init_pmd ()
 
 
-/** @brief Init the PWM (125 Hz) with 90% duty cycle (7.2 ms + 0.8 ms = 8 ms).
-    see datasheet 28.4.1f.
+/** @brief Init the PWM (125 Hz).
+ *  - 90% duty cycle (7.2 ms + 0.8 ms = 8 ms) \n
+      see datasheet 28.4.1f.
 */
 void init_pwm (void)
 {
-   
-/*  Use Timer2 and configure the default period
+/*  Use Timer2 and configure the default period. 
  *  PR2 = FREQUENCY_TO_PR_CONVERT(FREQUENCY_MIN);
  *  PWM Period = (T2PR + 1) x Tosc x TMR2_Prescaler  ; Tosc = 4/Fosc = 250 ns
  *             = (T2PR + 1) x 32 µs                  ; CKPS = 128
@@ -330,10 +338,10 @@ init_timer0 (void)
 } // init_timer0 ()
 
 
-/** @brief Initialisiert UART1 für die Kommunikation mit dem ESP8266 D1-mini \n
+/** @brief Initializes UART1 for communication with the ESP8266 D1-mini.
  *  - RXD = RC2     RXD/TXD from PIC's point of view
  *  - TxD = RB5
- *  - 38400 Bd, 8 bit, 1 stop.
+ *  - 38400 Bd, 8 bit, 1 stop
  *  - receive interrupts enabled
  */
 void 

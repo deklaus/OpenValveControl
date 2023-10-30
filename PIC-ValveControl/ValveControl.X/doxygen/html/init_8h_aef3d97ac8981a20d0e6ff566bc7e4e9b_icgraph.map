@@ -1,0 +1,4 @@
+<map id="init_uart1" name="init_uart1">
+<area shape="rect" id="node1" title="Initializes UART1 for communication with the ESP8266 D1&#45;mini." alt="" coords="143,5,217,32"/>
+<area shape="rect" id="node2" href="$init_8c.html#a348d23d5899ce59d18975284dfb0afc0" title="This is the main initialization function." alt="" coords="5,5,95,32"/>
+</map>

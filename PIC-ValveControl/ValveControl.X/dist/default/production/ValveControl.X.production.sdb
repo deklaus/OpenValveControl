@@ -3,8 +3,8 @@
 [d edition pro ]
 [d chip 18F16Q41 ]
 [d frameptr 1249 ]
-"75 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
-[e E13223 Errs `c
+"88 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+[e E13219 Errs `c
 E_ADC_TIMEOUT -127
 E_HOMEING_ACTIVE -6
 E_NO_REFERENCE -5
@@ -13,14 +13,14 @@ E_MA_MAX -3
 E_SET_POS_RANGE -2
 E_VZ_RANGE -1
 ]
-"196 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
-[e E13758 states `uc
+"201 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+[e E13763 states `uc
 state_idle 0
 state_home 1
 state_move 2
 ]
-"346
-[e E13708 Errs `c
+"353
+[e E13704 Errs `c
 E_ADC_TIMEOUT -127
 E_HOMEING_ACTIVE -6
 E_NO_REFERENCE -5
@@ -161,73 +161,73 @@ E_VZ_RANGE -1
 [v ___omul __omul `(uo  1 e 8 0 ]
 "10 /opt/microchip/xc8/v2.32/pic/sources/c99/common/xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-"31 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+"28 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
 [v _adc_init adc_init `(v  1 e 1 0 ]
 [v i2_adc_init adc_init `(v  1 e 1 0 ]
-"61
-[v _adc_read adc_read `(c  1 e 1 0 ]
-[v i2_adc_read adc_read `(c  1 e 1 0 ]
-"87
+"57
 [v _adc_start adc_start `(v  1 e 1 0 ]
 [v i2_adc_start adc_start `(v  1 e 1 0 ]
-"78 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
+"74
+[v _adc_wait adc_wait `(c  1 e 1 0 ]
+[v i2_adc_wait adc_wait `(c  1 e 1 0 ]
+"75 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
 [v _daq_vdd daq_vdd `(us  1 e 2 0 ]
-"114
+"111
 [v _daq_vbemf daq_vbemf `(us  1 e 2 0 ]
-"24 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
+"22 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
 [v _i2c_init i2c_init `(v  1 e 1 0 ]
-"57
+"56
 [v _ina219_read ina219_read `(s  1 e 2 0 ]
 [v i2_ina219_read ina219_read `(s  1 e 2 0 ]
-"100
+"99
 [v _ina219_reg ina219_reg `(v  1 e 1 0 ]
 [v i2_ina219_reg ina219_reg `(v  1 e 1 0 ]
-"87 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"84 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v _init_system init_system `(v  1 e 1 0 ]
-"138
+"135
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
-"160
+"159
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
-"177
+"178
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
-"217
+"223
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
-"266
+"276
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
-"280
+"291
 [v _init_pwm init_pwm `(v  1 e 1 0 ]
-"320
+"330
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
-"340
+"350
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
-"60 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+"58 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _interrupt_initialize interrupt_initialize `(v  1 e 1 0 ]
-"90
+"89
 [v _default_isr default_isr `IIL(v  1 e 1 0 ]
-"106
+"105
 [v _IOC_isr IOC_isr `IIH(v  1 e 1 0 ]
-"191
+"192
 [v _TMR0_isr TMR0_isr `IIL(v  1 e 1 0 ]
-"203
+"204
 [v _TMR1_isr TMR1_isr `IIL(v  1 e 1 0 ]
-"214
+"215
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
-"227
+"228
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
 "113 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
 "128
 [v _main main `(v  1 e 1 0 ]
-"318
+"325
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
-"456
+"463
 [v _over_current over_current `(a  1 s 1 over_current ]
-"482
+"489
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
-"91 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.h
+"87 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.h
 [v _FVRA2X FVRA2X `us  1 e 2 0 ]
-"92
+"88
 [v _FVRC2X FVRC2X `us  1 e 2 0 ]
 [s S527 . 1 `uc 1 GO 1 0 :1:0 
 ]
@@ -460,7 +460,7 @@ E_VZ_RANGE -1
 [v _U1CON2bits U1CON2bits `VES1004  1 e 1 @685 ]
 "15430
 [v _U1BRG U1BRG `VEus  1 e 2 @686 ]
-[s S1933 . 1 `uc 1 TXCIF 1 0 :1:0 
+[s S1917 . 1 `uc 1 TXCIF 1 0 :1:0 
 `uc 1 RXFOIF 1 0 :1:1 
 `uc 1 RXBKIF 1 0 :1:2 
 `uc 1 FERIF 1 0 :1:3 
@@ -470,7 +470,7 @@ E_VZ_RANGE -1
 `uc 1 TXMTIF 1 0 :1:7 
 ]
 "15690
-[s S1942 . 1 `uc 1 U1TXCIF 1 0 :1:0 
+[s S1926 . 1 `uc 1 U1TXCIF 1 0 :1:0 
 `uc 1 U1RXFOIF 1 0 :1:1 
 `uc 1 U1RXBKIF 1 0 :1:2 
 `uc 1 U1FERIF 1 0 :1:3 
@@ -479,8 +479,8 @@ E_VZ_RANGE -1
 `uc 1 U1PERIF 1 0 :1:6 
 `uc 1 U1TXMTIF 1 0 :1:7 
 ]
-[u S1951 . 1 `S1933 1 . 1 0 `S1942 1 . 1 0 ]
-[v _U1ERRIRbits U1ERRIRbits `VES1951  1 e 1 @690 ]
+[u S1935 . 1 `S1917 1 . 1 0 `S1926 1 . 1 0 ]
+[v _U1ERRIRbits U1ERRIRbits `VES1935  1 e 1 @690 ]
 "20042
 [v _TMR0L TMR0L `VEuc  1 e 1 @792 ]
 "20180
@@ -597,7 +597,7 @@ E_VZ_RANGE -1
 ]
 [u S800 . 1 `S795 1 . 1 0 `S797 1 . 1 0 ]
 [v _CCPTMRS0bits CCPTMRS0bits `VES800  1 e 1 @844 ]
-[s S1769 . 1 `uc 1 SWIP 1 0 :1:0 
+[s S1757 . 1 `uc 1 SWIP 1 0 :1:0 
 `uc 1 HLVDIP 1 0 :1:1 
 `uc 1 OSFIP 1 0 :1:2 
 `uc 1 CSWIP 1 0 :1:3 
@@ -607,9 +607,9 @@ E_VZ_RANGE -1
 `uc 1 IOCIP 1 0 :1:7 
 ]
 "25515
-[u S1778 . 1 `S1769 1 . 1 0 ]
-[v _IPR0bits IPR0bits `VES1778  1 e 1 @871 ]
-[s S1790 . 1 `uc 1 SPI1RXIP 1 0 :1:0 
+[u S1766 . 1 `S1757 1 . 1 0 ]
+[v _IPR0bits IPR0bits `VES1766  1 e 1 @871 ]
+[s S1778 . 1 `uc 1 SPI1RXIP 1 0 :1:0 
 `uc 1 SPI1TXIP 1 0 :1:1 
 `uc 1 SPI1IP 1 0 :1:2 
 `uc 1 TMR2IP 1 0 :1:3 
@@ -619,9 +619,9 @@ E_VZ_RANGE -1
 `uc 1 TMR0IP 1 0 :1:7 
 ]
 "25693
-[u S1799 . 1 `S1790 1 . 1 0 ]
-[v _IPR3bits IPR3bits `VES1799  1 e 1 @874 ]
-[s S1811 . 1 `uc 1 U1RXIP 1 0 :1:0 
+[u S1787 . 1 `S1778 1 . 1 0 ]
+[v _IPR3bits IPR3bits `VES1787  1 e 1 @874 ]
+[s S1799 . 1 `uc 1 U1RXIP 1 0 :1:0 
 `uc 1 U1TXIP 1 0 :1:1 
 `uc 1 U1EIP 1 0 :1:2 
 `uc 1 U1IP 1 0 :1:3 
@@ -631,8 +631,8 @@ E_VZ_RANGE -1
 `uc 1 PWM1IP 1 0 :1:7 
 ]
 "25755
-[u S1820 . 1 `S1811 1 . 1 0 ]
-[v _IPR4bits IPR4bits `VES1820  1 e 1 @875 ]
+[u S1808 . 1 `S1799 1 . 1 0 ]
+[v _IPR4bits IPR4bits `VES1808  1 e 1 @875 ]
 [s S97 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 CDAFVR 1 0 :2:2 
 `uc 1 TSRNG 1 0 :1:4 
@@ -712,7 +712,7 @@ E_VZ_RANGE -1
 [v _SLRCONA SLRCONA `VEuc  1 e 1 @1027 ]
 "31822
 [v _INLVLA INLVLA `VEuc  1 e 1 @1028 ]
-[s S1457 . 1 `uc 1 IOCAP0 1 0 :1:0 
+[s S1453 . 1 `uc 1 IOCAP0 1 0 :1:0 
 `uc 1 IOCAP1 1 0 :1:1 
 `uc 1 IOCAP2 1 0 :1:2 
 `uc 1 IOCAP3 1 0 :1:3 
@@ -720,9 +720,9 @@ E_VZ_RANGE -1
 `uc 1 IOCAP5 1 0 :1:5 
 ]
 "31887
-[u S1464 . 1 `S1457 1 . 1 0 ]
-[v _IOCAPbits IOCAPbits `VES1464  1 e 1 @1029 ]
-[s S1440 . 1 `uc 1 IOCAN0 1 0 :1:0 
+[u S1460 . 1 `S1453 1 . 1 0 ]
+[v _IOCAPbits IOCAPbits `VES1460  1 e 1 @1029 ]
+[s S1436 . 1 `uc 1 IOCAN0 1 0 :1:0 
 `uc 1 IOCAN1 1 0 :1:1 
 `uc 1 IOCAN2 1 0 :1:2 
 `uc 1 IOCAN3 1 0 :1:3 
@@ -730,11 +730,11 @@ E_VZ_RANGE -1
 `uc 1 IOCAN5 1 0 :1:5 
 ]
 "31937
-[u S1447 . 1 `S1440 1 . 1 0 ]
-[v _IOCANbits IOCANbits `VES1447  1 e 1 @1030 ]
+[u S1443 . 1 `S1436 1 . 1 0 ]
+[v _IOCANbits IOCANbits `VES1443  1 e 1 @1030 ]
 "31972
 [v _IOCAF IOCAF `VEuc  1 e 1 @1031 ]
-[s S1474 . 1 `uc 1 IOCAF0 1 0 :1:0 
+[s S1470 . 1 `uc 1 IOCAF0 1 0 :1:0 
 `uc 1 IOCAF1 1 0 :1:1 
 `uc 1 IOCAF2 1 0 :1:2 
 `uc 1 IOCAF3 1 0 :1:3 
@@ -742,8 +742,8 @@ E_VZ_RANGE -1
 `uc 1 IOCAF5 1 0 :1:5 
 ]
 "31987
-[u S1481 . 1 `S1474 1 . 1 0 ]
-[v _IOCAFbits IOCAFbits `VES1481  1 e 1 @1031 ]
+[u S1477 . 1 `S1470 1 . 1 0 ]
+[v _IOCAFbits IOCAFbits `VES1477  1 e 1 @1031 ]
 "32022
 [v _ANSELB ANSELB `VEuc  1 e 1 @1032 ]
 "32061
@@ -754,35 +754,35 @@ E_VZ_RANGE -1
 [v _SLRCONB SLRCONB `VEuc  1 e 1 @1035 ]
 "32178
 [v _INLVLB INLVLB `VEuc  1 e 1 @1036 ]
-[s S1410 . 1 `uc 1 . 1 0 :4:0 
+[s S1406 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IOCBP4 1 0 :1:4 
 `uc 1 IOCBP5 1 0 :1:5 
 `uc 1 IOCBP6 1 0 :1:6 
 `uc 1 IOCBP7 1 0 :1:7 
 ]
 "32231
-[u S1416 . 1 `S1410 1 . 1 0 ]
-[v _IOCBPbits IOCBPbits `VES1416  1 e 1 @1037 ]
-[s S1395 . 1 `uc 1 . 1 0 :4:0 
+[u S1412 . 1 `S1406 1 . 1 0 ]
+[v _IOCBPbits IOCBPbits `VES1412  1 e 1 @1037 ]
+[s S1391 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IOCBN4 1 0 :1:4 
 `uc 1 IOCBN5 1 0 :1:5 
 `uc 1 IOCBN6 1 0 :1:6 
 `uc 1 IOCBN7 1 0 :1:7 
 ]
 "32270
-[u S1401 . 1 `S1395 1 . 1 0 ]
-[v _IOCBNbits IOCBNbits `VES1401  1 e 1 @1038 ]
+[u S1397 . 1 `S1391 1 . 1 0 ]
+[v _IOCBNbits IOCBNbits `VES1397  1 e 1 @1038 ]
 "32295
 [v _IOCBF IOCBF `VEuc  1 e 1 @1039 ]
-[s S1425 . 1 `uc 1 . 1 0 :4:0 
+[s S1421 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IOCBF4 1 0 :1:4 
 `uc 1 IOCBF5 1 0 :1:5 
 `uc 1 IOCBF6 1 0 :1:6 
 `uc 1 IOCBF7 1 0 :1:7 
 ]
 "32309
-[u S1431 . 1 `S1425 1 . 1 0 ]
-[v _IOCBFbits IOCBFbits `VES1431  1 e 1 @1039 ]
+[u S1427 . 1 `S1421 1 . 1 0 ]
+[v _IOCBFbits IOCBFbits `VES1427  1 e 1 @1039 ]
 "32334
 [v _ANSELC ANSELC `VEuc  1 e 1 @1040 ]
 [s S918 . 1 `uc 1 ANSELC0 1 0 :1:0 
@@ -805,7 +805,7 @@ E_VZ_RANGE -1
 [v _SLRCONC SLRCONC `VEuc  1 e 1 @1043 ]
 "32582
 [v _INLVLC INLVLC `VEuc  1 e 1 @1044 ]
-[s S1353 . 1 `uc 1 IOCCP0 1 0 :1:0 
+[s S1349 . 1 `uc 1 IOCCP0 1 0 :1:0 
 `uc 1 IOCCP1 1 0 :1:1 
 `uc 1 IOCCP2 1 0 :1:2 
 `uc 1 IOCCP3 1 0 :1:3 
@@ -815,9 +815,9 @@ E_VZ_RANGE -1
 `uc 1 IOCCP7 1 0 :1:7 
 ]
 "32661
-[u S1362 . 1 `S1353 1 . 1 0 ]
-[v _IOCCPbits IOCCPbits `VES1362  1 e 1 @1045 ]
-[s S1332 . 1 `uc 1 IOCCN0 1 0 :1:0 
+[u S1358 . 1 `S1349 1 . 1 0 ]
+[v _IOCCPbits IOCCPbits `VES1358  1 e 1 @1045 ]
+[s S1328 . 1 `uc 1 IOCCN0 1 0 :1:0 
 `uc 1 IOCCN1 1 0 :1:1 
 `uc 1 IOCCN2 1 0 :1:2 
 `uc 1 IOCCN3 1 0 :1:3 
@@ -827,11 +827,11 @@ E_VZ_RANGE -1
 `uc 1 IOCCN7 1 0 :1:7 
 ]
 "32723
-[u S1341 . 1 `S1332 1 . 1 0 ]
-[v _IOCCNbits IOCCNbits `VES1341  1 e 1 @1046 ]
+[u S1337 . 1 `S1328 1 . 1 0 ]
+[v _IOCCNbits IOCCNbits `VES1337  1 e 1 @1046 ]
 "32768
 [v _IOCCF IOCCF `VEuc  1 e 1 @1047 ]
-[s S1374 . 1 `uc 1 IOCCF0 1 0 :1:0 
+[s S1370 . 1 `uc 1 IOCCF0 1 0 :1:0 
 `uc 1 IOCCF1 1 0 :1:1 
 `uc 1 IOCCF2 1 0 :1:2 
 `uc 1 IOCCF3 1 0 :1:3 
@@ -841,17 +841,17 @@ E_VZ_RANGE -1
 `uc 1 IOCCF7 1 0 :1:7 
 ]
 "32785
-[u S1383 . 1 `S1374 1 . 1 0 ]
+[u S1379 . 1 `S1370 1 . 1 0 ]
 "32785
 "32785
-[v _IOCCFbits IOCCFbits `VES1383  1 e 1 @1047 ]
+[v _IOCCFbits IOCCFbits `VES1379  1 e 1 @1047 ]
 "34080
 [v _IVTBASEL IVTBASEL `VEuc  1 e 1 @1117 ]
 "34142
 [v _IVTBASEH IVTBASEH `VEuc  1 e 1 @1118 ]
 "34204
 [v _IVTBASEU IVTBASEU `VEuc  1 e 1 @1119 ]
-[s S1253 . 1 `uc 1 SWIE 1 0 :1:0 
+[s S1249 . 1 `uc 1 SWIE 1 0 :1:0 
 `uc 1 HLVDIE 1 0 :1:1 
 `uc 1 OSFIE 1 0 :1:2 
 `uc 1 CSWIE 1 0 :1:3 
@@ -861,10 +861,10 @@ E_VZ_RANGE -1
 `uc 1 IOCIE 1 0 :1:7 
 ]
 "35502
-[u S1262 . 1 `S1253 1 . 1 0 ]
+[u S1258 . 1 `S1249 1 . 1 0 ]
 "35502
 "35502
-[v _PIE0bits PIE0bits `VES1262  1 e 1 @1192 ]
+[v _PIE0bits PIE0bits `VES1258  1 e 1 @1192 ]
 [s S131 . 1 `uc 1 INT0IE 1 0 :1:0 
 `uc 1 ZCDIE 1 0 :1:1 
 `uc 1 ADIE 1 0 :1:2 
@@ -943,7 +943,7 @@ E_VZ_RANGE -1
 "36327
 "36327
 [v _PIR3bits PIR3bits `VES823  1 e 1 @1206 ]
-[s S1175 . 1 `uc 1 U1RXIF 1 0 :1:0 
+[s S1171 . 1 `uc 1 U1RXIF 1 0 :1:0 
 `uc 1 U1TXIF 1 0 :1:1 
 `uc 1 U1EIF 1 0 :1:2 
 `uc 1 U1IF 1 0 :1:3 
@@ -953,13 +953,13 @@ E_VZ_RANGE -1
 `uc 1 PWM1IF 1 0 :1:7 
 ]
 "36389
-[u S1184 . 1 `S1175 1 . 1 0 ]
+[u S1180 . 1 `S1171 1 . 1 0 ]
 "36389
 "36389
-[v _PIR4bits PIR4bits `VES1184  1 e 1 @1207 ]
+[v _PIR4bits PIR4bits `VES1180  1 e 1 @1207 ]
 "36779
 [v _LATA LATA `VEuc  1 e 1 @1214 ]
-[s S1236 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1232 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -967,10 +967,10 @@ E_VZ_RANGE -1
 `uc 1 LATA5 1 0 :1:5 
 ]
 "36794
-[u S1243 . 1 `S1236 1 . 1 0 ]
+[u S1239 . 1 `S1232 1 . 1 0 ]
 "36794
 "36794
-[v _LATAbits LATAbits `VES1243  1 e 1 @1214 ]
+[v _LATAbits LATAbits `VES1239  1 e 1 @1214 ]
 "36824
 [v _LATB LATB `VEuc  1 e 1 @1215 ]
 [s S625 . 1 `uc 1 . 1 0 :4:0 
@@ -986,7 +986,7 @@ E_VZ_RANGE -1
 [v _LATBbits LATBbits `VES631  1 e 1 @1215 ]
 "36863
 [v _LATC LATC `VEuc  1 e 1 @1216 ]
-[s S1893 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1877 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -996,10 +996,10 @@ E_VZ_RANGE -1
 `uc 1 LATC7 1 0 :1:7 
 ]
 "36880
-[u S1902 . 1 `S1893 1 . 1 0 ]
+[u S1886 . 1 `S1877 1 . 1 0 ]
 "36880
 "36880
-[v _LATCbits LATCbits `VES1902  1 e 1 @1216 ]
+[v _LATCbits LATCbits `VES1886  1 e 1 @1216 ]
 "36925
 [v _TRISA TRISA `VEuc  1 e 1 @1222 ]
 "36975
@@ -1022,20 +1022,20 @@ E_VZ_RANGE -1
 [v _TRISCbits TRISCbits `VES906  1 e 1 @1224 ]
 "37076
 [v _PORTA PORTA `VEuc  1 e 1 @1230 ]
-[s S1868 . 1 `uc 1 . 1 0 :4:0 
+[s S1852 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 RB4 1 0 :1:4 
 `uc 1 RB5 1 0 :1:5 
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
 "37140
-[u S1874 . 1 `S1868 1 . 1 0 ]
+[u S1858 . 1 `S1852 1 . 1 0 ]
 "37140
 "37140
-[v _PORTBbits PORTBbits `VES1874  1 e 1 @1231 ]
+[v _PORTBbits PORTBbits `VES1858  1 e 1 @1231 ]
 "37165
 [v _PORTC PORTC `VEuc  1 e 1 @1232 ]
-[s S1847 . 1 `uc 1 RC0 1 0 :1:0 
+[s S1831 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -1045,10 +1045,10 @@ E_VZ_RANGE -1
 `uc 1 RC7 1 0 :1:7 
 ]
 "37182
-[u S1856 . 1 `S1847 1 . 1 0 ]
+[u S1840 . 1 `S1831 1 . 1 0 ]
 "37182
 "37182
-[v _PORTCbits PORTCbits `VES1856  1 e 1 @1232 ]
+[v _PORTCbits PORTCbits `VES1840  1 e 1 @1232 ]
 [s S421 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1076,23 +1076,23 @@ E_VZ_RANGE -1
 [v _nout nout `i  1 s 2 nout ]
 "50 /opt/microchip/xc8/v2.32/pic/sources/c99/common/doscan.c
 [v _asup asup `i  1 s 2 asup ]
-[v _width@doscan$F2832 width `i  1 s 2 width ]
+[v _width@doscan$F2816 width `i  1 s 2 width ]
 "53
 [v _ncnv ncnv `i  1 s 2 ncnv ]
 [v _nmatch nmatch `i  1 s 2 nmatch ]
 "63
-[v _dbuf@doscan$F2835 dbuf `[80]uc  1 s 80 dbuf ]
+[v _dbuf@doscan$F2819 dbuf `[80]uc  1 s 80 dbuf ]
 "3 /opt/microchip/xc8/v2.32/pic/sources/c99/common/errno.c
 [v _errno errno `i  1 e 2 0 ]
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_getc.c
 [v _ungetbuf ungetbuf `uc  1 s 1 ungetbuf ]
 "9
 [v _ungetcnt ungetcnt `uc  1 s 1 ungetcnt ]
-"40 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+"38 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _emk emk `[128]us  1 e 256 0 ]
-"98
+"97
 [v _ns ns `uc  1 s 1 ns ]
-"56 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"61 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _VDD VDD `us  1 e 2 0 ]
 "68
 [v _g_rx232_buf g_rx232_buf `VE[48]uc  1 e 48 0 ]
@@ -1126,15 +1126,11 @@ E_VZ_RANGE -1
 [s S1161 . 1 `uc 1 CRC 1 0 :1:0 
 `uc 1 UNEXP_INT 1 0 :1:1 
 `uc 1 OVER_CURR 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 . 1 0 :1:4 
-`uc 1 . 1 0 :1:5 
-`uc 1 . 1 0 :1:6 
-`uc 1 . 1 0 :1:7 
+`uc 1 . 1 0 :5:3 
 ]
 "76
-[u S1170 . 1 `S1161 1 . 1 0 `uc 1 v 1 0 ]
-[v _g_ERRORflags g_ERRORflags `VES1170  1 e 1 0 ]
+[u S1166 . 1 `S1161 1 . 1 0 `uc 1 v 1 0 ]
+[v _g_ERRORflags g_ERRORflags `VES1166  1 e 1 0 ]
 "78
 [v _g_timer_ms g_timer_ms `VEus  1 e 2 0 ]
 "79
@@ -1168,161 +1164,161 @@ E_VZ_RANGE -1
 "128
 [v _main main `(v  1 e 1 0 ]
 {
+"300
+[v main@i_1592 i `uc  1 a 1 32 ]
 "293
-[v main@i_1600 i `uc  1 a 1 32 ]
-"286
 [v main@i i `uc  1 a 1 31 ]
 "132
 [v main@diff diff `c  1 a 1 30 ]
-"304
+"311
 } 0
-"456
+"463
 [v _over_current over_current `(a  1 s 1 over_current ]
 {
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"458
+"465
 [v over_current@result result `a  1 a 1 33 ]
-"456
+"463
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"458
+"465
 [v over_current@vz vz `uc  1 a 1 34 ]
-"474
+"481
 } 0
-"482
+"489
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
 {
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"487
+"494
 [v set_pwm@timout timout `uc  1 a 1 29 ]
-"482
+"489
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"483
+"490
 [v set_pwm@dir dir `c  1 p 1 25 ]
-"487
+"494
 [v set_pwm@vz vz `uc  1 a 1 28 ]
-"638
+"645
 } 0
-"87 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"84 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v _init_system init_system `(v  1 e 1 0 ]
 {
-"128
+"125
 } 0
-"60 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+"58 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _interrupt_initialize interrupt_initialize `(v  1 e 1 0 ]
 {
-"83
+"81
 } 0
-"340 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"350 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"360
+"370
 } 0
-"320
+"330
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
 {
-"330
+"340
 } 0
-"280
+"291
 [v _init_pwm init_pwm `(v  1 e 1 0 ]
 {
-"313
+"323
 } 0
-"266
+"276
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
 {
-"274
+"284
 } 0
-"217
+"223
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
 {
-"263
+"269
 } 0
-"177
+"178
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
 {
-"192
+"193
 } 0
-"160
+"159
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
 {
-"174
+"173
 } 0
-"138
+"135
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
 {
-"146
+"143
 } 0
-"24 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
+"22 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
 [v _i2c_init i2c_init `(v  1 e 1 0 ]
 {
-"46
+"44
 } 0
-"100
+"99
 [v _ina219_reg ina219_reg `(v  1 e 1 0 ]
 {
 [v ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
-"119
+"118
 [v ina219_reg@timeout_412 timeout `uc  1 a 1 29 ]
-"115
+"114
 [v ina219_reg@timeout_411 timeout `uc  1 a 1 28 ]
-"102
+"101
 [v ina219_reg@timeout timeout `uc  1 a 1 27 ]
-"100
+"99
 [v ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
-"102
+"101
 [v ina219_reg@ina219reg ina219reg `uc  1 a 1 26 ]
-"128
+"127
 } 0
-"57
+"56
 [v _ina219_read ina219_read `(s  1 e 2 0 ]
 {
-"83
+"82
 [v ina219_read@timeout_407 timeout `uc  1 a 1 31 ]
-"79
+"78
 [v ina219_read@timeout_406 timeout `uc  1 a 1 30 ]
-"76
+"75
 [v ina219_read@timeout_405 timeout `uc  1 a 1 29 ]
-"61
+"60
 [v ina219_read@timeout timeout `uc  1 a 1 28 ]
-"59
+"58
 [v ina219_read@value value `s  1 a 2 32 ]
-"95
+"94
 } 0
-"78 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
+"75 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
 [v _daq_vdd daq_vdd `(us  1 e 2 0 ]
 {
-"80
+"77
 [v daq_vdd@v v `ul  1 a 4 7 ]
-"81
+"78
 [v daq_vdd@vdd vdd `us  1 a 2 11 ]
-"104
+"101
 } 0
-"87 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+"74 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+[v _adc_wait adc_wait `(c  1 e 1 0 ]
+{
+"77
+[v adc_wait@error error `c  1 a 1 26 ]
+"76
+[v adc_wait@timeout timeout `uc  1 a 1 25 ]
+"92
+} 0
+"57
 [v _adc_start adc_start `(v  1 e 1 0 ]
 {
 [v adc_start@chs chs `uc  1 a 1 wreg ]
 [v adc_start@chs chs `uc  1 a 1 wreg ]
-"89
+"59
 [v adc_start@chs chs `uc  1 a 1 25 ]
-"94
-} 0
-"61
-[v _adc_read adc_read `(c  1 e 1 0 ]
-{
 "64
-[v adc_read@error error `c  1 a 1 26 ]
-"63
-[v adc_read@timeout timeout `uc  1 a 1 25 ]
-"79
 } 0
-"31
+"28
 [v _adc_init adc_init `(v  1 e 1 0 ]
 {
 [v adc_init@chs chs `uc  1 a 1 wreg ]
 [v adc_init@chs chs `uc  1 a 1 wreg ]
-"33
+"30
 [v adc_init@chs chs `uc  1 a 1 25 ]
-"52
+"49
 } 0
 "7 /opt/microchip/xc8/v2.32/pic/sources/c99/common/__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -1336,22 +1332,22 @@ E_VZ_RANGE -1
 [v ___lldiv@divisor divisor `ul  1 p 4 41 ]
 "30
 } 0
-"318 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"325 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
 {
-"439
+"446
 [v cmd_interpreter@i i `uc  1 a 1 20 ]
-"322
+"329
 [v cmd_interpreter@vz vz `ui  1 a 2 28 ]
-"323
+"330
 [v cmd_interpreter@mAx10 mAx10 `s  1 a 2 26 ]
-"322
+"329
 [v cmd_interpreter@pos pos `ui  1 a 2 24 ]
-"320
+"327
 [v cmd_interpreter@p p `*.39uc  1 a 2 22 ]
-"324
+"331
 [v cmd_interpreter@error error `c  1 a 1 21 ]
-"444
+"451
 } 0
 "4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/strstr.c
 [v _strstr strstr `(*.39uc  1 e 2 0 ]
@@ -1373,9 +1369,9 @@ E_VZ_RANGE -1
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_sscanf.c
 [v _sscanf sscanf `(i  1 e 2 0 ]
 {
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "12
-[v sscanf@f f `S2527  1 a 6 12 ]
+[v sscanf@f f `S2511  1 a 6 12 ]
 "14
 [v sscanf@ap ap `[1]*.39v  1 a 2 18 ]
 "11
@@ -1392,9 +1388,9 @@ E_VZ_RANGE -1
 [v vfscanf@cfmt cfmt `*.25uc  1 a 2 150 ]
 "1057
 [v vfscanf@n n `i  1 a 2 148 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "1054
-[v vfscanf@fp fp `*.39S2776  1 p 2 142 ]
+[v vfscanf@fp fp `*.39S2760  1 p 2 142 ]
 [v vfscanf@fmt fmt `*.25Cuc  1 p 2 144 ]
 [v vfscanf@ap ap `*.39*.39v  1 p 2 146 ]
 "1074
@@ -1420,9 +1416,9 @@ E_VZ_RANGE -1
 [v vfsfcnvrt@c c `i  1 a 2 113 ]
 "365
 [v vfsfcnvrt@cp cp `*.35uc  1 a 2 105 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "363
-[v vfsfcnvrt@fp fp `*.39S2776  1 p 2 91 ]
+[v vfsfcnvrt@fp fp `*.39S2760  1 p 2 91 ]
 [v vfsfcnvrt@fmt fmt `*.39*.25uc  1 p 2 93 ]
 [v vfsfcnvrt@ap ap `*.39*.39v  1 p 2 95 ]
 "1052
@@ -1454,9 +1450,9 @@ E_VZ_RANGE -1
 [v atox@w w `i  1 a 2 83 ]
 "327
 [v atox@ep ep `*.39uc  1 a 2 81 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "325
-[v atox@fp fp `*.39S2776  1 p 2 69 ]
+[v atox@fp fp `*.39S2760  1 p 2 69 ]
 [v atox@pll pll `*.39uo  1 p 2 71 ]
 "359
 } 0
@@ -1469,9 +1465,9 @@ E_VZ_RANGE -1
 [v atou@w w `i  1 a 2 83 ]
 "283
 [v atou@ep ep `*.39uc  1 a 2 81 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "281
-[v atou@fp fp `*.39S2776  1 p 2 69 ]
+[v atou@fp fp `*.39S2760  1 p 2 69 ]
 [v atou@pll pll `*.39uo  1 p 2 71 ]
 "321
 } 0
@@ -1482,9 +1478,9 @@ E_VZ_RANGE -1
 [v atos@c c `i  1 a 2 20 ]
 [v atos@i i `i  1 a 2 18 ]
 [v atos@w w `i  1 a 2 16 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "247
-[v atos@fp fp `*.39S2776  1 p 2 5 ]
+[v atos@fp fp `*.39S2760  1 p 2 5 ]
 [v atos@s s `*.35uc  1 p 2 7 ]
 "277
 } 0
@@ -1497,9 +1493,9 @@ E_VZ_RANGE -1
 [v atoo@w w `i  1 a 2 83 ]
 "211
 [v atoo@ep ep `*.39uc  1 a 2 81 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "209
-[v atoo@fp fp `*.39S2776  1 p 2 69 ]
+[v atoo@fp fp `*.39S2760  1 p 2 69 ]
 [v atoo@pll pll `*.39uo  1 p 2 71 ]
 "243
 } 0
@@ -1520,9 +1516,9 @@ E_VZ_RANGE -1
 [v atod@w w `i  1 a 2 83 ]
 "110
 [v atod@ep ep `*.39uc  1 a 2 81 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "108
-[v atod@fp fp `*.39S2776  1 p 2 69 ]
+[v atod@fp fp `*.39S2760  1 p 2 69 ]
 [v atod@pll pll `*.39o  1 p 2 71 ]
 "148
 } 0
@@ -1572,9 +1568,9 @@ E_VZ_RANGE -1
 [v atoc@c c `i  1 a 2 7 ]
 [v atoc@i i `i  1 a 2 5 ]
 [v atoc@w w `i  1 a 2 0 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "80
-[v atoc@fp fp `*.39S2776  1 p 2 36 ]
+[v atoc@fp fp `*.39S2760  1 p 2 36 ]
 [v atoc@s s `*.35uc  1 p 2 38 ]
 "104
 } 0
@@ -1591,18 +1587,18 @@ E_VZ_RANGE -1
 [v atoaefg@w w `i  1 a 2 59 ]
 [v atoaefg@e e `i  1 a 2 57 ]
 [v atoaefg@d d `i  1 a 2 55 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "152
-[v atoaefg@fp fp `*.39S2776  1 p 2 47 ]
+[v atoaefg@fp fp `*.39S2760  1 p 2 47 ]
 [v atoaefg@pld pld `*.39d  1 p 2 49 ]
 "205
 } 0
 "95 /opt/microchip/xc8/v2.32/pic/sources/c99/common/strtof.c
 [v _strtof strtof `(f  1 e 4 0 ]
 {
-[u S3246 . 4 `f 1 _l 4 0 `ul 1 _v 4 0 ]
+[u S3230 . 4 `f 1 _l 4 0 `ul 1 _v 4 0 ]
 "113
-[v strtof@_u _u `S3246  1 a 4 42 ]
+[v strtof@_u _u `S3230  1 a 4 42 ]
 "109
 [v strtof@eexp eexp `i  1 a 2 40 ]
 "108
@@ -1620,9 +1616,9 @@ E_VZ_RANGE -1
 "4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nanf.c
 [v _nanf nanf `(f  1 e 4 0 ]
 {
-[u S3301 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S3285 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v nanf@u u `S3301  1 a 4 29 ]
+[v nanf@u u `S3285  1 a 4 29 ]
 "4
 [v nanf@s s `*.25Cuc  1 p 2 25 ]
 "9
@@ -1667,17 +1663,17 @@ E_VZ_RANGE -1
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S2392 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S2376 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S2397 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S2400 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2392 1 fAsBytes 4 0 `S2397 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S2400  1 a 4 7 ]
+[s S2381 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S2384 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2376 1 fAsBytes 4 0 `S2381 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S2384  1 a 4 7 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 2 ]
-[s S2468 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S2452 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S2471 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2468 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S2471  1 a 2 11 ]
+[u S2455 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2452 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2455  1 a 2 11 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 6 ]
 "11
@@ -1728,17 +1724,17 @@ E_VZ_RANGE -1
 {
 "68
 [v skipws@c c `i  1 a 2 3 ]
-[s S2776 _IO_FILE 0 ]
+[s S2760 _IO_FILE 0 ]
 "66
-[v skipws@fp fp `*.39S2776  1 p 2 36 ]
+[v skipws@fp fp `*.39S2760  1 p 2 36 ]
 "76
 } 0
 "31 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_getc.c
 [v _ungetc ungetc `(i  1 e 2 0 ]
 {
 [v ungetc@c c `i  1 p 2 25 ]
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v ungetc@fp fp `*.39S2527  1 p 2 27 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v ungetc@fp fp `*.39S2511  1 p 2 27 ]
 "46
 } 0
 "11
@@ -1746,9 +1742,9 @@ E_VZ_RANGE -1
 {
 "13
 [v fgetc@c c `i  1 a 2 34 ]
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "11
-[v fgetc@fp fp `*.39S2527  1 p 2 27 ]
+[v fgetc@fp fp `*.39S2511  1 p 2 27 ]
 "29
 } 0
 "7 /opt/microchip/xc8/v2.32/pic/sources/c99/common/getch.c
@@ -1759,9 +1755,9 @@ E_VZ_RANGE -1
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "13
-[v sprintf@f f `S2527  1 a 6 110 ]
+[v sprintf@f f `S2511  1 a 6 110 ]
 "12
 [v sprintf@ap ap `[1]*.39v  1 a 2 108 ]
 "9
@@ -1783,9 +1779,9 @@ E_VZ_RANGE -1
 {
 "1393
 [v vfprintf@cfmt cfmt `*.35uc  1 a 2 90 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "1390
-[v vfprintf@fp fp `*.39S2553  1 p 2 84 ]
+[v vfprintf@fp fp `*.39S2537  1 p 2 84 ]
 [v vfprintf@fmt fmt `*.35Cuc  1 p 2 86 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 88 ]
 "1404
@@ -1804,9 +1800,9 @@ E_VZ_RANGE -1
 "694
 [v vfpfcnvrt@cp cp `*.35uc  1 a 2 67 ]
 [v vfpfcnvrt@c c `uc  1 a 1 71 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "692
-[v vfpfcnvrt@fp fp `*.39S2553  1 p 2 49 ]
+[v vfpfcnvrt@fp fp `*.39S2537  1 p 2 49 ]
 [v vfpfcnvrt@fmt fmt `*.39*.35uc  1 p 2 51 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 53 ]
 "1387
@@ -1821,9 +1817,9 @@ E_VZ_RANGE -1
 [v xtoa@i i `i  1 a 2 45 ]
 [v xtoa@w w `i  1 a 2 35 ]
 [v xtoa@p p `i  1 a 2 33 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "645
-[v xtoa@fp fp `*.39S2553  1 p 2 10 ]
+[v xtoa@fp fp `*.39S2537  1 p 2 10 ]
 [v xtoa@d d `uo  1 p 8 12 ]
 [v xtoa@x x `uc  1 p 1 20 ]
 "687
@@ -1861,9 +1857,9 @@ E_VZ_RANGE -1
 [v utoa@i i `i  1 a 2 40 ]
 [v utoa@w w `i  1 a 2 30 ]
 [v utoa@p p `i  1 a 2 28 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "615
-[v utoa@fp fp `*.39S2553  1 p 2 10 ]
+[v utoa@fp fp `*.39S2537  1 p 2 10 ]
 [v utoa@d d `uo  1 p 8 12 ]
 "641
 } 0
@@ -1902,9 +1898,9 @@ E_VZ_RANGE -1
 "571
 [v stoa@w w `i  1 a 2 9 ]
 [v stoa@i i `i  1 a 2 7 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "568
-[v stoa@fp fp `*.39S2553  1 p 2 36 ]
+[v stoa@fp fp `*.39S2537  1 p 2 36 ]
 [v stoa@s s `*.35uc  1 p 2 38 ]
 "570
 [v stoa@F1141 F1141 `[7]uc  1 s 7 F1141 ]
@@ -1920,9 +1916,9 @@ E_VZ_RANGE -1
 [v dtoa@s s `i  1 a 2 34 ]
 [v dtoa@w w `i  1 a 2 32 ]
 [v dtoa@p p `i  1 a 2 30 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "287
-[v dtoa@fp fp `*.39S2553  1 p 2 10 ]
+[v dtoa@fp fp `*.39S2537  1 p 2 10 ]
 [v dtoa@d d `o  1 p 8 12 ]
 "328
 } 0
@@ -1932,9 +1928,9 @@ E_VZ_RANGE -1
 "74
 [v pad@w w `i  1 a 2 8 ]
 [v pad@i i `i  1 a 2 6 ]
-[s S2553 _IO_FILE 0 ]
+[s S2537 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.39S2553  1 p 2 0 ]
+[v pad@fp fp `*.39S2537  1 p 2 0 ]
 [v pad@buf buf `*.39uc  1 p 2 2 ]
 [v pad@p p `i  1 p 2 4 ]
 "95
@@ -1957,16 +1953,16 @@ E_VZ_RANGE -1
 [v fputs@c c `uc  1 a 1 40 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 36 ]
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.39S2527  1 p 2 38 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.39S2511  1 p 2 38 ]
 "19
 } 0
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 27 ]
-[s S2527 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.39S2527  1 p 2 29 ]
+[s S2511 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.39S2511  1 p 2 29 ]
 "24
 } 0
 "113 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
@@ -2043,122 +2039,122 @@ E_VZ_RANGE -1
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 27 ]
 "53
 } 0
-"90 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+"89 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _default_isr default_isr `IIL(v  1 e 1 0 ]
 {
-"94
+"93
 } 0
-"191
+"192
 [v _TMR0_isr TMR0_isr `IIL(v  1 e 1 0 ]
 {
-"196
+"197
 } 0
-"203
+"204
 [v _TMR1_isr TMR1_isr `IIL(v  1 e 1 0 ]
 {
-"207
+"208
 } 0
-"214
+"215
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
 {
-"218
+"219
 } 0
-"227
+"228
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
 {
-"261
+"262
 [v U1RX_isr@i i `uc  1 a 1 23 ]
-"229
+"230
 [v U1RX_isr@ch ch `uc  1 a 1 24 ]
-"268
+"269
 } 0
-"340 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"350 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"360
+"370
 } 0
-"106 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+"105 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _IOC_isr IOC_isr `IIH(v  1 e 1 0 ]
 {
-"141
+"143
 [v IOC_isr@i i `uc  1 a 1 20 ]
-"108
+"107
 [v IOC_isr@mAmps mAmps `s  1 a 2 16 ]
-"109
+"108
 [v IOC_isr@uk uk `us  1 a 2 14 ]
-"110
+"109
 [v IOC_isr@f1b f1b `c  1 a 1 19 ]
 [v IOC_isr@f1a f1a `c  1 a 1 18 ]
-"184
+"185
 } 0
-"100 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
+"99 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
 [v i2_ina219_reg ina219_reg `(v  1 e 1 0 ]
 {
 [v i2ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
-"119
+"118
 [v i2ina219_reg@timeout_412 timeout `uc  1 a 1 4 ]
-"115
+"114
 [v i2ina219_reg@timeout_411 timeout `uc  1 a 1 3 ]
-"102
+"101
 [v i2ina219_reg@timeout timeout `uc  1 a 1 2 ]
-"100
+"99
 [v i2ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
-"102
+"101
 [v i2ina219_reg@ina219reg ina219reg `uc  1 a 1 1 ]
-"128
+"127
 } 0
-"57
+"56
 [v i2_ina219_read ina219_read `(s  1 e 2 0 ]
 {
-"59
+"58
 [v i2ina219_read@value value `s  1 a 2 7 ]
-"83
+"82
 [v i2ina219_read@timeout_407 timeout `uc  1 a 1 6 ]
-"79
+"78
 [v i2ina219_read@timeout_406 timeout `uc  1 a 1 5 ]
-"76
+"75
 [v i2ina219_read@timeout_405 timeout `uc  1 a 1 4 ]
-"61
+"60
 [v i2ina219_read@timeout timeout `uc  1 a 1 3 ]
-"95
+"94
 } 0
-"114 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
+"111 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/daq.c
 [v _daq_vbemf daq_vbemf `(us  1 e 2 0 ]
 {
 [v daq_vbemf@vz vz `uc  1 a 1 wreg ]
-"118
+"115
 [v daq_vbemf@vbemf vbemf `us  1 a 2 7 ]
-"116
+"113
 [v daq_vbemf@chs chs `uc  1 a 1 9 ]
-"114
+"111
 [v daq_vbemf@vz vz `uc  1 a 1 wreg ]
 [v daq_vbemf@vz vz `uc  1 a 1 6 ]
-"151
+"148
 } 0
-"87 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+"74 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/adc.c
+[v i2_adc_wait adc_wait `(c  1 e 1 0 ]
+{
+"77
+[v i2adc_wait@error error `c  1 a 1 1 ]
+"76
+[v i2adc_wait@timeout timeout `uc  1 a 1 0 ]
+"92
+} 0
+"57
 [v i2_adc_start adc_start `(v  1 e 1 0 ]
 {
 [v i2adc_start@chs chs `uc  1 a 1 wreg ]
 [v i2adc_start@chs chs `uc  1 a 1 wreg ]
-"89
+"59
 [v i2adc_start@chs chs `uc  1 a 1 0 ]
-"94
-} 0
-"61
-[v i2_adc_read adc_read `(c  1 e 1 0 ]
-{
 "64
-[v i2adc_read@error error `c  1 a 1 1 ]
-"63
-[v i2adc_read@timeout timeout `uc  1 a 1 0 ]
-"79
 } 0
-"31
+"28
 [v i2_adc_init adc_init `(v  1 e 1 0 ]
 {
 [v i2adc_init@chs chs `uc  1 a 1 wreg ]
 [v i2adc_init@chs chs `uc  1 a 1 wreg ]
-"33
+"30
 [v i2adc_init@chs chs `uc  1 a 1 0 ]
-"52
+"49
 } 0

@@ -1,0 +1,4 @@
+<map id="init_ina219" name="init_ina219">
+<area shape="rect" id="node1" title="Setup of the INA219 Module to measure current." alt="" coords="143,5,227,32"/>
+<area shape="rect" id="node2" href="$init_8c.html#a348d23d5899ce59d18975284dfb0afc0" title="This is the main initialization function." alt="" coords="5,5,95,32"/>
+</map>

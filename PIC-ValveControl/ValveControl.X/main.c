@@ -9,22 +9,25 @@
  *  \b Device:   <c> Microchip \b PIC18F16Q41 </c> \n
  *  \b Compiler: <c> XC8 (v2.32) FREE Version, C-Standard: C99, 
  *                   Optimization Level: 2 </c> \n
- *  @todo  After HOME run, sometimes position is not reset to 0.
- *  @todo  Implement timeout on all position and home jobs. Also, proper 
- *         handling of parallel jobs via UI must be checked (priority and
- *         selected valve must not accidentally be swapped.
- *  @todo  Back EMF doesn't work yet reliably. Has to be analyzed in detail.
- *         Maybe other PWM settings give better readings.
- *  @todo  If position evaluation using back EMF doesn't work reliably, 
- *         relative positioning might be more useful.
- *  @todo  When battery supply is desirable, sleep mode must be used with
- *         wakeup on messages from ESP.
- *  @todo  Implement bootloader and remote fimrware update via command interface
- *         (e.g. using transparent web interface...)
- *  @bug 
+ *  @todo
+ *  - After HOME run, sometimes position is not reset to 0.
+ *  - Implement timeout on all position and home jobs. Within IDLE, proper 
+ *    handling of parallel jobs via UI must be solved (priority and
+ *    selected valve must not accidentally be swapped.
+ *  - Back EMF doesn't work yet reliably. Has to be analyzed in detail.
+ *    Maybe other PWM settings give better readings?
+ *  - If position evaluation using back EMF doesn't work reliably, 
+ *    relative positioning might be more useful.
+ *  - When battery supply is desirable, sleep mode must be used with
+ *    wakeup on messages from ESP.
+ *  - Implement bootloader and remote fimrware update via command interface
+ *    (e.g. using transparent web interface...)
  */
 
 /* Change Log:
+ * 30.10.2023 V0.2 
+ * - Some motor directions fixed.
+ * - doxygen comments updated.
  * 17.10.2023 V0.1
  * - Initial issue
  */
@@ -33,9 +36,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 
 #include "main.h"
+#include "adc.h"
+#include "daq.h"
 #include "i2c.h"
 #include "init.h"
 
@@ -49,19 +53,14 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "V 0.1"; ///< Software version
+const char  *g_version = "V 0.2"; ///< Software version
 
 
-uint16_t    FVRA2X;     // DIA: @ADC FVR1 voltage for 2x setting (in mV)
-uint16_t    FVRC2X;     // DIA: @CMP/DAC FVR2 voltage for 2x setting (in mV)
-uint16_t    VDD;        // VDD [0.01 V] (battery voltage)
-int16_t     temp_indi;  // temperature indicator
-float       temp_ds;    // DS18B20
-
-void        adc_init (uint8_t chs);
-int8_t      adc_read (void);
-void        adc_start (uint8_t chs);
-uint16_t    daq_vdd (void);
+uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
+uint16_t    FVRC2X;     ///< DIA: @CMP/DAC FVR2 voltage for 2x setting (in mV)
+uint16_t    VDD;        ///< VDD [0.01 V] (battery voltage)
+int16_t     temp_indi;  ///< temp. read from temperature indicator (future option)
+float       temp_ds;    ///< temperature read from DS18B20 (future option)
 
 static void sleep_config(void);
 static void timer1_config(void);
@@ -70,8 +69,8 @@ volatile uint8_t    g_rx232_buf[48];    ///< RS232 RX buffer (> sizeof(S1-record
 volatile uint8_t    g_rx232_count;      ///< counts buffered RX chars
 volatile uint8_t    g_tx232_buf[48];    ///< RS232 TX buffer
 
-volatile uint8_t    g_rs232_request;    ///< new request (mode) recvd. via RS232
-volatile uint8_t    g_rs232_response;   ///< response required (not yet sent)
+volatile uint8_t    g_rs232_request;    ///< new RS232 request received from ESP 
+volatile uint8_t    g_rs232_response;   ///< response pending (not yet sent)
 
 volatile STATUSflags_t  g_STATUSflags;   ///< status feedback for ESP
 volatile ERRORflags_t   g_ERRORflags;    ///< error flags
@@ -83,20 +82,20 @@ volatile uint8_t    g_vz;                    ///< selected vz  {(0), 1 - NUM_VZ}
 volatile uint8_t    g_setpos[NUM_VZ + 1];    ///< set position {(0), 1 - NUM_VZ}
 volatile uint8_t    g_position[NUM_VZ + 1];  ///< position     {0 .. 100%}
 volatile int16_t    g_zcd[NUM_VZ + 1];       ///< ticks by zcd {0 .. 1000 .. }
-volatile int16_t    g_max_mAx10[NUM_VZ + 1];    ///< max current  {-3276.7 .. 3276.7} mA
+volatile int16_t    g_max_mAx10[NUM_VZ + 1]; ///< max current  {-3276.7 .. 3276.7} mA
 
-volatile int16_t    g_mAx10;        /// actual current / 0.1 mA
+volatile int16_t    g_mAx10;        ///< actual motor current / 0.1 mA
 volatile uint16_t   g_vbemf;        ///< actual Back EMK (ADC raw)
 volatile int8_t     g_dir;          ///< motor direction [-1, 0, +1]
 
-volatile uint8_t    g_bemf8[5];     // buffer to find local minimum 
-volatile uint8_t    g_zerocount;    // counts pwm cycles since last zero cross
+volatile uint8_t    g_bemf8[5];     ///< buffer to find local minimum 
+volatile uint8_t    g_zerocount;    ///< counts pwm cycles since last zero cross
 
 
 // *** static variables
-static  uint8_t     main_state = 0;     // main: state machine
-static  uint16_t    last_tick;          // timer value at last PWM start
-static  uint8_t     n_overcurr;         // counts overcurrent events
+static  uint8_t     main_state = 0;     ///< main: state machine
+static  uint16_t    last_tick;          ///< timer value at last PWM start
+static  uint8_t     n_overcurr;         ///< counts overcurrent events
 
 // *** private function prototypes
 static void     cmd_interpreter (void);
@@ -135,7 +134,9 @@ void main(void)
        
     interrupt_GlobalHighDisable();    
     
-    init_system();    // Initialize the device
+    /** - Initialize the device
+     */
+    init_system();    
 
 #ifdef TEST_DACOUT_A2
     // TEST: Monitor output via DAC1 -> RA2
@@ -154,9 +155,12 @@ void main(void)
     
     while (1)   // This is the main loop
     {   
-        /** Measure VDD [0.01 V] (optional battery check) */
+        /** Main loop:
+         *  - Measure VDD [0.01 V] (optional battery check) */
         VDD = daq_vdd();        
-        
+
+        /** - Check for requests from ESP via RS232
+		 */        
         if (g_rs232_request)    // command received from ESP (flag gets set by ISR)?
         {
             cmd_interpreter();  // sets main_state according to command
@@ -164,7 +168,7 @@ void main(void)
         
         switch(main_state) 
         {
-            /** - move command
+            /** - MOVE command
 			 */
             case state_move:
                 
@@ -216,7 +220,7 @@ void main(void)
 
                 break;
                       
-            /// - homeing (close direction)
+            /// - HOME command (close direction)
             case state_home:
                 LED = 0;    // test only
                 g_dir = 0;
@@ -250,7 +254,14 @@ void main(void)
                 
                 break;
                 
-            /// - idle (kind of scheduler: check status bits for pending jobs)
+            /** - IDLE (kind of scheduler: check status bits for pending jobs). \n
+             *    + For sanity, the IOC INT is disabled and enabled only during 
+             *      MOVE and HOME.
+             *    + Measure the motor current in idle mode (PWM is off) 
+             *      as a control feature. 
+             *    + Check the status flags for incoming requests from ESP and
+             *      set main_state and parameters as needed.
+             */  
             default:
                 LED = 1;    // 1 = off
                 
@@ -261,14 +272,9 @@ void main(void)
                 RC3PPS = RC6PPS = 0;
                 RC7PPS = RB7PPS = 0;              
 
-                /** Reading of motor current via INA219 Shunt Current Register
+                /* Read motor current via INA219 Shunt Current Register
                  * (1 LSB = 10μV, Rs = 0,1 Ohm => I / 0.1 mA = Us / 10µV).
                  * Exectime ~171 µs.
-                 * 
-                 * Measuring the motor current requires any H-bridge to be switched on.
-                 * In idle mode, PWM is off, hence we measure the current also 
-                 * in this case as a control feature. For sanity, the IOC INT
-                 * is disabled in IDLE mode and enabled during MOVE and HOME.
                  */
                 ina219_reg(1);              // exec time ca. 49 µs (@SCL 400 kHz)
                 g_mAx10 = ina219_read();    // exec time ca. 72 µs (@SCL 400 kHz)

@@ -1,0 +1,6 @@
+<map id="daq.h" name="daq.h">
+<area shape="rect" id="node1" title="Prototypes and definitions for module daq.c (project &quot;ValveControl&quot;)" alt="" coords="97,5,152,32"/>
+<area shape="rect" id="node2" href="$daq_8c.html" title="Functions for Data Acquisition (DAQ)" alt="" coords="5,80,60,107"/>
+<area shape="rect" id="node3" href="$interrupt_8c.html" title="Implementations of vectored interrupts (PIC18F..)" alt="" coords="85,80,165,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Main program for Project &quot;ValveControl&quot;." alt="" coords="189,80,250,107"/>
+</map>

@@ -27,7 +27,7 @@
 #define interrupt_GlobalLowEnable()    (INTCON0bits.GIEL = 1)
 #define interrupt_GlobalLowDisable()   (INTCON0bits.GIEL = 0)
 
-#define NUM_VZ  4           /* no. of drives */
+#define NUM_VZ  4           /* no. of valve zones */
 #define	MSperTICK	100     /* time [ms] to move a motor by 1 % of max. travel */
 
 #define VBEMF_NO_DIA    1   /* AD conversion without calibration */ 
@@ -40,35 +40,31 @@
 
 typedef union {     // 'low Byte', weak errors: mission may be continued.
     struct {
-        uint8_t ref         :4;  //!<  0-3: vz  referenced
-        uint8_t vz          :4;  //!<  4-7: vz  in process
-        uint8_t             :8;  //!<  8-15
+        uint8_t ref         :4;  //  0-3: vz  referenced
+        uint8_t vz          :4;  //  4-7: vz  in process
+        uint8_t             :8;  //  8-15 spare
     };
     struct {
-        uint8_t ref1        :1;  //!<  0: vz1 referenced
-        uint8_t ref2        :1;  //!<  1: vz2 referenced
-        uint8_t ref3        :1;  //!<  2: vz3 referenced
-        uint8_t ref4        :1;  //!<  3: vz4 referenced
-        uint8_t vz1         :1;  //!<  4: vz1 in process
-        uint8_t vz2         :1;  //!<  5: vz2 in process
-        uint8_t vz3         :1;  //!<  6: vz3 in process
-        uint8_t vz4         :1;  //!<  7: vz4 in process
-        uint8_t move        :1;  //!<  8: 'move' is executing
-        uint8_t home        :1;  //!<  9: 'home' is executing 
-        uint8_t             :6;  //!< 10-15 spare
+        uint8_t ref1        :1;  //  0: vz1 referenced
+        uint8_t ref2        :1;  //  1: vz2 referenced
+        uint8_t ref3        :1;  //  2: vz3 referenced
+        uint8_t ref4        :1;  //  3: vz4 referenced
+        uint8_t vz1         :1;  //  4: vz1 in process
+        uint8_t vz2         :1;  //  5: vz2 in process
+        uint8_t vz3         :1;  //  6: vz3 in process
+        uint8_t vz4         :1;  //  7: vz4 in process
+        uint8_t move        :1;  //  8: 'move' is executing
+        uint8_t home        :1;  //  9: 'home' is executing 
+        uint8_t             :6;  // 10-15 spare
     };
-} STATUSflags_t;    // token "STATUSbits" rserved by microchip
+} STATUSflags_t;    // token "STATUSbits" reserved by microchip
 
 typedef union {     // 'low Byte', weak errors: mission may be continued.
     struct {
-        uint8_t CRC         :1;  //!< 0 Program checksum error 
-        uint8_t UNEXP_INT   :1;  //!< 1 Unexpected interrupt
-        uint8_t OVER_CURR   :1;  //!< 2 Overcurrent during move
-        uint8_t             :1;  //!< 3 
-        uint8_t             :1;  //!< 4 
-        uint8_t             :1;  //!< 5 
-        uint8_t             :1;  //!< 6 
-        uint8_t             :1;  //!< 7 
+        uint8_t CRC         :1;  // 0 Program checksum error 
+        uint8_t UNEXP_INT   :1;  // 1 Unexpected interrupt
+        uint8_t OVER_CURR   :1;  // 2 Overcurrent during move
+        uint8_t             :5;  // 3-7 spare
     };
     uint8_t v;
 } ERRORflags_t;  

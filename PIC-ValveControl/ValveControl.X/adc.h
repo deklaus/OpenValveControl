@@ -18,8 +18,8 @@
 
 // function prototypes
 void    adc_init (uint8_t chs);
-int8_t  adc_read (void);
 void    adc_start (uint8_t chs);
+int8_t  adc_wait (void);
 
 #endif	/* _ADC_H */
 

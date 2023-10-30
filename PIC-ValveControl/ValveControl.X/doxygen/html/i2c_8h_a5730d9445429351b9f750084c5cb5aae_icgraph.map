@@ -1,0 +1,4 @@
+<map id="i2c_init" name="i2c_init">
+<area shape="rect" id="node1" title="Initializes the I2C module." alt="" coords="143,5,205,32"/>
+<area shape="rect" id="node2" href="$init_8c.html#a348d23d5899ce59d18975284dfb0afc0" title="This is the main initialization function." alt="" coords="5,5,95,32"/>
+</map>

@@ -1,5 +1,5 @@
 /** @file  daq.c
- *  @brief Functions for Data Acquisition (DAQ) / Data Logger
+ *  @brief Functions for Data Acquisition (DAQ)
  *  @par  (c) 2023 Klaus Deutschämer \n
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
@@ -10,9 +10,6 @@
  */
 
 #include <xc.h>
-#include <stdint.h>	// defines C99 standard types as 'uint8_t' and 'int16_t'
-#include <stdio.h>
-
 #include "main.h"
 #include "adc.h"
 #include "daq.h"
@@ -51,7 +48,7 @@ daq_temperature (void)
     for (uint8_t i = 0; (i < 8) && (error == 0); i++)
     {   // averaging (8x)
         adc_start(0x3C);
-        error = adc_read();
+        error = adc_wait();
         sum += ADRES;
     }
     
@@ -74,7 +71,7 @@ daq_temperature (void)
     Vdd = FVR2AX * 4095 / 1000 / ADRES      ; in [V]
  *  @return  Voltage [0.01 V]
  */
-uint16_t 
+uint16_t
 daq_vdd (void)
 {
     uint32_t    v;
@@ -88,11 +85,11 @@ daq_vdd (void)
     // Measured value Eval Board using default FVR = 2.048 V: 3,29 V
     // Vref = adc * Vdd / 4095 = 2.048 V => 
     // Vdd = 4095 * 2.048 / adc = 8386,56 / adc
-    if (adc_read() < 0) vdd = 999;  // signal error: 9.99 V    
+    if (adc_wait() < 0) vdd = 999;  // signal error: 9.99 V    
     else                vdd = (uint16_t) (838656L / ADRES);     // [0.01 V]
 #else
     // Measured value Eval Board using FVRA2X from DIA: 3,32 V
-    if (adc_read() < 0) vdd = 999;  // signal error: 9.99 V    
+    if (adc_wait() < 0) vdd = 999;  // signal error: 9.99 V    
     else
     {
         v = (uint32_t) FVRA2X * 4095 / 10;
@@ -137,12 +134,12 @@ daq_vbemf (uint8_t vz)
     adc_init(chs);     // ADC Positive Input = FVR1 (ADC module), FVR: 2.048 V
     adc_start(chs);
 
-    if (adc_read() < 0) vbemf = g_vbemf;    // if timeout: keep previous value
+    if (adc_wait() < 0) vbemf = g_vbemf;    // if timeout: keep previous value
     else                vbemf = ADRES;      // Basic mode
 
     // read twice and average
     adc_start(chs);
-    if (adc_read() < 0) vbemf += g_vbemf;    // if timeout: keep previous value
+    if (adc_wait() < 0) vbemf += g_vbemf;    // if timeout: keep previous value
     else    vbemf += ADRES;    
     vbemf >>= 1;
     

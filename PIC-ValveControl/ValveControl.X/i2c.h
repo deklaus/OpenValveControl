@@ -9,8 +9,6 @@
  * 17.10.2023 V0.1
  *  - First issue
  */
-#include <stdint.h>	// defines C99 standard types as 'uint8_t' and 'int16_t'
-
 #ifndef _I2C_H
 #define	_I2C_H
 

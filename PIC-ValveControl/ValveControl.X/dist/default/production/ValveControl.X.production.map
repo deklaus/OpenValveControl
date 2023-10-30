@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -pivt0x8=08h -cn \
   -h+dist/default/production/ValveControl.X.production.sym \
   --cmf=dist/default/production/ValveControl.X.production.cmf -z -Q18F16Q41 \
-  -o/tmp/xcXPgpIGF --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXoHEgkG --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/ValveControl.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0900h-015FFh -pstack=STACK \
   -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh -ASMALLCONST=01600h-016FFhx234 \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXBmMFAh.o dist/default/production/ValveControl.X.production.o 
+  /tmp/xcXaAdmHe.o dist/default/production/ValveControl.X.production.o 
 
 Object code version is 3.11
 
@@ -35,7 +35,7 @@ Machine type is 18F16Q41
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXBmMFAh.o
+/tmp/xcXaAdmHe.o
                 idloc                            200000   200000       20        0       5
                 config                           300000   300000        A        0       4
                 init                                 BA       BA        4        4       0
@@ -46,8 +46,8 @@ dist/default/production/ValveControl.X.production.o
                 mediumconst                        FEB2     FEB2      14E     7F59       0
                 ivt0x8                                8        8       B2        4       0
                 text92                             A450     A450       4E     250A       0
-                text91                             A578     A578       48     250A       0
-                text90                             A9EA     A9EA       1A     2A14       0
+                text91                             A9EA     A9EA       1A     2A14       0
+                text90                             A578     A578       48     250A       0
                 text89                             95CC     95CC       CC     250A       0
                 text88                             915C     915C      100        4       0
                 text87                             999A     999A       B2     250A       0
@@ -119,8 +119,8 @@ dist/default/production/ValveControl.X.production.o
                 text21                             54B0     54B0      5D0        4       0
                 text20                             9C50     9C50       A6     250A       0
                 text19                             A402     A402       4E     250A       0
-                text18                             A4E8     A4E8       48     250A       0
-                text17                             A9D0     A9D0       1A     2A14       0
+                text18                             A9D0     A9D0       1A     2A14       0
+                text17                             A4E8     A4E8       48     250A       0
                 text16                             9828     9828       C0     250A       0
                 text15                             905C     905C      100        4       0
                 text14                             98E8     98E8       B2     250A       0
@@ -157,8 +157,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 reset_vec                             0        0        4         0
                 ivt0x8                                8        8       B2         0
                 text92                             A450     A450       4E         0
-                text91                             A578     A578       48         0
-                text90                             A9EA     A9EA       1A         0
+                text91                             A9EA     A9EA       1A         0
+                text90                             A578     A578       48         0
                 text89                             95CC     95CC       CC         0
                 text88                             915C     915C      100         0
                 text87                             999A     999A       B2         0
@@ -230,8 +230,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 text21                             54B0     54B0      5D0         0
                 text20                             9C50     9C50       A6         0
                 text19                             A402     A402       4E         0
-                text18                             A4E8     A4E8       48         0
-                text17                             A9D0     A9D0       1A         0
+                text18                             A9D0     A9D0       1A         0
+                text17                             A4E8     A4E8       48         0
                 text16                             9828     9828       C0         0
                 text15                             905C     905C      100         0
                 text14                             98E8     98E8       B2         0
@@ -1001,10 +1001,10 @@ ___param_bank                  (abs)        000000
 ___rparam_used                 (abs)        000001
 ___sp                          stack        000000
 ___strtoxll                    text36       005A80
-___strtoxll$3341               cstackBANK5  000580
-___strtoxll$3342               cstackBANK5  000586
-___strtoxll$3343               cstackBANK5  000582
-___strtoxll$3344               cstackBANK5  000584
+___strtoxll$3325               cstackBANK5  000580
+___strtoxll$3326               cstackBANK5  000586
+___strtoxll$3327               cstackBANK5  000582
+___strtoxll$3328               cstackBANK5  000584
 ___strtoxll@a                  cstackBANK5  000592
 ___strtoxll@base               cstackBANK5  00056C
 ___strtoxll@c                  cstackBANK5  00059C
@@ -1051,8 +1051,8 @@ __end_of___xxtofl              text43       008676
 __end_of__initialization       cinit        00A048
 __end_of_abs                   text73       00A6CE
 __end_of_adc_init              text19       00A450
-__end_of_adc_read              text18       00A530
-__end_of_adc_start             text17       00A9EA
+__end_of_adc_start             text18       00A9EA
+__end_of_adc_wait              text17       00A530
 __end_of_atoaefg               text39       007682
 __end_of_atoc                  text38       008CBA
 __end_of_atod                  text34       007ADA
@@ -1118,8 +1118,8 @@ __end_of_vfsfcnvrt             text26       003ADC
 __end_of_xtoa                  text58       0070F8
 __end_ofi1_init_uart1          text85       00A8FA
 __end_ofi2_adc_init            text92       00A49E
-__end_ofi2_adc_read            text91       00A5C0
-__end_ofi2_adc_start           text90       00AA04
+__end_ofi2_adc_start           text91       00AA04
+__end_ofi2_adc_wait            text90       00A5C0
 __end_ofi2_ina219_read         text88       00925C
 __end_ofi2_ina219_reg          text87       009A4C
 __initialization               cinit        009FE2
@@ -1145,8 +1145,8 @@ __ptext13                      text13       00A822
 __ptext14                      text14       0098E8
 __ptext15                      text15       00905C
 __ptext16                      text16       009828
-__ptext17                      text17       00A9D0
-__ptext18                      text18       00A4E8
+__ptext17                      text17       00A4E8
+__ptext18                      text18       00A9D0
 __ptext19                      text19       00A402
 __ptext2                       text2        007ADA
 __ptext20                      text20       009C50
@@ -1226,8 +1226,8 @@ __ptext87                      text87       00999A
 __ptext88                      text88       00915C
 __ptext89                      text89       0095CC
 __ptext9                       text9        00A196
-__ptext90                      text90       00A9EA
-__ptext91                      text91       00A578
+__ptext90                      text90       00A578
+__ptext91                      text91       00A9EA
 __ptext92                      text92       00A450
 __ramtop                       ramtop       001600
 __size_of_IOC_isr              (abs)        000000
@@ -1252,8 +1252,8 @@ __size_of___wmul               (abs)        000000
 __size_of___xxtofl             (abs)        000000
 __size_of_abs                  (abs)        000000
 __size_of_adc_init             (abs)        000000
-__size_of_adc_read             (abs)        000000
 __size_of_adc_start            (abs)        000000
+__size_of_adc_wait             (abs)        000000
 __size_of_atoaefg              (abs)        000000
 __size_of_atoc                 (abs)        000000
 __size_of_atod                 (abs)        000000
@@ -1319,42 +1319,42 @@ __size_of_vfsfcnvrt            (abs)        000000
 __size_of_xtoa                 (abs)        000000
 __size_ofi1_init_uart1         (abs)        000000
 __size_ofi2_adc_init           (abs)        000000
-__size_ofi2_adc_read           (abs)        000000
 __size_ofi2_adc_start          (abs)        000000
+__size_ofi2_adc_wait           (abs)        000000
 __size_ofi2_ina219_read        (abs)        000000
 __size_ofi2_ina219_reg         (abs)        000000
 __smallconst                   smallconst   000000
 _abs                           text73       00A68C
 _adc_init                      text19       00A402
-_adc_read                      text18       00A4E8
-_adc_start                     text17       00A9D0
+_adc_start                     text18       00A9D0
+_adc_wait                      text17       00A4E8
 _asup                          bssCOMRAM    000532
 _atoaefg                       text39       0073CE
-_atoaefg$2868                  cstackBANK5  00059D
+_atoaefg$2852                  cstackBANK5  00059D
 _atoc                          text38       008B56
-_atoc$2847                     cstackBANK5  000562
-_atoc$2848                     cstackBANK5  000564
+_atoc$2831                     cstackBANK5  000562
+_atoc$2832                     cstackBANK5  000564
 _atod                          text34       0078AE
-_atod$2857                     cstackBANK5  0005B5
+_atod$2841                     cstackBANK5  0005B5
 _atoi                          text76       007D00
-_atoi$2691                     cstackBANK5  000562
-_atoi$2692                     cstackBANK5  000566
-_atoi$2693                     cstackBANK5  000564
+_atoi$2675                     cstackBANK5  000562
+_atoi$2676                     cstackBANK5  000566
+_atoi$2677                     cstackBANK5  000564
 _atoo                          text32       00812A
 _atos                          text31       008676
-_atos$2882                     cstackBANK5  00056D
-_atos$2883                     cstackBANK5  00056F
+_atos$2866                     cstackBANK5  00056D
+_atos$2867                     cstackBANK5  00056F
 _atou                          text30       007682
-_atou$2891                     cstackBANK5  0005B5
+_atou$2875                     cstackBANK5  0005B5
 _atox                          text29       0082FC
 _cmd_interpreter               text21       0054B0
 _daq_vbemf                     text89       0095CC
 _daq_vdd                       text16       009828
 _dbuf                          bssBANK6     00069F
-_dbuf@doscan$F2835             bssBANK7     000700
+_dbuf@doscan$F2819             bssBANK7     000700
 _default_isr                   text80       00AA14
 _dtoa                          text67       006B30
-_dtoa$2625                     cstackBANK5  00057C
+_dtoa$2609                     cstackBANK5  00057C
 _emk                           bssBANK8     000800
 _errno                         bssCOMRAM    000534
 _fgetc                         text52       009CF6
@@ -1399,10 +1399,10 @@ _isalpha                       text62       00A6CE
 _isdigit                       text78       00A7EA
 _islower                       text60       00A77A
 _isspace                       text77       00A3B0
-_isspace$2718                  cstackCOMRAM 000520
+_isspace$2702                  cstackCOMRAM 000520
 _isupper                       text61       00A7B2
 _isxdigit                      text42       00A052
-_isxdigit$3184                 cstackCOMRAM 000520
+_isxdigit$3168                 cstackCOMRAM 000520
 _last_tick                     bssBANK6     00062B
 _main                          text0        0067B8
 _main_state                    bssBANK6     00063B
@@ -1419,8 +1419,8 @@ _printf                        text55       00A8FA
 _putch                         text72       00A530
 _set_pwm                       text2        007ADA
 _skipws                        text50       009BA6
-_skipws$2839                   cstackBANK5  000560
-_skipws$2840                   cstackBANK5  000562
+_skipws$2823                   cstackBANK5  000560
+_skipws$2824                   cstackBANK5  000562
 _sprintf                       text54       00A35E
 _sscanf                        text24       00A49E
 _stoa                          text66       008824
@@ -1429,44 +1429,44 @@ _strlen                        text69       00A30A
 _strncmp                       text28       008E1E
 _strstr                        text22       009698
 _strtof                        text40       003ADC
-_strtof$3271                   cstackBANK5  000573
-_strtof$3272                   cstackBANK5  000583
-_strtof$3282                   cstackBANK5  000575
-_strtof$3283                   cstackBANK5  000577
-_strtof$3284                   cstackBANK5  000579
-_strtof$3285                   cstackBANK5  00057B
-_strtof$3286                   cstackBANK5  00057D
-_strtof$3287                   cstackBANK5  00057F
-_strtof$3288                   cstackBANK5  000581
+_strtof$3255                   cstackBANK5  000573
+_strtof$3256                   cstackBANK5  000583
+_strtof$3266                   cstackBANK5  000575
+_strtof$3267                   cstackBANK5  000577
+_strtof$3268                   cstackBANK5  000579
+_strtof$3269                   cstackBANK5  00057B
+_strtof$3270                   cstackBANK5  00057D
+_strtof$3271                   cstackBANK5  00057F
+_strtof$3272                   cstackBANK5  000581
 _strtoll                       text35       00A604
 _strtoull                      text33       00A5C0
 _temp_ds                       bssBANK6     000623
 _temp_indi                     bssBANK6     000633
 _tolower                       text27       00A1F8
-_tolower$3359                  cstackCOMRAM 000526
+_tolower$3343                  cstackCOMRAM 000526
 _toupper                       text59       00A258
-_toupper$3374                  cstackCOMRAM 000526
+_toupper$3358                  cstackCOMRAM 000526
 _ungetbuf                      bssCOMRAM    00053F
 _ungetc                        text51       009E38
 _ungetcnt                      bssCOMRAM    00053E
 _utoa                          text63       007F22
 _vfpfcnvrt                     text57       004CC6
-_vfpfcnvrt$2668                cstackBANK5  0005AA
+_vfpfcnvrt$2652                cstackBANK5  0005AA
 _vfprintf                      text56       009F5E
 _vfscanf                       text25       009A4C
 _vfsfcnvrt                     text26       0000BE
-_vfsfcnvrt$2911                cstackBANK5  0005CD
-_vfsfcnvrt$2958                cstackBANK5  0005CF
+_vfsfcnvrt$2895                cstackBANK5  0005CD
+_vfsfcnvrt$2942                cstackBANK5  0005CF
 _width                         bssCOMRAM    000536
-_width@doscan$F2832            bssCOMRAM    000530
+_width@doscan$F2816            bssCOMRAM    000530
 _xtoa                          text58       006E16
-_xtoa$2653                     cstackBANK5  00057D
-_xtoa$2654                     cstackBANK5  00057F
+_xtoa$2637                     cstackBANK5  00057D
+_xtoa$2638                     cstackBANK5  00057F
 abs@a                          cstackCOMRAM 00052C
 adc_init@chs                   cstackCOMRAM 00051A
-adc_read@error                 cstackCOMRAM 00051B
-adc_read@timeout               cstackCOMRAM 00051A
 adc_start@chs                  cstackCOMRAM 00051A
+adc_wait@error                 cstackCOMRAM 00051B
+adc_wait@timeout               cstackCOMRAM 00051A
 atoaefg@c                      cstackBANK5  0005A5
 atoaefg@d                      cstackBANK5  000597
 atoaefg@e                      cstackBANK5  000599
@@ -1542,14 +1542,14 @@ fputs@i                        cstackCOMRAM 00052A
 fputs@s                        cstackCOMRAM 000525
 i1_init_uart1                  text85       00A8D0
 i2_adc_init                    text92       00A450
-i2_adc_read                    text91       00A578
-i2_adc_start                   text90       00A9EA
+i2_adc_start                   text91       00A9EA
+i2_adc_wait                    text90       00A578
 i2_ina219_read                 text88       00915C
 i2_ina219_reg                  text87       00999A
 i2adc_init@chs                 cstackCOMRAM 000501
-i2adc_read@error               cstackCOMRAM 000502
-i2adc_read@timeout             cstackCOMRAM 000501
 i2adc_start@chs                cstackCOMRAM 000501
+i2adc_wait@error               cstackCOMRAM 000502
+i2adc_wait@timeout             cstackCOMRAM 000501
 i2ina219_read@timeout          cstackCOMRAM 000504
 i2ina219_read@timeout_405      cstackCOMRAM 000505
 i2ina219_read@timeout_406      cstackCOMRAM 000506
@@ -1584,7 +1584,7 @@ ivt0x8_base                    ivt0x8       000008
 ivt0x8_undefint                ivt0x8       0000B8
 main@diff                      cstackBANK6  0006DD
 main@i                         cstackBANK6  0006DE
-main@i_1600                    cstackBANK6  0006DF
+main@i_1592                    cstackBANK6  0006DF
 nanf@s                         cstackCOMRAM 00051A
 nanf@u                         cstackCOMRAM 00051E
 over_current@result            cstackCOMRAM 000522
@@ -1814,7 +1814,7 @@ i2c.c estimated size: 478
 
 adc.c
 		_adc_start     		CODE           	A9D0	0000	26
-		_adc_read      		CODE           	A4E8	0000	72
+		_adc_wait      		CODE           	A4E8	0000	72
 		_adc_init      		CODE           	A402	0000	78
 
 adc.c estimated size: 176
@@ -1853,12 +1853,12 @@ interrupt.c estimated size: 1028
 
 shared
 		i1_init_uart1  		CODE           	A8D0	0000	42
+		i2_adc_wait    		CODE           	A578	0000	72
 		i2_adc_start   		CODE           	A9EA	0000	26
 		i2_ina219_reg  		CODE           	999A	0000	178
 		i2_ina219_read 		CODE           	915C	0000	256
 		i2_adc_init    		CODE           	A450	0000	78
 		__initialization		CODE           	9FE2	0000	102
-		i2_adc_read    		CODE           	A578	0000	72
 
 shared estimated size: 754
 

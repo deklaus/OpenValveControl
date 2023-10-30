@@ -11,8 +11,6 @@
 
 // *** includes
 #include <xc.h>
-#include <stdint.h>         // uint8_t ... (C99 standard types)
-
 #include "main.h"
 #include "daq.h"
 #include "init.h"
@@ -43,7 +41,7 @@ uint16_t emk[128];
 // *** public function bodies
 
 /** @brief Vectored Interrupt Manager. \n
- *         The interrupt sources are placed to high and low priorities:
+ The interrupt sources are placed to high and low priorities:
 \verbatim
  High Priority Interrupt |  Low Priority Interrupt \n
  Vector |     Source     |  Vector  |    Source   \n
@@ -83,8 +81,9 @@ void interrupt_initialize (void)
 } // interrupt_initialize()
 
 
-/** @brief  The default interrup service routine. \n
- *  - Handles unexpected interrupts.
+/** @brief  The default interrupt service routine.
+ *  - Handles all unexpected interrupts.
+ *  - Only action: Set error flag UNEXP_INT.
  */
 void __interrupt (irq(default), base(IVT1_BASE_ADDRESS), low_priority) 
 default_isr (void)
@@ -115,9 +114,11 @@ IOC_isr (void)
         || (PORTC & 0x48)                       // RC6/3    
         || (PORTCbits.RC7 || PORTBbits.RB7))    // RC7/RB7
     {
-        /** @todo Must wait 'til current has settled (use timer),
+        /** Must wait until current has settled,
          *  reading right after PWM ON gives results much too low! 
-         *  preliminary we stall and waste 2 (to 3) ms with delay */
+         *  @todo
+         *  - Preliminary we stall and waste 2 (to 3) ms with delay.
+         *    Just trigger a second interrupt (timer) after that time. */
         __delay_ms(2);
         
         ina219_reg(1);          // exec time ca. 49 µs (@SCL 400 kHz)
@@ -133,8 +134,9 @@ IOC_isr (void)
     else    // if no rising edge, interrupt was caused by falling edge
     {
         __delay_us(500);     // allow vbemf to stabilize
+        // LP Filter, see also microchip AN2749
         uk = daq_vbemf(g_vz);
-        g_vbemf += ((int16_t)uk - (int16_t)g_vbemf) >> KLPASS;    // LP Filter, see also AN2749
+        g_vbemf += ((int16_t)uk - (int16_t)g_vbemf) >> KLPASS;
         // g_vbemf = uk;
 
         // save new reading at end of shift register
@@ -163,7 +165,6 @@ IOC_isr (void)
 		Furthermore: two successive sampling moments cannot be a be a zero 
 		crossing - must be checked by algorithm.
 */
-        
         if((g_dir > 0) && (ns < sizeof(emk)/2))
         {
             emk[ns++] = g_vbemf;
@@ -184,7 +185,7 @@ IOC_isr (void)
 } // IOC_isr()
 
 
-/** @brief Timer0 interrupt (1 ms system clock and timeout) \n
+/** @brief Timer0 interrupt (1 ms system clock and timeout).
  *  - Increments g_timer_ms (system timer)
  */
 void __interrupt (irq(IRQ_TMR0), base(IVT1_BASE_ADDRESS), low_priority) 
@@ -196,8 +197,8 @@ TMR0_isr (void)
 } // TMR0_isr()
 
 
-/** @brief Timer1 interrupt. \n
- *  TMR1 is used for wake-up from sleep (not yet implemented).
+/** @brief Timer1 interrupt.
+ *  - TMR1 is used for wake-up from sleep (not yet implemented).
  */
 void __interrupt (irq(IRQ_TMR1), base(IVT1_BASE_ADDRESS), low_priority) 
 TMR1_isr (void)
@@ -207,7 +208,7 @@ TMR1_isr (void)
 } // TMR1_isr()
 
 
-/** @brief Timer2 interrupt. \n
+/** @brief Timer2 interrupt.
  * - (not used yet)
  */
 void __interrupt (irq(IRQ_TMR2), base(IVT1_BASE_ADDRESS), low_priority) 
@@ -218,7 +219,7 @@ TMR2_isr (void)
 } // TMR2_isr()
 
 
-/** @brief  Handles UART receive events. \n
+/** @brief  Handles UART receive events.
  *  - Interrupt when receiving data from ESP via the UART
  *  - Stores chars in g_rx232_buf[]
  *  - Sets flag g_rs232_request = 1 after detection of CR or LF.

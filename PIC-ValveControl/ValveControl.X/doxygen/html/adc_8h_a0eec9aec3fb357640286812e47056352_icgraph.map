@@ -1,0 +1,6 @@
+<map id="adc_start" name="adc_start">
+<area shape="rect" id="node1" title="Starts ADC analog to digital conversion." alt="" coords="172,56,248,83"/>
+<area shape="rect" id="node2" href="$daq_8c.html#aa985f9a3df7298b68e3e6b5580124875" title="Returns an uncalibrated temperature estimation. &#160;Uses the temperature indicator (TI) of the PIC µC...." alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node3" href="$daq_8c.html#a5e160b99fb8bb0d885ccdcdc9e26845c" title="Reads the back EMF voltage of channel vz. &#160;Returns the raw ADC RESULT. &#160;Exec time ca...." alt="" coords="21,56,108,83"/>
+<area shape="rect" id="node4" href="$daq_8c.html#a9e0c5d6f12ac99b1c92e71433a241f6f" title="Measures the voltage VDD of the controller &#160;With ADC_VREF+ = VDD and ADC_Positive_Input = FVR1 we get..." alt="" coords="29,107,100,133"/>
+</map>

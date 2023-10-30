@@ -1,0 +1,6 @@
+<map id="adc.h" name="adc.h">
+<area shape="rect" id="node1" title="Prototypes and definitions for module adc.c (project &quot;ValveControl&quot;)" alt="" coords="84,5,139,32"/>
+<area shape="rect" id="node2" href="$adc_8c.html" title="Implementations for driver APIs for Analog/Digital Converter." alt="" coords="5,80,60,107"/>
+<area shape="rect" id="node3" href="$daq_8c.html" title="Functions for Data Acquisition (DAQ)" alt="" coords="84,80,139,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Main program for Project &quot;ValveControl&quot;." alt="" coords="163,80,225,107"/>
+</map>

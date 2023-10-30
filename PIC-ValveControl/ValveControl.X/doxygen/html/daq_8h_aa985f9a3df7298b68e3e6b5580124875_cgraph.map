@@ -1,0 +1,6 @@
+<map id="daq_temperature" name="daq_temperature">
+<area shape="rect" id="node1" title="Returns an uncalibrated temperature estimation. &#160;Uses the temperature indicator (TI) of the PIC µC...." alt="" coords="5,56,124,83"/>
+<area shape="rect" id="node2" href="$adc_8c.html#af31ffc86c884ebc4f68f9e215df75257" title="Initializes the 12&#45;bit A/D Converter (right adjusted result)." alt="" coords="177,5,243,32"/>
+<area shape="rect" id="node3" href="$adc_8c.html#a0eec9aec3fb357640286812e47056352" title="Starts ADC analog to digital conversion." alt="" coords="172,56,248,83"/>
+<area shape="rect" id="node4" href="$adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf" title="Waits for completion of the AD conversion. &#160;The 10 bit positive raw AD result may be read after funct..." alt="" coords="173,107,247,133"/>
+</map>

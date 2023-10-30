@@ -1,0 +1,4 @@
+<map id="init_pin_manager" name="init_pin_manager">
+<area shape="rect" id="node1" title="Initializes all ports as input/output, analog/digital, open drain/push pull, and assign peripheral fu..." alt="" coords="143,5,263,32"/>
+<area shape="rect" id="node2" href="$init_8c.html#a348d23d5899ce59d18975284dfb0afc0" title="This is the main initialization function." alt="" coords="5,5,95,32"/>
+</map>
