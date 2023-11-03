@@ -39,8 +39,8 @@ htmlPage = F(
   "f_status(); \n"
 
   "	function get_vz() {\n"  // returns the 'value' of the selected checkbox: [1..4]
-  "   var inputs = document.getElementsByName('vz');\n"
-  "   for (var i = 0; i < inputs.length; i++) {\n"
+  "   let inputs = document.getElementsByName('vz');\n"
+  "   for (let i = 0; i < inputs.length; i++) {\n"
   "     if (inputs[i].checked) return inputs[i].value;\n"
   "   }\n"
   "	}\n"
@@ -51,32 +51,32 @@ htmlPage = F(
   "	}\n"
 
   " function update_pos(sel) {\n"   // updates the position display of selected vz (sel = [1-4])
-  "   var radios = document.getElementsByName('vz'); \n"
-  "   var color = radios[sel-1].checked ? '#9f6' : '#494'; \n"
-  " 	var id = 'vz'+ sel.toString(10); \n"   // bgcolor has to be set, even when position == set_pos
+  "   let radios = document.getElementsByName('vz'); \n"
+  "   let color = radios[sel-1].checked ? '#9f6' : '#494'; \n"
+  " 	let id = 'vz'+ sel.toString(10); \n"   // bgcolor has to be set, even when position == set_pos
   " 	document.querySelector(id).innerText = position[sel].toString(10) + ' %'; \n"
   " 	id = 'VZ'+ sel.toString(10); \n"   // hbar (width)
-  " 	var elem = document.getElementById(id); \n"
+  " 	let elem = document.getElementById(id); \n"
   " 	elem.setAttribute('style', 'width:' + position[sel].toString(10) + '%;background-color:' + color + ';'); \n"
   "	}\n"
 
   "	function update_allpos() {	\n"   // update aller Positionen
-  "		for (var i = 1; i <= 4; i++) {\n"
+  "		for (let i = 1; i <= 4; i++) {\n"
   "     update_pos(i);\n"
   "		}	\n"
   "	}\n"
 
   "	function f_save() {\n"
-  "	  var data = 'no response';\n"
-  "		var query = 'ssid=' + document.getElementById('ssid').value + '&psk=' + document.getElementById('psk').value;\n"
-  "   var xhr = new XMLHttpRequest();\n"
+  "	  let data = 'no response';\n"
+  "		let query = 'ssid=' + document.getElementById('ssid').value + '&psk=' + document.getElementById('psk').value;\n"
+  "   let xhr = new XMLHttpRequest();\n"
   "   xhr.open('GET', '/save?'+query, true);\n"
   "   xhr.onreadystatechange = function () {\n"
   "     if ((xhr.readyState == 4) && (xhr.status == 200)) {\n"
   "       data = xhr.responseText;\n"
   "       //alert(xhr.responseText);\n"
-	"			  var info = document.createTextNode(data);\n"
-	"	      var element = document.getElementById('status');\n"
+	"			  let info = document.createTextNode(data);\n"
+	"	      let element = document.getElementById('status');\n"
   "       element.replaceChild(info, element.firstChild);\n"
   "     }\n"
   "   }\n"
@@ -84,19 +84,19 @@ htmlPage = F(
   "	}\n"
 
   " function f_move() {\n"
-  "	  var data = 'no response';\n"
-  "	  var sel = get_vz();\n"
+  "	  let data = 'no response';\n"
+  "	  let sel = get_vz();\n"
   "   set_pos[sel] = parseInt(document.getElementById('set_pos').value);\n"
   "   max_mA[sel] = parseFloat(document.getElementById('max_mA').value);\n"
-  "		var query = 'vz=' + sel + '&set_pos=' + set_pos[sel] + '&max_mA=' + max_mA[sel].toFixed(1);\n"
-  "   var xhr = new XMLHttpRequest();\n"
+  "		let query = 'vz=' + sel + '&set_pos=' + set_pos[sel] + '&max_mA=' + max_mA[sel].toFixed(1);\n"
+  "   let xhr = new XMLHttpRequest();\n"
   "   xhr.open('GET', '/move?'+query, true);\n"
   "   xhr.onreadystatechange = function () {\n"
   "     if ((xhr.readyState == 4) && (xhr.status == 200)) {\n"
   "       data = xhr.responseText;\n"
   "       //alert(xhr.responseText);\n"
-	"			  var info = document.createTextNode(data);\n"
-	"	      var element = document.getElementById('status');\n"
+	"			  let info = document.createTextNode(data);\n"
+	"	      let element = document.getElementById('status');\n"
   "       element.replaceChild(info, element.firstChild);\n"
   "     }\n"
   "   }\n"
@@ -105,18 +105,18 @@ htmlPage = F(
   " }\n"
 
   "	function f_home() {\n"
-  "	  var data = 'no response';\n"
-  "	  var sel = get_vz();\n"
+  "	  let data = 'no response';\n"
+  "	  let sel = get_vz();\n"
   "	  max_mA[sel] = parseFloat(document.getElementById('max_mA').value);\n"
-  "		var query = 'vz=' + sel + '&max_mA=' + max_mA[sel].toFixed(1);\n"
-  "   var xhr = new XMLHttpRequest();\n"
+  "		let query = 'vz=' + sel + '&max_mA=' + max_mA[sel].toFixed(1);\n"
+  "   let xhr = new XMLHttpRequest();\n"
   "   xhr.open('GET', '/home?'+query, true);\n"
   "   xhr.onreadystatechange = function () {\n"
   "     if ((xhr.readyState == 4) && (xhr.status == 200)) {\n"
   "       data = xhr.responseText;\n"
   "       //alert(xhr.responseText);\n"
-	"			  var info = document.createTextNode(data);\n"
-	"	      var element = document.getElementById('status');\n"
+	"			  let info = document.createTextNode(data);\n"
+	"	      let element = document.getElementById('status');\n"
   "       element.replaceChild(info, element.firstChild);\n"
   "     }\n"
   "   }\n"
@@ -132,14 +132,16 @@ htmlPage = F(
   "				return response.json();\n"
   "			})\n"
   "			.then (function(data){ \n"
-  "       var radios = document.getElementsByName('vz'); \n"
+  "       let radios = document.getElementsByName('vz'); \n"
   "       mAmps = data.mAmps.valueOf(); \n"
   "       document.querySelector('mAmps').innerText = data.mAmps; \n" 
+  "       tempC = data.tempC.valueOf(); \n"
+  "       document.querySelector('tempC').innerText = tempC; \n"
   "				position[1] = data.VZ1.Position; \n"
   "				position[2] = data.VZ2.Position; \n"
   "				position[3] = data.VZ3.Position; \n"
   "				position[4] = data.VZ4.Position; \n"
-  "	      for (var i = 1; i <= 4; i++) {\n"
+  "	      for (let i = 1; i <= 4; i++) {\n"
   "	 	      if (position[i] < 0 || position[i] > 100) position[i] = 50; \n"
   "	      } \n"
   "       update_allpos();"
@@ -147,15 +149,15 @@ htmlPage = F(
   "	}\n"
 
   "	function f_info() {\n"
-  "	  var data = 'no response';\n"
-  "   var xhr = new XMLHttpRequest();\n"
+  "	  let data = 'no response';\n"
+  "   let xhr = new XMLHttpRequest();\n"
   "   xhr.open('GET', '/info?', true);\n"
   "   xhr.onreadystatechange = function () {\n"
   "     if ((xhr.readyState == 4) && (xhr.status == 200)) {\n"
   "       data = xhr.responseText;\n"
   "       //alert(xhr.responseText);\n"
-  "       var info = document.createTextNode(data);\n"
-  "       var element = document.getElementById('status');\n"
+  "       let info = document.createTextNode(data);\n"
+  "       let element = document.getElementById('status');\n"
   "       element.replaceChild(info, element.firstChild);\n"
   "     }\n"
   "   }\n"
@@ -263,8 +265,10 @@ htmlPage = F(
   "	\n"
   "	<table style='width:100%; text-align:left;'>\n"
   "	  <tr>\n"
-  "		<td style='width:55%; padding-left:10px;'><b>Aktueller Strom:</b></td>\n"
+  "		<td style='width:25%; padding-left:10px;'><b>Imot:</b></td>\n"
   "		<td><mAmps>0.0</mAmps> mA</td>\n"
+  "		<td style='width:25%; padding-left:10px;'><b>Temp:</b></td>\n"
+  "		<td><tempC>0.0</tempC> °C</td>\n"
   "	  </tr>  \n"
   "	</table>\n"
   "\n"
@@ -272,6 +276,9 @@ htmlPage = F(
   "		'use strict';\n"
   "     document.querySelector('mAmps').innerText = '");  
 htmlPage += mAmps;
+htmlPage += F("';\n"
+  "     document.querySelector('tempC').innerText = '");  
+htmlPage += tempC;
 htmlPage += F("';\n"
   "	</script>\n"
   "\n"
@@ -340,8 +347,8 @@ htmlPage += F("';\n"
   "\n"
   "    <p id='status'> </p>\n"
   "	<script>\n"
-  "		var elem = document.getElementsByName('vz');\n"
-  "		for (var i = 0; i < 4; i++) {\n"
+  "		let elem = document.getElementsByName('vz');\n"
+  "		for (let i = 0; i < 4; i++) {\n"
   "			elem[i].addEventListener('click', update_allpos);\n"
   "		}\n"
   "	</script>\n"
@@ -380,8 +387,8 @@ void handleMove ()
     {
       htmlPage = F("{\n"
       "\"move\": {\n"
-      "  \"vz\": ");  htmlPage += sel;  htmlPage += F(",\n"
-      "  \"set_pos\": \""); htmlPage += pos;  htmlPage += F(",\n"
+      "  \"vz\": \"");  htmlPage += sel;  htmlPage += F("\",\n"
+      "  \"set_pos\": \""); htmlPage += pos;  htmlPage += F("\",\n"
       "  \"max_mA\": \""); sprintf(buf, "%.1f", mA);  htmlPage += buf;  htmlPage += F("\"\n"
       "  }\n}");      
       vz = sel;
@@ -423,7 +430,7 @@ void handleHome ()
     {
       htmlPage = F("{\n"
       "\"home\": {\n"
-      "  \"vz\": ");  htmlPage += sel;  htmlPage += F(",\n"
+      "  \"vz\": \"");  htmlPage += sel;  htmlPage += F("\",\n"
       "  \"max_mA\": \""); sprintf(buf, "%.1f", mA);  htmlPage += buf;  htmlPage += F("\"\n"
       "  }\n}");
       vz = sel;
@@ -453,11 +460,14 @@ void handleInfo ()
   String htmlPage;
   htmlPage.reserve(500);  // prevent ram fragmentation
 
+  sprintf(buf, "%.1f", tempC);
+
   htmlPage = F(
   "{ \n"
   "\"ESP\": \"" ); htmlPage += ESPversion; htmlPage += F("\",\n"
   "\"PIC\": \"" ); htmlPage += PICversion; htmlPage += F("\",\n"
-  "\"SSID\": \""); htmlPage += ssid;       htmlPage += F("\",\n"
+  "\"Temp\": \""); htmlPage += buf;        htmlPage += F("\",\n"
+  "\"SSID\": \""); htmlPage += ssid;       htmlPage += F("\"\n" // no comma at end
   "}\n");
 
     //server.sendHeader("Access-Control-Allow-Origin","*"); 
@@ -524,6 +534,7 @@ void handleStatus ()
   htmlPage = F(
   "{ \n"
   "\"mAmps\": \""); sprintf(buf, "%.1f", mAmps); htmlPage += buf; htmlPage += F("\",\n"
+  "\"tempC\": \""); sprintf(buf, "%.1f", tempC); htmlPage += buf; htmlPage += F("\",\n"
 
   "\"VZ1\": {\n"
   "    \"Position\": "); htmlPage += position[1]; htmlPage += F(",\n"

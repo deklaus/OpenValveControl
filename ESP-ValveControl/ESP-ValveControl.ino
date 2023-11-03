@@ -9,6 +9,7 @@
  *   - Input of max. current for MOVE or HOME
  *   - Triggering a MOVE (VZ) to desired position
  *   - Triggering a learning run (HOME)
+ *   - Measure temperature by Dallas DS18B20
  *   - Status display, p.e. positions, firmware (ESP and PIC), WLAN,...
  *   -
  *   - OTA Firmware-Update ESP (planned)
@@ -19,17 +20,23 @@
  *     - <c> LOLIN(WEMOS) D1  mini (clone) </c> (current state)
  *     - <c> <b> WEMOS D1 mini ESP32 <\b></c>   (optional) \n
  *  \b Libs: \n
- *     - <c> ESP8266WiFi      Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WiFi </c>
- *     - <c> ESP8266WebServer Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WebServer </c>
- *     - <c> U8g2             Version 2.34.22 path: ~/Arduino/libraries/U8g2 </c> or
- *     - <c> SPI              Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/SPI </c>
+ *     - <c> ESP8266WiFi       Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WiFi </c>
+ *     - <c> ESP8266WebServer  Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WebServer </c>
+ *     - <c> DallasTemperature Version 3.9.0   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/DallasTemperature </c>
+ *     - <c> MAX31850 OneWire  Version 1.1.1   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/MAX31850_OneWire </c>
+ *     - <c> U8g2              Version 2.34.22 path: ~/Arduino/libraries/U8g2 </c> or
+ *     - <c> SPI               Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/SPI </c>
+ *     - <c> Wire              Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/Wire </c>
  *  \n
  *  Weblinks: \n
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
 */
 /**
- * @todo 
+ * v0.2 2023-12-02
+ * - Added reading of DS18B20 and added temperature in handle_status and handle-info.
+ * @todo - During MOVE and HOME: don't update temperature - overwrites commands in OLED row 2.
+         - Show temperature in Web-GUI (share row with Current)
 */
 
 // *** includes
@@ -48,6 +55,9 @@ extern void   handleStatus (void);
 extern void   OLED_init (void);
 extern void   OLED_show (unsigned row, char *s);
 extern void   OLED_update_status (void);
+
+extern void   DS18B20_init (void);
+extern float  DS18B20_TempC (uint8_t index);
 
 // *** private function prototypes
 static int    cmd2pic (void);
@@ -98,16 +108,20 @@ ESP8266WebServer server(80);
 
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "Version 0.12";    // Version of ESP-Firmware
-char  PICversion[32] = "NN";              // Version of PIC-Firmware
+char  ESPversion[32] = "V 0.2";   // Version of ESP-Firmware
+char  PICversion[32] = "NN";      // Version of PIC-Firmware
 
 // WLAN credentials (customize to your settings)
-char  ssid[64] = "Your Router's SSID";
-char  psk[64] = "Your Router's Password";
+//char  ssid[64] = "Your Router's SSID";
+//char  psk[64] = "Your Router's Password";
+char  ssid[64] = "FRITZ!Box 6360 Cable";
+char  psk[64] = "4742118488547259";
+
 
 // vars sourced by PIC µC
 uint16_t  status;         // status word from PIC
 float     mAmps = 0.0;    // actual current [mA]
+float     tempC = 0.0;    // temperature in Celsius (DS18B20)
 int       position[numVZ + 1] = {-1, 0, 65, 36, 100 };        // actual VZ positions (index 0 is dummy)
 bool      refset[numVZ + 1];                                  // home position set?
 
@@ -127,7 +141,7 @@ unsigned long TimeStamp = 0;        /* used for general delay purposes (local)  
 /** @brief ESP8266 Initialization
  *  @todo Implement access point (AP) mode to enter WiFi Credentials.
  */
-void setup()
+void setup ()
 {
   int    error;
   String param;
@@ -145,6 +159,9 @@ void setup()
    *    Show local IP address and initial valve positions.
    */
   OLED_init();
+  /** - Initialize temperature sensor DS18B20 \n
+   */
+  DS18B20_init();
 
   /** - Initialize WiFi 
    */
@@ -316,11 +333,14 @@ void loop ()
       Serial.swap();    // output to PIC µC
 #endif
 
+    /* read temperature sensor (index 0), usually the heating flow temperature.
+     */
+    tempC = DS18B20_TempC(0);
+
     /* update OLED position display
      */
     OLED_update_status();
   }
-
 
   /* Repeatedly process request handler until end of loop cycle 
    */

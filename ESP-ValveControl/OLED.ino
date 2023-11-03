@@ -118,7 +118,6 @@ void OLED_update_status (void)
   }
 
   // update drive current
-  sprintf(buf, "%.1f mA", mAmps);
   w = u8g2.getStrWidth("99.9 mA");
   u8g2.setDrawColor(0);
   u8g2.drawBox(128-w, PXrow[0] + 1, w, PXrow[1] - PXrow[0]);
@@ -126,6 +125,14 @@ void OLED_update_status (void)
   sprintf(buf, "%.1f mA", mAmps);
   w = u8g2.getStrWidth(buf);
   u8g2.drawStr(128-w, PXrow[1], buf);
+  u8g2.sendBuffer();
+
+// update temperature
+  u8g2.setDrawColor(0);
+  u8g2.drawBox(0, PXrow[0] + 1, 128 - w, PXrow[1] - PXrow[0]);
+  u8g2.setDrawColor(1);
+  sprintf(buf, "%.1f C", tempC);
+  u8g2.drawStr(0, PXrow[1], buf);
   u8g2.sendBuffer();
 
 } // OLED_update_status ()
