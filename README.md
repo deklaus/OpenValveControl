@@ -30,6 +30,7 @@ to the community as an OpenSource project.
 - [x] Connect up to 4 motorized, 3 V floor heating valve actuators (like HmIP VdMOT and similars)
 - [x] OLED Display (visualization of valve positions, motor current and status)
 - [x] WLAN-Interface (visualization, command execution and status requests using GET, POST, JSON)
+- [x] Supports DS18B20 (heating flow temperature)
 - [ ] Filesystem support on ESP (Webserver and setting data)
 - [ ] OTA-Support for ESP (Over-the-Air Update)
 - [ ] OTA-Support (Over-the-Air Bootloader) for PIC-µC
