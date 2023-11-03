@@ -112,10 +112,8 @@ char  ESPversion[32] = "V 0.2";   // Version of ESP-Firmware
 char  PICversion[32] = "NN";      // Version of PIC-Firmware
 
 // WLAN credentials (customize to your settings)
-//char  ssid[64] = "Your Router's SSID";
-//char  psk[64] = "Your Router's Password";
-char  ssid[64] = "FRITZ!Box 6360 Cable";
-char  psk[64] = "4742118488547259";
+char  ssid[64] = "Your Router's SSID";
+char  psk[64] = "Your Router's Password";
 
 
 // vars sourced by PIC µC
