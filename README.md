@@ -45,12 +45,13 @@ to the community as an OpenSource project.
 - 1 x DC-DC-Converter TRACO TSR1-2433, ca. 6 EUR (e.g. Reichelt)
 - 1 x OLED display 1,3" SH1106-OLED-I2C-128x64, ca. 8 EUR (e.g. AZ-Delivery)
 - 4 x RJ11 connectors, ca. 3 EUR (e.g. Amazon B00TX440GO)
+- 1 x DS18B20 with cable, ca. 2 EUR (e.g. AZ-Delivery)
 - 1 PCB or breadboard, ca. 10 EUR
 - Small parts (resistors, diodes, connectors, LED, ..), ca. 2 EUR
 - 1 x WITTKOWARE KRA-Z109JFP, DIN rail housing, 90x88x65mm, ca. 7 EUR (+ 5 EUR PP, e.g. Amazon)
 - 1 x 5 V / 1 A Power Supply, micro-USB, ca. 10 EUR
 
-Total: ca. 53 EUR (actuators not included - ca. 20 EUR each)
+Total: ca. 55 EUR (actuators not included - ca. 20 EUR each)
 
 # License
 - EUROPEAN UNION PUBLIC LICENCE v. 1.2 <br>
