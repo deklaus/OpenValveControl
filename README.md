@@ -1,5 +1,6 @@
 # OpenValveControl
 Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and others) with web interface.<br>
+The web interface (ESP-ValveControl) uses an ESP8266 D1-mini and the motor control (PIC-ValveControl) uses a PIC18F16Q41.<br>
 All components are low cost and pluggable.
 
 <table>
@@ -31,7 +32,7 @@ to the community as an OpenSource project.
 - [x] OLED Display (visualization of valve positions, motor current and status)
 - [x] WLAN-Interface (visualization, command execution and status requests using GET, POST, JSON)
 - [x] Supports DS18B20 (heating flow temperature)
-- [ ] Filesystem support on ESP (Webserver and setting data)
+- [x] Filesystem support on ESP (Webserver and setting data)
 - [ ] OTA-Support for ESP (Over-the-Air Update)
 - [ ] OTA-Support (Over-the-Air Bootloader) for PIC-µC
 - [ ] MQTT Support
