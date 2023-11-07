@@ -1,6 +1,6 @@
 # OpenValveControl
-Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and others) with web interface.<br>
-The web interface (ESP-ValveControl) uses an ESP8266 D1-mini and the motor control (PIC-ValveControl) uses a PIC18F16Q41.<br>
+Low cost smart control for motorized 3 V floor heating valve actuators (like HmIP VdMOT and others) with web interface.
+The web interface (ESP-ValveControl) uses an ESP8266 D1-mini and the motor control (PIC-ValveControl) uses a PIC18F16Q41.
 All components are low cost and pluggable.
 
 <table>
