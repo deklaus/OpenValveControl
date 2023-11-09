@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcXaAdmHe.o
+$/tmp/xcXOBIHae.o
 idloc IDLOC 5 200000 200000 20 1
 init CODE 0 BA BA 4 1
 reset_vec CODE 0 0 0 4 1
@@ -286,7 +286,7 @@ A5BE text90 CODE >92:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveCon
 9A36 text87 CODE >121:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
 9A3A text87 CODE >124:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
 9A4A text87 CODE >127:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/i2c.c
-70F8 text86 CODE >370:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+70F8 text86 CODE >368:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 70F8 text86 CODE >105:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 70F8 text86 CODE >112:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 715C text86 CODE >122:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
@@ -315,19 +315,19 @@ A5BE text90 CODE >92:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveCon
 73BE text86 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 73BE text86 CODE >183:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 73CC text86 CODE >185:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
+A8D0 text85 CODE >348:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A8D0 text85 CODE >350:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8D0 text85 CODE >352:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8D2 text85 CODE >353:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8D6 text85 CODE >356:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8DA text85 CODE >358:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8E2 text85 CODE >360:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8E6 text85 CODE >362:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8EA text85 CODE >363:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8EC text85 CODE >364:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8EE text85 CODE >365:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8F2 text85 CODE >366:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8F6 text85 CODE >368:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8F8 text85 CODE >370:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8D2 text85 CODE >351:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8D6 text85 CODE >354:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8DA text85 CODE >356:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8E2 text85 CODE >358:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8E6 text85 CODE >360:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8EA text85 CODE >361:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8EC text85 CODE >362:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8EE text85 CODE >363:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8F2 text85 CODE >364:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8F6 text85 CODE >366:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8F8 text85 CODE >368:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 9428 text84 CODE >219:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 9428 text84 CODE >228:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 942E text84 CODE >234:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
@@ -1942,89 +1942,89 @@ A9C2 text12 CODE >139:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveCo
 A9CA text12 CODE >140:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A9CC text12 CODE >141:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A9CE text12 CODE >143:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-AA20 text11 CODE >159:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-AA20 text11 CODE >173:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A966 text10 CODE >178:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A966 text10 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A96C text10 CODE >183:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A970 text10 CODE >185:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A974 text10 CODE >187:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A978 text10 CODE >189:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A97C text10 CODE >191:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A980 text10 CODE >193:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A196 text9 CODE >223:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A196 text9 CODE >226:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A19A text9 CODE >227:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A19E text9 CODE >228:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1A2 text9 CODE >231:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1A8 text9 CODE >232:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1AC text9 CODE >233:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1B0 text9 CODE >236:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1B4 text9 CODE >237:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1B8 text9 CODE >238:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1BC text9 CODE >241:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1C0 text9 CODE >242:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1C4 text9 CODE >243:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1C8 text9 CODE >246:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1CC text9 CODE >247:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1D0 text9 CODE >248:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1D4 text9 CODE >251:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1D6 text9 CODE >252:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1D8 text9 CODE >253:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1DA text9 CODE >256:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1DC text9 CODE >257:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1DE text9 CODE >258:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1E0 text9 CODE >261:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1E6 text9 CODE >262:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1EA text9 CODE >263:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1EE text9 CODE >264:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1F2 text9 CODE >266:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1F4 text9 CODE >267:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A1F6 text9 CODE >269:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+AA20 text11 CODE >167:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+AA20 text11 CODE >171:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A966 text10 CODE >176:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A966 text10 CODE >179:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A96C text10 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A970 text10 CODE >183:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A974 text10 CODE >185:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A978 text10 CODE >187:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A97C text10 CODE >189:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A980 text10 CODE >191:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A196 text9 CODE >221:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A196 text9 CODE >224:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A19A text9 CODE >225:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A19E text9 CODE >226:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1A2 text9 CODE >229:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1A8 text9 CODE >230:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1AC text9 CODE >231:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1B0 text9 CODE >234:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1B4 text9 CODE >235:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1B8 text9 CODE >236:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1BC text9 CODE >239:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1C0 text9 CODE >240:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1C4 text9 CODE >241:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1C8 text9 CODE >244:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1CC text9 CODE >245:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1D0 text9 CODE >246:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1D4 text9 CODE >249:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1D6 text9 CODE >250:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1D8 text9 CODE >251:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1DA text9 CODE >254:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1DC text9 CODE >255:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1DE text9 CODE >256:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1E0 text9 CODE >259:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1E6 text9 CODE >260:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1EA text9 CODE >261:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1EE text9 CODE >262:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1F2 text9 CODE >264:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1F4 text9 CODE >265:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A1F6 text9 CODE >267:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A99C text8 CODE >274:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A99C text8 CODE >276:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A99C text8 CODE >278:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9A2 text8 CODE >279:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9A6 text8 CODE >280:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9AA text8 CODE >281:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9AE text8 CODE >282:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9B0 text8 CODE >283:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A9B4 text8 CODE >284:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A70A text7 CODE >291:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A70A text7 CODE >300:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A70E text7 CODE >301:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A712 text7 CODE >302:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A716 text7 CODE >305:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A71A text7 CODE >306:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A71E text7 CODE >307:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A722 text7 CODE >308:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A724 text7 CODE >315:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A72C text7 CODE >316:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A72E text7 CODE >317:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A730 text7 CODE >318:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A738 text7 CODE >321:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A740 text7 CODE >323:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9A2 text8 CODE >277:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9A6 text8 CODE >278:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9AA text8 CODE >279:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9AE text8 CODE >280:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9B0 text8 CODE >281:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A9B4 text8 CODE >282:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A70A text7 CODE >289:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A70A text7 CODE >298:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A70E text7 CODE >299:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A712 text7 CODE >300:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A716 text7 CODE >303:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A71A text7 CODE >304:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A71E text7 CODE >305:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A722 text7 CODE >306:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A724 text7 CODE >313:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A72C text7 CODE >314:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A72E text7 CODE >315:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A730 text7 CODE >316:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A738 text7 CODE >319:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A740 text7 CODE >321:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A982 text6 CODE >328:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A982 text6 CODE >330:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A982 text6 CODE >332:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A988 text6 CODE >333:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A98C text6 CODE >334:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A990 text6 CODE >335:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A994 text6 CODE >336:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A996 text6 CODE >337:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A998 text6 CODE >338:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A99A text6 CODE >340:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A988 text6 CODE >331:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A98C text6 CODE >332:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A990 text6 CODE >333:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A994 text6 CODE >334:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A996 text6 CODE >335:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A998 text6 CODE >336:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A99A text6 CODE >338:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A87C text5 CODE >348:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A87C text5 CODE >350:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A87C text5 CODE >352:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A87E text5 CODE >353:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A882 text5 CODE >356:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A886 text5 CODE >358:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A88E text5 CODE >360:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A892 text5 CODE >362:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A896 text5 CODE >363:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A898 text5 CODE >364:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A89A text5 CODE >365:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A89E text5 CODE >366:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8A2 text5 CODE >368:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
-A8A4 text5 CODE >370:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A87E text5 CODE >351:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A882 text5 CODE >354:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A886 text5 CODE >356:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A88E text5 CODE >358:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A892 text5 CODE >360:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A896 text5 CODE >361:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A898 text5 CODE >362:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A89A text5 CODE >363:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A89E text5 CODE >364:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8A2 text5 CODE >366:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+A8A4 text5 CODE >368:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 A922 text4 CODE >58:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 A922 text4 CODE >60:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 A924 text4 CODE >63:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
@@ -2246,62 +2246,62 @@ A12A text1 CODE >481:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveCon
 6B0C text0 CODE >307:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 6B1A text0 CODE >307:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 6B22 text0 CODE >307:/home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
-9FE2 cinit CODE >9474:/tmp/xcXEPeBhE.s
-9FE2 cinit CODE >9476:/tmp/xcXEPeBhE.s
-9FE2 cinit CODE >9479:/tmp/xcXEPeBhE.s
-9FE2 cinit CODE >9624:/tmp/xcXEPeBhE.s
-9FE4 cinit CODE >9625:/tmp/xcXEPeBhE.s
-9FE6 cinit CODE >9626:/tmp/xcXEPeBhE.s
-9FE8 cinit CODE >9627:/tmp/xcXEPeBhE.s
-9FEA cinit CODE >9628:/tmp/xcXEPeBhE.s
-9FEC cinit CODE >9629:/tmp/xcXEPeBhE.s
-9FEE cinit CODE >9630:/tmp/xcXEPeBhE.s
-9FF2 cinit CODE >9631:/tmp/xcXEPeBhE.s
-9FF6 cinit CODE >9632:/tmp/xcXEPeBhE.s
-9FF6 cinit CODE >9633:/tmp/xcXEPeBhE.s
-9FF8 cinit CODE >9634:/tmp/xcXEPeBhE.s
-9FFC cinit CODE >9635:/tmp/xcXEPeBhE.s
-9FFE cinit CODE >9636:/tmp/xcXEPeBhE.s
-A000 cinit CODE >9637:/tmp/xcXEPeBhE.s
-A002 cinit CODE >9641:/tmp/xcXEPeBhE.s
-A006 cinit CODE >9642:/tmp/xcXEPeBhE.s
-A00A cinit CODE >9643:/tmp/xcXEPeBhE.s
-A00A cinit CODE >9644:/tmp/xcXEPeBhE.s
-A00C cinit CODE >9645:/tmp/xcXEPeBhE.s
-A00E cinit CODE >9646:/tmp/xcXEPeBhE.s
-A010 cinit CODE >9647:/tmp/xcXEPeBhE.s
-A012 cinit CODE >9648:/tmp/xcXEPeBhE.s
-A014 cinit CODE >9649:/tmp/xcXEPeBhE.s
-A016 cinit CODE >9652:/tmp/xcXEPeBhE.s
-A01A cinit CODE >9653:/tmp/xcXEPeBhE.s
-A01C cinit CODE >9654:/tmp/xcXEPeBhE.s
-A01C cinit CODE >9655:/tmp/xcXEPeBhE.s
-A01E cinit CODE >9656:/tmp/xcXEPeBhE.s
-A020 cinit CODE >9657:/tmp/xcXEPeBhE.s
-A022 cinit CODE >9660:/tmp/xcXEPeBhE.s
-A026 cinit CODE >9661:/tmp/xcXEPeBhE.s
-A028 cinit CODE >9662:/tmp/xcXEPeBhE.s
-A028 cinit CODE >9663:/tmp/xcXEPeBhE.s
-A02A cinit CODE >9664:/tmp/xcXEPeBhE.s
-A02C cinit CODE >9665:/tmp/xcXEPeBhE.s
-A02E cinit CODE >9668:/tmp/xcXEPeBhE.s
-A032 cinit CODE >9669:/tmp/xcXEPeBhE.s
-A034 cinit CODE >9670:/tmp/xcXEPeBhE.s
-A034 cinit CODE >9671:/tmp/xcXEPeBhE.s
-A036 cinit CODE >9672:/tmp/xcXEPeBhE.s
-A038 cinit CODE >9673:/tmp/xcXEPeBhE.s
-A03A cinit CODE >9681:/tmp/xcXEPeBhE.s
-A03C cinit CODE >9682:/tmp/xcXEPeBhE.s
-A03E cinit CODE >9683:/tmp/xcXEPeBhE.s
-A040 cinit CODE >9684:/tmp/xcXEPeBhE.s
-A042 cinit CODE >9685:/tmp/xcXEPeBhE.s
-A044 cinit CODE >9686:/tmp/xcXEPeBhE.s
-A046 cinit CODE >9687:/tmp/xcXEPeBhE.s
-A048 cinit CODE >9693:/tmp/xcXEPeBhE.s
-A048 cinit CODE >9696:/tmp/xcXEPeBhE.s
-A04A cinit CODE >9697:/tmp/xcXEPeBhE.s
-A04C cinit CODE >9698:/tmp/xcXEPeBhE.s
-A04E cinit CODE >9699:/tmp/xcXEPeBhE.s
+9FE2 cinit CODE >9473:/tmp/xcXIlHGHe.s
+9FE2 cinit CODE >9475:/tmp/xcXIlHGHe.s
+9FE2 cinit CODE >9478:/tmp/xcXIlHGHe.s
+9FE2 cinit CODE >9623:/tmp/xcXIlHGHe.s
+9FE4 cinit CODE >9624:/tmp/xcXIlHGHe.s
+9FE6 cinit CODE >9625:/tmp/xcXIlHGHe.s
+9FE8 cinit CODE >9626:/tmp/xcXIlHGHe.s
+9FEA cinit CODE >9627:/tmp/xcXIlHGHe.s
+9FEC cinit CODE >9628:/tmp/xcXIlHGHe.s
+9FEE cinit CODE >9629:/tmp/xcXIlHGHe.s
+9FF2 cinit CODE >9630:/tmp/xcXIlHGHe.s
+9FF6 cinit CODE >9631:/tmp/xcXIlHGHe.s
+9FF6 cinit CODE >9632:/tmp/xcXIlHGHe.s
+9FF8 cinit CODE >9633:/tmp/xcXIlHGHe.s
+9FFC cinit CODE >9634:/tmp/xcXIlHGHe.s
+9FFE cinit CODE >9635:/tmp/xcXIlHGHe.s
+A000 cinit CODE >9636:/tmp/xcXIlHGHe.s
+A002 cinit CODE >9640:/tmp/xcXIlHGHe.s
+A006 cinit CODE >9641:/tmp/xcXIlHGHe.s
+A00A cinit CODE >9642:/tmp/xcXIlHGHe.s
+A00A cinit CODE >9643:/tmp/xcXIlHGHe.s
+A00C cinit CODE >9644:/tmp/xcXIlHGHe.s
+A00E cinit CODE >9645:/tmp/xcXIlHGHe.s
+A010 cinit CODE >9646:/tmp/xcXIlHGHe.s
+A012 cinit CODE >9647:/tmp/xcXIlHGHe.s
+A014 cinit CODE >9648:/tmp/xcXIlHGHe.s
+A016 cinit CODE >9651:/tmp/xcXIlHGHe.s
+A01A cinit CODE >9652:/tmp/xcXIlHGHe.s
+A01C cinit CODE >9653:/tmp/xcXIlHGHe.s
+A01C cinit CODE >9654:/tmp/xcXIlHGHe.s
+A01E cinit CODE >9655:/tmp/xcXIlHGHe.s
+A020 cinit CODE >9656:/tmp/xcXIlHGHe.s
+A022 cinit CODE >9659:/tmp/xcXIlHGHe.s
+A026 cinit CODE >9660:/tmp/xcXIlHGHe.s
+A028 cinit CODE >9661:/tmp/xcXIlHGHe.s
+A028 cinit CODE >9662:/tmp/xcXIlHGHe.s
+A02A cinit CODE >9663:/tmp/xcXIlHGHe.s
+A02C cinit CODE >9664:/tmp/xcXIlHGHe.s
+A02E cinit CODE >9667:/tmp/xcXIlHGHe.s
+A032 cinit CODE >9668:/tmp/xcXIlHGHe.s
+A034 cinit CODE >9669:/tmp/xcXIlHGHe.s
+A034 cinit CODE >9670:/tmp/xcXIlHGHe.s
+A036 cinit CODE >9671:/tmp/xcXIlHGHe.s
+A038 cinit CODE >9672:/tmp/xcXIlHGHe.s
+A03A cinit CODE >9680:/tmp/xcXIlHGHe.s
+A03C cinit CODE >9681:/tmp/xcXIlHGHe.s
+A03E cinit CODE >9682:/tmp/xcXIlHGHe.s
+A040 cinit CODE >9683:/tmp/xcXIlHGHe.s
+A042 cinit CODE >9684:/tmp/xcXIlHGHe.s
+A044 cinit CODE >9685:/tmp/xcXIlHGHe.s
+A046 cinit CODE >9686:/tmp/xcXIlHGHe.s
+A048 cinit CODE >9692:/tmp/xcXIlHGHe.s
+A048 cinit CODE >9695:/tmp/xcXIlHGHe.s
+A04A cinit CODE >9696:/tmp/xcXIlHGHe.s
+A04C cinit CODE >9697:/tmp/xcXIlHGHe.s
+A04E cinit CODE >9698:/tmp/xcXIlHGHe.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -2345,7 +2345,7 @@ __size_of_vfsfcnvrt 0 0 ABS 0 - dist/default/production/ValveControl.X.productio
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/ValveControl.X.production.o
 _g_vbemf 53C 0 COMRAM 1 bssCOMRAM dist/default/production/ValveControl.X.production.o
 i2adc_start@chs 501 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
-__mediumconst FEB2 0 MEDIUMCONST 0 mediumconst /tmp/xcXaAdmHe.o
+__mediumconst FEB2 0 MEDIUMCONST 0 mediumconst /tmp/xcXOBIHae.o
 _last_tick 62B 0 BANK6 1 bssBANK6 dist/default/production/ValveControl.X.production.o
 ?_isxdigit 51A 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/ValveControl.X.production.o
@@ -2374,7 +2374,7 @@ _T2PR 31D 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _WPUA 401 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _WPUB 409 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _WPUC 411 0 ABS 0 - dist/default/production/ValveControl.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXaAdmHe.o
+___sp 0 0 STACK 2 stack /tmp/xcXOBIHae.o
 _asup 532 0 COMRAM 1 bssCOMRAM dist/default/production/ValveControl.X.production.o
 _atoc 8B56 0 CODE 0 text38 dist/default/production/ValveControl.X.production.o
 _atod 78AE 0 CODE 0 text34 dist/default/production/ValveControl.X.production.o
@@ -2401,7 +2401,7 @@ i2_adc_start A9EA 0 CODE 0 text91 dist/default/production/ValveControl.X.product
 pad@i 566 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 pad@p 564 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 pad@w 568 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
-start BA 0 CODE 0 init /tmp/xcXaAdmHe.o
+start BA 0 CODE 0 init /tmp/xcXOBIHae.o
 ___aomod@counter 52A 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 ___flmul@aexp 561 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 ___flmul@bexp 566 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
@@ -2474,11 +2474,11 @@ utoa@i 588 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.producti
 utoa@n 580 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 utoa@p 57C 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 utoa@w 57E 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
-__accesstop 560 0 ABS 0 - /tmp/xcXaAdmHe.o
-intlevel0 0 0 CODE 0 text /tmp/xcXaAdmHe.o
-intlevel1 0 0 CODE 0 text /tmp/xcXaAdmHe.o
-intlevel2 0 0 CODE 0 text /tmp/xcXaAdmHe.o
-intlevel3 0 0 CODE 0 text /tmp/xcXaAdmHe.o
+__accesstop 560 0 ABS 0 - /tmp/xcXOBIHae.o
+intlevel0 0 0 CODE 0 text /tmp/xcXOBIHae.o
+intlevel1 0 0 CODE 0 text /tmp/xcXOBIHae.o
+intlevel2 0 0 CODE 0 text /tmp/xcXOBIHae.o
+intlevel3 0 0 CODE 0 text /tmp/xcXOBIHae.o
 __size_of_strtoull 0 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _ina219_reg 98E8 0 CODE 0 text14 dist/default/production/ValveControl.X.production.o
 i2adc_wait@timeout 501 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
@@ -2541,14 +2541,14 @@ _ANSELB 408 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _ANSELC 410 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 ___strtoxll@endptr 56A 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 _atod$2841 5B5 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xcXaAdmHe.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXOBIHae.o
 _I2C1BAUD 29D 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _I2C1CNTH 28D 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _I2C1CNTL 28C 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _I2C1CON0 294 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _I2C1CON1 295 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _I2C1CON2 296 0 ABS 0 - dist/default/production/ValveControl.X.production.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xcXaAdmHe.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXOBIHae.o
 ina219_reg@ina219reg 51B 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 ?_tolower 520 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 ?_toupper 520 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
@@ -2698,7 +2698,7 @@ _U1CON2 2AD 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 IOC_isr@mAmps 511 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 islower@c 51A 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 __end_of_printf A922 0 CODE 0 text55 dist/default/production/ValveControl.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xcXaAdmHe.o
+isa$xinst 0 0 ABS 0 - /tmp/xcXOBIHae.o
 __end_ofi1_init_uart1 A8FA 0 CODE 0 text85 dist/default/production/ValveControl.X.production.o
 fputc@fp 51E 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 fputs@fp 527 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
@@ -2749,7 +2749,7 @@ __Hbank21 0 0 ABS 0 bank21 dist/default/production/ValveControl.X.production.o
 __size_of___xxtofl 0 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/ValveControl.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production/ValveControl.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst /tmp/xcXaAdmHe.o
+__smallconst 0 0 SMALLCONST 0 smallconst /tmp/xcXOBIHae.o
 ___xxtofl@arg 524 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 ___xxtofl@exp 523 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
 ___xxtofl@val 51A 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
@@ -3206,7 +3206,7 @@ _strlen A30A 0 CODE 0 text69 dist/default/production/ValveControl.X.production.o
 _strstr 9698 0 CODE 0 text22 dist/default/production/ValveControl.X.production.o
 _strtof 3ADC 0 CODE 0 text40 dist/default/production/ValveControl.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/ValveControl.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xcXaAdmHe.o
+isa$std 1 0 ABS 0 - /tmp/xcXOBIHae.o
 __size_of___strtoxll 0 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 ___fldiv@new_exp 565 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 __end_of_interrupt_initialize A944 0 CODE 0 text4 dist/default/production/ValveControl.X.production.o
@@ -3214,8 +3214,8 @@ set_pwm@dir 51A 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.p
 _g_ERRORflags 544 0 COMRAM 1 bssCOMRAM dist/default/production/ValveControl.X.production.o
 __size_of_vfprintf 0 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 _ungetc 9E38 0 CODE 0 text51 dist/default/production/ValveControl.X.production.o
-stackhi 15FF 0 ABS 0 - /tmp/xcXaAdmHe.o
-stacklo 900 0 ABS 0 - /tmp/xcXaAdmHe.o
+stackhi 15FF 0 ABS 0 - /tmp/xcXOBIHae.o
+stacklo 900 0 ABS 0 - /tmp/xcXOBIHae.o
 __size_of_over_current 0 0 ABS 0 - dist/default/production/ValveControl.X.production.o
 stoa@cp 56B 0 BANK5 1 cstackBANK5 dist/default/production/ValveControl.X.production.o
 stoa@fp 525 0 COMRAM 1 cstackCOMRAM dist/default/production/ValveControl.X.production.o
@@ -3416,7 +3416,7 @@ __Ltext89 0 0 ABS 0 text89 dist/default/production/ValveControl.X.production.o
 __Ltext90 0 0 ABS 0 text90 dist/default/production/ValveControl.X.production.o
 __Ltext91 0 0 ABS 0 text91 dist/default/production/ValveControl.X.production.o
 __Ltext92 0 0 ABS 0 text92 dist/default/production/ValveControl.X.production.o
-__ramtop 1600 0 RAM 0 ramtop /tmp/xcXaAdmHe.o
+__ramtop 1600 0 RAM 0 ramtop /tmp/xcXOBIHae.o
 _sprintf A35E 0 CODE 0 text54 dist/default/production/ValveControl.X.production.o
 _vfprintf 9F5E 0 CODE 0 text56 dist/default/production/ValveControl.X.production.o
 _g_rs232_request 63E 0 BANK6 1 bssBANK6 dist/default/production/ValveControl.X.production.o

@@ -186,19 +186,19 @@ E_VZ_RANGE -1
 [v _init_system init_system `(v  1 e 1 0 ]
 "135
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
-"159
+"167
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
-"178
+"176
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
-"223
+"221
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
-"276
+"274
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
-"291
+"289
 [v _init_pwm init_pwm `(v  1 e 1 0 ]
-"330
+"328
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
-"350
+"348
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 "58 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
@@ -1208,40 +1208,40 @@ E_VZ_RANGE -1
 {
 "81
 } 0
-"350 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"348 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"370
+"368
 } 0
-"330
+"328
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
 {
-"340
+"338
 } 0
-"291
+"289
 [v _init_pwm init_pwm `(v  1 e 1 0 ]
 {
-"323
+"321
 } 0
-"276
+"274
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
 {
-"284
+"282
 } 0
-"223
+"221
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
 {
-"269
+"267
 } 0
-"178
+"176
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
 {
-"193
+"191
 } 0
-"159
+"167
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
 {
-"173
+"171
 } 0
 "135
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
@@ -2068,10 +2068,10 @@ E_VZ_RANGE -1
 [v U1RX_isr@ch ch `uc  1 a 1 24 ]
 "269
 } 0
-"350 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
+"348 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"370
+"368
 } 0
 "105 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _IOC_isr IOC_isr `IIH(v  1 e 1 0 ]

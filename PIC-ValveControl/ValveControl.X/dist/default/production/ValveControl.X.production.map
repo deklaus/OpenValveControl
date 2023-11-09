@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -pivt0x8=08h -cn \
   -h+dist/default/production/ValveControl.X.production.sym \
   --cmf=dist/default/production/ValveControl.X.production.cmf -z -Q18F16Q41 \
-  -o/tmp/xcXoHEgkG --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXFacPjp --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/ValveControl.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0900h-015FFh -pstack=STACK \
   -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh -ASMALLCONST=01600h-016FFhx234 \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXaAdmHe.o dist/default/production/ValveControl.X.production.o 
+  /tmp/xcXOBIHae.o dist/default/production/ValveControl.X.production.o 
 
 Object code version is 3.11
 
@@ -35,7 +35,7 @@ Machine type is 18F16Q41
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXaAdmHe.o
+/tmp/xcXOBIHae.o
                 idloc                            200000   200000       20        0       5
                 config                           300000   300000        A        0       4
                 init                                 BA       BA        4        4       0

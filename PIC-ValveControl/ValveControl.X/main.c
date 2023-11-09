@@ -53,7 +53,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "V 0.2"; ///< Software version
+const char  *g_version = "v0.2";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
