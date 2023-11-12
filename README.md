@@ -22,8 +22,8 @@ This works reasonably well in most weather situations. However, if we shut down 
 characteristic curves are no longer correct. And because our heating only knows whole degrees, it is not possible 
 to adjust the temperature by half a degree. So far, we've turned the valves until it was reasonably right again.
 To automate these settings, we would like to be able to vary one or more heating circuits via WLAN or a SmartHome interface.
-Since our floor valves are on two floors, we feel that the cost of two Homematic FALMOT (or equivalent clones) 
-is too high for this purpose and the documentation is not detailed enough in most cases.
+Since our floor valves are on two storeys, we feel that the costs of two Homematic FALMOT (or equivalent clones) are too 
+high for this purpose and the documentation is not detailed enough in most cases.
 Since I am interested in the whole topic, I started to develop my own solution for the task and make it available 
 to the community as an OpenSource project.
 
