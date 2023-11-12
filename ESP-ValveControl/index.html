@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+<meta charset='utf-8'>
+	<link rel='icon' href='data:image/x-icon;base64,AAABAAEAGiACAAEAAQAwAQAAFgAAACgAAAAaAAAAQAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzzMwAAAAAAP///
+	8D//4/A//4fwP/4H8D/8D/A/+A/wP/AP8D/wD/A/8A/wP/AP8Df4D/A5+A/wPPwP8D4+D/A/DwfwP4eD8D+Dw/A/weHwP8D48D/gfnA/4D8wP+A/0D/gP/A/4B/wP+A/8D/gP/A/wH/wP8D
+	/8D/B//A/h//wPz//8D////A////wP//j8D//h/A//gfwP/wP8D/4D/A/8A/wP/AP8D/wD/A/8A/wN/gP8Dn4D/A8/A/wPj4P8D8PB/A/h4PwP4PD8D/B4fA/wPjwP+B+cD/gPzA/4D/QP+
+	A/8D/gH/A/4D/wP+A/8D/Af/A/wP/wP8H/8D+H//A/P//wP///8A='>
+<title>ESP-ValveControl</title>
+<meta name='viewport' content='width=device-width, initial-scale=0.9'>
+<script>
+ let version = 'v0.3';					// version of this Web UI
+ let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
+ let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
+ let max_mA = [0.0, 31.0, 32.0, 33.0, 34.0 ];   // motor current limits [mA]  
+
+ setInterval(f_status, 1500); 
+ f_status();
+ f_info();
+
+ function get_vz() {   // returns the 'value' of the selected checkbox: [1..4]
+   let inputs = document.getElementsByName('vz');
+   for (let i = 0; i < inputs.length; i++) {
+     if (inputs[i].checked) return inputs[i].value;
+   }
+ }
+
+ function VZselected(sel) { 
+   document.getElementById('set_pos').value = set_pos[sel]; 
+   document.getElementById('max_mA').value  = max_mA[sel]; 
+ }
+
+ function update_pos(sel) {   // updates the position display of selected vz (sel = [1-4])
+   let radios = document.getElementsByName('vz'); 
+   let color = radios[sel-1].checked ? '#9f6' : '#494'; 
+   let id = 'vz'+ sel.toString(10);   // bgcolor has to be set, even when position == set_pos
+   document.querySelector(id).innerText = position[sel].toString(10) + ' %'; 
+   id = 'VZ'+ sel.toString(10);   // hbar (width)
+   let elem = document.getElementById(id); 
+   elem.setAttribute('style', 'width:' + position[sel].toString(10) + '%;background-color:' + color + ';'); 
+ }
+
+ function update_allpos() {	  // update aller Positionen
+   for (let i = 1; i <= 4; i++) {
+     update_pos(i);
+   }	
+ }
+
+ function f_save() {
+   let data = 'no response';
+   let query = 'ssid=' + document.getElementById('ssid').value + '&psk=' + document.getElementById('psk').value;
+   let xhr = new XMLHttpRequest();
+   xhr.open('GET', '/save?'+query, true);
+   xhr.onreadystatechange = function () {
+     if ((xhr.readyState == 4) && (xhr.status == 200)) {
+       data = xhr.responseText;
+       //alert(xhr.responseText);
+       let info = document.createTextNode(data);
+       let element = document.getElementById('status');
+       element.replaceChild(info, element.firstChild);
+     }
+   }
+   xhr.send();
+ }
+
+ function f_move() {
+   let data = 'no response';
+   let sel = get_vz();
+   set_pos[sel] = parseInt(document.getElementById('set_pos').value);
+   max_mA[sel] = parseFloat(document.getElementById('max_mA').value);
+   let query = 'vz=' + sel + '&set_pos=' + set_pos[sel] + '&max_mA=' + max_mA[sel].toFixed(1);
+   let xhr = new XMLHttpRequest();
+   xhr.open('GET', '/move?'+query, true);
+   xhr.onreadystatechange = function () {
+     if ((xhr.readyState == 4) && (xhr.status == 200)) {
+       data = xhr.responseText;
+       //alert(xhr.responseText);
+       let info = document.createTextNode(data);
+       let element = document.getElementById('status');
+       element.replaceChild(info, element.firstChild);
+     }
+   }
+   xhr.send();
+   update_pos(sel);
+ }
+
+ function f_home() {
+   let data = 'no response';
+   let sel = get_vz();
+   max_mA[sel] = parseFloat(document.getElementById('max_mA').value);
+   let query = 'vz=' + sel + '&max_mA=' + max_mA[sel].toFixed(1);
+   let xhr = new XMLHttpRequest();
+   xhr.open('GET', '/home?'+query, true);
+   xhr.onreadystatechange = function () {
+     if ((xhr.readyState == 4) && (xhr.status == 200)) {
+       data = xhr.responseText;
+       //alert(xhr.responseText);
+       let info = document.createTextNode(data);
+       let element = document.getElementById('status');
+       element.replaceChild(info, element.firstChild);
+     }
+   }
+   xhr.send();
+ }
+
+ function f_status() {
+   fetch('/status?')
+   .then (function(response) {
+     if (!response.ok) {
+       throw new Error('HTTP error ' + response.status);
+     }
+     return response.json();
+   })
+   .then (function(data) { 
+     let radios = document.getElementsByName('vz'); 
+     let mAmps = data.mAmps.valueOf(); 
+     document.querySelector('mAmps').innerText = data.mAmps;
+     let tempC = data.tempC.valueOf(); 
+     document.querySelector('tempC').innerText = tempC; 
+     position[1] = data.VZ1.Position; 
+     position[2] = data.VZ2.Position; 
+     position[3] = data.VZ3.Position; 
+     position[4] = data.VZ4.Position; 
+     for (let i = 1; i <= 4; i++) {
+       if (position[i] < 0 || position[i] > 100) position[i] = 50; 
+     } 
+     update_allpos();
+   });
+ }
+
+ function f_info() {
+   fetch('/info?')
+   .then (function(response) {
+     if (!response.ok) {
+       throw new Error('HTTP error ' + response.status);
+     }
+     return response.json();
+   })
+   .then (function(data) { 
+     let info = document.createTextNode(JSON.stringify(data));
+     let element = document.getElementById('status');
+     element.replaceChild(info, element.firstChild);
+	 document.getElementById('ssid').value = data.SSID.valueOf();
+//	 document.getElementById('psk').value = data.PSK.valueOf();
+   }); 
+ }
+</script>
+<style>
+ a { 
+   text-decoration:none;
+   color:#488; 
+ }
+ body {
+   min-width:360px;
+   text-align:center;
+   font-family:verdana,sans-serif;
+   background:#252525;
+ }
+ .page {
+   background:#252525;
+   margin: auto;
+   color:#eaeaea; 
+   width:360px;
+   padding:10px;
+ }
+ /* Ventil-Positionen */
+ div.table {
+   width:360px;
+   font-size:0.9rem;
+ }
+ div.tr { 
+   display: flex;
+   align-items: center;
+ }
+ div.td1 { 
+   text-align:left;
+   width:20%;
+ }
+ div.td2 { 
+   width:60%;
+ }	
+ div.td3 { 
+   text-align:right;
+   padding-left:5px; 
+   width:15%;
+ }
+ .hbar {
+   height:20px; 
+   display: flex;
+   align-items: center;
+   background-color:#999;
+   margin-top: 0.5em;
+   padding: 0.1em;
+   -webkit-transition-duration:0.2s;
+   transition-duration:0.2s;
+   cursor:pointer;		
+ }
+ .btn, input[type=submit] {
+   border:0;
+   border-radius:0.3rem;
+   background:#29e;
+   color:#fff;
+   width:100%;
+   height:2rem;
+   font-size:0.9rem;
+   //margin-top:1rem;
+ }
+ .btn:hover { 
+   background-color:#147; 
+ }	
+ .btnlbl {
+   text-align:left;
+ }
+ .label {
+   padding-left:10px;
+ }
+ .vz-sel {
+ }	
+ input[type=text],input[type=password] {
+   width:130px;
+   text-align:center;
+   float:right;
+ }
+ input[type=radio] {
+   text-align:left;
+   float:left;
+ }
+ input[id=ssid],input[id=psk] {
+   width:190px;
+ }
+ form, p[id=status] {
+   text-align:left;
+   font-size:0.9rem;
+ }
+</style>
+</head>
+<body>
+ <div class='page'>
+   <noscript>Upps! Offenbar ist JavaScript nicht aktiv!<br>ESP-ValveControl funktioniert nur mit JavaScript.<br>Bitte Browser-Einstellungen überprüfen!<br>
+   </noscript>
+   
+   <h3>ESP-ValveControl</h3>
+   <table style='width:100%; text-align:left;'>
+     <tr>
+       <td style='width:25%; padding-left:10px;'><b>Imot:</b></td>
+       <td><mAmps>0.0</mAmps> mA</td>
+       <td style='width:25%; padding-left:10px;'><b>Temp:</b></td>
+       <td><tempC>0.0</tempC> °C</td>
+     </tr>  
+   </table>
+  
+   <script>
+     'use strict';
+     document.querySelector('mAmps').innerText = '0.0';
+     document.querySelector('tempC').innerText = '0.0';
+   </script>
+  
+   <h2>Valve Positions</h2>
+   <div class='table'>
+     <div class='tr'>
+       <div class='td1'><input type='radio' name='vz' id='radio1' value='1' onclick='VZselected(1)' checked> <label for='radio1'>VZ1</label></div>
+       <div class='td2'><div class='hbar' id='VZ1'; style='width:0%;'></div></div>
+       <div class='td3'><vz1>0 %</vz1></div>
+     </div>
+     <div class='tr'>
+       <div class='td1'><input type='radio' name='vz' id='radio2' value='2' onclick='VZselected(2)'> <label for='radio2'>VZ2</label></div>
+       <div class='td2'><div class='hbar' id='VZ2'; style='width:0%;'></div></div>
+       <div class='td3'><vz2>0 %</vz2></div>
+     </div>	
+     <div class='tr'>
+       <div class='td1'><input type='radio' name='vz' id='radio3' value='3' onclick='VZselected(3)'> <label for='radio3'>VZ3</label></div>
+       <div class='td2'><div class='hbar' id='VZ3'; style='width:0%;'></div></div>
+       <div class='td3'><vz3>0 %</vz3></div>
+     </div>
+     <div class='tr'>
+       <div class='td1'><input type='radio' name='vz' id='radio4' value='4' onclick='VZselected(4)'> <label for='radio4'>VZ4</label></div>
+       <div class='td2'><div class='hbar' id='VZ4'; style='width:0%;'></div></div>
+       <div class='td3'><vz4>0 %</vz4></div>
+     </div>
+   </div>
+  	
+   <p class='label'>
+     <form> 
+       <p class='label'>Set Position [%]<input type='text' id='set_pos' value='0'></p>
+       <p class='label'>Imot max. [mA]<input type='text' id='max_mA' value='30.0'></p>
+     </form>
+   </p>
+  		
+   <p><button class='btn' name='btn_move' onclick='f_move();'>Move VZ</button></p>
+   <p><button class='btn' name='btn_home' onclick='f_home();'>Home VZ</button></p>
+   <p><button class='btn' name='btn_info' onclick='f_info();'>Info</button></p>
+  
+   <p class='label'>
+     <form> 
+       <p class='label'>WLAN-SSID<input type='text' id='ssid' value='your ssid'></p>
+       <p class='label'>WLAN-Passwort<input type='password' id='psk' value='your password'></p>
+     </form>
+   </p>
+  
+   <p><button class='btn' name='btn_save'   onclick='f_save();'>Save & Reboot</button></p>
+   <p id='status'> </p>
+  
+   <script>
+     let elem = document.getElementsByName('vz');
+     for (let i = 0; i < 4; i++) {
+       elem[i].addEventListener('click', update_allpos);
+     }
+   </script>
+  
+   <div style='text-align:right;font-size:10px;'>
+     <hr/>
+     ValveControl Web-UI 
+	 <script>document.write(version)</script>
+	 from <a href='https://github.com/deklaus/' target='_blank'>Klaus Deutschkämer</a>
+   </div>	
+ </div>
+</body>
+</html>

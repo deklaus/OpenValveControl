@@ -46,13 +46,16 @@ uint8_t PXrow[6] = { 9, 19, 30, 41, 52, 63 };
  */
 void OLED_init (void)
 {
+  char buf[24];
+
   #ifdef U8G2LIB_HH
     u8g2.begin();
     u8g2.enableUTF8Print();           // enable UTF8 support for the Arduino print()  
     u8g2.setFont(u8g2_font_6x12_mr);  // choose a suitable font
 
     u8g2.setDrawColor(1);
-    u8g2.drawStr(0, PXrow[0], ssid);
+    snprintf(buf, 21, "ESP: %s", ESPversion);     
+    u8g2.drawStr(0, PXrow[1], buf);
     u8g2.drawStr(0, PXrow[2], "VZ1");
     u8g2.drawStr(0, PXrow[3], "VZ2");
     u8g2.drawStr(0, PXrow[4], "VZ3");
@@ -67,14 +70,14 @@ void OLED_init (void)
 
 /** @brief updates OLED row with text message
  */
-void OLED_show (unsigned row, char *s)
+void OLED_show (unsigned row, char *msg)
 {
   #ifdef U8G2LIB_HH
     u8g2.setDrawColor(0);   // erase row content
     if (row > 0) u8g2.drawBox(0, PXrow[row-1] + 1, 128, PXrow[row] - PXrow[row-1]);
     else         u8g2.drawBox(0, 0, 128, PXrow[0]);
     u8g2.setDrawColor(1);
-    u8g2.drawStr(0, PXrow[row], txbuf); // show IP address
+    u8g2.drawStr(0, PXrow[row], msg); // show message
     u8g2.sendBuffer();
   #elif define U8X8LIB_HH
     /// @todo: add code as with g2lib
