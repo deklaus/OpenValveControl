@@ -1,11 +1,17 @@
 # This folder contains the ESP Firmware
-This project was compiled on **Linux Mint 21** with the **Arduino IDE 2.1.0**, <br>
-it uses a ESP8266 board "**LOLIN(WEMOS) D1  mini (clone)**" and
-the following Arduino libraries:
+This project was compiled on **Linux Mint 21** with the **Arduino IDE 2.2.1**, <br>
+it uses a ESP8266 board "**LOLIN(WEMOS) D1  mini (clone)**", core 'esp8266' 3.1.2 <br>
+and the following Arduino libraries:
 
 - **ESP8266WiFi**, Version 1.0
 - **ESP8266WebServer**, Version 1.0
+- **ESP8266HTTPUpdateServer**, Version 1.0
+- **LittleFS**, Version 0.1.0
+- **DallasTemperature**, Version 3.9.0
+- **MAX31850 OneWire**, Version 1.1.1
 - **U8g2**, Version 2.34.22
+- **SPI**, Version 1.0
+- **Wire**, Version 1.0 
 
 ## ESP-ValveControl.ino
 This is the Arduino project file and must reside in a folder with the same name (ESP-ValveControl).
