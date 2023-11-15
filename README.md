@@ -33,7 +33,7 @@ to the community as an OpenSource project.
 - [x] WLAN-Interface (visualization, command execution and status requests using GET, POST, JSON)
 - [x] Supports DS18B20 (heating flow temperature)
 - [x] Filesystem support on ESP (upload webserver "index.html" and setting data "/ovc.ini")
-- [ ] Access point (until local WiFi has been configured)
+- [x] Access point (until local WiFi has been configured)
 - [x] OTA-Support for ESP (Over-the-Air Update)
 - [ ] OTA-Support (Over-the-Air Bootloader) for PIC-µC
 - [ ] MQTT Support
