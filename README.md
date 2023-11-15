@@ -21,7 +21,7 @@ The heating control of our home regulates the supply temperature by means of two
 This works reasonably well in most weather situations. However, if we shut down one room (e.g. the visitor room), the 
 characteristic curves are no longer correct. And because our heating only knows whole degrees, it is not possible 
 to adjust the temperature by half a degree. So far, we've turned the valves until it was reasonably right again.
-To automate these settings, we would like to be able to vary one or more heating circuits via WLAN or a SmartHome interface.
+To automate these settings, we would like to be able to vary one or more heating circuits via WiFi or a SmartHome interface.
 Since our floor valves are on two storeys, we feel that the costs of two Homematic FALMOT (or equivalent clones) are too 
 high for this purpose and the documentation is not detailed enough in most cases.
 Since I am interested in the whole topic, I started to develop my own solution for this task and make it available 
@@ -30,9 +30,9 @@ to the community as an OpenSource project.
 # Features
 - [x] Connect up to 4 motorized, 3 V floor heating valve actuators (like HmIP VdMOT and similars)
 - [x] OLED Display (visualization of valve positions, motor current, temperature and status)
-- [x] WLAN-Interface (visualization, command execution and status requests using GET, POST, JSON)
+- [x] WiFi-Interface (visualization, command execution and status requests using GET, POST, JSON)
 - [x] Supports DS18B20 (heating flow temperature)
-- [x] Filesystem support on ESP (upload webserver "index.html" and setting data "/ovc.ini")
+- [x] Filesystem support on ESP (upload webserver "/index.html" and setting data "/ovc.ini")
 - [x] Access point (until local WiFi has been configured)
 - [x] OTA-Support for ESP (Over-the-Air Update)
 - [ ] OTA-Support (Over-the-Air Bootloader) for PIC-µC
