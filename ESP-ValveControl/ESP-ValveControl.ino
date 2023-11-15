@@ -1,7 +1,9 @@
 /** @file   ESPValveControl.ino
- *  @author Klaus Deutschkämer (https://github.com/deklaus)
+ *  @author  (c) Klaus Deutschkämer (https://github.com/deklaus)
+ *  License: This software is licensed under the European Union Public Licence EUPL-1.2
+ *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
  *
- *  @brief  WLAN-Interface for OpenValveControl (PIC-)Controller.
+ *  @brief  WiFi-Interface for OpenValveControl (PIC-)Controller.
  *  \b Functions:
  *   - Display all 4 valve positions
  *   - Display motor current
@@ -10,8 +12,8 @@
  *   - Triggering a MOVE (VZ) to desired position
  *   - Triggering a reference run (HOME)
  *   - Temperature measurement with DS18B20
- *   - Status display, p.e. positions, firmware (ESP and PIC), WLAN,...
- *   - Access point (until WiFi has been setup)
+ *   - Status display, p.e. positions, firmware (ESP and PIC), WiFi,...
+ *   - Access point (until local WiFi has been configured)
  *   - OTA Firmware-Update ESP
  *   - Firmware-Update (PIC) via Web UI (planned)
  *
@@ -32,18 +34,23 @@
  *  Weblinks: \n
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
-*/
-/**
- * v0.4 2023-11-17
+ * History:
+ * v0.6 2023-11-15
+ * - Added acces point mode (OVC-access-point/PVC-password).
+ * - Reading and writing of setup file "ovc.ini". LittleFS.ini supplemented with proper mime/ContentType.
+ * v0.5 Test version
+ * v0.4 2023-11-12
  * - Added OTA support. Enter URI/update to select and upload new firmware binary file (.bin).
  * v0.3 2023-11-07
  * - Added LittleFS. Web-UI must now be uploaded as separate file (index.html) via LittleFS (URI/fs.html)
  *   Requires Web-UI (index.html) v0.3 or newer.
  * v0.2 2023-11-02
  * - Added reading of DS18B20 and added temperature in handle_status and handle-info.
- * @todo - During MOVE and HOME: don't update temperature - overwrites commands in OLED row 2.
-         - Show temperature in Web-GUI (share row with Current)
-*/
+ *
+ * @todo - poor handling of refset[] (maybe by PIC?). 
+ *       - home drive sometimes doesn't reset position.
+ *       - Download of ovc.ini should be password protected or PSK should be encrypted in ovc.ini.
+ */
 
 // *** includes
 #include <ESP8266WiFi.h>
@@ -69,15 +76,17 @@ extern float  DS18B20_TempC (uint8_t index);
 
 extern void   setupFS ();
 
-extern int    GetIntFromIni (const char *path, const char *identifier, int *result);
-extern int    GetFloatFromIni (const char *path, const char *identifier, float *result);
-extern int    GetCstringFromIni (const char *path, const char *identifier, char *result, int Nmax);
-extern int    ReadSetupFromINI (const char *path);
+extern int    setup_GetCstring (const char *path, const char *identifier, char *result, int Nmax);
+extern int    setup_GetInt (const char *path, const char *identifier, int *result);
+extern int    setup_GetFloat (const char *path, const char *identifier, float *result);
+extern int    setup_ReadINI (const char *path);
+extern int    setup_WriteCstring (const char *path, const char *identifier, char *s);
 
 // *** private function prototypes
 static int    cmd2pic (void);
 
 // *** data type, constant and macro definitions
+//#define DEBUG_OUTPUT_DS1820   1   /* enable serial monitor: status DS18B20 */
 //#define DEBUG_OUTPUT_STATUS   1   /* enable serial monitor: status read from PIC */
 //#define DEBUG_OUTPUT_WIFI     1   /* enable serial monitor: WIFI status after connect */
 //#define DEBUG_OUTPUT_INI      1   /* enable serial monitor: INI file functions */
@@ -125,12 +134,13 @@ ESP8266HTTPUpdateServer httpUpdater;
 
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "v0.4.1";  // Version of ESP-Firmware
+char  ESPversion[32] = "v0.6";  // Version of ESP-Firmware
 char  PICversion[32] = "NN";    // Version of PIC-Firmware
 
-// WLAN credentials (customize to your settings)
-char  ssid[64] = "Your Router's SSID";
-char  psk[64] = "Your Router's Password";
+// WiFi credentials: Initial values are used for access point!
+// The credential aof your routers WiFi can be customized in "ovc.ini" (uploaded into LittleFS)
+char  ssid[64] = "OVC-access-point";  // SSID (access point)
+char  psk[64]  = "OVC-password";      // Password (access point)
 
 char  alias1[8];    // aliases for "VZ1" to "VZ4"
 char  alias2[8];
@@ -180,15 +190,15 @@ void setup ()
    */
   OLED_init();
 
-// TEST: show sketch size and free sketch space
+#ifdef SHOW_SKETCH_SPACE
+// TEST: show sketch size and free sketch space in OLED
   float sketchSize = (float)ESP.getSketchSize();
   float freeSketchSpace = (float)ESP.getFreeSketchSpace();
-/* TEST: show sketch size and free flash space:
   snprintf(txbuf, 21, "size: %.0f", sketchSize); 
   OLED_show(0, txbuf);
   snprintf(txbuf, 21, "free: %.0f", freeSketchSpace); 
   OLED_show(1, txbuf);
-*/
+#endif
 
   /** - Initialize temperature sensor DS18B20 */
   DS18B20_init();
@@ -201,22 +211,54 @@ void setup ()
    * Weblinks: https://arduino-esp8266.readthedocs.io/en/latest/filesystem.html
    *           https://randomnerdtutorials.com/esp32-write-data-littlefs-arduino/#esp32-save-variable-littlefs
    * Also reads the WiFi credentials (if uploaded to /ovc.ini)   */
-  error = ReadSetupFromINI("/ovc.ini");
+  error = setup_ReadINI("/ovc.ini");
 
-
-  /** - Initialize WiFi  */
+  /** - Initialize WiFi  
+        Weblink: https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/generic-class.html
+   */
   OLED_show(0, ssid);
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, psk);
-  while (WiFi.status() != WL_CONNECTED)
-  { // Wait for WiFi connection
-    delay(500);
-    /// @todo show something (hour glass) on OLED
+  if (0 == strcmp(ssid, "OVC-access-point"))  // default ssid (no setup by ovc.ini)
+  { // create access point
+    WiFi.mode(WIFI_AP);
+    if (WiFi.softAP(ssid, psk)) OLED_show(1, psk);     // AP setup okay
+    else                        OLED_show(1, (char *)"Error");
   }
-  // Show local IP address on OLED, so we can connect to the webserver UI
-  // (one OLED row is max. 21 chars wide)
-  snprintf(txbuf, 21, "IP: %s", WiFi.localIP().toString().c_str()); 
-  OLED_show(0, txbuf);
+  else
+  { // try: connect to router with credentials from ovc.ini
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, psk);
+    for (int timeout = 0; (WiFi.status() != WL_CONNECTED) &&  (timeout < 120); timeout++)
+    { // Wait for WiFi connection, cancel after 2 minutes.
+      OLED_show(0, (char *)" ");
+      delay(500);
+      OLED_show(0, ssid);
+      delay(500);
+    }
+  }
+
+  if (WiFi.status() == WL_CONNECTED)
+  {
+    // Show local IP address on OLED, so we can connect to the webserver UI
+    // (one OLED row is max. 21 chars wide)
+    snprintf(txbuf, 21, "IP: %s", WiFi.localIP().toString().c_str()); 
+    OLED_show(0, txbuf);
+  }
+  else { // if connection failed, use accesspoint to make corrections
+    strcpy(ssid, "OVC-access-point"); // reset
+    strcpy(psk,  "OVC-password");
+    WiFi.mode(WIFI_AP);
+    OLED_show(0, ssid);
+    if (WiFi.softAP(ssid, psk)) OLED_show(1, psk);     // AP setup okay
+    else                        OLED_show(1, (char *)"Error");
+  }
+
+  if (WiFi.getMode() == WIFI_AP)
+  { // default IP address of AP is 192.168.4.1 and may be changed using softAPConfig, see:
+    // https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/soft-access-point-class.html#softapip
+    delay(5000);  // 5 sec for reading the credentials, then show IP
+    snprintf(txbuf, 21, "IP: %s", WiFi.softAPIP().toString().c_str()); 
+    OLED_show(0, txbuf);
+  }
 
 #ifdef DEBUG_OUTPUT_WIFI
   Serial.flush();   // Wait for the transmission of outgoing serial data to complete
@@ -233,26 +275,7 @@ void setup ()
   Serial.swap();    // remap output to PIC
 #endif
 
-
-#ifdef DEBUG_OUTPUT_INI
-  Serial.flush();   // Wait for the transmission of outgoing serial data to complete
-  Serial.swap();    // map UART0 to serial monitor
-
-  Serial.println();
-  Serial.println("ovc.ini:");
-  Serial.print("SSID   = "); Serial.println(ssid);
-  Serial.print("PSK    = "); Serial.println(psk);
-  Serial.print("Alias1 = "); Serial.println(alias1);
-  Serial.print("Alias2 = "); Serial.println(alias2);
-  Serial.print("Alias3 = "); Serial.println(alias3);
-  Serial.print("Alias4 = "); Serial.println(alias4);
-  Serial.print("dTemp  = "); Serial.println(String(dTemp, 1));
-
-  Serial.flush();   // Wait for the transmission of outgoing serial data to complete
-  Serial.swap();    // map UART0 to serial monitor
-#endif
-
-  /** - Read PIC Firmware Version and safe in 'PICversion'
+  /** - Read PIC Firmware Version and save in 'PICversion'
    */
   sprintf(txbuf, "Version?\n");
   error = cmd2pic();
@@ -264,15 +287,19 @@ void setup ()
 
   /** - Setup Webserver for ESP ValveControl
    *  This implements our client request handlers. You can append the GET commands and parameters to the URI, e.g.
-   *  http://192.168.2.108/move?vz=1&set_pos=25&max_mA=30  as a move command or to read positions:
-   *  http://192.168.2.108/status?
+   *  http://192.168.2.75/move?vz=1&set_pos=25&max_mA=30   move selected valve to 25 % position.
+   *  http://192.168.2.75/home?vz=3&max_mA=45              request homing of the selected valve.
+   *  http://192.168.2.75/status                           get status information (current, temperature, valve states)
+   *  http://192.168.2.75/info                             get system information (Firmware releases, WiFi SSID)
    */
-// server.on("/", handleRoot);
+// server.on("/", handleRoot);  // handled by LittleFS -> invokes /index.html (our Web UI)
   server.on("/move",   HTTP_GET, handleMove);
   server.on("/home",   HTTP_GET, handleHome);
   server.on("/info",   HTTP_GET, handleInfo);
   server.on("/status", HTTP_GET, handleStatus);
   server.on("/save",   HTTP_GET, handleSave);
+  //server.on("/format");  // handled by LittleFS
+  //server.on("/upload");  // handled by LittleFS
   //server.onNotFound(handleNotFound);  // already handled by LittleFS
 
   httpUpdater.setup(&server);
@@ -324,6 +351,19 @@ void loop ()
       error = -3; 
     }
     if (!error) flags.home = 0;  // PIC has acknowledged
+  }
+
+  else if (flags.save)       // SAVE & REBOOT?
+  {
+    flags.save = 0;
+    setup_WriteCstring((char *)"/ovc.ini", "SSID", ssid);
+    setup_WriteCstring((char *)"/ovc.ini", "PSK",  psk);
+
+    // reboot
+    OLED_show(0, (char *)"reBOOT-please wait..");
+    server.send(200, "text/html", "Restart_Ok");
+    delay(500);
+    ESP.restart();
   }
 
   /* Repeatedly process request handler until mid of loop cycle   */
@@ -456,301 +496,23 @@ int cmd2pic (void)
     server.handleClient();      // process WebUI during wait
   } // for
 
-  /** @todo Ausgaben müssen in Funktionen ausgelagert werden, Status- und Fehlermeldungen auf OLED festlegen */
   if (eol)  // we got a response
   { 
-/*
+    /** @todo response could contain an error mesg - how to handle this?)
+      TEST:
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
       Serial.swap();    // output to serial monitor
       Serial.println(rxbuf);
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-                        // (prior to Arduino 1.0, this instead removed any buffered incoming serial data)
       Serial.swap();    // output to PIC µC
-*/
+    */
   } // if
-  else  // no response
-  { /** @todo show err mesg in LCD (and WebUI? / status?) */
-
+  else  // no response (timeout)
+  { 
+    /** @todo show err mesg in LCD (and WebUI? / status?) */
   } // else
 
   return (error);
 
 } // cmd2pic
 
-
-/** @brief  Reads one float from ini File (in LittleFS)
- *  @param  char  *path          Filename (must start with "/")
- *  @param  char  *identifier    Identifier of string (e.g. "dTemp = ") - must match including the spaces!
- *  @param  float *result
- *  @return int   error
-*/
-int GetFloatFromIni (const char *path, const char *identifier, float *result)
-{
-  int error = 0;
-  File ovc = LittleFS.open(path, "r");  // use "w" to write, r+ for reading and writing, .remove(file) to delete
-
-  if(!ovc)
-  {
-    error = -1; // file not found
-#ifdef DEBUG_OUTPUT_INI
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-    Serial.print(path);  Serial.println(" not found");
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-#endif
-  }
-  else
-  {
-    ovc.setTimeout(100);        // sets the maximum milliseconds to wait for stream data, it defaults to 1000 milliseconds.
-    if (ovc.findUntil(identifier, "") && ovc.findUntil("=", "\n"))
-    {
-      *result = ovc.parseFloat();
-    }
-    else
-    {
-      error = -2; // identifier not found
-#ifdef DEBUG_OUTPUT_INI
-      Serial.flush();
-      Serial.swap();
-      Serial.print("Identifier "); Serial.print(identifier); Serial.println(" not found!");
-      Serial.flush();
-      Serial.swap();
-#endif
-    } 
-    ovc.close();
-  }
-  return (error);
-
-} // GetFloatFromIni ()
-
-
-/** @brief  Reads one Integer from ini File (in LittleFS)
- *  @param  char *path          Filename (must start with "/")
- *  @param  char *identifier    Identifier of string (e.g. "ItsName = ") - must match including the spaces!
- *  @param  int  *result
- *  @return int  error
-*/
-int GetIntFromIni (const char *path, const char *identifier, int *result)
-{
-  int error = 0;
-  File ovc = LittleFS.open(path, "r");
-
-  if(!ovc)
-  {
-    error = -1; // file not found
-#ifdef DEBUG_OUTPUT_INI
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-    Serial.print(path);  Serial.println(" not found");
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-#endif
-  }
-  else
-  {
-    ovc.setTimeout(100);        // sets the maximum milliseconds to wait for stream data, it defaults to 1000 milliseconds.
-    if (ovc.findUntil(identifier, "") && ovc.findUntil("=", "\n"))
-    {
-      *result = ovc.parseInt();
-    }
-    else
-    {
-      error = -2; // identifier not found
-#ifdef DEBUG_OUTPUT_INI
-      Serial.flush();
-      Serial.swap();
-      Serial.print("Identifier "); Serial.print(identifier); Serial.println(" not found!");
-      Serial.flush();
-      Serial.swap();
-#endif
-    } 
-    ovc.close();
-  }
-  return (error);
-
-} // GetIntFromIni ()
-
-
-/** @brief  Reads one char array from ini File (in LittleFS)
- *  @param  char *path         Filename (must start with "/")
- *  @param  char *identifier   Identifier of string (e.g. "dTemp = ") - must match including the spaces!
- *  @param  char *result[len]  Result char array with minimum size len
- *  @return int  error
-*/
-int GetCstringFromIni (const char *path, const char *identifier, char *result, int len)
-{
-  int    error = 0;
-  String str;
-  File   ovc = LittleFS.open(path, "r");
-
-Serial.flush();
-Serial.swap();  
-
-  if(!ovc)
-  {
-    error = -1; // file not found
-#ifdef DEBUG_OUTPUT_INI
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-    Serial.print(path);  Serial.println(" not found");
-    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
-    Serial.swap();    // output to serial monitor
-#endif
-  }
-  else
-  {
-    ovc.setTimeout(100);        // sets the maximum milliseconds to wait for stream data, it defaults to 1000 milliseconds.
-    if (ovc.findUntil(identifier, "") && ovc.findUntil("=", "\n"))
-    {
-      str = ovc.readStringUntil('\n');    // The terminator character is discarded
-      str.trim();                         // remove leading and trailing whitespace
-      str.toCharArray(result, len);
-    }
-    else
-    {
-      error = -2; // identifier not found
-#ifdef DEBUG_OUTPUT_INI
-      Serial.flush();
-      Serial.swap();
-      Serial.print("Identifier "); Serial.print(identifier); Serial.println(" not found!");
-      Serial.flush();
-      Serial.swap();
-#endif
-    } 
-    ovc.close();
-  }
-
-  return (error);
-
-} // GetCstringFromIni ()
-
-
-
-/** @brief  Reads setup data from ini File ovc.ini (in LittleFS)
- *  @return int  error
-*/
-int ReadSetupFromINI (const char *path)
-{
-  int error = 0;
-
-  error += GetCstringFromIni(path, "SSID", ssid, sizeof(ssid));
-  error += GetCstringFromIni(path, "PSK",  psk, sizeof(psk));
-
-  error += GetCstringFromIni(path, "VZ1",  alias1, sizeof(alias1));
-  error += GetCstringFromIni(path, "VZ2",  alias2, sizeof(alias2));
-  error += GetCstringFromIni(path, "VZ3",  alias3, sizeof(alias3));
-  error += GetCstringFromIni(path, "VZ4",  alias4, sizeof(alias4));
-  
-  error += GetFloatFromIni(path, "dTemp",  &dTemp);
-
-  return(error);
-
-} // ReadSetupFromINI ()
-
-
-
-/** @brief  This function helps you reconnect wifi as well as broker if connection gets disconnected.
-*
-void reconnect()
-{
-  while (!MQTTclient.connected())
-  {
-    status = WiFi.status();
-    if ( status != WL_CONNECTED) 
-    {
-      WiFi.begin(ssid, psk);
-      while (WiFi.status() != WL_CONNECTED) 
-      {
-        delay(500);
-        //Serial.print(".");
-      }
-      //Serial.println("Connected to AP");
-    }
-    
-    if(!MQTTclient.connected())
-    {
-      //Serial.print("Connecting to Broker ");
-      //Serial.print(mqtt_broker);
-      MQTTclient.connect("ESP-Control"); 
-      MQTTclient.subscribe(token_cmd);
-    }
-    else 
-    {
-      //Serial.println( " : retrying in 5 seconds]" );
-      delay(5000);
-    }
-  } // while
-} // reconnect()
-*/
-
-
-/** @brief MQTT callback
-    @return
-    @NOTE: PAYLOAD IS NOT NULL TERMINATED - DON'T READ PAST LENGTH PARAMETER
-*
-void callback (char* topic, byte* payload, unsigned int length)
-{
-  heater = true;   // for safety this is the default case
-                   // so that the software switches off on any errors. 
-
-  if (strncmp("off", (char *)payload, length) == 0)  // strings are equal
-  {
-    heater = false;
-  }
-
-} // MQTT callback
- */
-
-
- /** @brief  Liest eine bestimmte (Parameter-)Datei und gibt den String 
- *          als Returnwert zurück.
-*/
-/*
-String readFile (fs::FS &fs, const char * path)
-{
-//  Serial.printf("Reading file: %s\r\n", path);
-  File file = fs.open(path, "r");
-  if (!file || file.isDirectory())
-  {
-//    Serial.println("- empty file or failed to open file");
-    return String();
-  }
-  String fileContent;
-  while (file.available())
-  {
-    fileContent += String((char)file.read());
-  }
-//  Serial.println(fileContent);
-  
-  return fileContent;
-  
-} // readFile
-*/
-
-
-/** @brief  Schreibt einen Wert in eine bestimmte (Parameter-)Datei.
-*/
-/*
-void writeFile (fs::FS &fs, const char * path, const char * message)
-{
-//  Serial.printf("Writing file: %s\r\n", path);
-  File file = fs.open(path, "w");
-  if (!file)
-  {
-//    Serial.println("- failed to open file for writing");
-    return;
-  }
-
-  if (file.print(message)) 
-  {
-//    Serial.println("- file written");
-  } 
-  else {
-//    Serial.println("- write failed");
-  }
-
-} // writeFile()
-*/
-
- 

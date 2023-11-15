@@ -1,5 +1,7 @@
 /** @file  DS18B20.c
- *  @author Klaus Deutschkämer (https://github.com/deklaus)
+ *  @author  (c) Klaus Deutschkämer (https://github.com/deklaus)
+ *  License: This software is licensed under the European Union Public Licence EUPL-1.2
+ *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
  *
  *  @brief Functions for DS18B20 temperature sensor. \n
  *  Weblink: https://github.com/milesburton/Arduino-Temperature-Control-Library/blob/master/DallasTemperature.h
@@ -33,37 +35,41 @@ void DS18B20_init ()
 
   DS18B20.begin();
 
+#ifdef DEBUG_OUTPUT_DS1820
   Serial.flush();   // Wait for the transmission of outgoing serial data to complete
   Serial.swap();    // map UART0 to serial monitor
-
-
+  Serial.println();
   Serial.print("Parasite power is: "); 
-  if( DS18B20.isParasitePowerMode() ){ 
-    Serial.println("ON");
-  }else{
-    Serial.println("OFF");
-  }
+  if (DS18B20.isParasitePowerMode()) Serial.println("ON");
+  else                               Serial.println("OFF");
+# endif
 
   if (DS18B20.getDS18Count() == 0)
   {
+#ifdef DEBUG_OUTPUT_DS1820
     sprintf(buf, "No DS18B20 detected at pin %d", ONE_WIRE_PIN); 
     Serial.println(buf);
+# endif
   }
   else
   {
     DS18B20.setResolution(12);    // allowed values: 9, 10, 11, 12 bit
     DS18B20.setWaitForConversion(false);
     DS18B20.requestTemperatures();
+#ifdef DEBUG_OUTPUT_DS1820
     sprintf(buf, "DS18B20 detected at pin %d", ONE_WIRE_PIN); 
     Serial.println(buf);
     sprintf(buf, "(resolution set to %d bit)", DS18B20.getResolution()); 
     Serial.println(buf);
+# endif
   }
 
+#ifdef DEBUG_OUTPUT_DS1820
   Serial.flush();   // Waits for the transmission of outgoing serial data to complete
   Serial.swap();    // remap output to PIC
+# endif
 
-}
+} // DS18B20_init ()
 
 
 /** @brief Returns DS18B20 temperature in Celsius.

@@ -1,7 +1,9 @@
 /** @file  webUI.c
- *  @author Klaus Deutschkämer (https://github.com/deklaus)
+ *  @author  (c) Klaus Deutschkämer (https://github.com/deklaus)
+ *  License: This software is licensed under the European Union Public Licence EUPL-1.2
+ *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
  *
- *  @brief Functions for WLAN User Interface (UI)
+ *  @brief Functions for WiFi User Interface (UI)
  *  @todo 
  */
 /*  Change Log:
@@ -9,13 +11,15 @@
  *  - handleRoot() eliminated. Web-UI is now a separate file (index.html) and uploaded via LittleFS.
  *  26.09.2023 v0.12
  *  - First issue
+ *  Weblinks: 
+ *  https://links2004.github.io/Arduino/d3/d58/class_e_s_p8266_web_server.html
+ *  https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer#esp8266-web-server
  */
 
 // *** data type, constant and macro definitions
 // *** global variables
 // *** private variables
 // *** public function bodies
-
 
 /** @brief Handler for MOVE. Arguments: <ESP_IP>/move?vz=[1..4]&set_pos=[0..100]&max_mA=[0.0 .. 100.0]
  */
@@ -36,12 +40,12 @@ void handleMove ()
     mA  = server.arg("max_mA").toFloat();
     if (sel >= 1 && sel <= 4 && pos >= 0 && pos <= 100 && mA >= 0.0 && mA <= 100.) 
     {
-      htmlPage = F("{\n"
-      "\"move\": {\n"
-      "  \"vz\": \"");  htmlPage += sel;  htmlPage += F("\",\n"
-      "  \"set_pos\": \""); htmlPage += pos;  htmlPage += F("\",\n"
-      "  \"max_mA\": \""); sprintf(buf, "%.1f", mA);  htmlPage += buf;  htmlPage += F("\"\n"
-      "  }\n}");      
+      htmlPage  = F("/move?vz="); htmlPage += sel;  
+      htmlPage += F("&set_pos=");     htmlPage += pos;  
+      htmlPage += F("&max_mA=");
+      sprintf(buf, "%.1f", mA);       htmlPage += buf;
+      htmlPage += F("\n");
+
       vz = sel;
       set_pos[sel] = pos;
       max_mA[sel] = mA;
@@ -79,11 +83,11 @@ void handleHome ()
     mA  = server.arg("max_mA").toFloat();
     if (sel >= 1 && sel <= 4 && mA >= 0. && mA <= 100.) 
     {
-      htmlPage = F("{\n"
-      "\"home\": {\n"
-      "  \"vz\": \"");  htmlPage += sel;  htmlPage += F("\",\n"
-      "  \"max_mA\": \""); sprintf(buf, "%.1f", mA);  htmlPage += buf;  htmlPage += F("\"\n"
-      "  }\n}");
+      htmlPage  = F("/home?vz="); htmlPage += sel;  
+      htmlPage += F("&max_mA=");
+      sprintf(buf, "%.1f", mA);   htmlPage += buf;
+      htmlPage += F("\n");
+
       vz = sel;
       max_mA[sel] = mA;
       flags.home = 1;   // set flag for triggering a HOME command to PIC
@@ -113,9 +117,10 @@ void handleInfo ()
 
   htmlPage = F(
   "{ \n"
-  "\"ESP\": \"" ); htmlPage += ESPversion; htmlPage += F("\",\n"
-  "\"PIC\": \"" ); htmlPage += PICversion; htmlPage += F("\",\n"
-  "\"SSID\": \""); htmlPage += ssid;       htmlPage += F("\"\n" // no comma at end
+  "\"ESP\": \"" );  htmlPage += ESPversion; htmlPage += F("\",\n"
+  "\"PIC\": \"" );  htmlPage += PICversion; htmlPage += F("\",\n"
+  "\"dTemp\": \""); htmlPage += dTemp;      htmlPage += F("\",\n"
+  "\"SSID\": \"");  htmlPage += ssid;       htmlPage += F("\"\n" // no comma at end
   "}\n");
 
     //server.sendHeader("Access-Control-Allow-Origin","*"); 
@@ -148,10 +153,10 @@ void handleSave ()
 
     strncpy(ssid, id.c_str(),  sizeof(ssid)); 
     ssid[sizeof(ssid)-1] = '\0';
-    strncpy(psk,  pwd.c_str(), sizeof(pwd));
-    ssid[sizeof(pwd)-1] = '\0';
+    strncpy(psk,  pwd.c_str(), sizeof(psk));
+    psk[sizeof(psk)-1] = '\0';
 
-    flags.save = 1;   /** @todo set flag for new WLAN credentials (loop: save in Flash) */
+    flags.save = 1;   // set flag for new credentials (loop: save + reboot)
     error = 0;
   }
   if (error) 

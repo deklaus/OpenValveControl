@@ -1,4 +1,3 @@
-
 // ****************************************************************
 // Sketch Esp8266 Filesystem Manager spezifisch sortiert Modular(Tab)
 // created: Jens Fleischer, 2020-06-08
@@ -27,6 +26,7 @@
 // "server.onNotFound()" darf nicht im Setup des ESP8266 Webserver stehen.
 // Die Funktion "setupFS();" muss im Setup aufgerufen werden.
 /**************************************************************************************/
+// @note (deKlaus): Changes for OpenValveControl are marked by this key.
 
 #include <list>
 #include <tuple>
@@ -128,7 +128,11 @@ bool handleFile(String &&path) {
   if (path.endsWith("/")) path += "index.html";
   if (path == "/spiffs.html") sendResponse(); // Vorübergehend für den Admin Tab
 
-  return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, mime::getContentType(path)); f.close(); true;}) : false;
+  // return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, mime::getContentType(path)); f.close(); true;}) : false;
+  // @note (deKlaus): For OpenValveControl this line was replaced  with:
+  String ContentType = mime::getContentType(path);
+  if (path.endsWith("ovc.ini")) ContentType = "text/plain; charset=UTF-8";
+  return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, ContentType); f.close(); true;}) : false;
 }
 
 void handleUpload() {                                                                  // Dateien ins Filesystem schreiben
@@ -148,7 +152,7 @@ void handleUpload() {                                                           
     fsUploadFile.close();
   }
 
-  ReadSetupFromINI("/ovc.ini");   // @added for OpenValveControl
+  setup_ReadINI("/ovc.ini");   // @note (deKlaus): added for OpenValveControl
 }
 
 void formatFS() {       // Formatiert das Filesystem

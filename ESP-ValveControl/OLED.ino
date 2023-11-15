@@ -130,12 +130,15 @@ void OLED_update_status (void)
   u8g2.drawStr(128-w, PXrow[1], buf);
   u8g2.sendBuffer();
 
-// update temperature
-  u8g2.setDrawColor(0);
-  u8g2.drawBox(0, PXrow[0] + 1, 128 - w, PXrow[1] - PXrow[0]);
-  u8g2.setDrawColor(1);
-  sprintf(buf, "%.1f C", tempC);
-  u8g2.drawStr(0, PXrow[1], buf);
-  u8g2.sendBuffer();
+// update temperature (when stationary)
+  if (!flags.move && !flags.home)
+  {
+    u8g2.setDrawColor(0);
+    u8g2.drawBox(0, PXrow[0] + 1, 128 - w, PXrow[1] - PXrow[0]);
+    u8g2.setDrawColor(1);
+    sprintf(buf, "%.1f C", tempC);
+    u8g2.drawStr(0, PXrow[1], buf);
+    u8g2.sendBuffer();
+  }
 
 } // OLED_update_status ()
