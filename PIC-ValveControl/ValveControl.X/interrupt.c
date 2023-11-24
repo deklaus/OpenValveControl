@@ -1,11 +1,11 @@
 /** @file   interrupt.c
  *  @brief  Implementations of vectored interrupts (PIC18F..)
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /*  ChangeLog:
- * 17.10.2023 V0.1
+ * 2023-10-17 V0.1
  * - Initial issue
  */
 
@@ -18,8 +18,8 @@
 
 // *** data type, constant and macro definitions
 
-//#define IVT1_BASE_ADDRESS   0x0808 /* with bootloader (not yet implemented) */
-#define IVT1_BASE_ADDRESS   0x0008
+#define IVT1_BASE_ADDRESS   0x0808      /* required with bootloader */
+//#define IVT1_BASE_ADDRESS   0x0008
 #define KLPASS      1       
 #define KLPASS_I    1       
 /*  Low Pass Filter
@@ -59,9 +59,9 @@ void interrupt_initialize (void)
 {
     INTCON0bits.IPEN = 1;   // Enable Interrupt Priority Vectors
 
-    // Set IVTBASE to XC8 default: 0x000008
+    // Set IVTBASE (XC8 default: 0x000008)
     IVTBASEU = 0x00;
-    IVTBASEH = 0x00;    // (0x08 when using BL)
+    IVTBASEH = 0x08;    // (default: 0x00, 0x08 when using BL)
     IVTBASEL = 0x08;
     
     // Assign peripheral interrupt priorities (default after reset varies!!!)

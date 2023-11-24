@@ -1,0 +1,369 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F16Q41 ]
+[d frameptr 1249 ]
+"4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 /opt/microchip/xc8/v2.32/pic/sources/c99/common/float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 /opt/microchip/xc8/v2.32/pic/sources/c99/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 /opt/microchip/xc8/v2.32/pic/sources/c99/common/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 /opt/microchip/xc8/v2.32/pic/sources/c99/common/ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 /opt/microchip/xc8/v2.32/pic/sources/c99/common/ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 /opt/microchip/xc8/v2.32/pic/sources/c99/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 /opt/microchip/xc8/v2.32/pic/sources/c99/common/Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"86 /home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+[v _init_bootloader init_bootloader `(v  1 e 1 0 ]
+"118
+[v _init_osc init_osc `(v  1 e 1 0 ]
+"135
+[v _init_pins init_pins `(v  1 e 1 0 ]
+"147
+[v _init_pmd init_pmd `(v  1 e 1 0 ]
+"166
+[v _init_uart1 init_uart1 `(v  1 e 1 0 ]
+"71 /home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+[v _putch putch `(v  1 e 1 0 ]
+"111
+[v _main main `(v  1 e 1 0 ]
+"308
+[v _xtou8 xtou8 `(uc  1 s 1 xtou8 ]
+"333
+[v _u8tox u8tox `(uc  1 s 1 u8tox ]
+[s S83 . 1 `uc 1 GO 1 0 :1:0 
+]
+"463 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
+[s S85 . 1 `uc 1 NOT_DONE 1 0 :1:0 
+]
+[s S87 . 1 `uc 1 nDONE 1 0 :1:0 
+]
+[s S89 . 1 `uc 1 NVMGO 1 0 :1:0 
+]
+[u S91 . 1 `S83 1 . 1 0 `S85 1 . 1 0 `S87 1 . 1 0 `S89 1 . 1 0 ]
+[v _NVMCON0bits NVMCON0bits `VES91  1 e 1 @64 ]
+[s S67 . 1 `uc 1 CMD 1 0 :3:0 
+`uc 1 . 1 0 :4:3 
+`uc 1 WRERR 1 0 :1:7 
+]
+"503
+[s S71 . 1 `uc 1 NVMCMD 1 0 :3:0 
+]
+[u S73 . 1 `S67 1 . 1 0 `S71 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES73  1 e 1 @65 ]
+"523
+[v _NVMLOCK NVMLOCK `VEuc  1 e 1 @66 ]
+"544
+[v _NVMADR NVMADR `VEum  1 e 3 @67 ]
+"750
+[v _NVMDAT NVMDAT `VEus  1 e 2 @70 ]
+"757
+[v _NVMDATL NVMDATL `VEuc  1 e 1 @70 ]
+"1210
+[v _PMD0 PMD0 `VEuc  1 e 1 @99 ]
+"1267
+[v _PMD1 PMD1 `VEuc  1 e 1 @100 ]
+"1329
+[v _PMD2 PMD2 `VEuc  1 e 1 @101 ]
+"1391
+[v _PMD3 PMD3 `VEuc  1 e 1 @102 ]
+"1453
+[v _PMD4 PMD4 `VEuc  1 e 1 @103 ]
+"1515
+[v _PMD5 PMD5 `VEuc  1 e 1 @104 ]
+"5884
+[v _ACTCON ACTCON `VEuc  1 e 1 @172 ]
+"5954
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @173 ]
+"6094
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @175 ]
+"6134
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @176 ]
+"6192
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @177 ]
+"6394
+[v _OSCEN OSCEN `VEuc  1 e 1 @179 ]
+"9475
+[v _RB5PPS RB5PPS `VEuc  1 e 1 @526 ]
+"12917
+[v _U1RXPPS U1RXPPS `VEuc  1 e 1 @626 ]
+"14823
+[v _U1RXB U1RXB `VEuc  1 e 1 @673 ]
+"14881
+[v _U1TXB U1TXB `VEuc  1 e 1 @675 ]
+"15080
+[v _U1CON0 U1CON0 `VEuc  1 e 1 @683 ]
+[s S196 . 1 `uc 1 SENDB 1 0 :1:0 
+`uc 1 BRKOVR 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 RXBIMD 1 0 :1:3 
+`uc 1 WUE 1 0 :1:4 
+`uc 1 . 1 0 :2:5 
+`uc 1 ON 1 0 :1:7 
+]
+"15233
+[s S204 . 1 `uc 1 U1SENDB 1 0 :1:0 
+`uc 1 U1BRKOVR 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 U1RXBIMD 1 0 :1:3 
+`uc 1 U1WUE 1 0 :1:4 
+`uc 1 . 1 0 :2:5 
+`uc 1 U1ON 1 0 :1:7 
+]
+[u S212 . 1 `S196 1 . 1 0 `S204 1 . 1 0 ]
+[v _U1CON1bits U1CON1bits `VES212  1 e 1 @684 ]
+"15288
+[v _U1CON2 U1CON2 `VEuc  1 e 1 @685 ]
+[s S235 . 1 `uc 1 FLO 1 0 :2:0 
+`uc 1 TXPOL 1 0 :1:2 
+`uc 1 C0EN 1 0 :1:3 
+`uc 1 STP 1 0 :2:4 
+`uc 1 RXPOL 1 0 :1:6 
+`uc 1 RUNOVF 1 0 :1:7 
+]
+"15325
+[s S242 . 1 `uc 1 FLO0 1 0 :1:0 
+`uc 1 FLO1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 STP0 1 0 :1:4 
+`uc 1 STP1 1 0 :1:5 
+]
+[s S248 . 1 `uc 1 U1FLO 1 0 :2:0 
+`uc 1 U1TXPOL 1 0 :1:2 
+`uc 1 U1C0EN 1 0 :1:3 
+`uc 1 U1STP 1 0 :2:4 
+`uc 1 U1RXPOL 1 0 :1:6 
+`uc 1 U1RUNOVF 1 0 :1:7 
+]
+[s S255 . 1 `uc 1 U1FLO0 1 0 :1:0 
+`uc 1 U1FLO1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 U1STP0 1 0 :1:4 
+`uc 1 U1STP1 1 0 :1:5 
+]
+[u S261 . 1 `S235 1 . 1 0 `S242 1 . 1 0 `S248 1 . 1 0 `S255 1 . 1 0 ]
+[v _U1CON2bits U1CON2bits `VES261  1 e 1 @685 ]
+"15430
+[v _U1BRG U1BRG `VEus  1 e 2 @686 ]
+[s S421 . 1 `uc 1 TXCIF 1 0 :1:0 
+`uc 1 RXFOIF 1 0 :1:1 
+`uc 1 RXBKIF 1 0 :1:2 
+`uc 1 FERIF 1 0 :1:3 
+`uc 1 CERIF 1 0 :1:4 
+`uc 1 ABDOVF 1 0 :1:5 
+`uc 1 PERIF 1 0 :1:6 
+`uc 1 TXMTIF 1 0 :1:7 
+]
+"15690
+[s S430 . 1 `uc 1 U1TXCIF 1 0 :1:0 
+`uc 1 U1RXFOIF 1 0 :1:1 
+`uc 1 U1RXBKIF 1 0 :1:2 
+`uc 1 U1FERIF 1 0 :1:3 
+`uc 1 U1CERIF 1 0 :1:4 
+`uc 1 U1ABDOVF 1 0 :1:5 
+`uc 1 U1PERIF 1 0 :1:6 
+`uc 1 U1TXMTIF 1 0 :1:7 
+]
+[u S439 . 1 `S421 1 . 1 0 `S430 1 . 1 0 ]
+[v _U1ERRIRbits U1ERRIRbits `VES439  1 e 1 @690 ]
+[s S175 . 1 `uc 1 ANSELC0 1 0 :1:0 
+`uc 1 ANSELC1 1 0 :1:1 
+`uc 1 ANSELC2 1 0 :1:2 
+`uc 1 ANSELC3 1 0 :1:3 
+`uc 1 ANSELC4 1 0 :1:4 
+`uc 1 ANSELC5 1 0 :1:5 
+`uc 1 ANSELC6 1 0 :1:6 
+`uc 1 ANSELC7 1 0 :1:7 
+]
+"32351
+[u S184 . 1 `S175 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES184  1 e 1 @1040 ]
+[s S368 . 1 `uc 1 U1RXIF 1 0 :1:0 
+`uc 1 U1TXIF 1 0 :1:1 
+`uc 1 U1EIF 1 0 :1:2 
+`uc 1 U1IF 1 0 :1:3 
+`uc 1 TMR3IF 1 0 :1:4 
+`uc 1 TMR3GIF 1 0 :1:5 
+`uc 1 PWM1PIF 1 0 :1:6 
+`uc 1 PWM1IF 1 0 :1:7 
+]
+"36389
+[u S377 . 1 `S368 1 . 1 0 ]
+"36389
+"36389
+[v _PIR4bits PIR4bits `VES377  1 e 1 @1207 ]
+[s S131 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"36794
+[u S138 . 1 `S131 1 . 1 0 ]
+"36794
+"36794
+[v _LATAbits LATAbits `VES138  1 e 1 @1214 ]
+[s S114 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+]
+"36940
+[u S121 . 1 `S114 1 . 1 0 ]
+"36940
+"36940
+[v _TRISAbits TRISAbits `VES121  1 e 1 @1222 ]
+[s S154 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"37031
+[u S163 . 1 `S154 1 . 1 0 ]
+"37031
+"37031
+[v _TRISCbits TRISCbits `VES163  1 e 1 @1224 ]
+[s S24 . 1 `uc 1 INT0EDG 1 0 :1:0 
+`uc 1 INT1EDG 1 0 :1:1 
+`uc 1 INT2EDG 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 IPEN 1 0 :1:5 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"37247
+[s S32 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 GIEH 1 0 :1:7 
+]
+"37247
+[u S35 . 1 `S24 1 . 1 0 `S32 1 . 1 0 ]
+"37247
+"37247
+[v _INTCON0bits INTCON0bits `VES35  1 e 1 @1238 ]
+"37559
+[v _BSR BSR `VEuc  1 e 1 @1248 ]
+"38397
+[v _STKPTR STKPTR `VEuc  1 e 1 @1276 ]
+[s S353 . 45 `uc 1 code 1 0 `[2]uc 1 length 2 1 `[4]uc 1 address 4 3 `[2]uc 1 type 2 7 `[36]uc 1 data 36 9 ]
+"54 /home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+[u S359 . 45 `S353 1 . 45 0 `[45]uc 1 buffer 45 0 ]
+[v _record record `VES359  1 e 45 0 ]
+"55
+[v _procID procID `us  1 e 2 0 ]
+"56
+[v _bufferRamPtr bufferRamPtr `*.39us  1 e 2 0 ]
+"111
+[v _main main `(v  1 e 1 0 ]
+{
+"214
+[v main@i_542 i `uc  1 a 1 20 ]
+"270
+[v main@timeout_546 timeout `uc  1 a 1 17 ]
+"281
+[v main@k k `uc  1 a 1 21 ]
+"158
+[v main@i i `uc  1 a 1 19 ]
+"137
+[v main@timeout timeout `uc  1 a 1 16 ]
+"123
+[v main@address address `us  1 a 2 23 ]
+"125
+[v main@data data `us  1 a 2 9 ]
+"126
+[v main@bufPtr bufPtr `*.39us  1 a 2 7 ]
+"118
+[v main@index index `uc  1 a 1 25 ]
+"117
+[v main@ch ch `uc  1 a 1 22 ]
+"121
+[v main@length length `uc  1 a 1 18 ]
+"116
+[v main@eol eol `a  1 a 1 15 ]
+"124
+[v main@offset offset `uc  1 a 1 14 ]
+"122
+[v main@type type `uc  1 a 1 13 ]
+"120
+[v main@cs cs `uc  1 a 1 12 ]
+"115
+[v main@eof eof `a  1 a 1 11 ]
+"298
+} 0
+"308
+[v _xtou8 xtou8 `(uc  1 s 1 xtou8 ]
+{
+"310
+[v xtou8@c c `uc  1 a 1 3 ]
+"311
+[v xtou8@i i `uc  1 a 1 2 ]
+"308
+[v xtou8@p p `*.39uc  1 p 2 0 ]
+"329
+} 0
+"333
+[v _u8tox u8tox `(uc  1 s 1 u8tox ]
+{
+[v u8tox@n n `uc  1 a 1 wreg ]
+[v u8tox@n n `uc  1 a 1 wreg ]
+"335
+[v u8tox@n n `uc  1 a 1 0 ]
+"340
+} 0
+"71
+[v _putch putch `(v  1 e 1 0 ]
+{
+[v putch@data data `uc  1 a 1 wreg ]
+"73
+[v putch@timeout timeout `uc  1 a 1 1 ]
+"71
+[v putch@data data `uc  1 a 1 wreg ]
+"73
+[v putch@data data `uc  1 a 1 0 ]
+"81
+} 0
+"86 /home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+[v _init_bootloader init_bootloader `(v  1 e 1 0 ]
+{
+"112
+} 0
+"166
+[v _init_uart1 init_uart1 `(v  1 e 1 0 ]
+{
+"186
+} 0
+"147
+[v _init_pmd init_pmd `(v  1 e 1 0 ]
+{
+"156
+} 0
+"135
+[v _init_pins init_pins `(v  1 e 1 0 ]
+{
+"140
+} 0
+"118
+[v _init_osc init_osc `(v  1 e 1 0 ]
+{
+"127
+} 0

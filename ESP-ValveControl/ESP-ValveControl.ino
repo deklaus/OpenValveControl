@@ -22,34 +22,36 @@
  *     - <c> LOLIN(WEMOS) D1  mini (clone) </c> (current state)
  *     - <c> <b> WEMOS D1 mini ESP32 <\b></c>   (optional) \n
  *  \b Libs: \n
- *     - <c> ESP8266WiFi       Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WiFi </c>
- *     - <c> ESP8266WebServer  Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WebServer </c>
- *     - <c> LittleFS          Version 0.1.0   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/LittleFS </c>
- *     - <c> DallasTemperature Version 3.9.0   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/DallasTemperature </c>
- *     - <c> MAX31850 OneWire  Version 1.1.1   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/MAX31850_OneWire </c>
- *     - <c> U8g2              Version 2.34.22 path: ~/Arduino/libraries/U8g2 </c> or
- *     - <c> SPI               Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/SPI </c>
- *     - <c> Wire              Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/Wire </c>
+ *     - <c> ESP8266WiFi              Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WiFi </c>
+ *     - <c> ESP8266WebServer         Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WebServer </c>
+ *     - <c> ESP8266HTTPUpdateServer  Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266HTTPUpdateServer </c>
+ *     - <c> LittleFS                 Version 0.1.0   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/LittleFS </c>
+ *     - <c> DallasTemperature        Version 3.9.0   path: ~/Arduino/libraries/DallasTemperature </c>
+ *     - <c> MAX31850 OneWire         Version 1.1.3   path: ~/Arduino/libraries/MAX31850_OneWire </c>
+ *     - <c> U8g2                     Version 2.34.22 path: ~/Arduino/libraries/U8g2 </c> or
+ *     - <c> SPI                      Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/SPI </c>
+ *     - <c> Wire                     Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/Wire </c>
  *  \n
  *  Weblinks: \n
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
- * History:
- * v0.6 2023-11-15
+ * Change Log:
+ * 2023-11-15 v0.6
  * - Added acces point mode (OVC-access-point/PVC-password).
  * - Reading and writing of setup file "ovc.ini". LittleFS.ini supplemented with proper mime/ContentType.
  * v0.5 Test version
- * v0.4 2023-11-12
+ * 2023-11-12 v0.4
  * - Added OTA support. Enter URI/update to select and upload new firmware binary file (.bin).
- * v0.3 2023-11-07
+ * 2023-11-07 v0.3
  * - Added LittleFS. Web-UI must now be uploaded as separate file (index.html) via LittleFS (URI/fs.html)
  *   Requires Web-UI (index.html) v0.3 or newer.
- * v0.2 2023-11-02
- * - Added reading of DS18B20 and added temperature in handle_status and handle-info.
+ * 2023-11-02 v0.2
+ * - Added reading of DS18B20 and added temperature in webUI_status and webUI_info.
  *
  * @todo - poor handling of refset[] (maybe by PIC?). 
  *       - home drive sometimes doesn't reset position.
  *       - Download of ovc.ini should be password protected or PSK should be encrypted in ovc.ini.
+ *       - Define enum ERRNOs globally (ESP + PIC)
  */
 
 // *** includes
@@ -59,20 +61,25 @@
 #include <LittleFS.h>
 
 // *** function prototypes
-extern void   handleHome (void);
-extern void   handleInfo (void);
-extern void   handleMove (void);
-extern void   handleNotFound (void);
-//extern void   handleRoot (void);
-extern void   handleSave (void);
-extern void   handleStatus (void);
+extern int    cmd2pic (void);
+
+extern void   DS18B20_init (void);
+extern float  DS18B20_TempC (uint8_t index);
+
+extern int    fw_download (char *rec);
+
+extern void   webUI_bootload (void);
+extern void   webUI_home (void);
+extern void   webUI_info (void);
+extern void   webUI_move (void);
+extern void   webUI_notFound (void);
+//extern void   webUI_root (void);
+extern void   webUI_save (void);
+extern void   webUI_status (void);
 
 extern void   OLED_init (void);
 extern void   OLED_show (unsigned row, char *s);
 extern void   OLED_update_status (void);
-
-extern void   DS18B20_init (void);
-extern float  DS18B20_TempC (uint8_t index);
 
 extern void   setupFS ();
 
@@ -83,7 +90,7 @@ extern int    setup_ReadINI (const char *path);
 extern int    setup_WriteCstring (const char *path, const char *identifier, char *s);
 
 // *** private function prototypes
-static int    cmd2pic (void);
+extern void   getPICversion (void);
 
 // *** data type, constant and macro definitions
 //#define DEBUG_OUTPUT_DS1820   1   /* enable serial monitor: status DS18B20 */
@@ -94,19 +101,19 @@ static int    cmd2pic (void);
 #define numVZ   4             // no. of available Valve Zones / motors
 
 #define CYCLE_TIME    500   /* cycle time of main loop */
-#define MAX_ACK_TIME  200   /* timeout in milliseconds for command acknowledge from PIC */
+#define MAX_ACK_TIME  500   /* timeout in milliseconds for command acknowledge from PIC */
 
 // bitfields are not really the optimum - a boolean flag_move, flag_home, ... might be the better choice!?
 struct FLAGS  //!<   flags to start tasks within loop()
 {
-  uint8_t move   :1;  //!< 0 exec move
-  uint8_t home   :1;  //!< 1 exec home
-  uint8_t status :1;  //!< 2 exec status
-  uint8_t save   :1;  //!< 3 exec save
-  uint8_t        :1;  //!< 4 
-  uint8_t        :1;  //!< 5 
-  uint8_t        :1;  //!< 6 
-  uint8_t        :1;  //!< 7 
+  uint8_t move     :1;  //!< 0 exec move
+  uint8_t home     :1;  //!< 1 exec home
+  uint8_t status   :1;  //!< 2 exec status
+  uint8_t save     :1;  //!< 3 exec save
+  uint8_t bootload :1;  //!< 4 update PIC firmware
+  uint8_t version  :1;  //!< 5 update PIC version
+  uint8_t          :1;  //!< 6 
+  uint8_t          :1;  //!< 7 
 }; 
 
 /* uint16_t status word (read from PIC)
@@ -163,6 +170,7 @@ float     max_mA[numVZ + 1]   = { 0.0, 25.0, 25.0, 25.0, 25.0 };  // motor curre
 
 char      txbuf[64];
 char      rxbuf[64];
+char      hexfilename[64];
 int       nrx;        // number of received chars in rxbuf
 
 unsigned long TimeStamp = 0;        /* used for general delay purposes (local)  */
@@ -177,8 +185,8 @@ void setup ()
   String param;
 
   /** - Initialize Serial (UART0) to 38400 Bd. \n
-   *    Serial uses UART0 which is mapped to pins GPIO1 (TX) and GPIO3 (RX).  
-   *    For communication with the PIC µC, we remap UART0 to GPIO15 (TX) and GPIO13 (RX) by Serial.swap(). 
+   *    Serial uses UART0 which is mapped to pins GPIO1 (TX/pin22) and GPIO3 (RX/pin21).  
+   *    For communication with the PIC µC, we remap UART0 to GPIO15 (TX': D8/pin16) and GPIO13 (RX': D7/pin7) by Serial.swap(). 
    *    Calling swap again maps UART0 back to GPIO1 and GPIO3. (Serial1/UART1 can not be used to receive).
    *    Weblink: https://esp8266-arduino.readthedocs.io/en/latest/reference.html "Serial".
    */
@@ -275,15 +283,7 @@ void setup ()
   Serial.swap();    // remap output to PIC
 #endif
 
-  /** - Read PIC Firmware Version and save in 'PICversion'
-   */
-  sprintf(txbuf, "Version?\n");
-  error = cmd2pic();
-  if (!error && (strncmp(rxbuf, "Version:", 8) == 0))  // compare first N chars of response with command
-  { 
-    strncpy(PICversion, &rxbuf[9], sizeof(PICversion));
-    PICversion[sizeof(PICversion) - 1] = '\0';
-  }
+  flags.version = 1;  // try to read (new) PIC firmware version
 
   /** - Setup Webserver for ESP ValveControl
    *  This implements our client request handlers. You can append the GET commands and parameters to the URI, e.g.
@@ -293,14 +293,15 @@ void setup ()
    *  http://192.168.2.75/info                             get system information (Firmware releases, WiFi SSID)
    */
 // server.on("/", handleRoot);  // handled by LittleFS -> invokes /index.html (our Web UI)
-  server.on("/move",   HTTP_GET, handleMove);
-  server.on("/home",   HTTP_GET, handleHome);
-  server.on("/info",   HTTP_GET, handleInfo);
-  server.on("/status", HTTP_GET, handleStatus);
-  server.on("/save",   HTTP_GET, handleSave);
+  server.on("/bootload", HTTP_GET, webUI_bootload);
+  server.on("/move",     HTTP_GET, webUI_move);
+  server.on("/home",     HTTP_GET, webUI_home);
+  server.on("/info",     HTTP_GET, webUI_info);
+  server.on("/status",   HTTP_GET, webUI_status);
+  server.on("/save",     HTTP_GET, webUI_save);
   //server.on("/format");  // handled by LittleFS
   //server.on("/upload");  // handled by LittleFS
-  //server.onNotFound(handleNotFound);  // already handled by LittleFS
+  //server.onNotFound(webUI_notFound);  // already handled by LittleFS
 
   httpUpdater.setup(&server);
   server.begin();
@@ -327,15 +328,15 @@ void loop ()
    /* Send MOVE command regardless of reference points and other conditions - errors must be handled by PIC.
     * Due to long execution time, the PIC µC acknowledges only reception of the command.
     */    
-    sprintf(txbuf, "Move:%d,%d,%d\n", vz, set_pos[vz], (uint16_t)(10 * max_mA[vz]));      // Move:vz:set_pos[vz]:10 x max_mA[vz]
+    sprintf(txbuf, "Move:%d,%d,%d", vz, set_pos[vz], (uint16_t)(10 * max_mA[vz]));      // Move:vz:set_pos[vz]:10 x max_mA[vz]
     OLED_show(1, txbuf);    // optional show on OLED.row 1 (0..5)
     error = cmd2pic();
     // check if response contains command token ("Move"), else it is an error reponse
     if (strncmp(rxbuf, "Move:", 5) != 0)  // compare first N chars of response with command
     { /** @todo optional error handler, response might contain error number */
-      error = -2; 
+      error = -2;
     }
-    if (!error) flags.move = 0;  // PIC has acknowledged
+    flags.move = 0;
   } // if flags.move
 
   else if (flags.home)       // HOME command?
@@ -343,14 +344,14 @@ void loop ()
    /* Send HOME command regardless of reference points and other conditions - errors must be handled by PIC.
     * Due to long execution time, the PIC µC acknowledges only reception of the command.
     */    
-    sprintf(txbuf, "Home:%d,%d\n", vz, (uint16_t)(10 * max_mA[vz]));      // Home:vz:10 x max_mA[vz]
+    sprintf(txbuf, "Home:%d,%d", vz, (uint16_t)(10 * max_mA[vz]));      // Home:vz:10 x max_mA[vz]
     OLED_show(1, txbuf);    // optional show on OLED.row 1 (0..5)
     error = cmd2pic();
     if (strncmp(rxbuf, "Home:", 5) != 0)  // compare first N chars of response with command
     { /** @todo optional error handler, response might contain error number */
       error = -3; 
     }
-    if (!error) flags.home = 0;  // PIC has acknowledged
+    flags.home = 0;
   }
 
   else if (flags.save)       // SAVE & REBOOT?
@@ -366,14 +367,33 @@ void loop ()
     ESP.restart();
   }
 
+
+  else if (flags.version)       // Update PIC version info
+  {
+    getPICversion();
+  }
+
+  else if (flags.bootload)       // Update PIC firmware
+  {
+    fw_download();
+    for (int i = 0; i < 4; i++) 
+    { // wait for PIC reboot
+      server.handleClient();
+      delay(500);    
+    }
+    flags.bootload = 0;
+  } // if flags.bootload
+
+
   /* Repeatedly process request handler until mid of loop cycle   */
   do
   {
     server.handleClient();  // mandatory
   } while ((millis() - LoopStamp) < CYCLE_TIME/2);
 
+
   /* Read status from PIC, result format: "Status:Pos1,Pos2,Pos3,Pos4,mAx10,0xstatus"  */
-  sprintf(txbuf, "Status?\n");
+  sprintf(txbuf, "Status?");
   error = cmd2pic();
   // check if response contains command token ("Status:"), else it is an error reponse
   if (strncmp(rxbuf, "Status:", 7) != 0)  // compare first N chars of response with command
@@ -457,9 +477,10 @@ void loop ()
 int cmd2pic (void)
 {
   unsigned long tstart;
-  int   error = 0;
-  bool  eol;
-  char  c;
+  String  str;   
+  int     error = 0;
+  bool    eol;
+  char    c;
 
   // flush response buffer 
   while (Serial.available() > 0) Serial.read();   // clean up serial input
@@ -489,19 +510,37 @@ int cmd2pic (void)
       }
       else rxbuf[sizeof(rxbuf) - 1] = '\0'; // terminate rxbuf
     } // while
-    if ((millis() - tstart) > MAX_ACK_TIME) 
+
+    if ((millis() - tstart) > MAX_ACK_TIME)
     {
       error = -1;  // timeout?
+/*
+      Serial.flush();   // Waits for the transmission of outgoing serial data to complete
+      Serial.swap();    // output to serial monitor
+      Serial.println("cmd2pic: MAX_ACKTIME exceeded");
+      Serial.flush();   // Waits for the transmission of outgoing serial data to complete
+      Serial.swap();    // output to PIC µC      
+*/
     }
     server.handleClient();      // process WebUI during wait
   } // for
 
   if (eol)  // we got a response
   { 
+    str = String(rxbuf);
+    if (str.startsWith("ERROR"))
+    {
+      error = str.substring(5).toInt();
+    }
     /** @todo response could contain an error mesg - how to handle this?)
-      TEST:
+      TEST: * /
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
       Serial.swap();    // output to serial monitor
+
+      Serial.print ("> ");
+      Serial.println(txbuf);  // copy output to serial monitor
+
+      Serial.print ("< ");
       Serial.println(rxbuf);
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
       Serial.swap();    // output to PIC µC
@@ -509,6 +548,15 @@ int cmd2pic (void)
   } // if
   else  // no response (timeout)
   { 
+    error = -2; // timeout
+/*
+    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
+    Serial.swap();    // output to serial monitor
+    Serial.print (txbuf);
+    Serial.println(": Timeout");  // copy output to serial monitor
+    Serial.flush();   // Waits for the transmission of outgoing serial data to complete
+    Serial.swap();    // output to PIC µC
+*/    
     /** @todo show err mesg in LCD (and WebUI? / status?) */
   } // else
 
@@ -516,3 +564,20 @@ int cmd2pic (void)
 
 } // cmd2pic
 
+
+/** @brief Read PIC Firmware Version and save in 'PICversion'
+*/
+void getPICversion (void)
+{
+  int error;
+
+  sprintf(txbuf, "Version?");
+  error = cmd2pic();
+  if (!error && (strncmp(rxbuf, "Version:", 8) == 0))  // compare first N chars of response with command
+  { 
+    strncpy(PICversion, &rxbuf[9], sizeof(PICversion));
+    PICversion[sizeof(PICversion) - 1] = '\0';
+    flags.version = 0;
+  }
+
+} // getPICversion()

@@ -1,5 +1,9 @@
-/** OLED defines and initialization.
- *  @author Klaus Deutschkämer (https://github.com/deklaus)
+/** @file  OLED.ino
+ *  @author  (c) Klaus Deutschkämer (https://github.com/deklaus)
+ *  License: This software is licensed under the European Union Public Licence EUPL-1.2
+ *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
+ *
+ *  @brief OLED defines, initialization and utilities. \n
  *
  *  This application uses the following I2C OLED:
  *  1,3" OLED display SH1106-OLED-I2C-128x64
@@ -22,10 +26,13 @@
  * @note As an option, commands could show up on display page 2, automatically returning to page 1 after a short delay.
  *       This would allow debugging commands via OLED.
  */
-
-/*  We choose the "graphics" library. If you prefer the "8x8" OLED lib you have to replace all graphics output 
- *  by the corresponding functions. You might consider using #ifdef as we did in some examples.
+/*  Change Log:
+ *  2023-11-23 v0.6
+ *  - First issue
  */
+
+/*  We use the "graphics" library. If you prefer the "8x8" OLED lib you have to replace all graphics output 
+ *  by the corresponding functions. You might consider using #ifdef as we did in some examples. */
 #include <U8g2lib.h>
 //#include <U8x8lib.h>
 

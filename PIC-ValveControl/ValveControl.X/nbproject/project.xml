@@ -11,7 +11,9 @@
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>UTF-8</sourceEncoding>
-            <make-dep-projects/>
+            <make-dep-projects>
+                <make-dep-project>../Bootloader.X</make-dep-project>
+            </make-dep-projects>
             <sourceRootList/>
             <confList>
                 <confElem>

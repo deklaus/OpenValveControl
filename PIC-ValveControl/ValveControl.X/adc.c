@@ -1,11 +1,11 @@
 /** @file   adc.c
  *  @brief  Implementations for driver APIs for Analog/Digital Converter
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /*  ChangeLog:
- * 17.10.2023 V0.1
+ * 2023-10-17 V0.1
  * - Initial issue
  */
 

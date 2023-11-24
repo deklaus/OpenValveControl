@@ -1,12 +1,11 @@
 /** @file main.h
  *  @brief Declarations for  Project "ValveControl"
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
-  * @ todo
  */ 
 /*  Change Log:
- * 17.10.2023 V0.1
+ *  2023-11-23 V0.6
  *  - First issue
  */
 #include <stdint.h>     // defines C99 standard types as 'uint8_t' and 'int16_t'
@@ -18,6 +17,9 @@
 // data type, constant and macro definitions
 
 #define _XTAL_FREQ  16000000L   /* oscillator frequency, required for _delay() */
+
+// Base address of EEPROM, valid for PIC18F04/05/06/14/15/16Q41.
+#define EEPROM_BASE 0x380000
 
 #define LED     LATAbits.LATA2
 
@@ -55,7 +57,8 @@ typedef union {     // 'low Byte', weak errors: mission may be continued.
         uint8_t vz4         :1;  //  7: vz4 in process
         uint8_t move        :1;  //  8: 'move' is executing
         uint8_t home        :1;  //  9: 'home' is executing 
-        uint8_t             :6;  // 10-15 spare
+        uint8_t bootload    :1;  // 10: 'bootload' reboot and start bootloader
+        uint8_t             :5;  // 11-15 spare
     };
 } STATUSflags_t;    // token "STATUSbits" reserved by microchip
 

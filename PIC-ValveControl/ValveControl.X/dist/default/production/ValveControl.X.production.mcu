@@ -1,0 +1,41 @@
+
+Memory Class Usage:
+
+Program space:
+    CODE                 used  8941h ( 35137) of  F800h bytes   ( 55.3%)
+    CONST                used     0h (     0) of  F800h bytes   (  0.0%)
+    SMALLCONST           used     0h (     0) of  EA00h bytes   (  0.0%)
+    MEDIUMCONST          used   162h (   354) of  EA00h bytes   (  0.6%)
+
+Data space:
+    COMRAM               used    46h (    70) of    5Fh bytes   ( 73.7%)
+    ABS1                 used     0h (     0) of  1100h bytes   (  0.0%)
+    BIGRAM               used     0h (     0) of  10FFh bytes   (  0.0%)
+    RAM                  used     0h (     0) of  10A0h bytes   (  0.0%)
+    BANK5                used    A0h (   160) of    A0h bytes   (100.0%)
+    BANK6                used    E8h (   232) of   100h bytes   ( 90.6%)
+    BANK7                used    50h (    80) of   100h bytes   ( 31.2%)
+    BANK8                used   100h (   256) of   100h bytes   (100.0%)
+    BANK9                used     0h (     0) of   100h bytes   (  0.0%)
+    BANK10               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK11               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK12               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK13               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK14               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK15               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK16               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK17               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK18               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK19               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK20               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK21               used     0h (     0) of   100h bytes   (  0.0%)
+
+Configuration bits:
+    CONFIG               used     Ah (    10) of    12h bytes   ( 55.6%)
+
+EEPROM space:
+    EEDATA               used     8h (     8) of   400h bytes   (  0.8%)
+
+ID Location space:
+    IDLOC                used     0h (     0) of    20h bytes   (  0.0%)
+

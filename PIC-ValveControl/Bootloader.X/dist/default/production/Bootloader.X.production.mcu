@@ -1,0 +1,39 @@
+
+Memory Class Usage:
+
+Program space:
+    CODE                 used   52Ch (  1324) of   800h bytes   ( 64.6%)
+    CONST                used     0h (     0) of   800h bytes   (  0.0%)
+
+Data space:
+    COMRAM               used    4Bh (    75) of    5Fh bytes   ( 78.9%)
+    ABS1                 used     0h (     0) of  1100h bytes   (  0.0%)
+    BIGRAM               used     0h (     0) of  10FFh bytes   (  0.0%)
+    RAM                  used     0h (     0) of  10A0h bytes   (  0.0%)
+    BANK5                used     0h (     0) of    A0h bytes   (  0.0%)
+    BANK6                used     0h (     0) of   100h bytes   (  0.0%)
+    BANK7                used     0h (     0) of   100h bytes   (  0.0%)
+    BANK8                used     0h (     0) of   100h bytes   (  0.0%)
+    BANK9                used     0h (     0) of   100h bytes   (  0.0%)
+    BANK10               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK11               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK12               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK13               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK14               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK15               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK16               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK17               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK18               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK19               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK20               used     0h (     0) of   100h bytes   (  0.0%)
+    BANK21               used     0h (     0) of   100h bytes   (  0.0%)
+
+Configuration bits:
+    CONFIG               used     0h (     0) of    12h bytes   (  0.0%)
+
+EEPROM space:
+    EEDATA               used     0h (     0) of   400h bytes   (  0.0%)
+
+ID Location space:
+    IDLOC                used     0h (     0) of    20h bytes   (  0.0%)
+

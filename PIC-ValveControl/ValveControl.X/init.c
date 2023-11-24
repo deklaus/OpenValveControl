@@ -1,15 +1,16 @@
 /** @file   init.c
  *  @brief  Initialization functions 
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /* Change Log:
- * 17.10.2023 V0.1
+ * 2023-10-17 V0.1
  * - Initial issue
  * @test
  * @bug
  */
+
 
 // Configuration bits: selected in the code configurator GUI (see mcc.c)
 // pragma config statements should precede project file includes.
@@ -72,6 +73,9 @@
 #include "init.h"
 #include "interrupt.h"
 
+/* Macro to disable Bootlaoder after first flashing
+ * by initializing EEPROM[0] with 0x00.  */
+__EEPROM_DATA(0x00,0xFF, 0xFF,0xFF, 0xFF,0xFF, 0xFF,0xFF);  
 
 // *** data type, constant and macro definitions
 // *** global variables

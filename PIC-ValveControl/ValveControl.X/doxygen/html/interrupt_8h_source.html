@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">0.2</span>
+   &#160;<span id="projectnumber">v0.6</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -90,30 +90,31 @@ $(document).ready(function(){initNavTree('interrupt_8h_source.html',''); initRes
 <div class="contents">
 <a href="interrupt_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/** @file interrupt.h</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *  @brief Prototypes and definitions for module interrupt.c (project &quot;ValveControl&quot;)</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *  @par  (c) 2023 Klaus Deutschämer \n</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *  @par    (c) 2023 Klaus Deutschkämer</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span> </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*  Change Log:</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * 17.10.2023 V0.1</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *  2023-11-23 V0.6</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  - First issue</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef _INTERRUPT_H</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define _INTERRUPT_H</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;   </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// global variables</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// data type, constant and macro definitions   </span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define interrupt_GlobalHighEnable()   (INTCON0bits.GIEH = 1)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define interrupt_GlobalHighDisable()  (INTCON0bits.GIEH = 0)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define interrupt_GlobalLowEnable()    (INTCON0bits.GIEL = 1)</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define interrupt_GlobalLowDisable()   (INTCON0bits.GIEL = 0)</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// function prototypes</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="interrupt_8h.html#a6cdc2e273028179ed64e6f558d79015c">interrupt_initialize</a> (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// _INTERRUPT_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef _INTERRUPT_H</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define _INTERRUPT_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;   </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// global variables</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// data type, constant and macro definitions   </span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define interrupt_GlobalHighEnable()   (INTCON0bits.GIEH = 1)</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define interrupt_GlobalHighDisable()  (INTCON0bits.GIEH = 0)</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define interrupt_GlobalLowEnable()    (INTCON0bits.GIEL = 1)</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define interrupt_GlobalLowDisable()   (INTCON0bits.GIEL = 0)</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// function prototypes</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="interrupt_8h.html#a6cdc2e273028179ed64e6f558d79015c">interrupt_initialize</a> (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// _INTERRUPT_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="ttc" id="ainterrupt_8h_html_a6cdc2e273028179ed64e6f558d79015c"><div class="ttname"><a href="interrupt_8h.html#a6cdc2e273028179ed64e6f558d79015c">interrupt_initialize</a></div><div class="ttdeci">void interrupt_initialize(void)</div><div class="ttdoc">Vectored Interrupt Manager.   The interrupt sources are placed to high and low priorities:</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00058">interrupt.c:58</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -3,14 +3,14 @@
  *  License: This software is licensed under the European Union Public Licence EUPL-1.2
  *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
  *
- *  @brief Utilities for setup and file access. \n
- *  @todo 
+ *  @brief Utilities for setup and (INI) file access. \n
+ *  Simple implementations of GetPrivateProfileString(), GetPrivateProfileInt(),
+ *  a function which reads a float value, and a WriteCString() to save values in INI file.
  */
 /*  Change Log:
- *  15.11.2023
+ *  2023-11-15
  *  - First issue
  */
-
 
 /** @brief  Reads one char array from ini File (in LittleFS)
  *  @param  char *path         Filename (must start with "/")
@@ -268,3 +268,5 @@ int setup_WriteCstring (const char *path, const char *identifier, char *s)
   return(error);
 
 } // setup_WriteCstring ()
+
+

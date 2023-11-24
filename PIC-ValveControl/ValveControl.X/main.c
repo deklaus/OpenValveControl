@@ -1,14 +1,17 @@
 /** @file     main.c
  *  @brief    Main program for Project "ValveControl"
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  * 
  *  \b IDE:      <c> MPLAB X IDE v5.45 &rarr; </c> 
- *  \b Packs:    <c> PIC18F-Q_DFP (v1.14.237) </c> \n
+ *  \b Packs:    <c> PIC18F-Q_DFP (v1.8.154) </c> \n
  *  \b Device:   <c> Microchip \b PIC18F16Q41 </c> \n
  *  \b Compiler: <c> XC8 (v2.32) FREE Version, C-Standard: C99, 
  *                   Optimization Level: 2 </c> \n
+ *  \b Linker:   <c> XC8 Global Options | XC8 Linker | Options:
+ *                   - Runtime | Initialize Data: checked
+ *                   - Memory Model | Rom Range:default,-0-7FF
  *  @todo
  *  - After HOME run, sometimes position is not reset to 0.
  *  - Implement timeout on all position and home jobs. Within IDLE, proper 
@@ -18,17 +21,19 @@
  *    Maybe other PWM settings give better readings?
  *  - If position evaluation using back EMF doesn't work reliably, 
  *    relative positioning might be more useful.
+ *  - Define unique error numbering (enums) across bootloader and application.
  *  - When battery supply is desirable, sleep mode must be used with
  *    wakeup on messages from ESP.
- *  - Implement bootloader and remote fimrware update via command interface
- *    (e.g. using transparent web interface...)
  */
 
 /* Change Log:
- * 30.10.2023 V0.2 
+ * 2023-11-23 v0.6
+ * - Added: Bootloader
+ * - Version number raised to current ESP version
+ * 2023-10-30 V0.2 
  * - Some motor directions fixed.
  * - doxygen comments updated.
- * 17.10.2023 V0.1
+ * 2023-10-17 V0.1
  * - Initial issue
  */
 
@@ -36,6 +41,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <pic18f16q41.h>
 
 #include "main.h"
 #include "adc.h"
@@ -53,7 +59,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "v0.2";    ///< Software version
+const char  *g_version = "v0.6";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
@@ -106,7 +112,7 @@ static void     set_pwm (uint8_t vz, int8_t dir);
 // *** public function bodies
 
 /** @brief This function outputs one char to the EUSART and is also the helper 
- *  function for the printf() function.
+ *  function for the printf() function. \n
  *  When the TXIF bit is not set within approx. 1 ms, the function returns
  *  and data gets lost.
  */
@@ -293,6 +299,7 @@ void main(void)
                         for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
                         main_state = state_home; // prio    
                     }
+                    
                     else if (g_STATUSflags.move) 
                     {
                         g_vbemf = 0;    // reset LP filter
@@ -300,8 +307,14 @@ void main(void)
                         for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
                         main_state = state_move;
                     }
-                }             
-                
+                }
+
+                if (g_STATUSflags.bootload) 
+                {
+                    while (!U1ERRIRbits.TXMTIF) ;  // until shift reg. is empty
+                    RESET();
+                }
+                                
                 last_tick = g_timer_ms;     // reset time reference
                 break;                        
         } // switch
@@ -320,6 +333,7 @@ void main(void)
  *  - SetPos?	Set positions
  *  - Status?	Detailed status
  *  - Version?	Version of PIC Firmware
+ *  - Bootload! Run bootloader
  */
 static 
 void cmd_interpreter (void)
@@ -428,7 +442,32 @@ void cmd_interpreter (void)
         sprintf((char *)g_tx232_buf, "max_mA:%d,%d,%d,%d\n", 
             g_max_mAx10[1], g_max_mAx10[2], g_max_mAx10[3], g_max_mAx10[4]);
         goto _done;
-    }    
+    }
+    
+    // Bootloader
+    p = strstr((const char *)g_rx232_buf, "Bootload!");  // UPDATE/BOOTLOAD
+    if (p != NULL) 
+    {   // write 0xFF into EEPROM[0]
+        INTCON0bits.GIEH = 0;     // disable INTs
+        NVMADR = EEPROM_BASE + 0x00; // write to EEPROM[0] ...
+        NVMDATL = 0xFF;              // .. 0xFF to enable bootloader
+        NVMCON1bits.CMD = 0x03;
+        NVMLOCK = 0x55;              // unlock EEPROM
+        NVMLOCK = 0xAA;
+        NVMCON0bits.GO = 1;          // perform write
+
+        for (uint8_t timeout = 0; timeout < 20; ++timeout)
+        {
+            if (!NVMCON0bits.GO) break;
+            else __delay_ms(1);
+        }
+        NVMCON1bits.CMD = 0;
+        
+        sprintf((char *)g_tx232_buf, "Bootload!\n");
+        g_STATUSflags.bootload = 1;    // reboot after acknowledge
+        
+        goto _done;
+    }        
     
 /// Command not found:
     error = E_UNDEF_CMD;

@@ -4,6 +4,7 @@ var main_8h =
     [ "ERRORflags_t", "union_e_r_r_o_rflags__t.html", "union_e_r_r_o_rflags__t" ],
     [ "_MAIN_H", "main_8h.html#a31b8ab334cda80094138b7683c587fb7", null ],
     [ "_XTAL_FREQ", "main_8h.html#a024148e99a7143db044a48216664d03d", null ],
+    [ "EEPROM_BASE", "main_8h.html#ab20a23a9da3e8c63231551419dce1138", null ],
     [ "interrupt_GlobalHighDisable", "main_8h.html#ae34be560f351ba2a52926de1d277d945", null ],
     [ "interrupt_GlobalHighEnable", "main_8h.html#ab59ee94d189ea97eca756f60c4692c7e", null ],
     [ "interrupt_GlobalLowDisable", "main_8h.html#a54c50351f11ffb2062c417961d12864d", null ],

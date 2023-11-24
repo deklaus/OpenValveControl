@@ -3,15 +3,15 @@
   <executable name="dist/default/production/ValveControl.X.production.hex">
     <memory name="program">
       <units>bytes</units>
-      <length>65536</length>
-      <used>43879</used>
-      <free>21657</free>
+      <length>63488</length>
+      <used>35491</used>
+      <free>27997</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>4352</length>
-      <used>797</used>
-      <free>3555</free>
+      <used>798</used>
+      <free>3554</free>
     </memory>
   </executable>
 </project>

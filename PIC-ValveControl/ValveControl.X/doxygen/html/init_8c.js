@@ -1,5 +1,6 @@
 var init_8c =
 [
+    [ "__EEPROM_DATA", "init_8c.html#aa6a3bb222a251a7cbe6275a89ab5c393", null ],
     [ "init_fvr", "init_8c.html#af62d0512db367f7fd79bfb0881b033e0", null ],
     [ "init_ina219", "init_8c.html#ac37df437f069ddda38ad3dc841b44a73", null ],
     [ "init_oscillator", "init_8c.html#aaf989ddfec6768cedbe874d23c7620a0", null ],

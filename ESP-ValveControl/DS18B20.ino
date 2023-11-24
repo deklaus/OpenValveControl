@@ -5,11 +5,9 @@
  *
  *  @brief Functions for DS18B20 temperature sensor. \n
  *  Weblink: https://github.com/milesburton/Arduino-Temperature-Control-Library/blob/master/DallasTemperature.h
- *  Our sensor's device ID: 10a9e5d3000800c6
- *  @todo 
  */
 /*  Change Log:
- *  02.11.2023
+ *  2023-11-02
  *  - First issue
  */
 #include <DallasTemperature.h>

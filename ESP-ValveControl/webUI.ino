@@ -4,16 +4,20 @@
  *           (see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 for details).
  *
  *  @brief Functions for WiFi User Interface (UI)
- *  @todo 
  */
 /*  Change Log:
- *  07.11.2023 v0.3
- *  - handleRoot() eliminated. Web-UI is now a separate file (index.html) and uploaded via LittleFS.
- *  26.09.2023 v0.12
+ *  2023-11-23 v0.6
+ *  - Added webUI_bootload. Essentially displays a notification and sets "flags.bootload",
+ *    which then is processed in the main loop.
+ *  2023-11-07 v0.3
+ *  - webUI_Root() eliminated. Web-UI is now a separate file (index.html) and uploaded via LittleFS.
+ *  2023-09-26 v0.12
  *  - First issue
+ *
  *  Weblinks: 
  *  https://links2004.github.io/Arduino/d3/d58/class_e_s_p8266_web_server.html
- *  https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer#esp8266-web-server
+ *  https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer
+ *  https://arduino-esp8266.readthedocs.io/en/latest/filesystem.html
  */
 
 // *** data type, constant and macro definitions
@@ -21,9 +25,53 @@
 // *** private variables
 // *** public function bodies
 
+
+/** @brief  Sends Intel Hex-File to PIC Bootloader
+ *  @param  char *path  Filename (must start with "/" and end with .hex)
+ *  @return int  error
+*/
+void webUI_bootload (void)
+{
+  int     error = 0;
+  String  str;
+  String  htmlPage;
+  htmlPage.reserve(128);  // prevent ram fragmentation
+
+  htmlPage  = F("Update of PIC Firmware\n");
+
+  if (server.hasArg("hexfile"))
+  {
+    str = server.arg("hexfile");
+    str.toCharArray(hexfilename, sizeof(hexfilename));
+    htmlPage += F("with hexfile: "); htmlPage += hexfilename; htmlPage += F("\n");
+
+    if (!LittleFS.exists(hexfilename))
+    {
+      htmlPage += F("File doesn't exist! \n");
+      for (uint8_t i = 0; i < server.args(); i++) 
+      {
+        htmlPage += server.argName(i) + "=" + server.arg(i) + "\n";
+      }
+    }
+    else
+    {
+      htmlPage += "Starting bootloader - please wait for completion\n";
+      htmlPage += "(check OLED display for status).\n";
+      flags.bootload = 1;
+    }    
+  }
+  else
+  {
+    htmlPage += F("Usage: <ip>/bootload?hexfile=filename.hex\n");
+  }
+  server.send(200, "text/plain", htmlPage);
+
+} // webUI_bootload ()
+
+
 /** @brief Handler for MOVE. Arguments: <ESP_IP>/move?vz=[1..4]&set_pos=[0..100]&max_mA=[0.0 .. 100.0]
  */
-void handleMove ()
+void webUI_move ()
 {
   int error = 1;  // preset!
   char  buf[64];
@@ -63,12 +111,12 @@ void handleMove ()
   }    
   server.send(200, "text/plain", htmlPage);
 
-} // handleMove()
+} // webUI_move()
 
 
 /** @brief Handler for HOME. Arguments: <ESP_IP>/home?vz=[1..4]&max_mA=[0.0 .. 100.0]
  */
-void handleHome ()
+void webUI_home ()
 {
   int error = 1;  // preset!
   char  buf[128];
@@ -104,12 +152,12 @@ void handleHome ()
   }
   server.send(200, "text/plain", htmlPage);
 
-} // handleHome ()
+} // webUI_home ()
 
 
 /** @brief Handler for INFO request.
  */
-void handleInfo ()
+void webUI_info ()
 {
   char  buf[128];
   String htmlPage;
@@ -126,12 +174,12 @@ void handleInfo ()
     //server.sendHeader("Access-Control-Allow-Origin","*"); 
     server.send(200, "text/plain", htmlPage);
 
-} // handleInfo ()
+} // webUI_info ()
 
 
 /** @brief Handler for "SAVE" (@todo: POST). Arguments: <ESP_IP>/save?ssid=<string>&psk=<password>
  */
-void handleSave ()
+void webUI_save ()
 {
   int error = 1;  // preset!
   char  buf[128];
@@ -169,20 +217,18 @@ void handleSave ()
   }
   server.send(200, "text/plain", htmlPage);
 
-} // handleSave ()
+} // webUI_save ()
 
 
 /** @brief Handler for STATUS request. \n
  *  Contains all readings and status' from PIC µC.
  *  May be extended, because data is parsed as JSON object (name:value).
  */
-void handleStatus ()
+void webUI_status ()
 {
   char  buf[128];
   String htmlPage;
   htmlPage.reserve(1000);  // prevent ram fragmentation
-
-  flags.status = 1;   // set flag for status request  OBSOLETE - we do this every loop cycle
 
   htmlPage = F(
   "{ \n"
@@ -221,12 +267,12 @@ void handleStatus ()
 
   server.send(200, "text/plain", htmlPage);
 
-} // handleStatus ()
+} // webUI_status ()
 
 
 /** @brief Handler for all NotFound requests (invalid URIs)
  */
-void handleNotFound () 
+void webUI_notFound () 
 {
   String message = "File Not Found\n\n";
   message += "URI: ";
@@ -242,7 +288,7 @@ void handleNotFound ()
   }
   server.send(404, "text/plain", message);
 
-} // handleNotFound ()
+} // webUI_notFound ()
 
 // *** private function bodies
 

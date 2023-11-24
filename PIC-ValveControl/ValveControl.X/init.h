@@ -1,6 +1,6 @@
 /** @file init.h
  *  @brief Prototypes and definitions for module init.c (project "ValveControl")
- *  @par  (c) 2023 Klaus Deutschämer \n
+ *  @par  (c) 2023 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
