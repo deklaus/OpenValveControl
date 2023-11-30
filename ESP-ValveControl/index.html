@@ -288,9 +288,12 @@
      </form>
    </p>
   		
-   <p><button class='btn' name='btn_move' onclick='f_move();'>Move VZ</button></p>
-   <p><button class='btn' name='btn_home' onclick='f_home();'>Home VZ</button></p>
-   <p><button class='btn' name='btn_info' onclick='f_info();'>Info</button></p>
+   <p><button class='btn' name='btn_move' onclick='f_move();' title='Move selected valve to Set Position'>
+		Move VZ</button></p>
+   <p><button class='btn' name='btn_home' onclick='f_home();' title='Reference run selected valve until motor current exceeds Imot_max'>
+		Home VZ</button></p>
+   <p><button class='btn' name='btn_info' onclick='f_info();' title='Show version info etc.'>
+		Info</button></p>
   
    <p class='label'>
      <form> 
@@ -299,7 +302,8 @@
      </form>
    </p>
   
-   <p><button class='btn' name='btn_save'   onclick='f_save();'>Save & Reboot</button></p>
+   <p><button class='btn' name='btn_save'   onclick='f_save();' title='Save WiFi credentials in /ovc.ini, then reboot'>
+		Save & Reboot</button></p>
    <p id='status'> </p>
   
    <script>
