@@ -9,14 +9,18 @@
 <title>OpenValveControl</title>
 <meta name='viewport' content='width=device-width, initial-scale=0.9'>
 <script>
- let version = 'v0.3';					// version of this Web UI
+ 'use strict';
+ 
+ let version = 'v0.3.1';				// version of this Web UI
  let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
  let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
  let max_mA = [0.0, 31.0, 32.0, 33.0, 34.0 ];   // motor current limits [mA]  
 
+/*
  setInterval(f_status, 1500); 
  f_status();
  f_info();
+*/
 
  function get_vz() {   // returns the 'value' of the selected checkbox: [1..4]
    let inputs = document.getElementsByName('vz');
@@ -125,6 +129,10 @@
        if (position[i] < 0 || position[i] > 100) position[i] = 50; 
      } 
      update_allpos();
+	 max_mA[1] = data.VZ1.max_mA; 
+	 max_mA[2] = data.VZ2.max_mA; 
+	 max_mA[3] = data.VZ3.max_mA; 
+	 max_mA[4] = data.VZ4.max_mA; 
    });
  }
 
@@ -249,12 +257,6 @@
      </tr>  
    </table>
   
-   <script>
-     'use strict';
-     document.querySelector('mAmps').innerText = '0.0';
-     document.querySelector('tempC').innerText = '0.0';
-   </script>
-  
    <h2>Valve Positions</h2>
    <div class='table'>
      <div class='tr'>
@@ -281,8 +283,8 @@
   	
    <p class='label'>
      <form> 
-       <p class='label'>Set Position [%]<input type='text' id='set_pos' value='0'></p>
-       <p class='label'>Imot max. [mA]<input type='text' id='max_mA' value='30.0'></p>
+       <p class='label'>Set Position [%]<input type='text' id='set_pos' value='0' title='[0 .. 100]'></p>
+       <p class='label'>Imot max. [mA]<input type='text' id='max_mA' value='30.0' title='[0.0 .. 100.0]'></p>
      </form>
    </p>
   		
@@ -301,11 +303,17 @@
    <p id='status'> </p>
   
    <script>
+     'use strict';
      let elem = document.getElementsByName('vz');
      for (let i = 0; i < 4; i++) {
        elem[i].addEventListener('click', update_allpos);
      }
-   </script>
+     document.querySelector('mAmps').innerText = '0.0';
+     document.querySelector('tempC').innerText = '0.0';
+	 setInterval(f_status, 2000); 
+     f_status();
+     f_info();
+   </script> 
   
    <div style='text-align:right;font-size:10px;'>
      <hr/>
