@@ -36,7 +36,7 @@ to the community as an OpenSource project.
 - [x] Access point (until local WiFi has been configured)
 - [x] OTA-Support for ESP (Over-the-Air Update)
 - [x] OTA-Support (Over-the-Air Bootloader) for PIC-µC
-- [ ] MQTT Support
+- [x] MQTT Support
 - [ ] Examples for NodeRed, MQTT, FHEM, Raspberry Pi, ...
 
 # Bill of Materials
