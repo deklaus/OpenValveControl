@@ -8,8 +8,8 @@
 </table>
 
 - [x] A working sample is running using a breadboard.
-- [x] First layout and Gerber files are available.
-- [x] PCB built into housing, first desktop tests have passed.
+- [x] Layout and Gerber files are available.
+- [x] PCBs available, built into housing, first desktop tests have passed.
 - [x] Testing under real conditions (in progress).
 
 ## Block diagram
