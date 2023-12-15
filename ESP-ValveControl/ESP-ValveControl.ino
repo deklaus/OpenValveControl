@@ -25,6 +25,8 @@
  *     - <c> ESP8266WiFi              Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WiFi </c>
  *     - <c> ESP8266WebServer         Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266WebServer </c>
  *     - <c> ESP8266HTTPUpdateServer  Version 1.0     path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/ESP8266HTTPUpdateServer </c>
+ *     - <c> PubSubClient             Version 2.8     path: ~/Arduino/libraries/PubSubClient </c>
+ *     - <c> ArduinoJson              Version 6.21.4  path: ~/Arduino/libraries/ArduinoJson </c>
  *     - <c> LittleFS                 Version 0.1.0   path: ~/.arduino15/packages/esp8266/hardware/esp8266/3.1.2/libraries/LittleFS </c>
  *     - <c> DallasTemperature        Version 3.9.0   path: ~/Arduino/libraries/DallasTemperature </c>
  *     - <c> MAX31850 OneWire         Version 1.1.3   path: ~/Arduino/libraries/MAX31850_OneWire </c>
@@ -36,6 +38,8 @@
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
  * Change Log:
+ * 2023-12-01 v0.6.1
+ * - Status now reflects status from PIC (set_pos[], max_mA[] and refset[]).
  * 2023-11-15 v0.6
  * - Added acces point mode (OVC-access-point/PVC-password).
  * - Reading and writing of setup file "ovc.ini". LittleFS.ini supplemented with proper mime/ContentType.
@@ -51,17 +55,22 @@
  * @todo - poor handling of refset[] (maybe by PIC?). 
  *       - home drive sometimes doesn't reset position.
  *       - Download of ovc.ini should be password protected or PSK should be encrypted in ovc.ini.
+ *       - Firmware update via httpUpdater should be password protected.
  *       - Define enum ERRNOs globally (ESP + PIC)
  */
 
 // *** includes
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
-#include <ESP8266HTTPUpdateServer.h>   
+#include <ESP8266HTTPUpdateServer.h>
+#include <PubSubClient.h>
+//#include <WiFiClient.h>
+#include <ArduinoJson.h>
 #include <LittleFS.h>
 
 // *** function prototypes
 extern int    cmd2pic (void);
+extern void   create_jStatus (char *dest, int len, bool pretty);
 
 extern void   DS18B20_init (void);
 extern float  DS18B20_TempC (uint8_t index);
@@ -97,6 +106,7 @@ extern void   getPICversion (void);
 //#define DEBUG_OUTPUT_STATUS   1   /* enable serial monitor: status read from PIC */
 //#define DEBUG_OUTPUT_WIFI     1   /* enable serial monitor: WIFI status after connect */
 //#define DEBUG_OUTPUT_INI      1   /* enable serial monitor: INI file functions */
+//#define DEBUG_MQTT_PUBLISH    1   /* enable serial monitor: MQTT publish */
 
 #define numVZ   4             // no. of available Valve Zones / motors
 
@@ -139,15 +149,33 @@ struct FLAGS  //!<   flags to start tasks within loop()
 ESP8266WebServer server(80);
 ESP8266HTTPUpdateServer httpUpdater;
 
+
+/** MQTT client (publisher only)
+ *  ===========
+ */
+WiFiClient    espClient;
+PubSubClient  MQTTclient(espClient);
+
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "v0.6";  // Version of ESP-Firmware
+char  ESPversion[32] = "v0.7";  // Version of ESP-Firmware
 char  PICversion[32] = "NN";    // Version of PIC-Firmware
 
 // WiFi credentials: Initial values are used for access point!
 // The credential aof your routers WiFi can be customized in "ovc.ini" (uploaded into LittleFS)
 char  ssid[64] = "OVC-access-point";  // SSID (access point)
 char  psk[64]  = "OVC-password";      // Password (access point)
+
+// MQTT
+char  mqtt_host[64] = "";   // IP address of mqtt host (broker)
+char  mqtt_prefix[64] = ""; // prefix (p.e. "OVC-1")
+char  mqtt_token[64] = "";  // token for publish (p.e. "OVC-1/tempC" etc.)
+
+char  jStatus[512];         // set big enough to hold the "beautifed" JSON status!
+unsigned long mqttLastConnect = millis();
+unsigned long mqttLastPub = millis();
+unsigned long mqttCurrentTime;
+unsigned long mqttPeriod = 900000;  // default: 15 minutes
 
 char  alias1[8];    // aliases for "VZ1" to "VZ4"
 char  alias2[8];
@@ -303,8 +331,17 @@ void setup ()
   //server.on("/upload");  // handled by LittleFS
   //server.onNotFound(webUI_notFound);  // already handled by LittleFS
 
+  /** - Setup OTA httpUpdater
+        Weblink:  https://arduino-esp8266.readthedocs.io/en/latest/ota_updates/readme.html#web-browser
+  */
   httpUpdater.setup(&server);
   server.begin();
+
+  if (strlen(mqtt_host) > 6)
+  {
+    MQTTclient.setServer(mqtt_host, 1883);  // default port for MQTT is 1883
+    MQTTclient.setBufferSize(512);    // The maximum message size, including header (default is 256 bytes)
+  }
 
 } // setup()
 
@@ -436,6 +473,10 @@ void loop ()
       if (sscanf(++p, "0x%04x", &uval) == 1) 
       {
         status = uval;
+        refset[1] = REF1(status) ? 1 : 0;
+        refset[2] = REF2(status) ? 1 : 0;
+        refset[3] = REF3(status) ? 1 : 0;
+        refset[4] = REF4(status) ? 1 : 0;
       } 
     }
 
@@ -464,8 +505,101 @@ void loop ()
     server.handleClient();  // mandatory
   } while ((millis() - LoopStamp) < CYCLE_TIME);
 
+
+  /* MQTT: send data every xx seconds to broker. re-connect if connection is lost 
+   * Weblinks: 
+   * https://arduinojson.org/v5/assistant/
+   * https://arduinojson.org/v6/api/jsondocument/
+   * https://arduinojson.org/v6/how-to/reuse-a-json-document/
+   * https://arduinojson.org/v6/doc/serialization/
+   * https://arduinojson.org/v6/example/
+   * https://circuits4you.com/2019/01/11/nodemcu-esp8266-arduino-json-parsing-example/
+   */
+  mqttCurrentTime = millis();
+  if ((strlen(mqtt_host) > 6) && (WiFi.status() == WL_CONNECTED))
+  { // MQTT has been configured && WiFi is connected
+    if (MQTTclient.connected())
+    { // publish every mqttPeriod
+      if ((mqttCurrentTime - mqttLastPub) > mqttPeriod)
+      {
+        sprintf(mqtt_token, "%s/status", mqtt_prefix);
+        create_jStatus (jStatus, sizeof(jStatus), false);   // create minified JSON document
+        MQTTclient.publish(mqtt_token, jStatus);
+        mqttLastPub = mqttCurrentTime;
+
+#ifdef DEBUG_MQTT_PUBLISH
+        Serial.flush();
+        Serial.swap();
+        Serial.println(jStatus);
+        Serial.flush();
+        Serial.swap();
+#endif
+      }
+    } // if MQTT connected
+    else if ((mqttCurrentTime - mqttLastConnect) > (unsigned long) 30000)
+    { // try to (re-)connect every 30 s
+      MQTTclient.connect(mqtt_token);
+      mqttLastConnect = mqttCurrentTime;
+    }
+  } // if MQTT has been configured && WiFi is connected
+
 } // loop()
 
+
+/** @brief This function creates the const char jStatus[] which can be used 
+ *  by the webUI (/status) or published to the MQTT server.
+ *  jStatus has the following JSON structure:
+ *  { 
+ *  "mAmps": "0.1",
+ *  "tempC": "24.4",
+ *  "VZ1": { "Position": 10, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" },
+ *  "VZ2": { "Position": 20, "Set_Pos": 0, "Ref_Set": 0, "max_mA": "50.0" },
+ *  "VZ3": { "Position": 30, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" },
+ *  "VZ4": { "Position": 40, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" }
+ *  }
+ *  @param  char *dest[len]  Result char array with minimum size len
+ *  @note Adjust <capacity> when changes are required (see https://arduinojson.org/v6/assistant/).
+*/
+void create_jStatus (char *dest, int len, bool pretty)
+{
+  StaticJsonDocument<384> doc;  // recommended size for serializing 
+
+  doc["mAmps"] = round(mAmps * 10) / 10.0;
+  doc["tempC"] = round(tempC * 10) / 10.0;
+
+  JsonObject VZ1 = doc.createNestedObject("VZ1");
+  VZ1["Position"] = position[1];
+  VZ1["Set_Pos"] = set_pos[1];
+  VZ1["Ref_Set"] = refset[1] ? 1 : 0;
+  VZ1["max_mA"] = max_mA[1];
+
+  VZ1["Position"] = position[1];
+  VZ1["Set_Pos"] = set_pos[1];
+  VZ1["Ref_Set"] = refset[1] ? 1 : 0;
+  VZ1["max_mA"] = max_mA[1];
+
+  JsonObject VZ2 = doc.createNestedObject("VZ2");
+  VZ2["Position"] = position[2];
+  VZ2["Set_Pos"] = set_pos[2];
+  VZ2["Ref_Set"] = refset[2] ? 1 : 0;
+  VZ2["max_mA"] = max_mA[2];
+
+  JsonObject VZ3 = doc.createNestedObject("VZ3");
+  VZ3["Position"] = position[3];
+  VZ3["Set_Pos"] = set_pos[3];
+  VZ3["Ref_Set"] = refset[3] ? 1 : 0;
+  VZ3["max_mA"] = max_mA[3];
+
+  JsonObject VZ4 = doc.createNestedObject("VZ4");
+  VZ4["Position"] = position[4];
+  VZ4["Set_Pos"] = set_pos[4];
+  VZ4["Ref_Set"] = refset[4] ? 1 : 0;
+  VZ4["max_mA"] = max_mA[4];
+
+  if (pretty) serializeJsonPretty(doc, dest, len);
+  else        serializeJson(doc, dest, len);
+
+} // create_jStatus ()
 
 
 /** @brief  This function sends the command string in txbuf[] via UART to the PIC µC 

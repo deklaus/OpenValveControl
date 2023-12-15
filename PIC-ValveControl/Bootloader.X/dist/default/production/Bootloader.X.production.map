@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -cn \
   -h+dist/default/production/Bootloader.X.production.sym \
   --cmf=dist/default/production/Bootloader.X.production.cmf -z -Q18F16Q41 \
-  -o/tmp/xcXbEdMhp --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXlcDoJJ --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Bootloader.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0560h-015FFh -pstack=STACK \
   -ACODE=00h-07FFh -ACONST=00h-07FFh -ACOMRAM=0501h-055Fh \
@@ -24,7 +24,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXDEGOPH.o dist/default/production/Bootloader.X.production.o 
+  /tmp/xcXDMObNn.o dist/default/production/Bootloader.X.production.o 
 
 Object code version is 3.11
 
@@ -33,7 +33,7 @@ Machine type is 18F16Q41
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXDEGOPH.o
+/tmp/xcXDMObNn.o
                 init                                7FC      7FC        4      3FE       0
                 reset_vec                             0        0        4        0       0
 dist/default/production/Bootloader.X.production.o

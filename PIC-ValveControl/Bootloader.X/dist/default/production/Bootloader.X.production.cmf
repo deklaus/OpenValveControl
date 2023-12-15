@@ -11,9 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcXDEGOPH.o
-init CODE 0 7FC 7FC 4 1
-reset_vec CODE 0 0 0 4 1
 $dist/default/production/Bootloader.X.production.o
 cinit CODE 0 2DE 2DE A 1
 text0 CODE 0 4A2 4A2 35A 1
@@ -27,6 +24,9 @@ text7 CODE 0 2D8 2D8 6 1
 text8 CODE 0 2FC 2FC 1C 1
 cstackCOMRAM COMRAM 1 532 532 1A 1
 bssCOMRAM COMRAM 1 501 501 31 1
+$/tmp/xcXDMObNn.o
+init CODE 0 7FC 7FC 4 1
+reset_vec CODE 0 0 0 4 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -255,14 +255,14 @@ $dist/default/production/Bootloader.X.production.o
 7F2 text0 CODE >154:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
 7F8 text0 CODE >293:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
 7FA text0 CODE >296:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2DE cinit CODE >2909:/tmp/xcXbCoMbE.s
-2DE cinit CODE >2911:/tmp/xcXbCoMbE.s
-2DE cinit CODE >2914:/tmp/xcXbCoMbE.s
-2DE cinit CODE >2932:/tmp/xcXbCoMbE.s
-2DE cinit CODE >2935:/tmp/xcXbCoMbE.s
-2E0 cinit CODE >2936:/tmp/xcXbCoMbE.s
-2E2 cinit CODE >2937:/tmp/xcXbCoMbE.s
-2E4 cinit CODE >2938:/tmp/xcXbCoMbE.s
+2DE cinit CODE >2909:/tmp/xcXjaffmH.s
+2DE cinit CODE >2911:/tmp/xcXjaffmH.s
+2DE cinit CODE >2914:/tmp/xcXjaffmH.s
+2DE cinit CODE >2932:/tmp/xcXjaffmH.s
+2DE cinit CODE >2935:/tmp/xcXjaffmH.s
+2E0 cinit CODE >2936:/tmp/xcXjaffmH.s
+2E2 cinit CODE >2937:/tmp/xcXjaffmH.s
+2E4 cinit CODE >2938:/tmp/xcXjaffmH.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -294,17 +294,17 @@ _PMD2 65 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD3 66 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD4 67 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD5 68 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXDEGOPH.o
+___sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
 _main 4A2 0 CODE 0 text0 dist/default/production/Bootloader.X.production.o
-start 7FC 0 CODE 0 init /tmp/xcXDEGOPH.o
+start 7FC 0 CODE 0 init /tmp/xcXDMObNn.o
 __size_of_main 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/Bootloader.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production/Bootloader.X.production.o
-__accesstop 560 0 ABS 0 - /tmp/xcXDEGOPH.o
-intlevel0 0 0 CODE 0 text /tmp/xcXDEGOPH.o
-intlevel1 0 0 CODE 0 text /tmp/xcXDEGOPH.o
-intlevel2 0 0 CODE 0 text /tmp/xcXDEGOPH.o
-intlevel3 0 0 CODE 0 text /tmp/xcXDEGOPH.o
+__accesstop 560 0 ABS 0 - /tmp/xcXDMObNn.o
+intlevel0 0 0 CODE 0 text /tmp/xcXDMObNn.o
+intlevel1 0 0 CODE 0 text /tmp/xcXDMObNn.o
+intlevel2 0 0 CODE 0 text /tmp/xcXDMObNn.o
+intlevel3 0 0 CODE 0 text /tmp/xcXDMObNn.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/Bootloader.X.production.o
 _init_osc 2FC 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
 _init_pmd 318 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
@@ -319,8 +319,8 @@ xtou8@i 534 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.product
 xtou8@p 532 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 _ACTCON AC 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __end_of_init_bootloader 40A 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xcXDEGOPH.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xcXDEGOPH.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/Bootloader.X.production.o
 main@eof 53D 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 main@eol 541 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
@@ -346,7 +346,7 @@ _STKPTR 4FC 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 main@timeout 542 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 _U1CON0 2AB 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1CON2 2AD 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xcXDEGOPH.o
+isa$xinst 0 0 ABS 0 - /tmp/xcXDMObNn.o
 __Hbank5 0 0 ABS 0 bank5 dist/default/production/Bootloader.X.production.o
 __Hbank6 0 0 ABS 0 bank6 dist/default/production/Bootloader.X.production.o
 __Hbank7 0 0 ABS 0 bank7 dist/default/production/Bootloader.X.production.o
@@ -468,9 +468,9 @@ main@i_542 546 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.prod
 main@index 54B 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 _init_pins 2D8 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/Bootloader.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xcXDEGOPH.o
-stackhi 15FF 0 ABS 0 - /tmp/xcXDEGOPH.o
-stacklo 560 0 ABS 0 - /tmp/xcXDEGOPH.o
+isa$std 1 0 ABS 0 - /tmp/xcXDMObNn.o
+stackhi 15FF 0 ABS 0 - /tmp/xcXDMObNn.o
+stacklo 560 0 ABS 0 - /tmp/xcXDMObNn.o
 _OSCCON1 AD 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _OSCCON3 AF 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _OSCTUNE B0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -504,7 +504,7 @@ __ptext7 2D8 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
 __ptext8 2FC 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/Bootloader.X.production.o
 main@length 544 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-__ramtop 1600 0 RAM 0 ramtop /tmp/xcXDEGOPH.o
+__ramtop 1600 0 RAM 0 ramtop /tmp/xcXDMObNn.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production/Bootloader.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/Bootloader.X.production.o
 _init_uart1 35C 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o

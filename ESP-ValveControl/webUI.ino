@@ -226,46 +226,8 @@ void webUI_save ()
  */
 void webUI_status ()
 {
-  char  buf[128];
-  String htmlPage;
-  htmlPage.reserve(1000);  // prevent ram fragmentation
-
-  htmlPage = F(
-  "{ \n"
-  "\"mAmps\": \""); sprintf(buf, "%.1f", mAmps); htmlPage += buf; htmlPage += F("\",\n"
-  "\"tempC\": \""); sprintf(buf, "%.1f", tempC); htmlPage += buf; htmlPage += F("\",\n"
-
-  "\"VZ1\": {\n"
-  "    \"Position\": "); htmlPage += position[1]; htmlPage += F(",\n"
-  "    \"Set_Pos\": ");  htmlPage += set_pos[1];  htmlPage += F(",\n"
-  "    \"Ref_Set\": ");  htmlPage += refset[1];   htmlPage += F(",\n"
-  "    \"max_mA\": \""); sprintf(buf, "%.1f", max_mA[1]); htmlPage += buf;   htmlPage += F("\"\n"
-  "  },\n"
-
-  "\"VZ2\": {\n"
-  "    \"Position\": "); htmlPage += position[2]; htmlPage += F(",\n"
-  "    \"Set_Pos\": ");  htmlPage += set_pos[2];  htmlPage += F(",\n"
-  "    \"Ref_Set\": ");  htmlPage += refset[2];   htmlPage += F(",\n"
-  "    \"max_mA\": \""); sprintf(buf, "%.1f", max_mA[2]); htmlPage += buf;   htmlPage += F("\"\n"
-  "  },\n"
-
-  "\"VZ3\": {\n"
-  "    \"Position\": "); htmlPage += position[3]; htmlPage += F(",\n"
-  "    \"Set_Pos\": ");  htmlPage += set_pos[3];  htmlPage += F(",\n"
-  "    \"Ref_Set\": ");  htmlPage += refset[3];   htmlPage += F(",\n"
-  "    \"max_mA\": \""); sprintf(buf, "%.1f", max_mA[3]); htmlPage += buf;   htmlPage += F("\"\n"
-  "  },\n"
-
-  "\"VZ4\": {\n"
-  "    \"Position\": "); htmlPage += position[4]; htmlPage += F(",\n"
-  "    \"Set_Pos\": ");  htmlPage += set_pos[4];  htmlPage += F(",\n"
-  "    \"Ref_Set\": ");  htmlPage += refset[4];   htmlPage += F(",\n"
-  "    \"max_mA\": \""); sprintf(buf, "%.1f", max_mA[4]); htmlPage += buf;   htmlPage += F("\"\n"
-  "  }\n"
-
-  "}\n");
-
-  server.send(200, "text/plain", htmlPage);
+  create_jStatus (jStatus, sizeof(jStatus), true);   // create pretty JSON document
+  server.send(200, "text/plain", jStatus);
 
 } // webUI_status ()
 

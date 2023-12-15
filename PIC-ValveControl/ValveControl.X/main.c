@@ -27,6 +27,8 @@
  */
 
 /* Change Log:
+ *  2023-12-03 V0.6.1
+ *  - Added 2 minutes timeout when homeing.
  * 2023-11-23 v0.6
  * - Added: Bootloader
  * - Version number raised to current ESP version
@@ -59,7 +61,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "v0.6";    ///< Software version
+const char  *g_version = "v0.6.1";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
@@ -134,8 +136,8 @@ void putch (char data)
 void main(void)
 {
     int16_t     ival16;
-    uint16_t    t_start;
     int8_t      diff;
+    uint16_t    t_home_ms, t_home_s;
     uint8_t     motor = 0;
        
     interrupt_GlobalHighDisable();    
@@ -257,6 +259,17 @@ void main(void)
                     else g_position[g_vz] = 99;    // rollover                 
                     last_tick = g_timer_ms;                   
                 }
+
+                // abort homeing after xx seconds
+                if ((g_timer_ms - t_home_ms) > 1000)
+                {   // count seconds
+                    t_home_ms = g_timer_ms;
+                    if ((++t_home_s) > TIMEOUThome) 
+                    {   
+                        main_state = state_idle;
+                        g_STATUSflags.home = 0;     // abort
+                    }
+                }
                 
                 break;
                 
@@ -296,8 +309,11 @@ void main(void)
                     {
                         g_vbemf = 0;    // reset LP filter
                         g_zerocount = 0;                        
+                        g_STATUSflags.ref &= ~(uint8_t) (1 << (g_vz - 1));
                         for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
-                        main_state = state_home; // prio    
+                        main_state = state_home; // prio
+                        t_home_ms = g_timer_ms;
+                        t_home_s  = 0;                        
                     }
                     
                     else if (g_STATUSflags.move) 
@@ -310,7 +326,7 @@ void main(void)
                 }
 
                 if (g_STATUSflags.bootload) 
-                {
+                {   // reprogramming via bootload takes ca. 2:30 minutes
                     while (!U1ERRIRbits.TXMTIF) ;  // until shift reg. is empty
                     RESET();
                 }

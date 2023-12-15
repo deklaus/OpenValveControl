@@ -11,7 +11,7 @@
 <script>
  'use strict';
  
- let version = 'v0.3.1';				// version of this Web UI
+ let version = 'v0.3.2';				// version of this Web UI
  let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
  let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
  let max_mA = [0.0, 31.0, 32.0, 33.0, 34.0 ];   // motor current limits [mA]  
@@ -129,10 +129,16 @@
        if (position[i] < 0 || position[i] > 100) position[i] = 50; 
      } 
      update_allpos();
+	 
 	 max_mA[1] = data.VZ1.max_mA; 
 	 max_mA[2] = data.VZ2.max_mA; 
 	 max_mA[3] = data.VZ3.max_mA; 
 	 max_mA[4] = data.VZ4.max_mA; 
+	 
+	 set_pos[1] = data.VZ1.Set_Pos; 
+	 set_pos[2] = data.VZ2.Set_Pos; 
+	 set_pos[3] = data.VZ3.Set_Pos; 
+	 set_pos[4] = data.VZ4.Set_Pos; 
    });
  }
 

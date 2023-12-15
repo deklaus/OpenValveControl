@@ -31,12 +31,13 @@
 
 #define NUM_VZ  4           /* no. of valve zones */
 #define	MSperTICK	100     /* time [ms] to move a motor by 1 % of max. travel */
+#define	TIMEOUThome 120     /* timeout [s] for homeing */
 
 #define VBEMF_NO_DIA    1   /* AD conversion without calibration */ 
 
-//#define TEST_DACOUT_A2  1   /* monitor variables via DAC (@RA2 = /LED) */
-//#define TEST_SETTINGS   1   /* to enable some TESTS during development */
-#define TEST_SETREF       1   /* sets ref position flags for testing */
+//#define TEST_DACOUT_A2    1   /* monitor variables via DAC (@RA2 = /LED) */
+//#define TEST_SETTINGS     1   /* to enable some TESTS during development */
+//#define TEST_SETREF       1   /* sets ref position flags for testing */
 //#define TEST_AUTO_RETURN  1   /* MOVE auto returns to zero position */
 
 

@@ -200,9 +200,16 @@ int setup_GetFloat (const char *path, const char *identifier, float *result)
 int setup_ReadINI (const char *path)
 {
   int error = 0;
+  int ivalue;
 
   error += setup_GetCstring(path, "SSID", ssid, sizeof(ssid));
   error += setup_GetCstring(path, "PSK",  psk, sizeof(psk));
+
+  error += setup_GetCstring(path, "MQTT_HOST", mqtt_host, sizeof(mqtt_host));
+  error += setup_GetCstring(path, "MQTT_PREFIX", mqtt_prefix, sizeof(mqtt_prefix));
+  ivalue = 0; // set default (if not found)
+  error += setup_GetInt(path, "MQTT_PERIOD", &ivalue);
+  if ((ivalue > 10) && (ivalue < 3600)) mqttPeriod = ivalue * 1000;
 
   error += setup_GetCstring(path, "VZ1",  alias1, sizeof(alias1));
   error += setup_GetCstring(path, "VZ2",  alias2, sizeof(alias2));
