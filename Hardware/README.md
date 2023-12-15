@@ -10,7 +10,7 @@
 - [x] A working sample is running using a breadboard.
 - [x] First layout and Gerber files are available.
 - [x] PCB built into housing, first desktop tests have passed.
-- [ ] Testing under real conditions.
+- [x] Testing under real conditions (in progress).
 
 ## Block diagram
 - todo -
