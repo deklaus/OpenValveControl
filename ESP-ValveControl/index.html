@@ -11,7 +11,7 @@
 <script>
  'use strict';
  
- let version = 'v0.3.2';				// version of this Web UI
+ let version = 'v0.3.3';				// version of this Web UI
  let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
  let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
  let max_mA = [0.0, 31.0, 32.0, 33.0, 34.0 ];   // motor current limits [mA]  
@@ -256,10 +256,10 @@
    <h3>OpenValveControl</h3>
    <table style='width:100%; text-align:left;'>
      <tr>
+       <td style='width:25%; padding-left:10px;'><b>Temp:</b></td>
+       <td style='width:25%;'><tempC>0.0</tempC> °C</td>
        <td style='width:25%; padding-left:10px;'><b>Imot:</b></td>
        <td><mAmps>0.0</mAmps> mA</td>
-       <td style='width:25%; padding-left:10px;'><b>Temp:</b></td>
-       <td><tempC>0.0</tempC> °C</td>
      </tr>  
    </table>
   
