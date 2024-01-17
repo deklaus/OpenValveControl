@@ -126,8 +126,7 @@ daq_vbemf (uint8_t vz)
             chs = 0b00000000;   // VBEMF4 Input = RA0/ANA0
             break;
         default:
-//            chs = 0b00000001;   // VBEMF4 Input = RA1/ANA1
-            chs = 0b00010000;   // VBEMF Input = RC0/ANC0                      (TEST)
+            chs = 0b00000001;   // VBEMF4 Input = RA1/ANA1
             break;
     }
 
