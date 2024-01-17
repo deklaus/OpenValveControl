@@ -85,11 +85,14 @@ function VZselected(sel)
   document.getElementById('set_pos').value = set_pos[sel];
 }
 ```
-Wait - this is only the initial value displayed. But how does a new input value reach the server,
-resp. how does the ESP get the input? In fact, this is not necessary for this application! <br>
-Only if an action is triggered, e.g. when the button 'Move to position' gets pressed, the momentary *value* of the 
-set position is read from the form using ``` document.getElementById('set_pos').value ``` and sent to the 
-server together with the move command and other required parameters. See next paragraph.
+But wait - this is only the initial value displayed. But how does a new input value is stored and reach 
+the server, resp. how does the ESP get the input?<br>
+When in our application an action is triggered, e.g. when the button 'Move VZ' gets pressed, an assigned
+JavaScript function gets called. This function reads the current *value* of the form using 
+``` document.getElementById('set_pos').value ``` and stores the value in the JavaScript variable 
+set_pos[sel]. Finally, a Xml Http Request(XHR) is sent to the server, initiating the move command and 
+transfering all required parameters. 
+See next paragraph.
 
 #### Activation of requests
 In our application we want to initiate a request by pressing a button, e.g. to run the valve to a desired 
