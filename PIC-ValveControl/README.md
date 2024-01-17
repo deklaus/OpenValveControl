@@ -45,10 +45,10 @@ Process commands and queries (?) from ESP:
 
 ### interrupt.c
 Configures the Vectored Interrupt Manager and contains the corresponding 
-interrups service routines (ISR).
+interrupt service routines (ISR).
   - IOC  Interrupt On Change, high priority (see user manual)
-    - on any rising  edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read motor current.
-    - on any falling edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read Back EMF.
+    - on any rising  edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read motor current
+    - on any falling edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read Back EMF
   - TMR0 (1 ms system clock)
   - U1RX (UART1 RX data from ESP)
 
@@ -57,9 +57,9 @@ Basic analog to digital converter functions.
 
 ### daq.c
 Implements data acquisition functions:
-- Temperature estimation (of PIC µC)
+- Temperature estimation of PIC µC
 - Voltage VDD of PIC µC
-- Read back EMF voltage of channel vz, exec time ~ 100 µs.
+- Read back EMF voltage of channel vz, exec time ~ 100 µs
 
 ### i2c.c
 Read/write functions for the INA219 I2C Current Monitor.<br> 
