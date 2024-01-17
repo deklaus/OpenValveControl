@@ -57,7 +57,7 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
 This file contains the webserver part of the ESP software. It implements all the callbacks (called by the *client*). 
 The User Interface by itself is a HTML Page (index.html), which is stored in *LittleFS* and can be invoked by the client 
 on demand.<br>
-The corresponding callback ``` bool handleFile(String &&path) ``` can be found in LittleFS.ino.
+The corresponding callback ``` bool handleFile(String &&path) ``` can be found in **LittleFS.ino**.
 
 The basic structure of an HTML web page is assumed to be known. 
 The essential features of a **web server** are:
