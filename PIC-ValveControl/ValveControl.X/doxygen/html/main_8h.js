@@ -12,7 +12,7 @@ var main_8h =
     [ "LED", "main_8h.html#aeb7a7ba1ab7e0406f1b5ab36d579f585", null ],
     [ "MSperTICK", "main_8h.html#ac080909f17a21bc4c2df1d2294ec72ac", null ],
     [ "NUM_VZ", "main_8h.html#aaf89414145badc644588adef8825582c", null ],
-    [ "TEST_SETREF", "main_8h.html#a3a3ea1d5ce15b95611ad768bb2eede2b", null ],
+    [ "TIMEOUThome", "main_8h.html#ac9d3a84d37d7363c8490212e57691ccb", null ],
     [ "VBEMF_NO_DIA", "main_8h.html#a52af2ac0e078f9476e1a7ac144bccde1", null ],
     [ "Errs", "main_8h.html#a3af9312956646d1faf4f68495774345e", [
       [ "E_ADC_TIMEOUT", "main_8h.html#a3af9312956646d1faf4f68495774345ea816f5bc2244e70a88e82ef5bf5b95dde", null ],

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.6</span>
+   &#160;<span id="projectnumber">v0.6.1</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -216,31 +216,30 @@ $(document).ready(function(){initNavTree('daq_8c_source.html',''); initResizable
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            chs = 0b00000000;   <span class="comment">// VBEMF4 Input = RA0/ANA0</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">//            chs = 0b00000001;   // VBEMF4 Input = RA1/ANA1</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            chs = 0b00010000;   <span class="comment">// VBEMF Input = RC0/ANC0                      (TEST)</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="adc_8c.html#af31ffc86c884ebc4f68f9e215df75257">adc_init</a>(chs);     <span class="comment">// ADC Positive Input = FVR1 (ADC module), FVR: 2.048 V</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="adc_8c.html#a0eec9aec3fb357640286812e47056352">adc_start</a>(chs);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf">adc_wait</a>() &lt; 0) vbemf = <a class="code" href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a>;    <span class="comment">// if timeout: keep previous value</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">else</span>                vbemf = ADRES;      <span class="comment">// Basic mode</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">// read twice and average</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="adc_8c.html#a0eec9aec3fb357640286812e47056352">adc_start</a>(chs);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf">adc_wait</a>() &lt; 0) vbemf += <a class="code" href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a>;    <span class="comment">// if timeout: keep previous value</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">else</span>    vbemf += ADRES;    </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    vbemf &gt;&gt;= 1;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> (vbemf);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;} <span class="comment">// daq_vbemf ()</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment"> End of File</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            chs = 0b00000001;   <span class="comment">// VBEMF4 Input = RA1/ANA1</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="adc_8c.html#af31ffc86c884ebc4f68f9e215df75257">adc_init</a>(chs);     <span class="comment">// ADC Positive Input = FVR1 (ADC module), FVR: 2.048 V</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="adc_8c.html#a0eec9aec3fb357640286812e47056352">adc_start</a>(chs);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf">adc_wait</a>() &lt; 0) vbemf = <a class="code" href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a>;    <span class="comment">// if timeout: keep previous value</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">else</span>                vbemf = ADRES;      <span class="comment">// Basic mode</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="comment">// read twice and average</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="adc_8c.html#a0eec9aec3fb357640286812e47056352">adc_start</a>(chs);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf">adc_wait</a>() &lt; 0) vbemf += <a class="code" href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a>;    <span class="comment">// if timeout: keep previous value</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">else</span>    vbemf += ADRES;    </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    vbemf &gt;&gt;= 1;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">return</span> (vbemf);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;} <span class="comment">// daq_vbemf ()</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"> End of File</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment"> */</span></div>
 <div class="ttc" id="aadc_8c_html_a0eec9aec3fb357640286812e47056352"><div class="ttname"><a href="adc_8c.html#a0eec9aec3fb357640286812e47056352">adc_start</a></div><div class="ttdeci">void adc_start(uint8_t chs)</div><div class="ttdoc">Starts ADC analog to digital conversion.</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00057">adc.c:57</a></div></div>
 <div class="ttc" id="aadc_8c_html_a4f19f86e38451c97f74ada5640d3fdaf"><div class="ttname"><a href="adc_8c.html#a4f19f86e38451c97f74ada5640d3fdaf">adc_wait</a></div><div class="ttdeci">int8_t adc_wait(void)</div><div class="ttdoc">Waits for completion of the AD conversion.  The 10 bit positive raw AD result may be read after funct...</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00074">adc.c:74</a></div></div>
 <div class="ttc" id="aadc_8c_html_af31ffc86c884ebc4f68f9e215df75257"><div class="ttname"><a href="adc_8c.html#af31ffc86c884ebc4f68f9e215df75257">adc_init</a></div><div class="ttdeci">void adc_init(uint8_t chs)</div><div class="ttdoc">Initializes the 12-bit A/D Converter (right adjusted result).</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00028">adc.c:28</a></div></div>
@@ -249,8 +248,8 @@ $(document).ready(function(){initNavTree('daq_8c_source.html',''); initResizable
 <div class="ttc" id="adaq_8c_html_a9e0c5d6f12ac99b1c92e71433a241f6f"><div class="ttname"><a href="daq_8c.html#a9e0c5d6f12ac99b1c92e71433a241f6f">daq_vdd</a></div><div class="ttdeci">uint16_t daq_vdd(void)</div><div class="ttdoc">Measures the voltage VDD of the controller  With ADC_VREF+ = VDD and ADC_Positive_Input = FVR1 we get...</div><div class="ttdef"><b>Definition:</b> <a href="daq_8c_source.html#l00075">daq.c:75</a></div></div>
 <div class="ttc" id="adaq_8c_html_aa985f9a3df7298b68e3e6b5580124875"><div class="ttname"><a href="daq_8c.html#aa985f9a3df7298b68e3e6b5580124875">daq_temperature</a></div><div class="ttdeci">int16_t daq_temperature(void)</div><div class="ttdoc">Returns an uncalibrated temperature estimation.  Uses the temperature indicator (TI) of the PIC µC....</div><div class="ttdef"><b>Definition:</b> <a href="daq_8c_source.html#l00026">daq.c:26</a></div></div>
 <div class="ttc" id="adaq_8h_html"><div class="ttname"><a href="daq_8h.html">daq.h</a></div><div class="ttdoc">Prototypes and definitions for module daq.c (project &quot;ValveControl&quot;)</div></div>
-<div class="ttc" id="amain_8c_html_a1c7ada21f84899fd75806539c41c8d1a"><div class="ttname"><a href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a></div><div class="ttdeci">volatile uint16_t g_vbemf</div><div class="ttdoc">actual Back EMK (ADC raw)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00094">main.c:94</a></div></div>
-<div class="ttc" id="amain_8c_html_a2ddfafef81dbae12a5088a0ef08625b7"><div class="ttname"><a href="main_8c.html#a2ddfafef81dbae12a5088a0ef08625b7">FVRA2X</a></div><div class="ttdeci">uint16_t FVRA2X</div><div class="ttdoc">DIA: @ADC FVR1 voltage for 2x setting (in mV)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00065">main.c:65</a></div></div>
+<div class="ttc" id="amain_8c_html_a1c7ada21f84899fd75806539c41c8d1a"><div class="ttname"><a href="main_8c.html#a1c7ada21f84899fd75806539c41c8d1a">g_vbemf</a></div><div class="ttdeci">volatile uint16_t g_vbemf</div><div class="ttdoc">actual Back EMK (ADC raw)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00096">main.c:96</a></div></div>
+<div class="ttc" id="amain_8c_html_a2ddfafef81dbae12a5088a0ef08625b7"><div class="ttname"><a href="main_8c.html#a2ddfafef81dbae12a5088a0ef08625b7">FVRA2X</a></div><div class="ttdeci">uint16_t FVRA2X</div><div class="ttdoc">DIA: @ADC FVR1 voltage for 2x setting (in mV)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00067">main.c:67</a></div></div>
 <div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div><div class="ttdoc">Declarations for Project &quot;ValveControl&quot;.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
