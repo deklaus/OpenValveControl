@@ -54,49 +54,55 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
   - actual drive current 
 
 ## webUI.ino
-This file contains the webserver part of the ESP software. Actually it constructs the HTML Page (called by the *client*) 
-as String, but in the future it shall be placed into *LittleFS*. The basic structure of an html web page is assumed to be known. 
+This file contains the webserver part of the ESP software. It implements all the callbacks (called by the *client*). 
+The User Interface by itself is a HTML Page (index.html), which is stored in *LittleFS* and can be invoked by the client 
+on demand.<br>
+The corresponding callback ``` bool handleFile(String &&path) ``` can be found in **LittleFS.ino**.
+
+The basic structure of an HTML web page is assumed to be known. 
 The essential features of a **web server** are:
 - Input of parameters (values)
 - Activation of requests
 - Display of data (measured values), if possible in real time.
 
 #### Input of parameters
-Input parameters can be realized in HTML as <forms>.
-If the page is reloaded, we currently generate in the module handleRoot() the HTML code 
-with the value to be displayed, in the example the current target position. <br>
+Input parameters can be implemented in HTML as \<form\>.<br>
+An initial value could be assigned with the expression ``` value='xxx' ```.
+
 Example:
 ``` html
 <form> 
-	<p class='label'>Sollposition [%] 
+	<p class='label'>Set Position [%] 
 	<input type='text' id='set_pos' value='35'>
 	</p>
 </form>
 ```
-However, this is impractical if the page is to be loaded from an ESP file system, 
-then you would have to search the HTML code for parameters and replace the values.
-But if you give the input element an ID, e.g. ```id='set_pos' ```, then you can change 
-the *value* via JavaScript function without reloading the page. <br>
-Example:
+However, the value should match the current target position. If we select a different valve 
+zone, we want to replace the value with the setpoint of the selected valve zone.
+This can be achieved by giving the input element an ID, e.g. ```id='set_pos' ```, then we 
+can change the *value* on the fly via a JavaScript function.
 
+Example:
 ``` javascript
 function VZselected(sel) 
 {
   document.getElementById('set_pos').value = set_pos[sel];
 }
 ```
-Wait - this is only the initial value displayed. But how does a new input value reach the server,
-resp. how does the ESP get the input? In fact, this is not necessary for this application! <br>
-Only if an action is triggered, e.g. when the button 'Move to position' gets pressed, the momentary *value* of the 
-set position is read from the form using ``` document.getElementById('set_pos').value ``` and sent to the 
-server together with the move command and other required parameters. See next paragraph.
+But wait - this is only the initial value displayed. But how does a new input value is stored and reach 
+the server, resp. how does the ESP get the input?<br>
+When in our application an action is triggered, e.g. when the button 'Move VZ' gets pressed, an assigned
+JavaScript function gets called. This function reads the current *value* of the form using 
+``` document.getElementById('set_pos').value ``` and stores it in the JavaScript variable 
+``` set_pos[sel] ```. Finally, a **XML Http Request (XHR)** is sent to the server, initiating the move command and 
+transfering all required parameters (see next paragraph).
 
 #### Activation of requests
 In our application we want to initiate a request by pressing a button, e.g. to run the valve to a desired 
 position, after the parameters (valve index, set position and max. current) have been configured.
-When the button gets pressed, we can call a javascript function, which handles the necessary actions.
+When the button gets pressed, we can call a JavaScript function, which handles the necessary actions.
 To achieve this, we must pass the name of the function as argument of the *onclick* item in the definition of *button*: <br>
-``` <button class='btn' name='btn_move' onclick='f_move();'> Position anfahren</button> ```
+``` <button class='btn' name='btn_move' onclick='f_move();'> Move VZ</button> ```
 
 Example:
 ``` javascript
@@ -137,7 +143,7 @@ function f_move() {
 #### Display of measured values
 
 Slightly different to the request activation, we can use **fetch** to dynamically request data from 
-the web server. For this purpose, we define a javascript function **f_status()**. See the comments for
+the web server. For this purpose, we define a JavaScript function **f_status()**. See the comments for
 an explanation of how it works:
 
 ``` javascript
@@ -156,7 +162,7 @@ function f_status() {
     mAmps = data.mAmps.valueOf();
     document.querySelector('mAmps').innerText = data.mAmps;
 
-    // parse position data and set the global javascript variables 
+    // parse position data and set the global JavaScript variables 
     position[1] = data.VZ1.Position;
     position[2] = data.VZ2.Position;
     position[3] = data.VZ3.Position;
@@ -166,7 +172,7 @@ function f_status() {
 }
 ```
 
-To periodically update the measured values we can use the  javascript method **setInterval**:
+To periodically update the measured values we can use the JavaScript method **setInterval**:
 ``` setInterval(f_status, 1500); ```
 
 
