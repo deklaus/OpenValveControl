@@ -77,8 +77,8 @@ Example:
 	</p>
 </form>
 ```
-However, the value should match the current target position. When we switch to a different
-valve zone, we want to replace the value by the set position of the selected valve zone.
+However, the value should match the current target position. If we select a different valve 
+zone, we want to replace the value with the setpoint of the selected valve zone.
 This can be achieved by giving the input element an ID, e.g. ```id='set_pos' ```, then we 
 can change the *value* on the fly via a JavaScript function.
 
