@@ -89,8 +89,8 @@ But wait - this is only the initial value displayed. But how does a new input va
 the server, resp. how does the ESP get the input?<br>
 When in our application an action is triggered, e.g. when the button 'Move VZ' gets pressed, an assigned
 JavaScript function gets called. This function reads the current *value* of the form using 
-``` document.getElementById('set_pos').value ``` and stores the value in the JavaScript variable 
-set_pos[sel]. Finally, a Xml Http Request(XHR) is sent to the server, initiating the move command and 
+``` document.getElementById('set_pos').value ``` and stores it in the JavaScript variable 
+set_pos[sel]. Finally, a Xml Http Request (XHR) is sent to the server, initiating the move command and 
 transfering all required parameters. 
 See next paragraph.
 
