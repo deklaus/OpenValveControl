@@ -62,21 +62,21 @@ The essential features of a **web server** are:
 - Display of data (measured values), if possible in real time.
 
 #### Input of parameters
-Input parameters can be realized in HTML as <forms>.
-If the page is reloaded, we currently generate in the module handleRoot() the HTML code 
-with the value to be displayed, in the example the current target position. <br>
+Input parameters can be implemented in HTML as \<form\>.
+An initial value could be assigned with the expression ```value='xxx'```.
+<br>
 Example:
 ``` html
 <form> 
-	<p class='label'>Sollposition [%] 
+	<p class='label'>Set Position [%] 
 	<input type='text' id='set_pos' value='35'>
 	</p>
 </form>
 ```
-However, this is impractical if the page is to be loaded from an ESP file system, 
-then you would have to search the HTML code for parameters and replace the values.
-But if you give the input element an ID, e.g. ```id='set_pos' ```, then you can change 
-the *value* via JavaScript function without reloading the page. <br>
+However, the value should match the current target position. When we switch to a different
+valve zone, we want to replace the value by the set position of the selected valve zone.
+This can be achieved by giving the input element an ID, e.g. ```id='set_pos' ```, then we 
+can change the *value* on the fly via a JavaScript function. <br>
 Example:
 
 ``` javascript
