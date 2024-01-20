@@ -37,9 +37,8 @@
 
 //#define TEST_DACOUT_A2    1   /* monitor variables via DAC (@RA2 = /LED) */
 //#define TEST_SETTINGS     1   /* to enable some TESTS during development */
-//#define TEST_SETREF       1   /* sets ref position flags for testing */
+#define TEST_SETREF       1   /* sets ref position flags for testing */
 //#define TEST_AUTO_RETURN  1   /* MOVE auto returns to zero position */
-
 
 typedef union {     // 'low Byte', weak errors: mission may be continued.
     struct {

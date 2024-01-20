@@ -14,7 +14,7 @@ var init_8h =
     [ "init_oscillator", "init_8h.html#aaf989ddfec6768cedbe874d23c7620a0", null ],
     [ "init_pin_manager", "init_8h.html#adefd0cab3848760b1b320f51b027dc53", null ],
     [ "init_pmd", "init_8h.html#a03ed465532be94fb795c18cffac75d20", null ],
-    [ "init_pwm", "init_8h.html#a3b053b746b94dc3174b4c7c5c6370562", null ],
+    [ "init_pwm1_16bit", "init_8h.html#ac8169027c97a328e3c6f46674bc691d1", null ],
     [ "init_system", "init_8h.html#a348d23d5899ce59d18975284dfb0afc0", null ],
     [ "init_timer0", "init_8h.html#a988043e604bdc1db4fa9ac2c342a88d0", null ],
     [ "init_uart1", "init_8h.html#aef3d97ac8981a20d0e6ff566bc7e4e9b", null ]

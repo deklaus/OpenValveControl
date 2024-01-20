@@ -6,7 +6,7 @@
 <area shape="rect" id="node5" href="$init_8c.html#aaf989ddfec6768cedbe874d23c7620a0" title="Initialize sysclock as 16 MHz from internal HFINTOSC." alt="" coords="155,157,253,184"/>
 <area shape="rect" id="node6" href="$init_8c.html#adefd0cab3848760b1b320f51b027dc53" title="Initializes all ports as input/output, analog/digital, open drain/push pull, and assign peripheral fu..." alt="" coords="144,208,264,235"/>
 <area shape="rect" id="node7" href="$init_8c.html#a03ed465532be94fb795c18cffac75d20" title="Init the PMD (Peripheral Module Disable)." alt="" coords="169,259,239,285"/>
-<area shape="rect" id="node8" href="$init_8c.html#a3b053b746b94dc3174b4c7c5c6370562" title="Init the PWM (125 Hz)." alt="" coords="167,309,241,336"/>
+<area shape="rect" id="node8" href="$init_8c.html#ac8169027c97a328e3c6f46674bc691d1" title=" " alt="" coords="146,309,262,336"/>
 <area shape="rect" id="node9" href="$init_8c.html#a988043e604bdc1db4fa9ac2c342a88d0" title="Initializes Timer 0 to generate an interrupt every 1 ms. The TMR0 ISR increments the global variable ..." alt="" coords="163,360,245,387"/>
 <area shape="rect" id="node10" href="$init_8c.html#aef3d97ac8981a20d0e6ff566bc7e4e9b" title="Initializes UART1 for communication with the ESP8266 D1&#45;mini." alt="" coords="167,411,241,437"/>
 <area shape="rect" id="node11" href="$interrupt_8c.html#a6cdc2e273028179ed64e6f558d79015c" title="Vectored Interrupt Manager. &#160;&#160;The interrupt sources are placed to high and low priorities:" alt="" coords="143,461,265,488"/>

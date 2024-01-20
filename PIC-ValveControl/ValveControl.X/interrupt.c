@@ -5,6 +5,13 @@
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /*  ChangeLog:
+ * 2024-01-xx v0.7
+ * Randomly we missed some ESP commands due to overflow, due to the delays
+ * in the IOC ISR (as expected). Now trying a solution without delays in ISR:
+ * - IOC (reading motor current and BEMF) replaced by TMR2 and TMR4 INTs.
+ * - TMR2 was used to generate PWM using CCP -> substituded by PWM module.
+ * - TMR2 now generates INT some delay after PWM rises H -> ISR reads current.
+ * - TMR4 now generates INT some delay after PWM goes L -> ISR reads BEMF.
  * 2023-10-17 V0.1
  * - Initial issue
  */
@@ -46,7 +53,8 @@ uint16_t emk[128];
  High Priority Interrupt |  Low Priority Interrupt \n
  Vector |     Source     |  Vector  |    Source   \n
  -------+----------------+----------+---------------------------------
- 0x07   | IOC            |   0x1B   |  TMR2 (not used)
+ 0x27   | PWM1 Parameter |   0x07   |  IOC  (interrupt on change)
+        |                |   0x1B   |  TMR2 (hogged for PWM)
         |                |   0x1C   |  TMR1 (wake-up from sleep)
         |                |   0x1E   |  CCP1 (Capture/Compare)
         |                |   0x1F   |  TMR0 (1 ms system clock)
@@ -65,13 +73,14 @@ void interrupt_initialize (void)
     IVTBASEL = 0x08;
     
     // Assign peripheral interrupt priorities (default after reset varies!!!)
-    IPR0bits.OSFIP = 1;     // OSFI - high priority (#0x02) default
-    IPR0bits.IOCIP = 1;     // IOCI - high priority (#0x07) default
+    IPR0bits.OSFIP = 1;     // OSFI  - high priority (#0x02) default
+    IPR4bits.PWM1IP = 1;    // PWM1I - high priority (#0x27)
 
     /* more than one interrupt with the same user specified priority level 
      * uses the natural order priority scheme, going from high-to-low with 
      * increasing vector numbers, with 0 being the highest.
      */
+    IPR0bits.IOCIP  = 0;    // IOCI - low priority (#0x07)
     IPR3bits.TMR2IP = 0;    // TMR2 - low priority (#0x1B)
     IPR3bits.TMR1IP = 0;    // TMR1 - low priority (#0x1C)
     IPR3bits.CCP1IP = 0;    // CCP1 - low priority (#0x1E)
@@ -93,33 +102,25 @@ default_isr (void)
 } // default_isr (void)
 
 
-
 static uint8_t ns;
 
-/** @brief  Handles all IOC events. \n
- *  We use several sources for IOC interrupt:
- *  - on any rising  edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read current.
- *  - on any falling edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read Back EMF.
+
+/** @brief  Handles the PWM1 parameter interrupts. \n
+ *  We use two sources of PWM1 interrupts:
+ *  - on the right flank of slice2 (after settling of motor current): read Imot.
+ *  - on the right flank of slice1 (H-bridge turned off): read Back EMF.
  */
-void __interrupt (irq(IRQ_IOC), base(IVT1_BASE_ADDRESS), high_priority)
-IOC_isr (void)
+void __interrupt (irq(IRQ_PWM1), base(IVT1_BASE_ADDRESS), high_priority)
+PWM1_isr (void)
 {
     int16_t     mAmps;
     uint16_t    uk;
     int8_t      f1a, f1b;
             
-    // find cause of interrupt: any rising edge?
-    if (   (PORTA & 0x30)                       // RA5/4
-        || (PORTC & 0x30)                       // RC5/4    
-        || (PORTC & 0x48)                       // RC6/3    
-        || (PORTCbits.RC7 || PORTBbits.RB7))    // RC7/RB7
+    // cause of interrupt: slice 1 parameter 2?
+    if (PWM1GIRbits.S1P2IF)     // ca. 2 ms after H-bridge ON
     {
-        /** Must wait until current has settled,
-         *  reading right after PWM ON gives results much too low! 
-         *  @todo
-         *  - Preliminary we stall and waste 2 (to 3) ms with delay.
-         *    Just trigger a second interrupt (timer) after that time. */
-        __delay_ms(2);
+        PWM1GIRbits.S1P2IF = 0; // clear interrupt flag
         
         ina219_reg(1);          // exec time ca. 49 µs (@SCL 400 kHz)
         mAmps  = ina219_read(); // exec time ca. 72 µs (@SCL 400 kHz)
@@ -129,13 +130,21 @@ IOC_isr (void)
 #ifdef TEST_SETTINGS  
         DAC1DATL = (uint8_t) (g_mAx10 >> 2);    // current monitor (16 -> 8 bit)
 #endif
-    }
+    } // slice 1 parameter 2
     
-    else    // if no rising edge, interrupt was caused by falling edge
+    // cause of interrupt: slice 1 parameter 1?
+    if (PWM1GIRbits.S1P1IF)     // immediately after H-bridge OFF
     {
-        __delay_us(500);     // allow vbemf to stabilize
+        PWM1GIRbits.S1P1IF = 0; // clear interrupt flag
+        
+        __delay_us(400);     // allow vbemf to stabilize
+        /** @todo  At 4800 Bd one char is received every 260 µs. This delay can 
+         * still cause overrun in the UART! We could spend a TMR to add delay.
+         * We will try this when researching the VBEMF problem...
+         */
+        
         // LP Filter, see also microchip AN2749
-        uk = daq_vbemf(g_vz);
+        uk = daq_vbemf(g_vz);   // Exec time ca. 100 µs
         g_vbemf += ((int16_t)uk - (int16_t)g_vbemf) >> KLPASS;
         // g_vbemf = uk;
 
@@ -178,8 +187,17 @@ IOC_isr (void)
         // DAC1DATL = (uint8_t) (g_vbemf >> 4);    
         /* see also: PIC datasheet 40.5.6 Low-Pass Filter Mode, Burst Average Mode */
         
-    } // falling edge
+    } // slice 1 parameter 1
     
+} // PWM1_isr ()
+
+
+/** @brief  Handles all IOC events. \n
+ *  We currently don't use any IOC interrupt. Just reset the flags.
+ */
+void __interrupt (irq(IRQ_IOC), base(IVT1_BASE_ADDRESS), low_priority)
+IOC_isr (void)
+{
     IOCAF = IOCBF = IOCCF = 0;  // clear all IOC Flags    
 
 } // IOC_isr()
