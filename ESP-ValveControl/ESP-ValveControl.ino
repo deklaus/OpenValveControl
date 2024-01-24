@@ -38,6 +38,20 @@
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
  * Change Log:
+ * 2024-01-24 v0.7
+ * - Added 'MQTT publish' with status information (motor current, temperature, positions, etc.)
+ * - Added WiFI signal strength to "Info"
+ *   omitted double quotes around integers and floats in JSON output.
+ * - added script customize.js:
+ *    This script must be uploaded into the ESP filesystem with the given name. 
+ *    The function CustomizeLabels() optionally replaces some default headers 
+ *    and labels by your own texts, which can be changed in the script.
+ *    The script is read at the end of <head>, but the function must 
+ *    only be called once at the end of <body>, when the complete HTML document 
+ *    has been read by the browser.
+ *    The main advantage is that your room descriptors are retained even if the 
+ *    original index.html is updated.
+ *    The script also can be extended by your own instructions.
  * 2023-12-01 v0.6.1
  * - Status now reflects status from PIC (set_pos[], max_mA[] and refset[]).
  * 2023-11-15 v0.6
@@ -165,6 +179,7 @@ char  PICversion[32] = "NN";    // Version of PIC-Firmware
 // The credential aof your routers WiFi can be customized in "ovc.ini" (uploaded into LittleFS)
 char  ssid[64] = "OVC-access-point";  // SSID (access point)
 char  psk[64]  = "OVC-password";      // Password (access point)
+long  rssi;                           // signal strength in dBm
 
 // MQTT
 char  mqtt_host[64] = "";   // IP address of mqtt host (broker)
@@ -552,10 +567,10 @@ void loop ()
  *  { 
  *  "mAmps": "0.1",
  *  "tempC": "24.4",
- *  "VZ1": { "Position": 10, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" },
- *  "VZ2": { "Position": 20, "Set_Pos": 0, "Ref_Set": 0, "max_mA": "50.0" },
- *  "VZ3": { "Position": 30, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" },
- *  "VZ4": { "Position": 40, "Set_Pos": 0, "Ref_Set": 1, "max_mA": "50.0" }
+ *  "VZ1": { "Position": 10, "Set_Pos": 0, "Ref_Set": 1, "max_mA": 50.0 },
+ *  "VZ2": { "Position": 20, "Set_Pos": 0, "Ref_Set": 0, "max_mA": 50.0 },
+ *  "VZ3": { "Position": 30, "Set_Pos": 0, "Ref_Set": 1, "max_mA": 50.0 },
+ *  "VZ4": { "Position": 40, "Set_Pos": 0, "Ref_Set": 1, "max_mA": 50.0 }
  *  }
  *  @param  char *dest[len]  Result char array with minimum size len
  *  @note Adjust <capacity> when changes are required (see https://arduinojson.org/v6/assistant/).

@@ -163,13 +163,16 @@ void webUI_info ()
   String htmlPage;
   htmlPage.reserve(128);  // prevent ram fragmentation
 
+  rssi = WiFi.RSSI();     // read WiFi signal strength
+
   htmlPage = F(
-  "{ \n"
-  "\"ESP\": \"" );  htmlPage += ESPversion; htmlPage += F("\",\n"
-  "\"PIC\": \"" );  htmlPage += PICversion; htmlPage += F("\",\n"
-  "\"dTemp\": \""); htmlPage += dTemp;      htmlPage += F("\",\n"
-  "\"SSID\": \"");  htmlPage += ssid;       htmlPage += F("\"\n" // no comma at end
-  "}\n");
+    "{ \n"
+    "\"ESP\": \"" );  htmlPage += ESPversion; htmlPage += F("\",\n"
+    "\"PIC\": \"" );  htmlPage += PICversion; htmlPage += F("\",\n"
+    "\"SSID\": \"");  htmlPage += ssid;       htmlPage += F("\",\n"
+    "\"dTemp\": \""); htmlPage += dTemp;      htmlPage += F("\",\n"
+    "\"RSSI\": \"");  htmlPage += rssi;       htmlPage += F(" dBm\"\n" // no comma at end
+    "}\n");
 
     //server.sendHeader("Access-Control-Allow-Origin","*"); 
     server.send(200, "text/plain", htmlPage);

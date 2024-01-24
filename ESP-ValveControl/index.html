@@ -11,16 +11,14 @@
 <script>
  'use strict';
  
- let version = 'v0.3.3';				// version of this Web UI
+ let version = 'v0.4';					// version of this Web UI
  let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
  let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
- let max_mA = [0.0, 31.0, 32.0, 33.0, 34.0 ];   // motor current limits [mA]  
+ let max_mA = [0.0, 41.0, 42.0, 43.0, 44.0 ];   // motor current limits [mA]  
 
-/*
- setInterval(f_status, 1500); 
- f_status();
- f_info();
-*/
+ function get_floor() {
+  document.write("Erdgeschoss");
+ }
 
  function get_vz() {   // returns the 'value' of the selected checkbox: [1..4]
    let inputs = document.getElementsByName('vz');
@@ -44,7 +42,7 @@
    elem.setAttribute('style', 'width:' + position[sel].toString(10) + '%;background-color:' + color + ';'); 
  }
 
- function update_allpos() {	  // update aller Positionen
+ function update_allpos() {	  // update all valve positions
    for (let i = 1; i <= 4; i++) {
      update_pos(i);
    }	
@@ -130,11 +128,11 @@
      } 
      update_allpos();
 	 
-	 max_mA[1] = data.VZ1.max_mA; 
-	 max_mA[2] = data.VZ2.max_mA; 
-	 max_mA[3] = data.VZ3.max_mA; 
-	 max_mA[4] = data.VZ4.max_mA; 
-	 
+	 max_mA[1] = data.VZ1.max_mA;
+	 max_mA[2] = data.VZ2.max_mA;
+	 max_mA[3] = data.VZ3.max_mA;
+	 max_mA[4] = data.VZ4.max_mA;
+	
 	 set_pos[1] = data.VZ1.Set_Pos; 
 	 set_pos[2] = data.VZ2.Set_Pos; 
 	 set_pos[3] = data.VZ3.Set_Pos; 
@@ -177,7 +175,7 @@
    width:360px;
    padding:10px;
  }
- /* Ventil-Positionen */
+ /* Valve Positions */
  div.table {
    width:360px;
    font-size:0.9rem;
@@ -188,7 +186,7 @@
  }
  div.td1 { 
    text-align:left;
-   width:20%;
+   width:30%;
  }
  div.td2 { 
    width:60%;
@@ -217,7 +215,6 @@
    width:100%;
    height:2rem;
    font-size:0.9rem;
-   //margin-top:1rem;
  }
  .btn:hover { 
    background-color:#147; 
@@ -242,18 +239,26 @@
  input[id=ssid],input[id=psk] {
    width:190px;
  }
- form, p[id=status] {
+ form {
    text-align:left;
    font-size:0.9rem;
  }
+ p[id=status] {
+   text-align:left;
+   font-size:0.8rem;
+}
+
 </style>
+<! Optional script to replace headers and labels by your own texts. The function customizeLabels()
+   must only be called once at the end of [body], when the complete HTML document has been read.>
+<script src="customize.js"></script>
 </head>
 <body>
  <div class='page'>
    <noscript>Oops! Apparently JavaScript is not active!<br>OpenValveControl requires JavaScript.<br>Please check your browser settings!<br>
    </noscript>
-   
-   <h3>OpenValveControl</h3>
+
+   <h2 id='header1'>OpenValveControl</h2>
    <table style='width:100%; text-align:left;'>
      <tr>
        <td style='width:25%; padding-left:10px;'><b>Temp:</b></td>
@@ -263,27 +268,27 @@
      </tr>  
    </table>
   
-   <h2>Valve Positions</h2>
+   <h3 id='header2'>Valve Positions</h3>
    <div class='table'>
      <div class='tr'>
        <div class='td1'><input type='radio' name='vz' id='radio1' value='1' onclick='VZselected(1)' checked> <label for='radio1'>VZ1</label></div>
-       <div class='td2'><div class='hbar' id='VZ1'; style='width:0%;'></div></div>
-       <div class='td3'><vz1>0 %</vz1></div>
+       <div class='td2'><div class='hbar' id='VZ1' style='width:50%;'></div></div>
+       <div class='td3'><vz1>50 %</vz1></div>
      </div>
      <div class='tr'>
        <div class='td1'><input type='radio' name='vz' id='radio2' value='2' onclick='VZselected(2)'> <label for='radio2'>VZ2</label></div>
-       <div class='td2'><div class='hbar' id='VZ2'; style='width:0%;'></div></div>
-       <div class='td3'><vz2>0 %</vz2></div>
+       <div class='td2'><div class='hbar' id='VZ2'; style='width:50%;'></div></div>
+       <div class='td3'><vz2>50 %</vz2></div>
      </div>	
      <div class='tr'>
        <div class='td1'><input type='radio' name='vz' id='radio3' value='3' onclick='VZselected(3)'> <label for='radio3'>VZ3</label></div>
-       <div class='td2'><div class='hbar' id='VZ3'; style='width:0%;'></div></div>
-       <div class='td3'><vz3>0 %</vz3></div>
+       <div class='td2'><div class='hbar' id='VZ3'; style='width:50%;'></div></div>
+       <div class='td3'><vz3>50 %</vz3></div>
      </div>
      <div class='tr'>
        <div class='td1'><input type='radio' name='vz' id='radio4' value='4' onclick='VZselected(4)'> <label for='radio4'>VZ4</label></div>
-       <div class='td2'><div class='hbar' id='VZ4'; style='width:0%;'></div></div>
-       <div class='td3'><vz4>0 %</vz4></div>
+       <div class='td2'><div class='hbar' id='VZ4'; style='width:50%;'></div></div>
+       <div class='td3'><vz4>50 %</vz4></div>
      </div>
    </div>
   	
@@ -310,10 +315,12 @@
   
    <p><button class='btn' name='btn_save'   onclick='f_save();' title='Save WiFi credentials in /ovc.ini, then reboot'>
 		Save & Reboot</button></p>
-   <p id='status'> </p>
+   <p id='status'>  </p>
   
    <script>
-     'use strict';
+     'use strict'; 	 
+	 CustomizeLabels();	/* replace default texts by custom labels given in customize.js*/
+	 
      let elem = document.getElementsByName('vz');
      for (let i = 0; i < 4; i++) {
        elem[i].addEventListener('click', update_allpos);
@@ -324,6 +331,7 @@
      f_status();
      f_info();
    </script> 
+
   
    <div style='text-align:right;font-size:10px;'>
      <hr/>
