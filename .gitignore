@@ -1,2 +1,4 @@
 # ignore all files in any directory named debug, build
 debug/
+ValveControl.X/build
+Bootloader.X/build
