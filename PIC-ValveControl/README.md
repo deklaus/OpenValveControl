@@ -19,16 +19,16 @@ The following paragraphs provide some insights into the software structure:
   - Check RX buffer, run cmd_interpreter if flag is set
   - process state machine:
     - move (pending MOVE command), finish at target position, abort on over_current
-	- home (pending HOME command), finish on over_current, abort on timeout (2 minutes)
-	- default (idle: check STATUSflags and switch state to move, home or bootload)
-	  - .move? set state to move
-	  - .home? set state to home
-	  - .bootload? generate RESET
+    - home (pending HOME command), finish on over_current, abort on timeout (2 minutes)
+    - default (idle: check STATUSflags and switch state to move, home or bootload)
+      - STATUSflags.move? set main_state to state_move
+      - STATUSflags.home? set main_state to state_home
+      - STATUSflags.bootload? generate RESET
 
 **cmd interpreter**
 Process commands and queries (?) from ESP:
-  - Move:    state = move
-  - Home:    state = home
+  - Move:    save active drive and current limit, set g_STATUSflags.move
+  - Home:    save active drive and current limit, set g_STATUSflags.home
   - Status?  send status data (position[1..4], motor current, STATUSflags
   - Version? send PIC version
   - SetPos?  send positions[1..4]
@@ -40,15 +40,16 @@ Process commands and queries (?) from ESP:
   - HFINTOSC (16 MHz),
   - I²C (master, 400 kHz)
   - UART (38400 Bd, 8 data bit, 1 stop bit) 
-  - PWM (125 Hz: 7.2 ms High + 0.8 ms Low = 8 ms)
+  - PWM1_SaP1_out: (125 Hz: 7.2 ms High + 0.8 ms Low = 8 ms) <br>
+    PWM1_SaP2_out: (125 Hz: 2.0 ms High + 6.0 ms Low = 8 ms)
   - Interrupts (see #interrupt)
 
 ### interrupt.c
 Configures the Vectored Interrupt Manager and contains the corresponding 
 interrupt service routines (ISR).
-  - IOC  Interrupt On Change, high priority (see user manual)
-    - on any rising  edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read motor current
-    - on any falling edge on port RA5/4, RC5/4, RC3/6, RC7/RB7: read Back EMF
+  - PWM1 Parameter Interrupt
+    - on falling edge of PWM1_SaP2_out (2 ms after H-bridge ON): read motor current
+    - on falling edge of PWM1_SaP1_out (0 ms when H-bridge OFF): read Back EMF
   - TMR0 (1 ms system clock)
   - U1RX (UART1 RX data from ESP)
 
