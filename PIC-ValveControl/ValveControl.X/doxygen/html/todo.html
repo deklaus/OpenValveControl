@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 <dd><a class="anchor" id="_todo000001"></a>At 4800 Bd one char is received every 260 µs. This delay can still cause overrun in the UART! We could spend a TMR to add delay. We will try this when researching the VBEMF problem...  </dd>
 <dt>File <a class="el" href="main_8c.html">main.c</a>  </dt>
 <dd><a class="anchor" id="_todo000002"></a><ul>
+<li>Actually all reference flags are initialized, so that move commands are allowed prior reference runs are performed. To be deleted (or not).</li>
 <li>After HOME run, sometimes position is not reset to 0.</li>
 <li>Implement timeout on all position jobs. Within IDLE, proper handling of parallel jobs via UI must be solved (priority and selected valve must not accidentally be swapped.</li>
 <li>Back EMF doesn't work yet reliably. Has to be analyzed in detail. Maybe other PWM settings give better readings?</li>

@@ -13,6 +13,8 @@
  *                   - Runtime | Initialize Data: checked
  *                   - Memory Model | Rom Range:default,-0-7FF
  *  @todo
+ *  - Actually all reference flags are initialized, so that move commands are
+ *    allowed prior reference runs are performed. To be deleted (or not).
  *  - After HOME run, sometimes position is not reset to 0.
  *  - Implement timeout on all position jobs. Within IDLE, proper 
  *    handling of parallel jobs via UI must be solved (priority and
