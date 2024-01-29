@@ -103,7 +103,7 @@ Psect Usage Map:
  text84     | Program and library code   | 00918Ch - 00918Fh |     4 bytes  
  text11     | Program and library code   | 009190h - 009191h |     2 bytes  
             |                            |                   |               
- mediumcons |                            | 00FE9Eh - 00FFFFh |   162 bytes  
+ mediumcons |                            | 00FE9Ch - 00FFFFh |   164 bytes  
 ------------|----------------------------|-------------------|---------------
  cstackCOMR |                            | 000501h - 00052Ch |    2C bytes  
  bssCOMRAM  |                            | 00052Dh - 000545h |    19 bytes  

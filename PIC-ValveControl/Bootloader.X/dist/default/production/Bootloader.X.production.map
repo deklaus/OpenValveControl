@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -cn \
   -h+dist/default/production/Bootloader.X.production.sym \
   --cmf=dist/default/production/Bootloader.X.production.cmf -z -Q18F16Q41 \
-  -o/tmp/xcXlcDoJJ --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXLbBhId --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Bootloader.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0560h-015FFh -pstack=STACK \
   -ACODE=00h-07FFh -ACONST=00h-07FFh -ACOMRAM=0501h-055Fh \
@@ -24,7 +24,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXDMObNn.o dist/default/production/Bootloader.X.production.o 
+  /tmp/xcXieKfBE.o dist/default/production/Bootloader.X.production.o 
 
 Object code version is 3.11
 
@@ -33,22 +33,22 @@ Machine type is 18F16Q41
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXDMObNn.o
+/tmp/xcXieKfBE.o
                 init                                7FC      7FC        4      3FE       0
                 reset_vec                             0        0        4        0       0
 dist/default/production/Bootloader.X.production.o
-                text8                               2FC      2FC       1C      17E       0
-                text7                               2D8      2D8        6      16C       0
-                text6                               318      318       1C      18C       0
-                text5                               35C      35C       2A      1AE       0
-                text4                               386      386       84      1C3       0
-                text3                               334      334       28      19A       0
-                text2                               2E8      2E8       14      174       0
-                text1                               40A      40A       98      205       0
-                text0                               4A2      4A2      35A      251       0
-                cstackCOMRAM                        532      532       1A      501       1
+                text8                               2E6      2E6       1C      173       0
+                text7                               2C2      2C2        6      161       0
+                text6                               302      302       1C      181       0
+                text5                               346      346       2A      1A3       0
+                text4                               370      370       84      1B8       0
+                text3                               31E      31E       28      18F       0
+                text2                               2D2      2D2       14      169       0
+                text1                               3F4      3F4       98      1FA       0
+                text0                               48C      48C      370      246       0
+                cstackCOMRAM                        532      532       1C      501       1
                 bssCOMRAM                           501      501       31      501       1
-                cinit                               2DE      2DE        A      16F       0
+                cinit                               2C8      2C8        A      164       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -56,21 +56,21 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   CODE           
                 init                                7FC      7FC        4         0
                 reset_vec                             0        0        4         0
-                text8                               2FC      2FC       1C         0
-                text7                               2D8      2D8        6         0
-                text6                               318      318       1C         0
-                text5                               35C      35C       2A         0
-                text4                               386      386       84         0
-                text3                               334      334       28         0
-                text2                               2E8      2E8       14         0
-                text1                               40A      40A       98         0
-                text0                               4A2      4A2      35A         0
-                cinit                               2DE      2DE        A         0
+                text8                               2E6      2E6       1C         0
+                text7                               2C2      2C2        6         0
+                text6                               302      302       1C         0
+                text5                               346      346       2A         0
+                text4                               370      370       84         0
+                text3                               31E      31E       28         0
+                text2                               2D2      2D2       14         0
+                text1                               3F4      3F4       98         0
+                text0                               48C      48C      370         0
+                cinit                               2C8      2C8        A         0
 
         CLASS   CONST          
 
         CLASS   COMRAM         
-                cstackCOMRAM                        532      532       1A         1
+                cstackCOMRAM                        532      532       1C         1
                 bssCOMRAM                           501      501       31         1
 
         CLASS   ABS1           
@@ -131,18 +131,18 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
-                text4                          000386  000084  00040A       1C3       0  CODE    
-                text1                          00040A  000098  0004A2       205       0  CODE    
-                text0                          0004A2  00035A  0007FC       251       0  CODE    
-                text5                          00035C  00002A  000386       1AE       0  CODE    
-                text8                          0002FC  00001C  000318       17E       0  CODE    
-                text6                          000318  00001C  000334       18C       0  CODE    
-                text3                          000334  000028  00035C       19A       0  CODE    
-                cinit                          0002DE  00000A  0002E8       16F       0  CODE    
+                text4                          000370  000084  0003F4       1B8       0  CODE    
+                text1                          0003F4  000098  00048C       1FA       0  CODE    
+                text0                          00048C  000370  0007FC       246       0  CODE    
+                text5                          000346  00002A  000370       1A3       0  CODE    
+                text8                          0002E6  00001C  000302       173       0  CODE    
+                text6                          000302  00001C  00031E       181       0  CODE    
+                text3                          00031E  000028  000346       18F       0  CODE    
+                cinit                          0002C8  00000A  0002D2       164       0  CODE    
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                text7                          0002D8  000006  0002DE       16C       0  CODE    
-                text2                          0002E8  000014  0002FC       174       0  CODE    
-                bssCOMRAM                      000501  00004B  00054C       501       1  COMRAM  
+                text7                          0002C2  000006  0002C8       161       0  CODE    
+                text2                          0002D2  000014  0002E6       169       0  CODE    
+                bssCOMRAM                      000501  00004D  00054E       501       1  COMRAM  
                 init                           0007FC  000004  000800       3FE       0  CODE    
 
 
@@ -166,11 +166,11 @@ UNUSED ADDRESS RANGES
         BANK7            0700-07FF            100
         BANK8            0800-08FF            100
         BANK9            0900-09FF            100
-        BIGRAM           054C-15FF           10B4
-        CODE             0004-02D7            2D4
-        COMRAM           054C-055F             14
+        BIGRAM           054E-15FF           10B2
+        CODE             0004-02C1            2BE
+        COMRAM           054E-055F             12
         CONFIG           300000-300011             12
-        CONST            0004-02D7            2D4
+        CONST            0004-02C1            2BE
         EEDATA           380000-3803FF            400
         IDLOC            200000-20001F             20
         RAM              0560-15FF            100
@@ -272,7 +272,7 @@ __Hrparam                 rparam       0000
 __Hsfr                    sfr          0000
 __Hsmallconst             smallconst   0000
 __Hspace_0                (abs)        1600
-__Hspace_1                (abs)        054C
+__Hspace_1                (abs)        054E
 __Hspace_2                (abs)        0000
 __Hspace_4                (abs)        0000
 __Hstack                  stack        0000
@@ -362,7 +362,7 @@ __Ltext6                  text6        0000
 __Ltext7                  text7        0000
 __Ltext8                  text8        0000
 __S0                      (abs)        0800
-__S1                      (abs)        054C
+__S1                      (abs)        054E
 __S2                      (abs)        0000
 __S4                      (abs)        0000
 __S5                      (abs)        0000
@@ -373,29 +373,29 @@ ___rparam_used            (abs)        0001
 ___sp                     stack        0000
 __accesstop               (abs)        0560
 __activetblptr            (abs)        0002
-__end_of__initialization  cinit        02DE
-__end_of_init_bootloader  text4        040A
-__end_of_init_osc         text8        0318
-__end_of_init_pins        text7        02DE
-__end_of_init_pmd         text6        0334
-__end_of_init_uart1       text5        0386
+__end_of__initialization  cinit        02C8
+__end_of_init_bootloader  text4        03F4
+__end_of_init_osc         text8        0302
+__end_of_init_pins        text7        02C8
+__end_of_init_pmd         text6        031E
+__end_of_init_uart1       text5        0370
 __end_of_main             text0        07FC
-__end_of_putch            text3        035C
-__end_of_u8tox            text2        02FC
-__end_of_xtou8            text1        04A2
-__initialization          cinit        02DE
+__end_of_putch            text3        0346
+__end_of_u8tox            text2        02E6
+__end_of_xtou8            text1        048C
+__initialization          cinit        02C8
 __pbssCOMRAM              bssCOMRAM    0501
-__pcinit                  cinit        02DE
+__pcinit                  cinit        02C8
 __pcstackCOMRAM           cstackCOMRAM 0532
-__ptext0                  text0        04A2
-__ptext1                  text1        040A
-__ptext2                  text2        02E8
-__ptext3                  text3        0334
-__ptext4                  text4        0386
-__ptext5                  text5        035C
-__ptext6                  text6        0318
-__ptext7                  text7        02D8
-__ptext8                  text8        02FC
+__ptext0                  text0        048C
+__ptext1                  text1        03F4
+__ptext2                  text2        02D2
+__ptext3                  text3        031E
+__ptext4                  text4        0370
+__ptext5                  text5        0346
+__ptext6                  text6        0302
+__ptext7                  text7        02C2
+__ptext8                  text8        02E6
 __ramtop                  ramtop       1600
 __size_of_init_bootloader (abs)        0000
 __size_of_init_osc        (abs)        0000
@@ -407,46 +407,46 @@ __size_of_putch           (abs)        0000
 __size_of_u8tox           (abs)        0000
 __size_of_xtou8           (abs)        0000
 _bufferRamPtr             bssCOMRAM    0501
-_init_bootloader          text4        0386
-_init_osc                 text8        02FC
-_init_pins                text7        02D8
-_init_pmd                 text6        0318
-_init_uart1               text5        035C
-_main                     text0        04A2
+_init_bootloader          text4        0370
+_init_osc                 text8        02E6
+_init_pins                text7        02C2
+_init_pmd                 text6        0302
+_init_uart1               text5        0346
+_main                     text0        048C
 _procID                   bssCOMRAM    0503
-_putch                    text3        0334
+_putch                    text3        031E
 _record                   bssCOMRAM    0505
-_u8tox                    text2        02E8
-_xtou8                    text1        040A
-end_of_initialization     cinit        02DE
+_u8tox                    text2        02D2
+_xtou8                    text1        03F4
+end_of_initialization     cinit        02C8
 intlevel0                 text         0000
 intlevel1                 text         0000
 intlevel2                 text         0000
 intlevel3                 text         0000
 isa$std                   (abs)        0001
 isa$xinst                 (abs)        0000
-main@address              cstackCOMRAM 0549
-main@bufPtr               cstackCOMRAM 0539
-main@ch                   cstackCOMRAM 0548
-main@cs                   cstackCOMRAM 053E
-main@data                 cstackCOMRAM 053B
-main@eof                  cstackCOMRAM 053D
-main@eol                  cstackCOMRAM 0541
-main@i                    cstackCOMRAM 0545
-main@i_542                cstackCOMRAM 0546
-main@index                cstackCOMRAM 054B
-main@k                    cstackCOMRAM 0547
-main@length               cstackCOMRAM 0544
-main@offset               cstackCOMRAM 0540
-main@timeout              cstackCOMRAM 0542
-main@timeout_546          cstackCOMRAM 0543
-main@type                 cstackCOMRAM 053F
+main@address              cstackCOMRAM 054B
+main@bufPtr               cstackCOMRAM 053B
+main@ch                   cstackCOMRAM 054A
+main@cs                   cstackCOMRAM 0540
+main@data                 cstackCOMRAM 053D
+main@eof                  cstackCOMRAM 053F
+main@eol                  cstackCOMRAM 0543
+main@i                    cstackCOMRAM 0547
+main@i_542                cstackCOMRAM 0548
+main@index                cstackCOMRAM 054D
+main@k                    cstackCOMRAM 0549
+main@length               cstackCOMRAM 0546
+main@offset               cstackCOMRAM 0542
+main@timeout              cstackCOMRAM 0544
+main@timeout_546          cstackCOMRAM 0545
+main@type                 cstackCOMRAM 0541
 putch@data                cstackCOMRAM 0532
 putch@timeout             cstackCOMRAM 0533
 stackhi                   (abs)        15FF
 stacklo                   (abs)        0560
 start                     init         07FC
-start_initialization      cinit        02DE
+start_initialization      cinit        02C8
 u8tox@n                   cstackCOMRAM 0532
 xtou8@c                   cstackCOMRAM 0535
 xtou8@i                   cstackCOMRAM 0534
@@ -457,24 +457,24 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-		__initialization		CODE           	02DE	0000	1
+		__initialization		CODE           	02C8	0000	1
 
 shared estimated size: 1
 
 init.c
-		_init_bootloader		CODE           	0386	0000	132
-		_init_pins     		CODE           	02D8	0000	6
-		_init_uart1    		CODE           	035C	0000	42
-		_init_osc      		CODE           	02FC	0000	28
-		_init_pmd      		CODE           	0318	0000	28
+		_init_bootloader		CODE           	0370	0000	132
+		_init_pins     		CODE           	02C2	0000	6
+		_init_uart1    		CODE           	0346	0000	42
+		_init_osc      		CODE           	02E6	0000	28
+		_init_pmd      		CODE           	0302	0000	28
 
 init.c estimated size: 236
 
 main.c
-		_putch         		CODE           	0334	0000	40
-		_main          		CODE           	04A2	0000	858
-		_xtou8         		CODE           	040A	0000	152
-		_u8tox         		CODE           	02E8	0000	20
+		_putch         		CODE           	031E	0000	40
+		_main          		CODE           	048C	0000	880
+		_xtou8         		CODE           	03F4	0000	152
+		_u8tox         		CODE           	02D2	0000	20
 
-main.c estimated size: 1070
+main.c estimated size: 1092
 

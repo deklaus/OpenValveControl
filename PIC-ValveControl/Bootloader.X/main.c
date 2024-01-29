@@ -14,7 +14,9 @@
  *                   - Memory Model | Rom Range: 0-7FF
  * 
  * Change Log:
- * 2023-11-23 V0.6
+ * 2024-01-29 v0.7.1
+* - Error corrected when copying code to bufferRam.
+ * 2023-11-23 v0.6
  * - Initial issue
  */
 
@@ -211,7 +213,7 @@ void main(void)
 
                 // copy record into Buffer RAM, convert big to little endian
                     bufPtr = bufferRamPtr + offset;
-                    for (uint8_t i = 0; i < (length >> 1); i += 4) // i counts chars
+                    for (uint8_t i = 0; i < (length << 1); i += 4) // i counts ascii chars
                     {   // data: 16 bit, 2 ascii char => 1 byte
                         data = xtou8((uint8_t *)&record.data[i + 2]);   // MSB
                         data <<= 8;

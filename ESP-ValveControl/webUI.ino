@@ -174,8 +174,10 @@ void webUI_info ()
     "\"RSSI\": \"");  htmlPage += rssi;       htmlPage += F(" dBm\"\n" // no comma at end
     "}\n");
 
-    //server.sendHeader("Access-Control-Allow-Origin","*"); 
-    server.send(200, "text/plain", htmlPage);
+  //server.sendHeader("Access-Control-Allow-Origin","*"); 
+  server.send(200, "text/plain", htmlPage);
+
+  flags.version = 1;      // update PIC firmware version (next loop)
 
 } // webUI_info ()
 

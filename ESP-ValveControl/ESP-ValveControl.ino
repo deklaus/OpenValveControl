@@ -38,6 +38,9 @@
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
  * Change Log:
+ * 2024-01-29 v0.7.1
+ * - Processing of flags.version moved to the end of "else-if". (A failed bootload could not be 
+ *   repeated, because the initialized "flags.version" always took priority and never was worked off.
  * 2024-01-24 v0.7
  * - Added 'MQTT publish' with status information (motor current, temperature, positions, etc.)
  * - Added WiFI signal strength to "Info"
@@ -172,7 +175,7 @@ PubSubClient  MQTTclient(espClient);
 
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "v0.7";  // Version of ESP-Firmware
+char  ESPversion[32] = "v0.7.1";  // Version of ESP-Firmware
 char  PICversion[32] = "NN";    // Version of PIC-Firmware
 
 // WiFi credentials: Initial values are used for access point!
@@ -419,12 +422,6 @@ void loop ()
     ESP.restart();
   }
 
-
-  else if (flags.version)       // Update PIC version info
-  {
-    getPICversion();
-  }
-
   else if (flags.bootload)       // Update PIC firmware
   {
     fw_download();
@@ -435,6 +432,11 @@ void loop ()
     }
     flags.bootload = 0;
   } // if flags.bootload
+
+  else if (flags.version)       // Update PIC version info
+  {
+    getPICversion();
+  }
 
 
   /* Repeatedly process request handler until mid of loop cycle   */

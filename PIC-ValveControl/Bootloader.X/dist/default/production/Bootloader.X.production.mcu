@@ -2,11 +2,11 @@
 Memory Class Usage:
 
 Program space:
-    CODE                 used   52Ch (  1324) of   800h bytes   ( 64.6%)
+    CODE                 used   542h (  1346) of   800h bytes   ( 65.7%)
     CONST                used     0h (     0) of   800h bytes   (  0.0%)
 
 Data space:
-    COMRAM               used    4Bh (    75) of    5Fh bytes   ( 78.9%)
+    COMRAM               used    4Dh (    77) of    5Fh bytes   ( 81.1%)
     ABS1                 used     0h (     0) of  1100h bytes   (  0.0%)
     BIGRAM               used     0h (     0) of  10FFh bytes   (  0.0%)
     RAM                  used     0h (     0) of  10A0h bytes   (  0.0%)

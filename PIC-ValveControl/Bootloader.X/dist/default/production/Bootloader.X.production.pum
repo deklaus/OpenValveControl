@@ -4,19 +4,19 @@ Psect Usage Map:
  Psect      | Contents                 | Memory Range  | Size
 ------------|--------------------------|---------------|-------------
  reset_vec  |                          | 0000h - 0003h |   4 bytes  
- text7      | Program and library code | 02D8h - 02DDh |   6 bytes  
- cinit      |                          | 02DEh - 02E7h |   A bytes  
- text2      | Program and library code | 02E8h - 02FBh |  14 bytes  
- text8      | Program and library code | 02FCh - 0317h |  1C bytes  
- text6      | Program and library code | 0318h - 0333h |  1C bytes  
- text3      | Program and library code | 0334h - 035Bh |  28 bytes  
- text5      | Program and library code | 035Ch - 0385h |  2A bytes  
- text4      | Program and library code | 0386h - 0409h |  84 bytes  
- text1      | Program and library code | 040Ah - 04A1h |  98 bytes  
- text0      | Program and library code | 04A2h - 07FBh | 35A bytes  
+ text7      | Program and library code | 02C2h - 02C7h |   6 bytes  
+ cinit      |                          | 02C8h - 02D1h |   A bytes  
+ text2      | Program and library code | 02D2h - 02E5h |  14 bytes  
+ text8      | Program and library code | 02E6h - 0301h |  1C bytes  
+ text6      | Program and library code | 0302h - 031Dh |  1C bytes  
+ text3      | Program and library code | 031Eh - 0345h |  28 bytes  
+ text5      | Program and library code | 0346h - 036Fh |  2A bytes  
+ text4      | Program and library code | 0370h - 03F3h |  84 bytes  
+ text1      | Program and library code | 03F4h - 048Bh |  98 bytes  
+ text0      | Program and library code | 048Ch - 07FBh | 370 bytes  
  init       | Initialization code      | 07FCh - 07FFh |   4 bytes  
 ------------|--------------------------|---------------|-------------
  bssCOMRAM  |                          | 0501h - 0531h |  31 bytes  
- cstackCOMR |                          | 0532h - 054Bh |  1A bytes  
+ cstackCOMR |                          | 0532h - 054Dh |  1C bytes  
 ------------|--------------------------|---------------|-------------
 

@@ -13,13 +13,13 @@ E_MA_MAX -3
 E_SET_POS_RANGE -2
 E_VZ_RANGE -1
 ]
-"216 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"220 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [e E13764 states `uc
 state_idle 0
 state_home 1
 state_move 2
 ]
-"390
+"394
 [e E13705 Errs `c
 E_ADC_TIMEOUT -127
 E_HOMEING_ACTIVE -6
@@ -217,15 +217,15 @@ E_VZ_RANGE -1
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
 "246
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
-"128 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"132 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
-"143
+"147
 [v _main main `(v  1 e 1 0 ]
-"362
+"366
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
-"525
+"529
 [v _over_current over_current `(a  1 s 1 over_current ]
-"551
+"555
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
 "90 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.h
 [v _FVRA2X FVRA2X `us  1 e 2 0 ]
@@ -937,23 +937,23 @@ E_VZ_RANGE -1
 [v _emk emk `[128]us  1 e 256 0 ]
 "105
 [v _ns ns `uc  1 s 1 ns ]
-"76 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"80 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _VDD VDD `us  1 e 2 0 ]
-"83
-[v _g_rx232_buf g_rx232_buf `VE[48]uc  1 e 48 0 ]
-"84
-[v _g_rx232_count g_rx232_count `VEuc  1 e 1 0 ]
-"85
-[v _g_tx232_buf g_tx232_buf `VE[48]uc  1 e 48 0 ]
 "87
-[v _g_rs232_request g_rs232_request `VEuc  1 e 1 0 ]
+[v _g_rx232_buf g_rx232_buf `VE[48]uc  1 e 48 0 ]
 "88
+[v _g_rx232_count g_rx232_count `VEuc  1 e 1 0 ]
+"89
+[v _g_tx232_buf g_tx232_buf `VE[48]uc  1 e 48 0 ]
+"91
+[v _g_rs232_request g_rs232_request `VEuc  1 e 1 0 ]
+"92
 [v _g_rs232_response g_rs232_response `VEuc  1 e 1 0 ]
 [s S1025 . 2 `uc 1 ref 1 0 :4:0 
 `uc 1 vz 1 0 :4:4 
 `uc 1 . 1 1 :8:0 
 ]
-"90
+"94
 [s S1029 . 2 `uc 1 ref1 1 0 :1:0 
 `uc 1 ref2 1 0 :1:1 
 `uc 1 ref3 1 0 :1:2 
@@ -974,78 +974,78 @@ E_VZ_RANGE -1
 `uc 1 OVER_CURR 1 0 :1:2 
 `uc 1 . 1 0 :5:3 
 ]
-"91
+"95
 [u S1050 . 1 `S1045 1 . 1 0 `uc 1 v 1 0 ]
 [v _g_ERRORflags g_ERRORflags `VES1050  1 e 1 0 ]
-"93
-[v _g_timer_ms g_timer_ms `VEus  1 e 2 0 ]
-"94
-[v _g_tovfl_ms g_tovfl_ms `VEa  1 e 1 0 ]
-"96
-[v _g_vz g_vz `VEuc  1 e 1 0 ]
 "97
-[v _g_setpos g_setpos `VE[5]uc  1 e 5 0 ]
+[v _g_timer_ms g_timer_ms `VEus  1 e 2 0 ]
 "98
-[v _g_position g_position `VE[5]uc  1 e 5 0 ]
-"99
-[v _g_zcd g_zcd `VE[5]s  1 e 10 0 ]
+[v _g_tovfl_ms g_tovfl_ms `VEa  1 e 1 0 ]
 "100
-[v _g_max_mAx10 g_max_mAx10 `VE[5]s  1 e 10 0 ]
+[v _g_vz g_vz `VEuc  1 e 1 0 ]
+"101
+[v _g_setpos g_setpos `VE[5]uc  1 e 5 0 ]
 "102
-[v _g_mAx10 g_mAx10 `VEs  1 e 2 0 ]
+[v _g_position g_position `VE[5]uc  1 e 5 0 ]
 "103
-[v _g_vbemf g_vbemf `VEus  1 e 2 0 ]
+[v _g_zcd g_zcd `VE[5]s  1 e 10 0 ]
 "104
-[v _g_dir g_dir `VEc  1 e 1 0 ]
+[v _g_max_mAx10 g_max_mAx10 `VE[5]s  1 e 10 0 ]
 "106
-[v _g_bemf8 g_bemf8 `VE[5]uc  1 e 5 0 ]
+[v _g_mAx10 g_mAx10 `VEs  1 e 2 0 ]
 "107
-[v _g_zerocount g_zerocount `VEuc  1 e 1 0 ]
+[v _g_vbemf g_vbemf `VEus  1 e 2 0 ]
+"108
+[v _g_dir g_dir `VEc  1 e 1 0 ]
+"110
+[v _g_bemf8 g_bemf8 `VE[5]uc  1 e 5 0 ]
 "111
+[v _g_zerocount g_zerocount `VEuc  1 e 1 0 ]
+"115
 [v _main_state main_state `uc  1 s 1 main_state ]
-"112
+"116
 [v _last_tick last_tick `us  1 s 2 last_tick ]
-"113
+"117
 [v _n_overcurr n_overcurr `uc  1 s 1 n_overcurr ]
-"143
+"147
 [v _main main `(v  1 e 1 0 ]
 {
-"330
+"334
 [v main@i_1386 i `uc  1 a 1 41 ]
-"320
+"324
 [v main@i i `uc  1 a 1 40 ]
-"147
+"151
 [v main@t_home_ms t_home_ms `us  1 a 2 37 ]
 [v main@t_home_s t_home_s `us  1 a 2 35 ]
-"146
+"150
 [v main@diff diff `c  1 a 1 39 ]
-"347
+"351
 } 0
-"525
+"529
 [v _over_current over_current `(a  1 s 1 over_current ]
 {
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"527
+"531
 [v over_current@result result `a  1 a 1 34 ]
-"525
+"529
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"527
+"531
 [v over_current@vz vz `uc  1 a 1 35 ]
-"543
+"547
 } 0
-"551
+"555
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
 {
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"557
+"561
 [v set_pwm@timout timout `uc  1 a 1 30 ]
-"551
+"555
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"552
-[v set_pwm@dir dir `c  1 p 1 26 ]
 "556
+[v set_pwm@dir dir `c  1 p 1 26 ]
+"560
 [v set_pwm@vz vz `uc  1 a 1 29 ]
-"702
+"706
 } 0
 "93 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/init.c
 [v _init_system init_system `(v  1 e 1 0 ]
@@ -1181,24 +1181,24 @@ E_VZ_RANGE -1
 [v ___lldiv@divisor divisor `ul  1 p 4 4 ]
 "30
 } 0
-"362 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"366 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
 {
-"482
+"486
 [v cmd_interpreter@timeout_1419 timeout `uc  1 a 1 20 ]
-"508
+"512
 [v cmd_interpreter@i i `uc  1 a 1 21 ]
-"366
+"370
 [v cmd_interpreter@vz vz `ui  1 a 2 29 ]
-"367
+"371
 [v cmd_interpreter@mAx10 mAx10 `s  1 a 2 27 ]
-"366
+"370
 [v cmd_interpreter@pos pos `ui  1 a 2 25 ]
-"364
-[v cmd_interpreter@p p `*.39uc  1 a 2 23 ]
 "368
+[v cmd_interpreter@p p `*.39uc  1 a 2 23 ]
+"372
 [v cmd_interpreter@error error `c  1 a 1 22 ]
-"513
+"517
 } 0
 "4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/strstr.c
 [v _strstr strstr `(*.39uc  1 e 2 0 ]
@@ -1816,17 +1816,17 @@ E_VZ_RANGE -1
 [v fputc@fp fp `*.39S2195  1 p 2 30 ]
 "24
 } 0
-"128 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
+"132 /home/klaus/.git/OpenValveControl/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@data data `uc  1 a 1 wreg ]
-"130
+"134
 [v putch@timeout timeout `uc  1 a 1 27 ]
-"128
+"132
 [v putch@data data `uc  1 a 1 wreg ]
-"130
+"134
 [v putch@data data `uc  1 a 1 26 ]
-"138
+"142
 } 0
 "1 /opt/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
 [v _abs abs `(i  1 e 2 0 ]

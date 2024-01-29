@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.32/pic/dat/en_msgs.txt -pivt0x808=0808h \
   -cn -h+dist/default/production/ValveControl.X.production.sym \
   --cmf=dist/default/production/ValveControl.X.production.cmf -z -Q18F16Q41 \
-  -o/tmp/xcXBboEoN --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXAoNcIJ --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/ValveControl.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0900h-015FFh -pstack=STACK \
   -ACODE=0800h-0FFFFh -ACONST=0800h-0FFFFh -ASMALLCONST=01600h-016FFhx234 \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/xcXIoNFjK.o dist/default/production/ValveControl.X.production.o 
+  /tmp/xcXGEcnbp.o dist/default/production/ValveControl.X.production.o 
 
 Object code version is 3.11
 
@@ -35,14 +35,14 @@ Machine type is 18F16Q41
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXIoNFjK.o
+/tmp/xcXGEcnbp.o
                 config                           300000   300000        A        0       4
                 init                                8BA      8BA        4      404       0
                 reset_vec                           800      800        4      400       0
 dist/default/production/ValveControl.X.production.o
                 eeprom_data                      380000   380000        8   380000       0
                 config                           300000   300000        A        0       4
-                mediumconst                        FE9E     FE9E      162     7F4F       0
+                mediumconst                        FE9C     FE9C      164     7F4E       0
                 ivt0x808                            808      808       B2      404       0
                 text93                             8AEE     8AEE       4E     2129       0
                 text92                             9142     9142       1A     2436       0
@@ -259,7 +259,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   SMALLCONST     
 
         CLASS   MEDIUMCONST    
-                mediumconst                        FE9E     FE9E      162         0
+                mediumconst                        FE9C     FE9C      164         0
 
         CLASS   COMRAM         
                 cstackCOMRAM                        501      501       2C         1
@@ -335,7 +335,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 text53                         00917E  000014  009192      48BF       0  CODE    
                 text85                         0084A4  000BF2  009096      2129       0  CODE    
                 text82                         009098  00003E  0090D6      2426       0  CODE    
-                mediumconst                    00FE9E  000162  010000      7F4F       0  MEDIUMCO
+                mediumconst                    00FE9C  000164  010000      7F4E       0  MEDIUMCO
                 eeprom_data                    380000  000008  380008    380000       0  EEDATA  
                 ivt0x808                       000808  005E5E  006666       404       0  CODE    
                 reset_vec                      000800  000004  000804       400       0  CODE    
@@ -374,7 +374,7 @@ UNUSED ADDRESS RANGES
                          009096-009097                2
                          0090D6-0090D7                2
                          00917D-00917D                1
-                         009192-00FE9D             6D0C
+                         009192-00FE9B             6D0A
         COMRAM           000546-00055F               1A
         CONFIG           30000A-300011                8
         CONST            000804-000807                4
@@ -383,7 +383,7 @@ UNUSED ADDRESS RANGES
                          009096-009097                2
                          0090D6-0090D7                2
                          00917D-00917D                1
-                         009192-00FE9D             6D0C
+                         009192-00FE9B             6D0A
         EEDATA           380008-3803FF              3F8
         FARRAM           000000-000000                1
         IDLOC            200000-20001F               20
@@ -392,7 +392,7 @@ UNUSED ADDRESS RANGES
                          009096-009097                2
                          0090D6-0090D7                2
                          00917D-00917D                1
-                         009192-00FE9D             6D0C
+                         009192-00FE9B             6D0A
         RAM              0005FF-0005FF                1
                          0006EE-0006FF               12
                          000750-0007FF               B0
@@ -403,7 +403,7 @@ UNUSED ADDRESS RANGES
                          009096-009097                2
                          0090D6-0090D7                2
                          00917D-00917D                1
-                         009192-00FE9D              100
+                         009192-00FE9B              100
         STACK            000900-0015FF              D00
 
                                   Symbol Table
@@ -836,7 +836,7 @@ __Linit                        init         0008BA
 __Lintsave_regs                intsave_regs 000000
 __Lirdata                      irdata       000000
 __Livt0x808                    ivt0x808     000808
-__Lmediumconst                 mediumconst  00FE9E
+__Lmediumconst                 mediumconst  00FE9C
 __LnvFARRAM                    nvFARRAM     000000
 __Lnvbit                       nvbit        000000
 __Lnvrram                      nvrram       000000
@@ -1146,7 +1146,7 @@ __end_ofi2_adc_wait            text91       00902A
 __end_ofi2_ina219_read         text89       00827A
 __end_ofi2_ina219_reg          text88       008948
 __initialization               cinit        0086A8
-__mediumconst                  mediumconst  00FE9E
+__mediumconst                  mediumconst  00FE9C
 __pbssBANK5                    bssBANK5     0005FB
 __pbssBANK6                    bssBANK6     000600
 __pbssBANK7                    bssBANK7     000700
@@ -1159,7 +1159,7 @@ __pcstackCOMRAM                cstackCOMRAM 000501
 __pdataBANK6                   dataBANK6    0006E5
 __pidataBANK6                  idataBANK6   009174
 __pivt0x808                    ivt0x808     000808
-__pmediumconst                 mediumconst  00FE9E
+__pmediumconst                 mediumconst  00FE9C
 __ptext0                       text0        005A7A
 __ptext1                       text1        0089FA
 __ptext10                      text10       0090BA

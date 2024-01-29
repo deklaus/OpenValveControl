@@ -5,7 +5,7 @@ Program space:
     CODE                 used  8985h ( 35205) of  F800h bytes   ( 55.5%)
     CONST                used     0h (     0) of  F800h bytes   (  0.0%)
     SMALLCONST           used     0h (     0) of  EA00h bytes   (  0.0%)
-    MEDIUMCONST          used   162h (   354) of  EA00h bytes   (  0.6%)
+    MEDIUMCONST          used   164h (   356) of  EA00h bytes   (  0.6%)
 
 Data space:
     COMRAM               used    45h (    69) of    5Fh bytes   ( 72.6%)

@@ -11,22 +11,22 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production/Bootloader.X.production.o
-cinit CODE 0 2DE 2DE A 1
-text0 CODE 0 4A2 4A2 35A 1
-text1 CODE 0 40A 40A 98 1
-text2 CODE 0 2E8 2E8 14 1
-text3 CODE 0 334 334 28 1
-text4 CODE 0 386 386 84 1
-text5 CODE 0 35C 35C 2A 1
-text6 CODE 0 318 318 1C 1
-text7 CODE 0 2D8 2D8 6 1
-text8 CODE 0 2FC 2FC 1C 1
-cstackCOMRAM COMRAM 1 532 532 1A 1
-bssCOMRAM COMRAM 1 501 501 31 1
-$/tmp/xcXDMObNn.o
+$/tmp/xcXieKfBE.o
 init CODE 0 7FC 7FC 4 1
 reset_vec CODE 0 0 0 4 1
+$dist/default/production/Bootloader.X.production.o
+cinit CODE 0 2C8 2C8 A 1
+text0 CODE 0 48C 48C 370 1
+text1 CODE 0 3F4 3F4 98 1
+text2 CODE 0 2D2 2D2 14 1
+text3 CODE 0 31E 31E 28 1
+text4 CODE 0 370 370 84 1
+text5 CODE 0 346 346 2A 1
+text6 CODE 0 302 302 1C 1
+text7 CODE 0 2C2 2C2 6 1
+text8 CODE 0 2E6 2E6 1C 1
+cstackCOMRAM COMRAM 1 532 532 1C 1
+bssCOMRAM COMRAM 1 501 501 31 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -40,10 +40,10 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST 4-2D7 1
+CONST 4-2C1 1
 IDLOC 200000-20001F 1
 STACK 560-15FF 1
-CODE 4-2D7 1
+CODE 4-2C1 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
@@ -56,8 +56,8 @@ BANK18 1200-12FF 1
 BANK19 1300-13FF 1
 BANK20 1400-14FF 1
 BANK21 1500-15FF 1
-BIGRAM 54C-15FF 1
-COMRAM 54C-55F 1
+BIGRAM 54E-15FF 1
+COMRAM 54E-55F 1
 CONFIG 300000-300011 1
 EEDATA 380000-3803FF 1
 # %LINETAB Section
@@ -74,195 +74,195 @@ EEDATA 380000-3803FF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/Bootloader.X.production.o
-2FC text8 CODE >118:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-2FC text8 CODE >120:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-302 text8 CODE >121:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-306 text8 CODE >122:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-30A text8 CODE >123:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-30E text8 CODE >124:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-312 text8 CODE >125:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-316 text8 CODE >127:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-2D8 text7 CODE >135:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-2D8 text7 CODE >137:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-2DA text7 CODE >138:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-2DC text7 CODE >140:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-318 text6 CODE >147:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-318 text6 CODE >149:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-31E text6 CODE >150:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-322 text6 CODE >151:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-326 text6 CODE >152:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-32A text6 CODE >153:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-32E text6 CODE >154:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-332 text6 CODE >156:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-35C text5 CODE >166:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-35C text5 CODE >168:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-35E text5 CODE >169:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-362 text5 CODE >172:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-366 text5 CODE >174:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-36E text5 CODE >176:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-372 text5 CODE >178:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-376 text5 CODE >179:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-378 text5 CODE >180:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-37A text5 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-37E text5 CODE >182:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-382 text5 CODE >184:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-384 text5 CODE >186:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-386 text4 CODE >86:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-386 text4 CODE >88:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-388 text4 CODE >90:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-38C text4 CODE >91:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-390 text4 CODE >92:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-394 text4 CODE >93:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-398 text4 CODE >96:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3A6 text4 CODE >97:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3AA text4 CODE >98:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3AC text4 CODE >99:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3B0 text4 CODE >100:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3BC text4 CODE >101:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3BE text4 CODE >103:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3C6 text4 CODE >104:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3C8 text4 CODE >105:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3D0 text4 CODE >106:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3D2 text4 CODE >108:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3DA text4 CODE >109:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3DC text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3E8 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3EE text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-3F8 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-402 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
-334 text3 CODE >71:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-336 text3 CODE >73:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-33C text3 CODE >75:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-344 text3 CODE >76:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-350 text3 CODE >77:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-354 text3 CODE >79:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-35A text3 CODE >81:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2E8 text2 CODE >333:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2EA text2 CODE >335:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2F0 text2 CODE >336:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2F6 text2 CODE >338:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2FA text2 CODE >340:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-40A text1 CODE >308:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-40A text1 CODE >313:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-41A text1 CODE >314:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-422 text1 CODE >315:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-43E text1 CODE >316:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-442 text1 CODE >317:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-44C text1 CODE >318:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-450 text1 CODE >320:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-464 text1 CODE >321:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-46C text1 CODE >322:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-488 text1 CODE >323:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-48C text1 CODE >324:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-496 text1 CODE >325:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4A2 text0 CODE >111:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4A2 text0 CODE >129:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4A6 text0 CODE >130:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4AA text0 CODE >133:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4AE text0 CODE >134:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4BA text0 CODE >135:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4BE text0 CODE >136:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4C0 text0 CODE >137:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4C4 text0 CODE >139:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4CA text0 CODE >140:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4DA text0 CODE >141:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4E2 text0 CODE >143:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4EA text0 CODE >145:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4EE text0 CODE >146:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4F2 text0 CODE >147:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4F6 text0 CODE >150:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4FA text0 CODE >153:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-4FE text0 CODE >154:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-500 text0 CODE >158:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-504 text0 CODE >159:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-514 text0 CODE >160:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-51C text0 CODE >162:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-526 text0 CODE >164:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-52A text0 CODE >168:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-530 text0 CODE >170:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-532 text0 CODE >171:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-534 text0 CODE >172:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-534 text0 CODE >174:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-53A text0 CODE >175:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-542 text0 CODE >177:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-54C text0 CODE >180:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-560 text0 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-56C text0 CODE >182:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-57C text0 CODE >185:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-590 text0 CODE >187:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-59E text0 CODE >188:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-5AC text0 CODE >189:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-5C0 text0 CODE >190:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-5C6 text0 CODE >191:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-5DC text0 CODE >192:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-5FA text0 CODE >193:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-602 text0 CODE >195:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-608 text0 CODE >197:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-63C text0 CODE >206:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-64C text0 CODE >207:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-654 text0 CODE >208:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-656 text0 CODE >209:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-658 text0 CODE >210:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-65C text0 CODE >213:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-674 text0 CODE >214:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-67A text0 CODE >216:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-692 text0 CODE >217:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-698 text0 CODE >218:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-6B2 text0 CODE >219:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-6D2 text0 CODE >220:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-6E6 text0 CODE >223:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-6F6 text0 CODE >224:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-6FE text0 CODE >226:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-702 text0 CODE >227:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-706 text0 CODE >228:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-708 text0 CODE >230:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-70C text0 CODE >233:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-712 text0 CODE >236:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-71A text0 CODE >238:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-71E text0 CODE >239:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-722 text0 CODE >240:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-724 text0 CODE >242:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-728 text0 CODE >243:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-72E text0 CODE >245:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-732 text0 CODE >248:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-73E text0 CODE >249:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-74A text0 CODE >250:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-750 text0 CODE >251:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-756 text0 CODE >253:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-758 text0 CODE >258:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-75E text0 CODE >260:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-762 text0 CODE >262:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-764 text0 CODE >263:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-772 text0 CODE >264:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-776 text0 CODE >265:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-77E text0 CODE >266:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-782 text0 CODE >267:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-786 text0 CODE >268:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-788 text0 CODE >270:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-78E text0 CODE >272:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-794 text0 CODE >273:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7A4 text0 CODE >274:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7AC text0 CODE >275:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7B2 text0 CODE >278:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7B2 text0 CODE >281:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7BE text0 CODE >283:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7CE text0 CODE >284:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7D6 text0 CODE >285:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7DC text0 CODE >286:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7E0 text0 CODE >287:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7E6 text0 CODE >288:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7EC text0 CODE >289:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7F2 text0 CODE >154:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7F8 text0 CODE >293:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-7FA text0 CODE >296:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
-2DE cinit CODE >2909:/tmp/xcXjaffmH.s
-2DE cinit CODE >2911:/tmp/xcXjaffmH.s
-2DE cinit CODE >2914:/tmp/xcXjaffmH.s
-2DE cinit CODE >2932:/tmp/xcXjaffmH.s
-2DE cinit CODE >2935:/tmp/xcXjaffmH.s
-2E0 cinit CODE >2936:/tmp/xcXjaffmH.s
-2E2 cinit CODE >2937:/tmp/xcXjaffmH.s
-2E4 cinit CODE >2938:/tmp/xcXjaffmH.s
+2E6 text8 CODE >118:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2E6 text8 CODE >120:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2EC text8 CODE >121:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2F0 text8 CODE >122:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2F4 text8 CODE >123:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2F8 text8 CODE >124:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2FC text8 CODE >125:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+300 text8 CODE >127:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2C2 text7 CODE >135:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2C2 text7 CODE >137:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2C4 text7 CODE >138:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+2C6 text7 CODE >140:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+302 text6 CODE >147:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+302 text6 CODE >149:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+308 text6 CODE >150:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+30C text6 CODE >151:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+310 text6 CODE >152:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+314 text6 CODE >153:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+318 text6 CODE >154:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+31C text6 CODE >156:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+346 text5 CODE >166:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+346 text5 CODE >168:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+348 text5 CODE >169:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+34C text5 CODE >172:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+350 text5 CODE >174:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+358 text5 CODE >176:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+35C text5 CODE >178:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+360 text5 CODE >179:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+362 text5 CODE >180:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+364 text5 CODE >181:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+368 text5 CODE >182:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+36C text5 CODE >184:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+36E text5 CODE >186:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+370 text4 CODE >86:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+370 text4 CODE >88:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+372 text4 CODE >90:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+376 text4 CODE >91:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+37A text4 CODE >92:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+37E text4 CODE >93:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+382 text4 CODE >96:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+390 text4 CODE >97:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+394 text4 CODE >98:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+396 text4 CODE >99:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+39A text4 CODE >100:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3A6 text4 CODE >101:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3A8 text4 CODE >103:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3B0 text4 CODE >104:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3B2 text4 CODE >105:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3BA text4 CODE >106:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3BC text4 CODE >108:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3C4 text4 CODE >109:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3C6 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3D2 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3D8 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3E2 text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+3EC text4 CODE >110:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/init.c
+31E text3 CODE >73:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+320 text3 CODE >75:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+326 text3 CODE >77:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+32E text3 CODE >78:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+33A text3 CODE >79:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+33E text3 CODE >81:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+344 text3 CODE >83:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2D2 text2 CODE >335:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2D4 text2 CODE >337:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2DA text2 CODE >338:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2E0 text2 CODE >340:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2E4 text2 CODE >342:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+3F4 text1 CODE >310:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+3F4 text1 CODE >315:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+404 text1 CODE >316:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+40C text1 CODE >317:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+428 text1 CODE >318:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+42C text1 CODE >319:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+436 text1 CODE >320:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+43A text1 CODE >322:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+44E text1 CODE >323:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+456 text1 CODE >324:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+472 text1 CODE >325:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+476 text1 CODE >326:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+480 text1 CODE >327:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+48C text0 CODE >113:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+48C text0 CODE >131:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+490 text0 CODE >132:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+494 text0 CODE >135:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+498 text0 CODE >136:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4A4 text0 CODE >137:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4A8 text0 CODE >138:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4AA text0 CODE >139:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4AE text0 CODE >141:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4B4 text0 CODE >142:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4C4 text0 CODE >143:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4CC text0 CODE >145:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4D4 text0 CODE >147:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4D8 text0 CODE >148:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4DC text0 CODE >149:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4E0 text0 CODE >152:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4E4 text0 CODE >155:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4E8 text0 CODE >156:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4EA text0 CODE >160:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4EE text0 CODE >161:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+4FE text0 CODE >162:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+506 text0 CODE >164:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+510 text0 CODE >166:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+514 text0 CODE >170:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+51A text0 CODE >172:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+51C text0 CODE >173:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+51E text0 CODE >174:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+51E text0 CODE >176:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+524 text0 CODE >177:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+52C text0 CODE >179:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+536 text0 CODE >182:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+54A text0 CODE >183:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+556 text0 CODE >184:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+566 text0 CODE >187:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+57A text0 CODE >189:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+588 text0 CODE >190:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+596 text0 CODE >191:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5AA text0 CODE >192:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5B0 text0 CODE >193:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5C6 text0 CODE >194:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5E4 text0 CODE >195:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5EC text0 CODE >197:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+5F2 text0 CODE >199:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+626 text0 CODE >208:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+636 text0 CODE >209:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+63E text0 CODE >210:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+640 text0 CODE >211:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+642 text0 CODE >212:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+646 text0 CODE >215:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+65E text0 CODE >216:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+664 text0 CODE >218:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+67C text0 CODE >219:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+682 text0 CODE >220:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+69C text0 CODE >221:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+6BC text0 CODE >222:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+6E6 text0 CODE >225:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+6F6 text0 CODE >226:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+6FE text0 CODE >228:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+702 text0 CODE >229:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+706 text0 CODE >230:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+708 text0 CODE >232:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+70C text0 CODE >235:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+712 text0 CODE >238:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+71A text0 CODE >240:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+71E text0 CODE >241:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+722 text0 CODE >242:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+724 text0 CODE >244:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+728 text0 CODE >245:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+72E text0 CODE >247:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+732 text0 CODE >250:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+73E text0 CODE >251:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+74A text0 CODE >252:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+750 text0 CODE >253:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+756 text0 CODE >255:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+758 text0 CODE >260:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+75E text0 CODE >262:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+762 text0 CODE >264:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+764 text0 CODE >265:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+772 text0 CODE >266:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+776 text0 CODE >267:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+77E text0 CODE >268:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+782 text0 CODE >269:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+786 text0 CODE >270:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+788 text0 CODE >272:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+78E text0 CODE >274:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+794 text0 CODE >275:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7A4 text0 CODE >276:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7AC text0 CODE >277:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7B2 text0 CODE >280:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7B2 text0 CODE >283:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7BE text0 CODE >285:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7CE text0 CODE >286:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7D6 text0 CODE >287:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7DC text0 CODE >288:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7E0 text0 CODE >289:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7E6 text0 CODE >290:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7EC text0 CODE >291:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7F2 text0 CODE >156:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7F8 text0 CODE >295:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+7FA text0 CODE >298:/home/klaus/.git/OpenValveControl/PIC-ValveControl/Bootloader.X/main.c
+2C8 cinit CODE >2909:/tmp/xcXKkeEPf.s
+2C8 cinit CODE >2911:/tmp/xcXKkeEPf.s
+2C8 cinit CODE >2914:/tmp/xcXKkeEPf.s
+2C8 cinit CODE >2932:/tmp/xcXKkeEPf.s
+2C8 cinit CODE >2935:/tmp/xcXKkeEPf.s
+2CA cinit CODE >2936:/tmp/xcXKkeEPf.s
+2CC cinit CODE >2937:/tmp/xcXKkeEPf.s
+2CE cinit CODE >2938:/tmp/xcXKkeEPf.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -278,15 +278,15 @@ $dist/default/production/Bootloader.X.production.o
 putch@data 532 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/Bootloader.X.production.o
 __Hspace_0 1600 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-__Hspace_1 54C 0 ABS 0 - dist/default/production/Bootloader.X.production.o
+__Hspace_1 54E 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hspace_4 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __size_of_init_osc 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __size_of_init_pmd 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/Bootloader.X.production.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/Bootloader.X.production.o
-main@i 545 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-main@k 547 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@i 547 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@k 549 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production/Bootloader.X.production.o
 _PMD0 63 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD1 64 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -294,36 +294,36 @@ _PMD2 65 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD3 66 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD4 67 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _PMD5 68 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
-_main 4A2 0 CODE 0 text0 dist/default/production/Bootloader.X.production.o
-start 7FC 0 CODE 0 init /tmp/xcXDMObNn.o
+___sp 0 0 STACK 2 stack /tmp/xcXieKfBE.o
+_main 48C 0 CODE 0 text0 dist/default/production/Bootloader.X.production.o
+start 7FC 0 CODE 0 init /tmp/xcXieKfBE.o
 __size_of_main 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/Bootloader.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production/Bootloader.X.production.o
-__accesstop 560 0 ABS 0 - /tmp/xcXDMObNn.o
-intlevel0 0 0 CODE 0 text /tmp/xcXDMObNn.o
-intlevel1 0 0 CODE 0 text /tmp/xcXDMObNn.o
-intlevel2 0 0 CODE 0 text /tmp/xcXDMObNn.o
-intlevel3 0 0 CODE 0 text /tmp/xcXDMObNn.o
+__accesstop 560 0 ABS 0 - /tmp/xcXieKfBE.o
+intlevel0 0 0 CODE 0 text /tmp/xcXieKfBE.o
+intlevel1 0 0 CODE 0 text /tmp/xcXieKfBE.o
+intlevel2 0 0 CODE 0 text /tmp/xcXieKfBE.o
+intlevel3 0 0 CODE 0 text /tmp/xcXieKfBE.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/Bootloader.X.production.o
-_init_osc 2FC 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
-_init_pmd 318 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
+_init_osc 2E6 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
+_init_pmd 302 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/Bootloader.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production/Bootloader.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production/Bootloader.X.production.o
-__end_of_init_osc 318 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
-__end_of_init_pmd 334 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
+__end_of_init_osc 302 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
+__end_of_init_pmd 31E 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
 _U1RXPPS 272 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 xtou8@c 535 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 xtou8@i 534 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 xtou8@p 532 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 _ACTCON AC 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-__end_of_init_bootloader 40A 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
-___inthi_sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
-___intlo_sp 0 0 STACK 2 stack /tmp/xcXDMObNn.o
+__end_of_init_bootloader 3F4 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXieKfBE.o
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXieKfBE.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/Bootloader.X.production.o
-main@eof 53D 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-main@eol 541 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@eof 53F 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@eol 543 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/Bootloader.X.production.o
 __size_of_init_uart1 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __size_of_putch 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -332,8 +332,8 @@ __size_of_xtou8 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _INTCON0bits 4D6 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _NVMADR 43 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _NVMDAT 46 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-start_initialization 2DE 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
-_init_bootloader 386 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
+start_initialization 2C8 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
+_init_bootloader 370 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
 _OSCFRQ B1 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/Bootloader.X.production.o
 _TRISAbits 4C6 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -343,10 +343,10 @@ _RB5PPS 20E 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1CON1bits 2AC 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1CON2bits 2AD 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _STKPTR 4FC 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-main@timeout 542 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@timeout 544 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 _U1CON0 2AB 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1CON2 2AD 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-isa$xinst 0 0 ABS 0 - /tmp/xcXDMObNn.o
+isa$xinst 0 0 ABS 0 - /tmp/xcXieKfBE.o
 __Hbank5 0 0 ABS 0 bank5 dist/default/production/Bootloader.X.production.o
 __Hbank6 0 0 ABS 0 bank6 dist/default/production/Bootloader.X.production.o
 __Hbank7 0 0 ABS 0 bank7 dist/default/production/Bootloader.X.production.o
@@ -428,7 +428,7 @@ __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/Bootloader.X.prod
 __Hirdata 0 0 CODE 0 irdata dist/default/production/Bootloader.X.production.o
 _BSR 4E0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __S0 800 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-__S1 54C 0 ABS 0 - dist/default/production/Bootloader.X.production.o
+__S1 54E 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __S2 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __S4 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __S5 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -439,8 +439,8 @@ __Hramtop 1600 0 RAM 0 ramtop dist/default/production/Bootloader.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production/Bootloader.X.production.o
 __activetblptr 2 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production/Bootloader.X.production.o
-main@address 549 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-__end_of_init_pins 2DE 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
+main@address 54B 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+__end_of_init_pins 2C8 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
 __size_of_init_pins 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lbank10 0 0 ABS 0 bank10 dist/default/production/Bootloader.X.production.o
 __Lbank11 0 0 ABS 0 bank11 dist/default/production/Bootloader.X.production.o
@@ -461,59 +461,59 @@ __Lconfig 0 0 ABS 0 config dist/default/production/Bootloader.X.production.o
 _procID 503 0 COMRAM 1 bssCOMRAM dist/default/production/Bootloader.X.production.o
 _LATAbits 4BE 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _record 505 0 COMRAM 1 bssCOMRAM dist/default/production/Bootloader.X.production.o
-main@data 53B 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@data 53D 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production/Bootloader.X.production.o
-main@type 53F 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-main@i_542 546 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-main@index 54B 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-_init_pins 2D8 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
+main@type 541 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@i_542 548 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@index 54D 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+_init_pins 2C2 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/Bootloader.X.production.o
-isa$std 1 0 ABS 0 - /tmp/xcXDMObNn.o
-stackhi 15FF 0 ABS 0 - /tmp/xcXDMObNn.o
-stacklo 560 0 ABS 0 - /tmp/xcXDMObNn.o
+isa$std 1 0 ABS 0 - /tmp/xcXieKfBE.o
+stackhi 15FF 0 ABS 0 - /tmp/xcXieKfBE.o
+stacklo 560 0 ABS 0 - /tmp/xcXieKfBE.o
 _OSCCON1 AD 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _OSCCON3 AF 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _OSCTUNE B0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production/Bootloader.X.production.o
-main@bufPtr 539 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@bufPtr 53B 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-main@ch 548 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-main@cs 53E 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@ch 54A 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@cs 540 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __pbssCOMRAM 501 0 COMRAM 1 bssCOMRAM dist/default/production/Bootloader.X.production.o
 _PIR4bits 4B7 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-end_of_initialization 2DE 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
+end_of_initialization 2C8 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production/Bootloader.X.production.o
 u8tox@n 532 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production/Bootloader.X.production.o
 __Lramtop 1600 0 RAM 0 ramtop dist/default/production/Bootloader.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production/Bootloader.X.production.o
 putch@timeout 533 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-__pcinit 2DE 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
-__ptext0 4A2 0 CODE 0 text0 dist/default/production/Bootloader.X.production.o
-__ptext1 40A 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
-__ptext2 2E8 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
-__ptext3 334 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
-__ptext4 386 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
-__ptext5 35C 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
-__ptext6 318 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
-__ptext7 2D8 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
-__ptext8 2FC 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
+__pcinit 2C8 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
+__ptext0 48C 0 CODE 0 text0 dist/default/production/Bootloader.X.production.o
+__ptext1 3F4 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
+__ptext2 2D2 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
+__ptext3 31E 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
+__ptext4 370 0 CODE 0 text4 dist/default/production/Bootloader.X.production.o
+__ptext5 346 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
+__ptext6 302 0 CODE 0 text6 dist/default/production/Bootloader.X.production.o
+__ptext7 2C2 0 CODE 0 text7 dist/default/production/Bootloader.X.production.o
+__ptext8 2E6 0 CODE 0 text8 dist/default/production/Bootloader.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/Bootloader.X.production.o
-main@length 544 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
-__ramtop 1600 0 RAM 0 ramtop /tmp/xcXDMObNn.o
+main@length 546 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+__ramtop 1600 0 RAM 0 ramtop /tmp/xcXieKfBE.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production/Bootloader.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/Bootloader.X.production.o
-_init_uart1 35C 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
-main@offset 540 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+_init_uart1 346 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
+main@offset 542 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/Bootloader.X.production.o
-main@timeout_546 543 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
+main@timeout_546 545 0 COMRAM 1 cstackCOMRAM dist/default/production/Bootloader.X.production.o
 ___param_bank 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production/Bootloader.X.production.o
-__end_of__initialization 2DE 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
+__end_of__initialization 2C8 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production/Bootloader.X.production.o
 _NVMCON0bits 40 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _NVMCON1bits 41 0 ABS 0 - dist/default/production/Bootloader.X.production.o
@@ -525,9 +525,9 @@ _OSCEN B3 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1BRG 2AE 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1RXB 2A1 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 _U1TXB 2A3 0 ABS 0 - dist/default/production/Bootloader.X.production.o
-__end_of_putch 35C 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
-__end_of_u8tox 2FC 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
-__end_of_xtou8 4A2 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
+__end_of_putch 346 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
+__end_of_u8tox 2E6 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
+__end_of_xtou8 48C 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production/Bootloader.X.production.o
 __Hram 0 0 ABS 0 ram dist/default/production/Bootloader.X.production.o
@@ -536,11 +536,11 @@ __LRAM 1 0 ABS 0 - dist/default/production/Bootloader.X.production.o
 __Lbss 0 0 RAM 1 bss dist/default/production/Bootloader.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production/Bootloader.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production/Bootloader.X.production.o
-_putch 334 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
-_u8tox 2E8 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
-_xtou8 40A 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
-__end_of_init_uart1 386 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
-__initialization 2DE 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
+_putch 31E 0 CODE 0 text3 dist/default/production/Bootloader.X.production.o
+_u8tox 2D2 0 CODE 0 text2 dist/default/production/Bootloader.X.production.o
+_xtou8 3F4 0 CODE 0 text1 dist/default/production/Bootloader.X.production.o
+__end_of_init_uart1 370 0 CODE 0 text5 dist/default/production/Bootloader.X.production.o
+__initialization 2C8 0 CODE 0 cinit dist/default/production/Bootloader.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production/Bootloader.X.production.o
 __Hsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production/Bootloader.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production/Bootloader.X.production.o
@@ -571,19 +571,19 @@ __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production/Bootloader.X.p
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 2DE 2DE A 1
-text0 0 4A2 4A2 35A 1
-text1 0 40A 40A 98 1
-text2 0 2E8 2E8 14 1
-text3 0 334 334 28 1
-text4 0 386 386 84 1
-text5 0 35C 35C 2A 1
-text6 0 318 318 1C 1
-text7 0 2D8 2D8 6 1
-text8 0 2FC 2FC 1C 1
+cinit 0 2C8 2C8 A 1
+text0 0 48C 48C 370 1
+text1 0 3F4 3F4 98 1
+text2 0 2D2 2D2 14 1
+text3 0 31E 31E 28 1
+text4 0 370 370 84 1
+text5 0 346 346 2A 1
+text6 0 302 302 1C 1
+text7 0 2C2 2C2 6 1
+text8 0 2E6 2E6 1C 1
 init 0 7FC 7FC 4 1
 reset_vec 0 0 0 4 1
-bssCOMRAM 1 501 501 4B 1
+bssCOMRAM 1 501 501 4D 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal
