@@ -6,6 +6,8 @@
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /*  ChangeLog:
+ * 2024-02-13 v0.7.2
+ * - 1 ms delay() in ina219_read() replaced by negative value to indicate error.
  * 2023-10-17 V0.1
  * - Initial issue
  */
@@ -86,7 +88,7 @@ int16_t ina219_read (void)
     }
     else
     {   // error handler
-        __delay_ms(1);
+        value = 0xFFBB;     // "bus busy", handle negative values by caller!
     }
     
     return(value);

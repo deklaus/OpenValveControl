@@ -29,6 +29,8 @@
  */
 
 /* Change Log:
+ * 2024-02-13 v0.7.2
+ * - 1 ms delay() in ina219_read() replaced by negative value to indicate error.
  * 2024-01-29 v0.7.1
  * - Error corrected in bootloader when copying code to bufferRam.
  * 2024-01-20 v0.7
@@ -157,6 +159,13 @@ void main(void)
      */
     init_system();    
 
+#ifdef TEST_PWM
+    // test direct FET
+    set_pwm(1, -1);  // RA5 = PWM output
+    while (1) { };
+#endif
+    
+    
 #ifdef TEST_DACOUT_A2
     // TEST: Monitor output via DAC1 -> RA2
     LATAbits.LATA2 = 1;    // TEST (for DAC: A2 = HiZ)
@@ -294,7 +303,10 @@ void main(void)
              */  
             default:
                 LED = 1;    // 1 = off
-                
+
+#ifdef TEST_SETTINGS  
+        DAC1DATL = (uint8_t) (g_mAx10 >> 2);    // current monitor (16 -> 8 bit)
+#endif                
                 PIE0bits.IOCIE = 0;     // Disable IOCI interrupt 
 
                 RA5PPS = RA4PPS = 0;        

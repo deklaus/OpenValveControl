@@ -48,7 +48,7 @@
  * Otherwise a jump to the application interrupt vectors would be required.
  * 
  * @note In the OpenValveControl project we must specify the code offset
- * the project settings:  XC8 Global Options | XC8 Linker | Options |
+ * in the project settings:  XC8 Global Options | XC8 Linker | Options |
  * Additional Options | Codeoffset: 0x0800
 *****************************************************************************/
     
