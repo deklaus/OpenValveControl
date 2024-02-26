@@ -32,7 +32,7 @@ to the community as an OpenSource project.
 - [x] OLED Display (visualization of valve positions, motor current, temperature and status)
 - [x] WiFi-Interface (visualization, command execution and status requests using GET, POST, JSON)
 - [x] Supports DS18B20 (heating flow temperature)
-- [x] Filesystem support on ESP (upload webserver "/index.html" and setting data "/ovc.ini")
+- [x] Filesystem support on ESP (upload webserver "/index.html", setting data "/ovc.ini" and custom labels "/customize.js")
 - [x] Access point (until local WiFi has been configured)
 - [x] OTA-Support for ESP (Over-the-Air Update)
 - [x] OTA-Support (Over-the-Air Bootloader) for PIC-µC
