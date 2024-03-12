@@ -38,6 +38,7 @@ to the community as an OpenSource project.
 - [x] OTA-Support for ESP (Over-the-Air Update)
 - [x] OTA-Support (Over-the-Air Bootloader) for PIC-µC
 - [x] MQTT Support
+- [x] Data logger for motor current and speed (V<sub>BEMF</sub>)
 - [x] Examples for NodeRed, MQTT (, FHEM, Raspberry Pi, ...) - see Documentation.
 
 # Bill of Materials
