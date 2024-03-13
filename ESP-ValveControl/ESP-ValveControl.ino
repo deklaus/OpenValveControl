@@ -38,6 +38,9 @@
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
  * Change Log:
+ * 2024-03-11 v0.8
+ * - Added data logger: <IP>/logdata? reads curr_log[] and bemf_log[] from PIC.
+ * - Added VBsum to "info?" for testing BEMF sum-up for position control.
  * 2024-01-29 v0.7.1
  * - Processing of flags.version moved to the end of "else-if". (A failed bootload could not be 
  *   repeated, because the initialized "flags.version" always took priority and never was worked off.
@@ -116,6 +119,7 @@ extern int    setup_ReadINI (const char *path);
 extern int    setup_WriteCstring (const char *path, const char *identifier, char *s);
 
 // *** private function prototypes
+extern void   getPIClogdata (void);
 extern void   getPICversion (void);
 
 // *** data type, constant and macro definitions
@@ -139,7 +143,7 @@ struct FLAGS  //!<   flags to start tasks within loop()
   uint8_t save     :1;  //!< 3 exec save
   uint8_t bootload :1;  //!< 4 update PIC firmware
   uint8_t version  :1;  //!< 5 update PIC version
-  uint8_t          :1;  //!< 6 
+  uint8_t logdata  :1;  //!< 6 reads log data from PIC
   uint8_t          :1;  //!< 7 
 }; 
 
@@ -175,7 +179,7 @@ PubSubClient  MQTTclient(espClient);
 
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "v0.7.1";  // Version of ESP-Firmware
+char  ESPversion[32] = "v0.8";  // Version of ESP-Firmware
 char  PICversion[32] = "NN";    // Version of PIC-Firmware
 
 // WiFi credentials: Initial values are used for access point!
@@ -207,12 +211,13 @@ float     tempC = 0.0;    // temperature in Celsius (DS18B20)
 float     dTemp = 0.0;    // temperature adjust (ovc.ini)
 int       position[numVZ + 1] = {-1, 0, 65, 36, 100 };        // actual VZ positions (index 0 is dummy)
 bool      refset[numVZ + 1];                                  // home position set?
+int       vbemf_sum[numVZ + 1];
 
 // Vars sourced by (html) User Interface 
 struct FLAGS  flags;      // processing flags (Web UI -> loop)
 int       vz = 0;         // selected valve zone (motor), [1 .. 4], 0 = none!
 int       set_pos[numVZ + 1]  = { -1, 0, 65, 36, 100 };       // valve set positions
-float     max_mA[numVZ + 1]   = { 0.0, 25.0, 25.0, 25.0, 25.0 };  // motor current limits [mA]
+float     max_mA[numVZ + 1]   = { 0.0, 30.0, 30.0, 30.0, 30.0 };  // motor current limits [mA]
 
 char      txbuf[64];
 char      rxbuf[64];
@@ -342,6 +347,7 @@ void setup ()
   server.on("/bootload", HTTP_GET, webUI_bootload);
   server.on("/move",     HTTP_GET, webUI_move);
   server.on("/home",     HTTP_GET, webUI_home);
+  server.on("/logdata",  HTTP_GET, webUI_logdata);
   server.on("/info",     HTTP_GET, webUI_info);
   server.on("/status",   HTTP_GET, webUI_status);
   server.on("/save",     HTTP_GET, webUI_save);
@@ -374,6 +380,7 @@ void loop ()
 {
   unsigned long LoopStamp = millis();   // used to run main loop with constant execution time
   int       error;
+  int       ival32;
   uint16_t  uval;
   char      buf[64];
   char      *p;
@@ -431,7 +438,13 @@ void loop ()
       delay(500);    
     }
     flags.bootload = 0;
-  } // if flags.bootload
+  }
+
+  else if (flags.logdata)       // read logdata (curr_log[], bemf_log[]) from PIC
+  {
+    getPIClogdata();
+    flags.logdata = 0;
+  }
 
   else if (flags.version)       // Update PIC version info
   {
@@ -494,8 +507,21 @@ void loop ()
         refset[2] = REF2(status) ? 1 : 0;
         refset[3] = REF3(status) ? 1 : 0;
         refset[4] = REF4(status) ? 1 : 0;
+        p = strstr(p, ",");
       } 
     }
+    if (p)      // status word
+    {
+      if (sscanf(++p, "0x%08x", &ival32) == 1) 
+      {
+        vbemf_sum[1] = ival32;
+        // p = strstr(p, ",");
+      } 
+      else vbemf_sum[1] = -1;
+    }
+    else vbemf_sum[1] = -2;
+
+
 
 #ifdef DEBUG_OUTPUT_STATUS
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
@@ -732,3 +758,76 @@ void getPICversion (void)
   }
 
 } // getPICversion()
+
+
+/** @brief Read LogData from PIC and save in LittleFS as file 'logdata.csv'
+*/
+void getPIClogdata (void)
+{
+  unsigned long tstart;
+  File logfile;
+  String  str;   
+  int     error = 0;
+  bool    eol;
+  char    c;
+
+  logfile = LittleFS.open("logdata.csv", "w");
+  if(logfile)
+  {
+    while (Serial.available() > 0) Serial.read();   // flush serial
+    
+    sprintf(txbuf, "LogData?"); // send request to PIC
+    error = cmd2pic();
+    if (!error && (strncmp(rxbuf, "LogData:", 8) == 0))  // compare first N chars of response
+    { 
+      do 
+      {
+        rxbuf[0] = '\0';  // flush rxbuf
+        nrx = 0;
+        eol = 0;
+        tstart = millis();
+        for (error = 0; !eol && !error;  )
+        {
+          while (Serial.available() > 0 && !eol) 
+          {
+            c = Serial.read();
+            if (c == '\r') continue;  // skip
+            if (c == '\n') 
+            {
+              if (nrx < 2)  continue;
+              eol = true;
+              c = '\0';
+            }
+            if (nrx < sizeof(rxbuf))  // if not buffer overflow
+            {
+              rxbuf[nrx++] = c;       // store received char in rxbuf, increment count
+            }
+            else rxbuf[sizeof(rxbuf) - 1] = '\0'; // terminate rxbuf
+          } // while
+
+          if ((millis() - tstart) > MAX_ACK_TIME)
+          {
+            error = -1;  // timeout?
+          }
+          server.handleClient();      // process WebUI during reception
+        } // for
+
+        if (eol)  // we received a record
+        { 
+          logfile.println(rxbuf);
+          // logfile.writeString(rxbuf);
+        }
+        server.handleClient();  // mandatory
+      } while (!error); // read until timeout, don't use fix limit
+      OLED_show(1, (char *)"Logfile complete!");
+    }
+    logfile.print("Error: ");
+    logfile.println(error);
+    logfile.close();
+  }
+  else 
+  {
+    OLED_show(1, (char *)"Can't create logfile");
+  }
+
+} // getPIClogdata()

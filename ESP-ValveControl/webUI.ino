@@ -69,6 +69,28 @@ void webUI_bootload (void)
 } // webUI_bootload ()
 
 
+/** @brief Handler for logdata request.
+ */
+void webUI_logdata ()
+{
+  char  buf[128];
+  String htmlPage;
+  htmlPage.reserve(128);  // prevent ram fragmentation
+
+  htmlPage = F("Requesting LogData from PIC Controller...\n");
+  htmlPage += "Please allow approx. 5 seconds for completion,\n";
+  htmlPage += "then read file 'logdata.csv' from LittleFS.\n";
+
+  server.send(200, "text/plain", htmlPage);
+
+  //server.sendHeader("Access-Control-Allow-Origin","*"); 
+  server.send(200, "text/plain", htmlPage);
+
+  flags.logdata = 1;
+
+} // webUI_logdata ()
+
+
 /** @brief Handler for MOVE. Arguments: <ESP_IP>/move?vz=[1..4]&set_pos=[0..100]&max_mA=[0.0 .. 100.0]
  */
 void webUI_move ()
@@ -167,11 +189,12 @@ void webUI_info ()
 
   htmlPage = F(
     "{ \n"
-    "\"ESP\": \"" );  htmlPage += ESPversion; htmlPage += F("\",\n"
-    "\"PIC\": \"" );  htmlPage += PICversion; htmlPage += F("\",\n"
-    "\"SSID\": \"");  htmlPage += ssid;       htmlPage += F("\",\n"
-    "\"dTemp\": \""); htmlPage += dTemp;      htmlPage += F("\",\n"
-    "\"RSSI\": \"");  htmlPage += rssi;       htmlPage += F(" dBm\"\n" // no comma at end
+    "\"ESP\": \"" );  htmlPage += ESPversion;   htmlPage += F("\",\n"
+    "\"PIC\": \"" );  htmlPage += PICversion;   htmlPage += F("\",\n"
+    "\"SSID\": \"");  htmlPage += ssid;         htmlPage += F("\",\n"
+    "\"dTemp\": \""); htmlPage += dTemp;        htmlPage += F("\",\n"
+    "\"RSSI\": \"");  htmlPage += rssi;         htmlPage += F(" dBm\",\n" // no comma at end
+    "\"VBsum\": \""); htmlPage += vbemf_sum[1]; htmlPage += F("\"\n" // no comma at end
     "}\n");
 
   //server.sendHeader("Access-Control-Allow-Origin","*"); 
