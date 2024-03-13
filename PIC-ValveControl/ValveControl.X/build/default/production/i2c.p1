@@ -1417,49 +1417,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"90 ./main.h
+"94 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"91
+"95
 [v _FVRC2X `us ~T0 @X0 1 e ]
-"22 i2c.c
+"24 i2c.c
 [v _i2c_init `(v ~T0 @X0 1 ef ]
-"23
+"25
 {
 [e :U _i2c_init ]
 [f ]
-"25
-[e = _I2C1CON0 -> -> 4 `i `uc ]
 "27
-[e = _I2C1CON1 -> -> 128 `i `uc ]
+[e = _I2C1CON0 -> -> 4 `i `uc ]
 "29
-[e = _I2C1CON2 -> -> 24 `i `uc ]
+[e = _I2C1CON1 -> -> 128 `i `uc ]
 "31
-[e = _I2C1CLK -> -> 0 `i `uc ]
+[e = _I2C1CON2 -> -> 24 `i `uc ]
 "33
-[e = _I2C1PIR -> -> 0 `i `uc ]
+[e = _I2C1CLK -> -> 0 `i `uc ]
 "35
-[e = _I2C1PIE -> -> 0 `i `uc ]
+[e = _I2C1PIR -> -> 0 `i `uc ]
 "37
-[e = _I2C1ERR -> -> 0 `i `uc ]
+[e = _I2C1PIE -> -> 0 `i `uc ]
 "39
+[e = _I2C1ERR -> -> 0 `i `uc ]
+"41
 [e = _I2C1CNTL -> -> 0 `i `uc ]
-"40
-[e = _I2C1CNTH -> -> 0 `i `uc ]
 "42
-[e = _I2C1BAUD -> -> 1 `i `uc ]
+[e = _I2C1CNTH -> -> 0 `i `uc ]
 "44
+[e = _I2C1BAUD -> -> 1 `i `uc ]
+"46
 [e :UE 1872 ]
 }
-"56
+"58
 [v _ina219_read `(s ~T0 @X0 1 ef ]
-"57
+"59
 {
 [e :U _ina219_read ]
 [f ]
-"58
+"60
 [v _value `s ~T0 @X0 1 a ]
 [e = _value -> -> 0 `i `s ]
-"60
+"62
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1469,27 +1469,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1874  ]
 [e :U 1875 ]
 }
-"61
-[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1878  ]
-"62
-{
 "63
-[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
+[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1878  ]
 "64
-[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+{
 "65
+[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
+"66
+[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+"67
 [e $ ! != -> . . _I2C1STAT1bits 0 0 `i -> 0 `i 1879  ]
 [e = _value -> _I2C1RXB `s ]
 [e :U 1879 ]
-"66
-[e = _I2C1STAT1 -> -> 0 `i `uc ]
 "68
+[e = _I2C1STAT1 -> -> 0 `i `uc ]
+"70
 [e = _I2C1CNTL -> -> 2 `i `uc ]
-"69
+"71
 [e = _I2C1CNTH -> -> 0 `i `uc ]
-"72
+"74
 [e = _I2C1TXB -> + -> 128 `i -> 1 `i `uc ]
-"75
+"77
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1499,9 +1499,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 0 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1880  ]
 [e :U 1881 ]
 }
-"76
-[e = _value -> << -> -> _I2C1RXB `s `i -> 8 `i `s ]
 "78
+[e = _value -> << -> -> _I2C1RXB `s `i -> 8 `i `s ]
+"80
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1511,9 +1511,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 0 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1884  ]
 [e :U 1885 ]
 }
-"79
+"81
 [e =+ _value -> _I2C1RXB `s ]
-"82
+"84
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1523,36 +1523,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1PIRbits 0 2 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1888  ]
 [e :U 1889 ]
 }
-"84
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "86
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"88
 }
 [e $U 1892  ]
-"87
-[e :U 1878 ]
-"88
-{
 "89
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[e :U 1878 ]
 "90
+{
+"91
+[e = _value -> -> 65467 `ui `s ]
+"92
 }
 [e :U 1892 ]
-"92
+"94
 [e ) _value ]
 [e $UE 1873  ]
-"94
+"96
 [e :UE 1873 ]
 }
-"99
+"101
 [v _ina219_reg `(v ~T0 @X0 1 ef1`uc ]
-"100
+"102
 {
 [e :U _ina219_reg ]
-"99
-[v _ina219reg `uc ~T0 @X0 1 r1 ]
-"100
-[f ]
 "101
+[v _ina219reg `uc ~T0 @X0 1 r1 ]
+"102
+[f ]
+"103
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1562,21 +1562,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1894  ]
 [e :U 1895 ]
 }
-"102
-[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1898  ]
-"103
-{
 "104
-[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
+[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1898  ]
 "105
-[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+{
+"106
+[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
 "107
+[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+"109
 [e = _I2C1CNTL -> -> 1 `i `uc ]
-"108
+"110
 [e = _I2C1CNTH -> -> 0 `i `uc ]
-"111
+"113
 [e = _I2C1TXB -> + -> 128 `i -> 0 `i `uc ]
-"114
+"116
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1586,9 +1586,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1899  ]
 [e :U 1900 ]
 }
-"115
+"117
 [e = _I2C1TXB _ina219reg ]
-"118
+"120
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1598,34 +1598,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1PIRbits 0 2 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1903  ]
 [e :U 1904 ]
 }
-"120
+"122
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-"121
+"123
 }
 [e $U 1907  ]
-"122
-[e :U 1898 ]
-"123
-{
 "124
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[e :U 1898 ]
 "125
+{
+"126
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"127
 }
 [e :U 1907 ]
-"127
+"129
 [e :UE 1893 ]
 }
-"138
+"140
 [v _ina219_write `(v ~T0 @X0 1 ef2`uc`s ]
-"139
+"141
 {
 [e :U _ina219_write ]
-"138
+"140
 [v _ina219reg `uc ~T0 @X0 1 r1 ]
 [v _value `s ~T0 @X0 1 r2 ]
-"139
+"141
 [f ]
-"140
+"142
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1635,21 +1635,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1909  ]
 [e :U 1910 ]
 }
-"141
-[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1913  ]
-"142
-{
 "143
-[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
+[e $ ! != -> . . _I2C1STAT0bits 0 5 `i -> 0 `i 1913  ]
 "144
-[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+{
+"145
+[e = . . _I2C1STAT1bits 0 7 -> -> 0 `i `uc ]
 "146
+[e = . . _I2C1PIRbits 0 2 -> -> 0 `i `uc ]
+"148
 [e = _I2C1CNTL -> -> 3 `i `uc ]
-"147
+"149
 [e = _I2C1CNTH -> -> 0 `i `uc ]
-"150
+"152
 [e = _I2C1TXB -> + -> 128 `i -> 0 `i `uc ]
-"153
+"155
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1659,9 +1659,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1914  ]
 [e :U 1915 ]
 }
-"154
+"156
 [e = _I2C1TXB _ina219reg ]
-"157
+"159
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1671,9 +1671,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1918  ]
 [e :U 1919 ]
 }
-"158
+"160
 [e = _I2C1TXB -> >> -> -> _value `us `ui -> 8 `i `uc ]
-"159
+"161
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1683,9 +1683,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1STAT1bits 0 5 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 100 `i 1922  ]
 [e :U 1923 ]
 }
-"160
+"162
 [e = _I2C1TXB -> _value `uc ]
-"163
+"165
 {
 [v _timeout `uc ~T0 @X0 1 a ]
 [e = _timeout -> -> 0 `i `uc ]
@@ -1695,20 +1695,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ && ! != -> . . _I2C1PIRbits 0 2 `i -> 0 `i < -> =+ _timeout -> -> 1 `i `uc `i -> 50 `i 1926  ]
 [e :U 1927 ]
 }
-"165
+"167
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-"166
+"168
 }
 [e $U 1930  ]
-"167
-[e :U 1913 ]
-"168
-{
 "169
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[e :U 1913 ]
 "170
+{
+"171
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"172
 }
 [e :U 1930 ]
-"172
+"174
 [e :UE 1908 ]
 }

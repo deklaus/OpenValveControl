@@ -2,20 +2,20 @@
 Memory Class Usage:
 
 Program space:
-    CODE                 used  8985h ( 35205) of  F800h bytes   ( 55.5%)
+    CODE                 used  8D75h ( 36213) of  F800h bytes   ( 57.0%)
     CONST                used     0h (     0) of  F800h bytes   (  0.0%)
     SMALLCONST           used     0h (     0) of  EA00h bytes   (  0.0%)
-    MEDIUMCONST          used   164h (   356) of  EA00h bytes   (  0.6%)
+    MEDIUMCONST          used   17Eh (   382) of  EA00h bytes   (  0.6%)
 
 Data space:
-    COMRAM               used    45h (    69) of    5Fh bytes   ( 72.6%)
+    COMRAM               used    49h (    73) of    5Fh bytes   ( 76.8%)
     ABS1                 used     0h (     0) of  1100h bytes   (  0.0%)
-    BIGRAM               used     0h (     0) of  10FFh bytes   (  0.0%)
+    BIGRAM               used   800h (  2048) of  10FFh bytes   ( 47.1%)
     RAM                  used     0h (     0) of  10A0h bytes   (  0.0%)
     BANK5                used    9Fh (   159) of    A0h bytes   ( 99.4%)
-    BANK6                used    EEh (   238) of   100h bytes   ( 93.0%)
+    BANK6                used    FAh (   250) of   100h bytes   ( 97.7%)
     BANK7                used    50h (    80) of   100h bytes   ( 31.2%)
-    BANK8                used   100h (   256) of   100h bytes   (100.0%)
+    BANK8                used     0h (     0) of   100h bytes   (  0.0%)
     BANK9                used     0h (     0) of   100h bytes   (  0.0%)
     BANK10               used     0h (     0) of   100h bytes   (  0.0%)
     BANK11               used     0h (     0) of   100h bytes   (  0.0%)

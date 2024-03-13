@@ -42,13 +42,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _IPR3bits `VS1235 ~T0 @X0 0 e@874 ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt irq ( default ) base ( 2056 ) low_priority ]
-"66 ./main.h
+"70 ./main.h
 [s S1871 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
 [n S1871 . CRC UNEXP_INT OVER_CURR . ]
-"65
+"69
 [u S1870 `S1871 1 `uc 1 ]
 [n S1870 . . v ]
-"94
+"98
 [v _g_ERRORflags `VS1870 ~T0 @X0 0 e ]
 [t T2 __interrupt irq ( 39 ) base ( 2056 ) high_priority ]
 "34401 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
@@ -63,34 +63,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ina219_reg `(v ~T0 @X0 0 ef1`uc ]
 "32
 [v _ina219_read `(s ~T0 @X0 0 ef ]
-"111 ./main.h
+"115 ./main.h
 [v _g_mAx10 `Vs ~T0 @X0 0 e ]
+"123
+[v _ns_curr `Vus ~T0 @X0 0 e ]
+"121
+[v _curr_log `Vuc ~T0 @X0 -> 0 `x e ]
 [v F183 `(v ~T0 @X0 1 tf1`ul ]
 "12 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/builtins.h
 [v __delay `JF183 ~T0 @X0 0 e ]
 [p i __delay ]
 "19 ./daq.h
 [v _daq_vbemf `(us ~T0 @X0 0 ef1`uc ]
-"106 ./main.h
+"110 ./main.h
 [v _g_vz `Vuc ~T0 @X0 0 e ]
-"112
-[v _g_vbemf `Vus ~T0 @X0 0 e ]
-"115
-[v _g_bemf8 `Vuc ~T0 @X0 -> 0 `x e ]
 "116
-[v _g_zerocount `Vuc ~T0 @X0 0 e ]
-"36869 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
-[s S1752 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1752 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
-"36868
-[u S1751 `S1752 1 ]
-[n S1751 . . ]
-"36880
-[v _LATCbits `VS1751 ~T0 @X0 0 e@1216 ]
-"109 ./main.h
-[v _g_zcd `Vs ~T0 @X0 -> 0 `x e ]
-"113
+[v _g_vbemf `Vus ~T0 @X0 0 e ]
+"122
+[v _ns_bemf `Vus ~T0 @X0 0 e ]
+"120
+[v _bemf_log `Vuc ~T0 @X0 -> 0 `x e ]
+"118
 [v _g_dir `Vc ~T0 @X0 0 e ]
+"117
+[v _g_vbemf_sum `Vl ~T0 @X0 -> 0 `x e ]
 [t T3 __interrupt irq ( 7 ) base ( 2056 ) low_priority ]
 "31972 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [v _IOCAF `Vuc ~T0 @X0 0 e@1031 ]
@@ -107,9 +103,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S1730 . . ]
 "36327
 [v _PIR3bits `VS1730 ~T0 @X0 0 e@1206 ]
-"103 ./main.h
+"107 ./main.h
 [v _g_timer_ms `Vus ~T0 @X0 0 e ]
-"104
+"108
 [v _g_tovfl_ms `Va ~T0 @X0 0 e ]
 [t T5 __interrupt irq ( 28 ) base ( 2056 ) low_priority ]
 [t T6 __interrupt irq ( 27 ) base ( 2056 ) low_priority ]
@@ -129,9 +125,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _U1RXB `Vuc ~T0 @X0 0 e@673 ]
 "42 ./init.h
 [v _init_uart1 `(v ~T0 @X0 0 ef ]
-"101 ./main.h
+"105 ./main.h
 [v _g_rx232_count `Vuc ~T0 @X0 0 e ]
-"96
+"100
 [v _g_rs232_request `Vuc ~T0 @X0 0 e ]
 "35731 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [s S1709 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -141,7 +137,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S1708 . . ]
 "35742
 [v _PIE4bits `VS1708 ~T0 @X0 0 e@1196 ]
-"99 ./main.h
+"103 ./main.h
 [v _g_rx232_buf `Vuc ~T0 @X0 -> 0 `x e ]
 "8 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/builtins.h
 [v ___nop `(v ~T0 @X0 0 ef ]
@@ -1498,315 +1494,277 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"90 ./main.h
+"94 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"91
+"95
 [v _FVRC2X `us ~T0 @X0 1 e ]
-"45 interrupt.c
-[v _emk `us ~T0 @X0 -> 128 `i e ]
-"66
+"67 interrupt.c
 [v _interrupt_initialize `(v ~T0 @X0 1 ef ]
-"67
+"68
 {
 [e :U _interrupt_initialize ]
 [f ]
-"68
+"69
 [e = . . _INTCON0bits 0 4 -> -> 1 `i `uc ]
-"71
-[e = _IVTBASEU -> -> 0 `i `uc ]
 "72
-[e = _IVTBASEH -> -> 8 `i `uc ]
+[e = _IVTBASEU -> -> 0 `i `uc ]
 "73
+[e = _IVTBASEH -> -> 8 `i `uc ]
+"74
 [e = _IVTBASEL -> -> 8 `i `uc ]
-"76
-[e = . . _IPR0bits 0 2 -> -> 1 `i `uc ]
 "77
+[e = . . _IPR0bits 0 2 -> -> 1 `i `uc ]
+"78
 [e = . . _IPR4bits 0 7 -> -> 1 `i `uc ]
-"83
-[e = . . _IPR0bits 0 7 -> -> 0 `i `uc ]
 "84
-[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
+[e = . . _IPR0bits 0 7 -> -> 0 `i `uc ]
 "85
-[e = . . _IPR3bits 0 4 -> -> 0 `i `uc ]
+[e = . . _IPR3bits 0 3 -> -> 0 `i `uc ]
 "86
-[e = . . _IPR3bits 0 6 -> -> 0 `i `uc ]
+[e = . . _IPR3bits 0 4 -> -> 0 `i `uc ]
 "87
-[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
+[e = . . _IPR3bits 0 6 -> -> 0 `i `uc ]
 "88
+[e = . . _IPR3bits 0 7 -> -> 0 `i `uc ]
+"89
 [e = . . _IPR4bits 0 1 -> -> 0 `i `uc ]
-"90
+"91
 [e :UE 1872 ]
 }
 [v $root$_default_isr `(v ~T0 @X0 0 e ]
-"98
-[v _default_isr `(v ~T1 @X0 1 ef ]
 "99
+[v _default_isr `(v ~T1 @X0 1 ef ]
+"100
 {
 [e :U _default_isr ]
 [f ]
-"100
+"101
 [e = . . _g_ERRORflags 0 1 -> -> 1 `i `uc ]
-"102
+"103
 [e :UE 1873 ]
 }
-"105
-[v _ns `uc ~T0 @X0 1 s ]
 [v $root$_PWM1_isr `(v ~T0 @X0 0 e ]
-"114
+"113
 [v _PWM1_isr `(v ~T2 @X0 1 ef ]
-"115
+"114
 {
 [e :U _PWM1_isr ]
 [f ]
-"116
+"115
 [v _mAmps `s ~T0 @X0 1 a ]
-"117
+"116
 [v _uk `us ~T0 @X0 1 a ]
-"118
-[v _f1a `c ~T0 @X0 1 a ]
-[v _f1b `c ~T0 @X0 1 a ]
-"121
+"119
 [e $ ! != -> . . _PWM1GIRbits 0 1 `i -> 0 `i 1875  ]
-"122
+"120
 {
-"123
+"121
 [e = . . _PWM1GIRbits 0 1 -> -> 0 `i `uc ]
-"125
+"123
 [e ( _ina219_reg (1 -> -> 1 `i `uc ]
-"126
+"124
 [e = _mAmps ( _ina219_read ..  ]
-"127
+"125
 [e $ ! < -> _mAmps `i -> 0 `i 1876  ]
 [e = _mAmps -> -> 0 `i `s ]
 [e :U 1876 ]
-"129
-[e =+ _g_mAx10 -> >> - -> _mAmps `i -> _g_mAx10 `i -> 1 `i `Vs ]
+"130
+[e = _g_mAx10 _mAmps ]
+"132
+[e $ ! < -> _ns_curr `ui -> -> 1024 `i `ui 1877  ]
 "133
-}
-[e :U 1875 ]
-"136
-[e $ ! != -> . . _PWM1GIRbits 0 0 `i -> 0 `i 1877  ]
-"137
 {
-"138
-[e = . . _PWM1GIRbits 0 0 -> -> 0 `i `uc ]
-"140
-[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-"147
-[e = _uk ( _daq_vbemf (1 _g_vz ]
-"148
-[e =+ _g_vbemf -> >> - -> -> _uk `s `i -> -> _g_vbemf `s `i -> 1 `i `Vus ]
-"152
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 4 `i 1878  ]
-[e $U 1879  ]
-[e :U 1878 ]
-[e = *U + &U _g_bemf8 * -> _i `ux -> -> # *U &U _g_bemf8 `ui `ux *U + &U _g_bemf8 * -> -> + -> _i `i -> 1 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux ]
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 4 `i 1878  ]
-[e :U 1879 ]
-}
-"153
-[e = *U + &U _g_bemf8 * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux -> >> -> _g_vbemf `ui -> 4 `i `uc ]
-"156
-[e = _f1a -> - -> *U + &U _g_bemf8 * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i >> + -> *U + &U _g_bemf8 * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i -> *U + &U _g_bemf8 * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i -> 1 `i `c ]
-"157
-[e = _f1b -> - -> *U + &U _g_bemf8 * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i >> + -> *U + &U _g_bemf8 * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i -> *U + &U _g_bemf8 * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_bemf8 `ui `ux `i -> 1 `i `c ]
-"161
-[e $ ! && && && < -> _f1a `i -> 0 `i > -> _f1b `i -> 0 `i < -> _f1a `i -> _f1b `i > -> _g_zerocount `i -> 3 `i 1881  ]
-"162
-{
-"163
-[e = . . _LATCbits 0 1 -> -> ! != -> . . _LATCbits 0 1 `i -> 0 `i `i `uc ]
-"164
-[e = _g_zerocount -> -> 0 `i `uc ]
-"165
-[e =+ *U + &U _g_zcd * -> _g_vz `ux -> -> # *U &U _g_zcd `ui `ux -> _g_dir `s ]
-"166
-[e $ ! < -> *U + &U _g_zcd * -> _g_vz `ux -> -> # *U &U _g_zcd `ui `ux `i -> 0 `i 1882  ]
-[e = *U + &U _g_zcd * -> _g_vz `ux -> -> # *U &U _g_zcd `ui `ux -> -> 0 `i `s ]
-[e :U 1882 ]
-"167
-}
-[e $U 1883  ]
-"168
-[e :U 1881 ]
-[e $ ! < -> _g_zerocount `i -> 127 `i 1884  ]
-[e ++ _g_zerocount -> -> 1 `i `Vuc ]
-[e :U 1884 ]
-[e :U 1883 ]
-"177
-[e $ ! && > -> _g_dir `i -> 0 `i < -> _ns `ui / -> # _emk `ui -> -> 2 `i `ui 1885  ]
-"178
-{
-"179
-[e = *U + &U _emk * -> ++ _ns -> -> 1 `i `uc `ux -> -> # *U &U _emk `ui `ux _g_vbemf ]
-"180
-}
-[e :U 1885 ]
-"181
-[e $ ! == -> _ns `i -> 25 `i 1886  ]
-"182
-{
-"183
-[e = _g_vbemf -> -> 0 `i `us ]
-"184
-}
-[e :U 1886 ]
-"190
+"134
+[e = *U + &U _curr_log * -> ++ _ns_curr -> -> 1 `i `Vus `ux -> -> # *U &U _curr_log `ui `ux -> >> -> _g_mAx10 `i -> 2 `i `uc ]
+"135
 }
 [e :U 1877 ]
-"192
+"139
+}
+[e :U 1875 ]
+"145
+[e $ ! != -> . . _PWM1GIRbits 0 0 `i -> 0 `i 1878  ]
+"146
+{
+"147
+[e = . . _PWM1GIRbits 0 0 -> -> 0 `i `uc ]
+"149
+[e ( __delay (1 -> * -> -> 400 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"155
+[e = _uk ( _daq_vbemf (1 _g_vz ]
+"161
+[e = _g_vbemf _uk ]
+"164
+[e $ ! < -> _ns_bemf `ui -> -> 1024 `i `ui 1879  ]
+"165
+{
+"166
+[e = *U + &U _bemf_log * -> ++ _ns_bemf -> -> 1 `i `Vus `ux -> -> # *U &U _bemf_log `ui `ux -> >> -> _g_vbemf `ui -> 4 `i `uc ]
+"167
+}
+[e :U 1879 ]
+"174
+[e $ ! > -> _g_dir `i -> 0 `i 1880  ]
+[e =+ *U + &U _g_vbemf_sum * -> _g_vz `ux -> -> # *U &U _g_vbemf_sum `ui `ux -> _g_vbemf `l ]
+[e $U 1881  ]
+"175
+[e :U 1880 ]
+[e $ ! < -> _g_dir `i -> 0 `i 1882  ]
+[e =- *U + &U _g_vbemf_sum * -> _g_vz `ux -> -> # *U &U _g_vbemf_sum `ui `ux -> _g_vbemf `l ]
+[e :U 1882 ]
+[e :U 1881 ]
+"177
+}
+[e :U 1878 ]
+"179
 [e :UE 1874 ]
 }
 [v $root$_IOC_isr `(v ~T0 @X0 0 e ]
-"199
+"186
 [v _IOC_isr `(v ~T3 @X0 1 ef ]
-"200
+"187
 {
 [e :U _IOC_isr ]
 [f ]
-"201
+"188
 [e = _IOCAF = _IOCBF = _IOCCF -> -> 0 `i `uc ]
-"203
-[e :UE 1887 ]
+"190
+[e :UE 1883 ]
 }
 [v $root$_TMR0_isr `(v ~T0 @X0 0 e ]
-"210
+"197
 [v _TMR0_isr `(v ~T4 @X0 1 ef ]
-"211
+"198
 {
 [e :U _TMR0_isr ]
 [f ]
-"212
+"199
 [e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"213
-[e $ ! == -> =+ _g_timer_ms -> -> 1 `i `Vus `ui -> -> 0 `i `ui 1889  ]
+"200
+[e $ ! == -> =+ _g_timer_ms -> -> 1 `i `Vus `ui -> -> 0 `i `ui 1885  ]
 [e = _g_tovfl_ms -> -> 1 `i `a ]
-[e :U 1889 ]
-"215
-[e :UE 1888 ]
+[e :U 1885 ]
+"202
+[e :UE 1884 ]
 }
 [v $root$_TMR1_isr `(v ~T0 @X0 0 e ]
-"222
+"209
 [v _TMR1_isr `(v ~T5 @X0 1 ef ]
-"223
+"210
 {
 [e :U _TMR1_isr ]
 [f ]
-"224
+"211
 [e = . . _PIR3bits 0 4 -> -> 0 `i `uc ]
-"226
-[e :UE 1890 ]
+"213
+[e :UE 1886 ]
 }
 [v $root$_TMR2_isr `(v ~T0 @X0 0 e ]
-"233
+"220
 [v _TMR2_isr `(v ~T6 @X0 1 ef ]
-"234
+"221
 {
 [e :U _TMR2_isr ]
 [f ]
-"235
+"222
 [e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
-"237
-[e :UE 1891 ]
+"224
+[e :UE 1887 ]
 }
 [v $root$_U1RX_isr `(v ~T0 @X0 0 e ]
-"246
+"233
 [v _U1RX_isr `(v ~T7 @X0 1 ef ]
-"247
+"234
 {
 [e :U _U1RX_isr ]
 [f ]
-"248
+"235
 [v _ch `uc ~T0 @X0 1 a ]
-"252
-[e $ ! || != -> . . _U1ERRIRbits 0 1 `i -> 0 `i != -> . . _U1ERRIRbits 0 3 `i -> 0 `i 1893  ]
-"253
+"239
+[e $ ! || != -> . . _U1ERRIRbits 0 1 `i -> 0 `i != -> . . _U1ERRIRbits 0 3 `i -> 0 `i 1889  ]
+"240
 {
-"254
+"241
 [e = . . _U1ERRIRbits 0 1 = . . _U1ERRIRbits 0 3 -> -> 0 `i `uc ]
-"255
+"242
 [e = _ch _U1RXB ]
-"256
+"243
 [e ( _init_uart1 ..  ]
-"257
+"244
 }
-[e $U 1894  ]
-"258
-[e :U 1893 ]
-"259
+[e $U 1890  ]
+"245
+[e :U 1889 ]
+"246
 {
-"260
+"247
 [e = _ch _U1RXB ]
+"248
+[e $ ! || == -> _ch `ui -> 13 `ui == -> _ch `ui -> 10 `ui 1891  ]
+"249
+{
+"250
+[e = _ch -> -> 0 `i `uc ]
+"251
+[e $ ! > -> _g_rx232_count `i -> 1 `i 1892  ]
+"252
+{
+"253
+[e = _g_rs232_request -> -> 1 `i `uc ]
+"254
+[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
+"255
+}
+[e $U 1893  ]
+"256
+[e :U 1892 ]
+"257
+{
+"258
+[e $U 1894  ]
+"259
+}
+[e :U 1893 ]
+"260
+}
+[e :U 1891 ]
 "261
-[e $ ! || == -> _ch `ui -> 13 `ui == -> _ch `ui -> 10 `ui 1895  ]
+[e $ ! < -> _g_rx232_count `ui -> * -> 48 `i # `Vuc `ui 1895  ]
 "262
 {
 "263
-[e = _ch -> -> 0 `i `uc ]
-"264
-[e $ ! > -> _g_rx232_count `i -> 1 `i 1896  ]
-"265
-{
-"266
-[e = _g_rs232_request -> -> 1 `i `uc ]
-"267
-[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
-"268
-}
-[e $U 1897  ]
-"269
-[e :U 1896 ]
-"270
-{
-"271
-[e $U 1898  ]
-"272
-}
-[e :U 1897 ]
-"273
-}
-[e :U 1895 ]
-"274
-[e $ ! < -> _g_rx232_count `ui -> * -> 48 `i # `Vuc `ui 1899  ]
-"275
-{
-"276
 [e = *U + &U _g_rx232_buf * -> ++ _g_rx232_count -> -> 1 `i `Vuc `ux -> -> # *U &U _g_rx232_buf `ui `ux _ch ]
-"277
+"264
 }
-[e $U 1900  ]
-"278
-[e :U 1899 ]
-"279
+[e $U 1896  ]
+"265
+[e :U 1895 ]
+"266
 {
-"280
+"267
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `ui -> * -> 48 `i # `Vuc `ui 1901  ]
-[e $U 1902  ]
-[e :U 1901 ]
+[e $ < -> _i `ui -> * -> 48 `i # `Vuc `ui 1897  ]
+[e $U 1898  ]
+[e :U 1897 ]
 [e = *U + &U _g_rx232_buf * -> _i `ux -> -> # *U &U _g_rx232_buf `ui `ux -> -> 0 `i `uc ]
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `ui -> * -> 48 `i # `Vuc `ui 1901  ]
-[e :U 1902 ]
-}
-"281
-[e = _g_rx232_count -> -> 0 `i `uc ]
-"282
-}
-[e :U 1900 ]
-"283
-}
-[e :U 1894 ]
-"284
+[e $ < -> _i `ui -> * -> 48 `i # `Vuc `ui 1897  ]
 [e :U 1898 ]
-"285
+}
+"268
+[e = _g_rx232_count -> -> 0 `i `uc ]
+"269
+}
+[e :U 1896 ]
+"270
+}
+[e :U 1890 ]
+"271
+[e :U 1894 ]
+"272
 [e ( ___nop ..  ]
-"287
-[e :UE 1892 ]
+"274
+[e :UE 1888 ]
 }

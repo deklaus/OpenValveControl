@@ -21,7 +21,7 @@
 // Base address of EEPROM, valid for PIC18F04/05/06/14/15/16Q41.
 #define EEPROM_BASE 0x380000
 
-#define LED     LATAbits.LATA2
+#define nLED    LATAbits.LATA2
 
 #define interrupt_GlobalHighEnable()   (INTCON0bits.GIEH = 1)
 #define interrupt_GlobalHighDisable()  (INTCON0bits.GIEH = 0)
@@ -33,12 +33,15 @@
 #define	MSperTICK	100     /* time [ms] to move a motor by 1 % of max. travel */
 #define	TIMEOUThome 120     /* timeout [s] for homeing */
 
-#define VBEMF_NO_DIA    1   /* AD conversion without calibration */ 
+#define VBEMF_NO_DIA      1     /* AD conversion without calibration */ 
 
-//#define TEST_DACOUT_A2    1   /* monitor variables via DAC (@RA2 = /LED) */
-//#define TEST_SETTINGS     1   /* to enable some TESTS during development */
-#define TEST_SETREF       1   /* sets ref position flags for testing */
-//#define TEST_AUTO_RETURN  1   /* MOVE auto returns to zero position */
+#define TEST_SETREF       1     /* sets ref position flags for testing */
+//#define TEST_AUTO_RETURN  1     /* MOVE auto returns to zero position */
+//#define TEST_DACOUT_A2    1     /* monitor variables via DAC (@RA2 = /LED) */
+//#define TEST_VBEMF2DAC    1     /* output VBEMF to DAC1 */
+//#define TEST_mAMPS2DAC    1     /* output mAMPS to DAC1 */
+
+#define LOGSIZE           1024   /* size of each data logger (elements) */
 
 typedef union {     // 'low Byte', weak errors: mission may be continued.
     struct {
@@ -58,7 +61,8 @@ typedef union {     // 'low Byte', weak errors: mission may be continued.
         uint8_t move        :1;  //  8: 'move' is executing
         uint8_t home        :1;  //  9: 'home' is executing 
         uint8_t bootload    :1;  // 10: 'bootload' reboot and start bootloader
-        uint8_t             :5;  // 11-15 spare
+        uint8_t logdata     :1;  // 11: 'logdata to ESP' is executing
+        uint8_t             :4;  // 12-15 spare
     };
 } STATUSflags_t;    // token "STATUSbits" reserved by microchip
 
@@ -107,12 +111,16 @@ extern volatile uint8_t    g_vz;
 extern volatile uint8_t    g_setpos[NUM_VZ + 1]; 
 extern volatile uint8_t    g_position[NUM_VZ + 1];
 extern volatile int16_t    g_zcd[NUM_VZ + 1];
-extern volatile int16_t    g_max_mAx10[NUM_VZ + 1];
+extern volatile int16_t    g_mAx10_max[NUM_VZ + 1];
 extern volatile int16_t    g_mAx10;
 extern volatile uint16_t   g_vbemf;
+extern volatile int32_t    g_vbemf_sum[NUM_VZ + 1];
 extern volatile int8_t     g_dir;
 
-extern volatile uint8_t    g_bemf8[5];
-extern volatile uint8_t    g_zerocount;
+extern volatile uint8_t    g_vbemf_log[LOGSIZE];
+extern volatile uint8_t    g_curr_log[LOGSIZE];
+extern volatile uint16_t   g_ns_bemf;
+extern volatile uint16_t   g_ns_curr;
+
 
 #endif	/* _MAIN_H */

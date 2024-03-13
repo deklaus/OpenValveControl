@@ -1736,9 +1736,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"90 ./main.h
+"94 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"91
+"95
 [v _FVRC2X `us ~T0 @X0 1 e ]
 "83 init.c
 [; <" 	psect eeprom_data,class=EEDATA,noexec ;# ">

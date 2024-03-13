@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.7</span>
+   &#160;<span id="projectnumber">v0.8</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -151,7 +151,7 @@ When the TXIF bit is not set within approx. 1 ms, the function returns and data 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="memItemLeft" align="right" valign="top"><a id="a1c6f3c5d9981b36cacd7ce8339630ae4"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c6f3c5d9981b36cacd7ce8339630ae4">g_version</a> = &quot;v0.7&quot;</td></tr>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c6f3c5d9981b36cacd7ce8339630ae4">g_version</a> = &quot;v0.8&quot;</td></tr>
 <tr class="memdesc:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software version. <br /></td></tr>
 <tr class="separator:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ddfafef81dbae12a5088a0ef08625b7"><td class="memItemLeft" align="right" valign="top"><a id="a2ddfafef81dbae12a5088a0ef08625b7"></a>
@@ -226,10 +226,14 @@ volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 volatile int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a401b894278cc743850b50e132dd06e14">g_zcd</a> [NUM_VZ+1]</td></tr>
 <tr class="memdesc:a401b894278cc743850b50e132dd06e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">ticks by zcd {0 .. 1000 .. } <br /></td></tr>
 <tr class="separator:a401b894278cc743850b50e132dd06e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3382b9602908f76bcda580e1e9b9f56"><td class="memItemLeft" align="right" valign="top"><a id="ab3382b9602908f76bcda580e1e9b9f56"></a>
-volatile int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ab3382b9602908f76bcda580e1e9b9f56">g_max_mAx10</a> [NUM_VZ+1]</td></tr>
-<tr class="memdesc:ab3382b9602908f76bcda580e1e9b9f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">max current {-3276.7 .. 3276.7} mA <br /></td></tr>
-<tr class="separator:ab3382b9602908f76bcda580e1e9b9f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7872de567b0e4fcf002c81bc1bd9b9"><td class="memItemLeft" align="right" valign="top"><a id="a0d7872de567b0e4fcf002c81bc1bd9b9"></a>
+volatile int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0d7872de567b0e4fcf002c81bc1bd9b9">g_mAx10_max</a> [NUM_VZ+1]</td></tr>
+<tr class="memdesc:a0d7872de567b0e4fcf002c81bc1bd9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">max current {-3276.7 .. 3276.7} mA <br /></td></tr>
+<tr class="separator:a0d7872de567b0e4fcf002c81bc1bd9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05283c5d122d1108d12eac526e46841a"><td class="memItemLeft" align="right" valign="top"><a id="a05283c5d122d1108d12eac526e46841a"></a>
+volatile int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a05283c5d122d1108d12eac526e46841a">g_vbemf_sum</a> [NUM_VZ+1]</td></tr>
+<tr class="memdesc:a05283c5d122d1108d12eac526e46841a"><td class="mdescLeft">&#160;</td><td class="mdescRight">sum of g_vbemf <br /></td></tr>
+<tr class="separator:a05283c5d122d1108d12eac526e46841a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5c5873bbbd79b9238c208b37302b51b"><td class="memItemLeft" align="right" valign="top"><a id="ae5c5873bbbd79b9238c208b37302b51b"></a>
 volatile int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae5c5873bbbd79b9238c208b37302b51b">g_mAx10</a></td></tr>
 <tr class="memdesc:ae5c5873bbbd79b9238c208b37302b51b"><td class="mdescLeft">&#160;</td><td class="mdescRight">actual motor current / 0.1 mA <br /></td></tr>
@@ -242,14 +246,23 @@ volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 volatile int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a352157dc9346cc30537263ca5f2212f7">g_dir</a></td></tr>
 <tr class="memdesc:a352157dc9346cc30537263ca5f2212f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">motor direction [-1, 0, +1] <br /></td></tr>
 <tr class="separator:a352157dc9346cc30537263ca5f2212f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af520bcbb5d73ef4715773ef0d878f839"><td class="memItemLeft" align="right" valign="top"><a id="af520bcbb5d73ef4715773ef0d878f839"></a>
-volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af520bcbb5d73ef4715773ef0d878f839">g_bemf8</a> [5]</td></tr>
-<tr class="memdesc:af520bcbb5d73ef4715773ef0d878f839"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffer to find local minimum <br /></td></tr>
-<tr class="separator:af520bcbb5d73ef4715773ef0d878f839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2497d67b98c3df3ef57d855223e4b546"><td class="memItemLeft" align="right" valign="top"><a id="a2497d67b98c3df3ef57d855223e4b546"></a>
 volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2497d67b98c3df3ef57d855223e4b546">g_zerocount</a></td></tr>
 <tr class="memdesc:a2497d67b98c3df3ef57d855223e4b546"><td class="mdescLeft">&#160;</td><td class="mdescRight">counts pwm cycles since last zero cross <br /></td></tr>
 <tr class="separator:a2497d67b98c3df3ef57d855223e4b546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bedffb2d5b51d2fc26d43837434b225"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9bedffb2d5b51d2fc26d43837434b225">g_vbemf_log</a> [LOGSIZE]</td></tr>
+<tr class="memdesc:a9bedffb2d5b51d2fc26d43837434b225"><td class="mdescLeft">&#160;</td><td class="mdescRight">data logger: g_vbemf &gt;&gt; 4  <a href="main_8c.html#a9bedffb2d5b51d2fc26d43837434b225">More...</a><br /></td></tr>
+<tr class="separator:a9bedffb2d5b51d2fc26d43837434b225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab063875681a333cb40ffe0b38cdca3"><td class="memItemLeft" align="right" valign="top"><a id="a8ab063875681a333cb40ffe0b38cdca3"></a>
+volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8ab063875681a333cb40ffe0b38cdca3">g_curr_log</a> [LOGSIZE]</td></tr>
+<tr class="memdesc:a8ab063875681a333cb40ffe0b38cdca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">data logger: g_mAx10 &gt;&gt; 2 <br /></td></tr>
+<tr class="separator:a8ab063875681a333cb40ffe0b38cdca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab842977a6cd802494b945532786a2f13"><td class="memItemLeft" align="right" valign="top"><a id="ab842977a6cd802494b945532786a2f13"></a>
+volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>g_ns_bemf</b></td></tr>
+<tr class="separator:ab842977a6cd802494b945532786a2f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629a73b72d5f1c944777aa91a282cc13"><td class="memItemLeft" align="right" valign="top"><a id="a629a73b72d5f1c944777aa91a282cc13"></a>
+volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>g_ns_curr</b></td></tr>
+<tr class="separator:a629a73b72d5f1c944777aa91a282cc13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main program for Project "ValveControl". </p>
@@ -289,7 +302,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00066">66</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00071">71</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -328,7 +341,27 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00145">145</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00158">158</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a9bedffb2d5b51d2fc26d43837434b225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bedffb2d5b51d2fc26d43837434b225">&#9670;&nbsp;</a></span>g_vbemf_log</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t g_vbemf_log[LOGSIZE]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>data logger: g_vbemf &gt;&gt; 4 </p>
+<dl class="section note"><dt>Note</dt><dd>Data logger indices are reset on every MOVE or HOME command. Data logger buffers are filled up with zeros in idle. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00118">118</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>

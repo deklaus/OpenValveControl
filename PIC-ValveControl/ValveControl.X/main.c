@@ -19,16 +19,17 @@
  *  - Implement timeout on all position jobs. Within IDLE, proper 
  *    handling of parallel jobs via UI must be solved (priority and
  *    selected valve must not accidentally be swapped.
- *  - Back EMF doesn't work yet reliably. Has to be analyzed in detail.
- *    Maybe other PWM settings give better readings?
- *  - If position evaluation using back EMF doesn't work reliably, 
- *    relative positioning might be more useful.
  *  - Define unique error numbering (enums) across bootloader and application.
  *  - When battery supply is desirable, sleep mode must be used with
  *    wakeup on messages from ESP.
  */
 
 /* Change Log:
+ * 2024-02-13 v0.8
+ * - Added logdata bemf_log[1024] - recording V_BEMF, and curr_log[1024] -
+ *   recording the motor current of the last MOVE or HOME travel.
+ * - Added new WebUI command "/logdata?" to transmit logdata to ESP.
+ * - Added experimental g_vbemf_sum (integral of speed x dt ~ distance?)
  * 2024-02-13 v0.7.2
  * - 1 ms delay() in ina219_read() replaced by negative value to indicate error.
  * 2024-01-29 v0.7.1
@@ -74,7 +75,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "v0.7.1";    ///< Software version
+const char  *g_version = "v0.8";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
@@ -103,20 +104,28 @@ volatile uint8_t    g_vz;                    ///< selected vz  {(0), 1 - NUM_VZ}
 volatile uint8_t    g_setpos[NUM_VZ + 1];    ///< set position {(0), 1 - NUM_VZ}
 volatile uint8_t    g_position[NUM_VZ + 1];  ///< position     {0 .. 100%}
 volatile int16_t    g_zcd[NUM_VZ + 1];       ///< ticks by zcd {0 .. 1000 .. }
-volatile int16_t    g_max_mAx10[NUM_VZ + 1]; ///< max current  {-3276.7 .. 3276.7} mA
+volatile int16_t    g_mAx10_max[NUM_VZ + 1]; ///< max current  {-3276.7 .. 3276.7} mA
+volatile int32_t    g_vbemf_sum[NUM_VZ + 1]; ///< sum of g_vbemf
 
 volatile int16_t    g_mAx10;        ///< actual motor current / 0.1 mA
 volatile uint16_t   g_vbemf;        ///< actual Back EMK (ADC raw)
 volatile int8_t     g_dir;          ///< motor direction [-1, 0, +1]
 
-volatile uint8_t    g_bemf8[5];     ///< buffer to find local minimum 
 volatile uint8_t    g_zerocount;    ///< counts pwm cycles since last zero cross
+
+/** @note Data logger indices are reset on every MOVE or HOME command.
+ * Data logger buffers are filled up with zeros in idle. */
+volatile uint8_t    g_vbemf_log[LOGSIZE];   ///< data logger: g_vbemf >> 4
+volatile uint8_t    g_curr_log[LOGSIZE];    ///< data logger: g_mAx10 >> 2
+volatile uint16_t   g_ns_bemf;
+volatile uint16_t   g_ns_curr;
 
 
 // *** static variables
 static  uint8_t     main_state = 0;     ///< main: state machine
 static  uint16_t    last_tick;          ///< timer value at last PWM start
 static  uint8_t     n_overcurr;         ///< counts overcurrent events
+static  uint16_t    ix_logdata = 0;     ///< index to transmit logdata to ESP
 
 // *** private function prototypes
 static void     cmd_interpreter (void);
@@ -221,9 +230,7 @@ void main(void)
                         __delay_ms(100);       // stop motor before reverse dir
                         g_setpos[g_vz] = 0;
                         g_vbemf = 0;
-                        g_zerocount = 0;            
                         g_dir = -1;
-                        for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
                     }
 #else
                     main_state = state_idle;
@@ -250,7 +257,7 @@ void main(void)
                       
             /// - HOME command (close direction)
             case state_home:
-                LED = 0;    // test only
+                nLED = 0;    // home run active
                 g_dir = 0;
                 if ((0 == g_vz) || (g_vz > NUM_VZ)) // cancel homeing
                 {                    
@@ -261,11 +268,10 @@ void main(void)
                 else if (over_current (g_vz))   // end position reached?
                 {
                     g_position[g_vz] = 0;           // set home position
+                    g_vbemf_sum[g_vz] = 0;          // set home position
                     main_state = state_idle;
                     g_STATUSflags.home = 0;         // done
                     g_STATUSflags.ref |= (uint8_t) (1 << (g_vz - 1));  // ref set  
-//                    main_state = state_move;        // move to set_position
-//                    g_STATUSflags.move = 1;                      
                 }              
                 else    // proceed homeing in close direction
                 {
@@ -302,52 +308,73 @@ void main(void)
              *      set main_state and parameters as needed.
              */  
             default:
-                LED = 1;    // 1 = off
-
-#ifdef TEST_SETTINGS  
-        DAC1DATL = (uint8_t) (g_mAx10 >> 2);    // current monitor (16 -> 8 bit)
-#endif                
-                PIE0bits.IOCIE = 0;     // Disable IOCI interrupt 
+                nLED = 1;   // 1 = off
 
                 RA5PPS = RA4PPS = 0;        
                 RC5PPS = RC4PPS = 0;
                 RC3PPS = RC6PPS = 0;
                 RC7PPS = RB7PPS = 0;              
 
+                g_vbemf = 0;
+
+                // fill up data logger buffers
+                for (; g_ns_bemf < LOGSIZE; ) g_vbemf_log[g_ns_bemf++] = 0;
+                for (; g_ns_curr < LOGSIZE; ) g_curr_log[g_ns_curr++] = 0;
+
+                
                 /* Read motor current via INA219 Shunt Current Register
                  * (1 LSB = 10μV, Rs = 0,1 Ohm => I / 0.1 mA = Us / 10µV).
-                 * Exectime ~171 µs.
-                 */
+                 * Exectime ~171 µs. */
                 ina219_reg(1);              // exec time ca. 49 µs (@SCL 400 kHz)
                 g_mAx10 = ina219_read();    // exec time ca. 72 µs (@SCL 400 kHz)
                 if (g_mAx10 < 0) g_mAx10 = 0;   // offset may cause negative readings
 
-                n_overcurr = 0;  // reset spike counter
-                
+                n_overcurr = 0;             // reset over_current counter
+
+#if (TEST_mAMPS2DAC | TEST_VBEMF2DAC) 
+//              DAC1DATL = (uint8_t) (g_mAx10 >> 2);    // monitor mAx10
+                DAC1DATL = 0;
+#endif                
+                // valid valve zone selected?              
                 if ((g_vz > 0) && (g_vz <= NUM_VZ))
                 {
-                    IOCAF = IOCBF = IOCCF = 0;  // clear all IOC Flags
-
-                    if      (g_STATUSflags.home)	// home always has prioritiy over move
+                    if (g_STATUSflags.home)	// home has prioritiy over move
                     {
-                        g_vbemf = 0;    // reset LP filter
-                        g_zerocount = 0;                        
                         g_STATUSflags.ref &= ~(uint8_t) (1 << (g_vz - 1));
-                        for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
+                        g_ns_bemf = 0;    // reset data logger indices
+                        g_ns_curr = 0; 
+
+                        t_home_ms = g_timer_ms; // set start time (for timeout)
+                        t_home_s  = 0;
+
                         main_state = state_home; // prio
-                        t_home_ms = g_timer_ms;
-                        t_home_s  = 0;                        
                     }
                     
                     else if (g_STATUSflags.move) 
                     {
-                        g_vbemf = 0;    // reset LP filter
-                        g_zerocount = 0;
-                        for (uint8_t i = 0; i < 4; i++) g_bemf8[i] = 0;
+                        g_ns_bemf = 0;    // reset data logger indices
+                        g_ns_curr = 0; 
+                        
                         main_state = state_move;
                     }
                 }
 
+                if (g_STATUSflags.logdata) 
+                {
+                    if (ix_logdata < LOGSIZE)
+                    {
+                        while (!U1ERRIRbits.TXMTIF) ;  // until shift reg. is empty
+                        sprintf((char *)g_tx232_buf, "%u,%u,%u\n", ix_logdata,
+                            g_vbemf_log[ix_logdata], g_curr_log[ix_logdata]);
+                        ix_logdata++;
+                        printf((char *)g_tx232_buf);    // send data
+                    }
+                    else
+                    {
+                        g_STATUSflags.logdata = 0;  // done
+                    }
+                }
+                
                 if (g_STATUSflags.bootload) 
                 {   // reprogramming via bootload takes ca. 2:30 minutes
                     while (!U1ERRIRbits.TXMTIF) ;  // until shift reg. is empty
@@ -390,9 +417,9 @@ void cmd_interpreter (void)
     p = strstr((const char *)g_rx232_buf, "Status?");  // STATUS
     if (p != NULL) 
     {
-        sprintf((char *)g_tx232_buf, "Status:%u,%u,%u,%u,%u,0x%04X\n", 
+        sprintf((char *)g_tx232_buf, "Status:%u,%u,%u,%u,%u,0x%04X,0x%08lX\n", 
             g_position[1], g_position[2], g_position[3], g_position[4],
-            g_mAx10, g_STATUSflags);
+            g_mAx10, g_STATUSflags, g_vbemf_sum[1]);
         goto _done;
     }
 
@@ -417,11 +444,11 @@ void cmd_interpreter (void)
             else {  error = E_SET_POS_RANGE; goto _done; }
 
              // [ .1 .. 200.0]
-            if ((mAx10 > 0) && (mAx10 <= 2000))  g_max_mAx10[vz] = mAx10;
+            if ((mAx10 > 0) && (mAx10 <= 2000))  g_mAx10_max[vz] = mAx10;
             else {  error = E_SET_POS_RANGE; goto _done; }
         }
         sprintf((char *)g_tx232_buf, "Move:%u,%u,%d\n", 
-                                      vz, g_setpos[vz], g_max_mAx10[vz]);
+                                      vz, g_setpos[vz], g_mAx10_max[vz]);
         
         // check if reference is set
         if (g_STATUSflags.ref & (1 << (vz - 1)))
@@ -446,13 +473,14 @@ void cmd_interpreter (void)
             g_vz = (uint8_t) vz;  // [1 .. 4]
 
              // [ 0.1 .. 100.0]
-            if ((mAx10 > 0) && (mAx10 <= 1000))  g_max_mAx10[vz] = mAx10;
+            if ((mAx10 > 0) && (mAx10 <= 1000))  g_mAx10_max[vz] = mAx10;
             else { error = E_SET_POS_RANGE; goto _done; }
         }
-        sprintf((char *)g_tx232_buf, "Home:%d,%d\n", vz, g_max_mAx10[vz]);
+        sprintf((char *)g_tx232_buf, "Home:%d,%d\n", vz, g_mAx10_max[vz]);
         
         g_STATUSflags.vz = (uint8_t) (1 << (vz - 1));   // active drive
         g_STATUSflags.home = 1;    // make home active
+        
         goto _done;
     }
     
@@ -479,7 +507,17 @@ void cmd_interpreter (void)
     if (p != NULL) 
     {
         sprintf((char *)g_tx232_buf, "max_mA:%d,%d,%d,%d\n", 
-            g_max_mAx10[1], g_max_mAx10[2], g_max_mAx10[3], g_max_mAx10[4]);
+            g_mAx10_max[1], g_mAx10_max[2], g_mAx10_max[3], g_mAx10_max[4]);
+        goto _done;
+    }
+
+    // Log data
+    p = strstr((const char *)g_rx232_buf, "LogData?");  // LOGDATA
+    if (p != NULL) 
+    {   // here we can only acknowledge the command:
+        ix_logdata = 0;
+        sprintf((char *)g_tx232_buf, "LogData:\n");
+        g_STATUSflags.logdata = 1;  // transmit logdata to ESP
         goto _done;
     }
     
@@ -542,7 +580,7 @@ static bool over_current (uint8_t vz)
 {
     bool result = false;
 
-    if (g_mAx10 > g_max_mAx10[vz])    // if over current
+    if (g_mAx10 > g_mAx10_max[vz])    // if over current
     {
         if (++n_overcurr > 12)        // lasts longer than 100 ms
         {
@@ -706,6 +744,7 @@ static void set_pwm (uint8_t vz,    // valve zone [0, 1 - 4]
                 RA4PPS = RA5PPS = 0;    // IN1 = IN2 = 0 (NO RUN))
                 PWM1GIE = 0;            // Disable parameter interrupts in PWM1
                 PIE4bits.PWM1IE = 0;    // disable PWM1_16BIT param interrupts
+                NOP();
             }
             break;
             

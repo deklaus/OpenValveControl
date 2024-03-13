@@ -3,6 +3,7 @@ var union_s_t_a_t_u_sflags__t =
     [ "__pad0__", "union_s_t_a_t_u_sflags__t.html#ae8217ebcdcb71b82857adc7b153df0db", null ],
     [ "bootload", "union_s_t_a_t_u_sflags__t.html#a1ca247de1bb2176a4427480bacb74622", null ],
     [ "home", "union_s_t_a_t_u_sflags__t.html#a255c3d7a71482fe4e519930e274945fc", null ],
+    [ "logdata", "union_s_t_a_t_u_sflags__t.html#ad7d7cfc0c5f002a3d5810d53425c2727", null ],
     [ "move", "union_s_t_a_t_u_sflags__t.html#a6a4451ed5bb9515cacee114616fe7f80", null ],
     [ "ref", "union_s_t_a_t_u_sflags__t.html#ac71aeb99e2131c8ae75d7b787fd49254", null ],
     [ "ref1", "union_s_t_a_t_u_sflags__t.html#ad31cb2033999231e66d5540c2020ae52", null ],

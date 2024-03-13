@@ -41,7 +41,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ADRES `Vus ~T0 @X0 0 e@1002 ]
 "31301
 [v _ADREF `Vuc ~T0 @X0 0 e@1016 ]
-"112 ./main.h
+"116 ./main.h
 [v _g_vbemf `Vus ~T0 @X0 0 e ]
 "270 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [; <" CLKRCON equ 039h ;# ">
@@ -1395,9 +1395,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"90 ./main.h
+"94 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"91
+"95
 [v _FVRC2X `us ~T0 @X0 1 e ]
 "26 daq.c
 [v _daq_temperature `(s ~T0 @X0 1 ef ]
