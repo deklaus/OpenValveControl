@@ -29,10 +29,11 @@ The following paragraphs provide some insights into the software structure:
 Process commands and queries (?) from ESP:
   - Move:    save active drive and current limit, set g_STATUSflags.move
   - Home:    save active drive and current limit, set g_STATUSflags.home
-  - Status?  send status data (position[1..4], motor current, STATUSflags
+  - Status?  send status data (position[1..4], max. motor current, STATUSflags
   - Version? send PIC version
   - SetPos?  send positions[1..4]
-  - max:mA?  send max_mAx10[1..4]
+  - max_mA?  send max_mAx10[1..4]
+  - LogData? send logdata[]
   - Bootload!
 
 ### init.c
