@@ -1,6 +1,6 @@
 /** @file     main.c
  *  @brief    Main program for Project "ValveControl"
- *  @par  (c) 2023 Klaus Deutschkämer
+ *  @par  (c) 2023-2024 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  * 
@@ -25,6 +25,8 @@
  */
 
 /* Change Log:
+ * 2024-02-13 v0.8.1
+ * - Status? now returns g_vbemf_sum[g_vz] instead of g_vbemf_sum[1].
  * 2024-02-13 v0.8
  * - Added logdata bemf_log[1024] - recording V_BEMF, and curr_log[1024] -
  *   recording the motor current of the last MOVE or HOME travel.
@@ -75,7 +77,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "v0.8";    ///< Software version
+const char  *g_version = "v0.8.1";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
@@ -419,7 +421,7 @@ void cmd_interpreter (void)
     {
         sprintf((char *)g_tx232_buf, "Status:%u,%u,%u,%u,%u,0x%04X,0x%08lX\n", 
             g_position[1], g_position[2], g_position[3], g_position[4],
-            g_mAx10, g_STATUSflags, g_vbemf_sum[1]);
+            g_mAx10, g_STATUSflags, g_vbemf_sum[g_vz]);
         goto _done;
     }
 

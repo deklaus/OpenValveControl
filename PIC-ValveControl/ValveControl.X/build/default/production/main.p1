@@ -1580,13 +1580,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "116
 [v _g_zerocount `Vuc ~T0 @X0 1 e ]
 "120
-[v _bemf_log `Vuc ~T0 @X0 -> 1024 `i e ]
+[v _g_vbemf_log `Vuc ~T0 @X0 -> 1024 `i e ]
 "121
-[v _curr_log `Vuc ~T0 @X0 -> 1024 `i e ]
+[v _g_curr_log `Vuc ~T0 @X0 -> 1024 `i e ]
 "122
-[v _ns_bemf `Vus ~T0 @X0 1 e ]
+[v _g_ns_bemf `Vus ~T0 @X0 1 e ]
 "123
-[v _ns_curr `Vus ~T0 @X0 1 e ]
+[v _g_ns_curr `Vus ~T0 @X0 1 e ]
 "127
 [v _main_state `uc ~T0 @X0 1 s ]
 [i _main_state
@@ -1842,18 +1842,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e $U 1909  ]
 [e :U 1906 ]
-[e = *U + &U _bemf_log * -> ++ _ns_bemf -> -> 1 `i `Vus `ux -> -> # *U &U _bemf_log `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U _g_vbemf_log * -> ++ _g_ns_bemf -> -> 1 `i `Vus `ux -> -> # *U &U _g_vbemf_log `ui `ux -> -> 0 `i `uc ]
 [e :U 1909 ]
-[e $ < -> _ns_bemf `ui -> -> 1024 `i `ui 1906  ]
+[e $ < -> _g_ns_bemf `ui -> -> 1024 `i `ui 1906  ]
 [e :U 1907 ]
 }
 "324
 {
 [e $U 1913  ]
 [e :U 1910 ]
-[e = *U + &U _curr_log * -> ++ _ns_curr -> -> 1 `i `Vus `ux -> -> # *U &U _curr_log `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U _g_curr_log * -> ++ _g_ns_curr -> -> 1 `i `Vus `ux -> -> # *U &U _g_curr_log `ui `ux -> -> 0 `i `uc ]
 [e :U 1913 ]
-[e $ < -> _ns_curr `ui -> -> 1024 `i `ui 1910  ]
+[e $ < -> _g_ns_curr `ui -> -> 1024 `i `ui 1910  ]
 [e :U 1911 ]
 }
 "330
@@ -1877,9 +1877,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "345
 [e =& . . _g_STATUSflags 0 0 -> ~ -> -> << -> 1 `i - -> _g_vz `i -> 1 `i `uc `i `Vuc ]
 "346
-[e = _ns_bemf -> -> 0 `i `us ]
+[e = _g_ns_bemf -> -> 0 `i `us ]
 "347
-[e = _ns_curr -> -> 0 `i `us ]
+[e = _g_ns_curr -> -> 0 `i `us ]
 "349
 [e = _t_home_ms _g_timer_ms ]
 "350
@@ -1895,9 +1895,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "356
 {
 "357
-[e = _ns_bemf -> -> 0 `i `us ]
+[e = _g_ns_bemf -> -> 0 `i `us ]
 "358
-[e = _ns_curr -> -> 0 `i `us ]
+[e = _g_ns_curr -> -> 0 `i `us ]
 "360
 [e = _main_state -> . `E13768 2 `uc ]
 "361
@@ -1922,7 +1922,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> . . _U1ERRIRbits 0 7 `i -> 0 `i 1922  ]
 [e :U 1923 ]
 "369
-[e ( _sprintf (1 , , , (. , -> &U _g_tx232_buf `*uc :s 2C -> _ix_logdata `ui -> *U + &U _bemf_log * -> _ix_logdata `ux -> -> # *U &U _bemf_log `ui `ux `i -> *U + &U _curr_log * -> _ix_logdata `ux -> -> # *U &U _curr_log `ui `ux `i ]
+[e ( _sprintf (1 , , , (. , -> &U _g_tx232_buf `*uc :s 2C -> _ix_logdata `ui -> *U + &U _g_vbemf_log * -> _ix_logdata `ux -> -> # *U &U _g_vbemf_log `ui `ux `i -> *U + &U _g_curr_log * -> _ix_logdata `ux -> -> # *U &U _g_curr_log `ui `ux `i ]
 "371
 [e ++ _ix_logdata -> -> 1 `i `us ]
 "372
@@ -2007,7 +2007,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "421
 {
 "422
-[e ( _sprintf (1 , , , , , , , (. , -> &U _g_tx232_buf `*uc :s 4C -> *U + &U _g_position * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> _g_mAx10 `i _g_STATUSflags *U + &U _g_vbemf_sum * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_vbemf_sum `ui `ux ]
+[e ( _sprintf (1 , , , , , , , (. , -> &U _g_tx232_buf `*uc :s 4C -> *U + &U _g_position * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> *U + &U _g_position * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_position `ui `ux `i -> _g_mAx10 `i _g_STATUSflags *U + &U _g_vbemf_sum * -> _g_vz `ux -> -> # *U &U _g_vbemf_sum `ui `ux ]
 "425
 [e $U 1931  ]
 "426
@@ -2646,7 +2646,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 15C 109 97 120 95 109 65 63 0 ]
 [a 5C 77 111 118 101 58 0 ]
 [a 8C 72 111 109 101 58 0 ]
-[a 1C 118 48 46 56 0 ]
+[a 1C 118 48 46 56 46 49 0 ]
 [a 19C 66 111 111 116 108 111 97 100 33 0 ]
 [a 14C 83 101 116 80 111 115 58 37 117 44 37 117 44 37 117 44 37 117 10 0 ]
 [a 2C 37 117 44 37 117 44 37 117 10 0 ]

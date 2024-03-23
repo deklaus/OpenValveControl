@@ -2,10 +2,10 @@
 Memory Class Usage:
 
 Program space:
-    CODE                 used  8D75h ( 36213) of  F800h bytes   ( 57.0%)
+    CODE                 used  8D8Fh ( 36239) of  F800h bytes   ( 57.1%)
     CONST                used     0h (     0) of  F800h bytes   (  0.0%)
     SMALLCONST           used     0h (     0) of  EA00h bytes   (  0.0%)
-    MEDIUMCONST          used   17Eh (   382) of  EA00h bytes   (  0.6%)
+    MEDIUMCONST          used   180h (   384) of  EA00h bytes   (  0.6%)
 
 Data space:
     COMRAM               used    49h (    73) of    5Fh bytes   ( 76.8%)

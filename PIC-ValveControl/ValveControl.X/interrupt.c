@@ -1,6 +1,6 @@
 /** @file   interrupt.c
  *  @brief  Implementations of vectored interrupts (PIC18F..)
- *  @par  (c) 2023 Klaus Deutschkämer
+ *  @par  (c) 2023-2024 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */

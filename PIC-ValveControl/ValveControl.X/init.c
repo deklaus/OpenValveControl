@@ -1,6 +1,6 @@
 /** @file   init.c
  *  @brief  Initialization functions 
- *  @par  (c) 2023 Klaus Deutschkämer
+ *  @par  (c) 2023-2024 Klaus Deutschkämer
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */

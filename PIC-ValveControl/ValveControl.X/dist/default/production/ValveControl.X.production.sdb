@@ -201,21 +201,21 @@ E_VZ_RANGE -1
 "373
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
-"67 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
+"68 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _interrupt_initialize interrupt_initialize `(v  1 e 1 0 ]
-"99
+"100
 [v _default_isr default_isr `IIL(v  1 e 1 0 ]
-"113
+"114
 [v _PWM1_isr PWM1_isr `IIH(v  1 e 1 0 ]
-"186
+"187
 [v _IOC_isr IOC_isr `IIL(v  1 e 1 0 ]
-"197
+"198
 [v _TMR0_isr TMR0_isr `IIL(v  1 e 1 0 ]
-"209
+"210
 [v _TMR1_isr TMR1_isr `IIL(v  1 e 1 0 ]
-"220
+"221
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
-"233
+"234
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
 "145 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
@@ -971,13 +971,13 @@ E_VZ_RANGE -1
 "116
 [v _g_zerocount g_zerocount `VEuc  1 e 1 0 ]
 "120
-[v _bemf_log bemf_log `VE[1024]uc  1 e 1024 0 ]
+[v _g_vbemf_log g_vbemf_log `VE[1024]uc  1 e 1024 0 ]
 "121
-[v _curr_log curr_log `VE[1024]uc  1 e 1024 0 ]
+[v _g_curr_log g_curr_log `VE[1024]uc  1 e 1024 0 ]
 "122
-[v _ns_bemf ns_bemf `VEus  1 e 2 0 ]
+[v _g_ns_bemf g_ns_bemf `VEus  1 e 2 0 ]
 "123
-[v _ns_curr ns_curr `VEus  1 e 2 0 ]
+[v _g_ns_curr g_ns_curr `VEus  1 e 2 0 ]
 "127
 [v _main_state main_state `uc  1 s 1 main_state ]
 "128
@@ -1027,10 +1027,10 @@ E_VZ_RANGE -1
 {
 "133
 } 0
-"67 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
+"68 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _interrupt_initialize interrupt_initialize `(v  1 e 1 0 ]
 {
-"91
+"92
 } 0
 "373 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
@@ -1865,53 +1865,53 @@ E_VZ_RANGE -1
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 24 ]
 "53
 } 0
-"99 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
+"100 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _default_isr default_isr `IIL(v  1 e 1 0 ]
 {
-"103
+"104
 } 0
-"186
+"187
 [v _IOC_isr IOC_isr `IIL(v  1 e 1 0 ]
 {
-"190
+"191
 } 0
-"197
+"198
 [v _TMR0_isr TMR0_isr `IIL(v  1 e 1 0 ]
 {
-"202
+"203
 } 0
-"209
+"210
 [v _TMR1_isr TMR1_isr `IIL(v  1 e 1 0 ]
 {
-"213
+"214
 } 0
-"220
+"221
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
 {
-"224
+"225
 } 0
-"233
+"234
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
 {
-"267
+"268
 [v U1RX_isr@i i `uc  1 a 1 20 ]
-"235
+"236
 [v U1RX_isr@ch ch `uc  1 a 1 21 ]
-"274
+"275
 } 0
 "373 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
 "393
 } 0
-"113 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
+"114 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _PWM1_isr PWM1_isr `IIH(v  1 e 1 0 ]
 {
-"115
-[v PWM1_isr@mAmps mAmps `s  1 a 2 15 ]
 "116
+[v PWM1_isr@mAmps mAmps `s  1 a 2 15 ]
+"117
 [v PWM1_isr@uk uk `us  1 a 2 13 ]
-"179
+"180
 } 0
 "101 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/i2c.c
 [v i2_ina219_reg ina219_reg `(v  1 e 1 0 ]
