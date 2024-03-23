@@ -28,9 +28,18 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
   When connected, show local IP address on OLED, so we can connect to the webserver UI.
 - Read the PIC Firmware Version
 - Setup Webserver <br>
-  This implements the client request handlers. You can append the commands and parameters to the URI, e.g. <br>
-  ``` http://192.168.2.108/move?vz=1&set_pos=25&max_mA=30 ``` <br>
-  ``` http://192.168.2.108/status? ```
+  This implements the client request handlers. <br>
+  ``` http://192.168.2.108/bootload ``` <br>
+  ``` http://192.168.2.108/move ``` <br>
+  ``` http://192.168.2.108/home ``` <br>
+  ``` http://192.168.2.108/logdata ``` <br>
+  ``` http://192.168.2.108/info ``` <br>
+  ``` http://192.168.2.108/status ``` <br>
+  ``` http://192.168.2.108/save ``` <br>
+  <br>
+  You can append the commands and parameters to the URI, e.g. <br>
+  ``` http://192.168.2.108/move?vz=1&set_pos=25&max_mA=50 ``` <br>
+  ``` http://192.168.2.108/home?vz=1&max_mA=35 ``` <br>
 
 #### loop
 - Process request handler and execute commands from UI
