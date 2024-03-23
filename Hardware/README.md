@@ -2,7 +2,7 @@
 
 <table>
 <tr>
-  <td><img src="./PCB_preview.png" alt="PCB preview" title="PCB preview" height="130"/></td>
+  <td><img src="./ovc-A_preview_top.png" alt="PCB preview" title="PCB preview" height="130"/></td>
   <td><img src="../Photos/Assembly-2.jpg" alt="Assembly-2" title="Modules installed" width="250"/></td>
 </tr>  
 </table>
