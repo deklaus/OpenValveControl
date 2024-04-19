@@ -13,6 +13,8 @@ var main_8h =
     [ "MSperTICK", "main_8h.html#ac080909f17a21bc4c2df1d2294ec72ac", null ],
     [ "nLED", "main_8h.html#a4ee54671b212fa40e655eae67c043a9b", null ],
     [ "NUM_VZ", "main_8h.html#aaf89414145badc644588adef8825582c", null ],
+    [ "pwm_InterruptsDisable", "main_8h.html#aa5bf772969dbe865fa6939da23383cae", null ],
+    [ "pwm_InterruptsEnable", "main_8h.html#a72856ea2f484b534ebfa94cb8fc57b34", null ],
     [ "TEST_SETREF", "main_8h.html#a3a3ea1d5ce15b95611ad768bb2eede2b", null ],
     [ "TIMEOUThome", "main_8h.html#ac9d3a84d37d7363c8490212e57691ccb", null ],
     [ "VBEMF_NO_DIA", "main_8h.html#a52af2ac0e078f9476e1a7ac144bccde1", null ],

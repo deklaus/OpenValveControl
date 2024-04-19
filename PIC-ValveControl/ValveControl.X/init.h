@@ -36,7 +36,7 @@ void init_oscillator (void);
 void init_pin_manager (void);
 void init_pmd (void);
 //void init_pwm (void);     obsolete
-void init_pwm1_16bit (void);
+void init_pwm_16bit (void);
 void init_system (void);
 void init_timer0 (void);
 void init_uart1 (void);

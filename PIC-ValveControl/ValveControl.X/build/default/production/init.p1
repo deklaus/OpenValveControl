@@ -25,7 +25,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34
 [v _init_fvr `(v ~T0 @X0 0 ef ]
 "39
-[v _init_pwm1_16bit `(v ~T0 @X0 0 ef ]
+[v _init_pwm_16bit `(v ~T0 @X0 0 ef ]
 "42
 [v _init_uart1 `(v ~T0 @X0 0 ef ]
 "13921 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
@@ -216,14 +216,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S1732 . . ]
 "36389
 [v _PIR4bits `VS1732 ~T0 @X0 0 e@1207 ]
-"34401
-[s S1617 :1 `uc 1 :1 `uc 1 ]
-[n S1617 . S1P1IF S1P2IF ]
-"34400
-[u S1616 `S1617 1 ]
-[n S1616 . . ]
-"34406
-[v _PWM1GIRbits `VS1616 ~T0 @X0 0 e@1127 ]
+"34427
+[s S1619 :1 `uc 1 :1 `uc 1 ]
+[n S1619 . S1P1IE S1P2IE ]
+"34426
+[u S1618 `S1619 1 ]
+[n S1618 . . ]
+"34432
+[v _PWM1GIEbits `VS1618 ~T0 @X0 0 e@1128 ]
+"34838
+[v _PWM2CON `Vuc ~T0 @X0 0 e@1144 ]
+"34639
+[v _PWM2ERS `Vuc ~T0 @X0 0 e@1135 ]
+"34659
+[v _PWM2CLK `Vuc ~T0 @X0 0 e@1136 ]
+"34679
+[v _PWM2LDS `Vuc ~T0 @X0 0 e@1137 ]
+"34706
+[v _PWM2PRL `Vuc ~T0 @X0 0 e@1138 ]
+"34726
+[v _PWM2PRH `Vuc ~T0 @X0 0 e@1139 ]
+"34746
+[v _PWM2CPRE `Vuc ~T0 @X0 0 e@1140 ]
+"34766
+[v _PWM2PIPOS `Vuc ~T0 @X0 0 e@1141 ]
+"34786
+[v _PWM2GIR `Vuc ~T0 @X0 0 e@1142 ]
+"34812
+[v _PWM2GIE `Vuc ~T0 @X0 0 e@1143 ]
+"34877
+[v _PWM2S1CFG `Vuc ~T0 @X0 0 e@1145 ]
+"34943
+[v _PWM2S1P1L `Vuc ~T0 @X0 0 e@1146 ]
+"34963
+[v _PWM2S1P1H `Vuc ~T0 @X0 0 e@1147 ]
+"34990
+[v _PWM2S1P2L `Vuc ~T0 @X0 0 e@1148 ]
+"35010
+[v _PWM2S1P2H `Vuc ~T0 @X0 0 e@1149 ]
+"35793
+[s S1711 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1711 . SPI2RXIE SPI2TXIE SPI2IE . C2IE CLC2IE PWM2PIE PWM2IE ]
+"35803
+[s S1712 :4 `uc 1 :1 `uc 1 ]
+[n S1712 . . CM2IE ]
+"35792
+[u S1710 `S1711 1 `S1712 1 ]
+[n S1710 . . . ]
+"35808
+[v _PIE5bits `VS1710 ~T0 @X0 0 e@1197 ]
+"34818
+[s S1650 :1 `uc 1 :1 `uc 1 ]
+[n S1650 . S1P1IE S1P2IE ]
+"34817
+[u S1649 `S1650 1 ]
+[n S1649 . . ]
+"34823
+[v _PWM2GIEbits `VS1649 ~T0 @X0 0 e@1143 ]
+"35453
+[v _PWMEN `Vuc ~T0 @X0 0 e@1181 ]
 "20434
 [v _T0CON0 `Vuc ~T0 @X0 0 e@794 ]
 "20532
@@ -316,73 +367,73 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _U1RXPPS `Vuc ~T0 @X0 0 e@626 ]
 "9475
 [v _RB5PPS `Vuc ~T0 @X0 0 e@526 ]
-"23 init.c
+"29 init.c
 [p x FEXTOSC  =  OFF             ]
-"24
-[p x RSTOSC  =  HFINTOSC_64MHZ   ]
-"27
-[p x CLKOUTEN  =  OFF    ]
-"28
-[p x PR1WAY  =  OFF      ]
-"29
-[p x CSWEN  =  ON        ]
 "30
-[p x FCMEN  =  OFF       ]
-"31
-[p x FCMENP  =  ON       ]
-"32
-[p x FCMENS  =  OFF      ]
+[p x RSTOSC  =  HFINTOSC_64MHZ   ]
+"33
+[p x CLKOUTEN  =  OFF    ]
+"34
+[p x PR1WAY  =  OFF      ]
 "35
-[p x MCLRE  =  EXTMCLR   ]
+[p x CSWEN  =  ON        ]
 "36
-[p x PWRTS  =  PWRT_OFF  ]
+[p x FCMEN  =  OFF       ]
 "37
-[p x MVECEN  =  ON       ]
+[p x FCMENP  =  ON       ]
 "38
-[p x IVT1WAY  =  OFF     ]
-"39
-[p x LPBOREN  =  ON      ]
-"40
-[p x BOREN  =  ON        ]
+[p x FCMENS  =  OFF      ]
+"41
+[p x MCLRE  =  EXTMCLR   ]
+"42
+[p x PWRTS  =  PWRT_OFF  ]
 "43
-[p x BORV  =  VBOR_1P9   ]
+[p x MVECEN  =  ON       ]
 "44
-[p x ZCD  =  OFF         ]
+[p x IVT1WAY  =  OFF     ]
 "45
-[p x PPS1WAY  =  OFF     ]
+[p x LPBOREN  =  ON      ]
 "46
-[p x STVREN  =  ON       ]
-"47
-[p x LVP  =  OFF         ]
-"48
-[p x XINST  =  OFF       ]
+[p x BOREN  =  ON        ]
+"49
+[p x BORV  =  VBOR_1P9   ]
+"50
+[p x ZCD  =  OFF         ]
 "51
-[p x WDTCPS  =  WDTCPS_31  ]
+[p x PPS1WAY  =  OFF     ]
 "52
+[p x STVREN  =  ON       ]
+"53
+[p x LVP  =  OFF         ]
+"54
+[p x XINST  =  OFF       ]
+"57
+[p x WDTCPS  =  WDTCPS_31  ]
+"58
 [p x WDTE  =  OFF          ]
-"55
-[p x WDTCWS  =  WDTCWS_7   ]
-"56
-[p x WDTCCS  =  SC         ]
-"59
-[p x BBSIZE  =  BBSIZE_1024  ]
-"60
-[p x BBEN  =  OFF            ]
 "61
-[p x SAFEN  =  OFF           ]
+[p x WDTCWS  =  WDTCWS_7   ]
 "62
-[p x DEBUG  =  OFF           ]
+[p x WDTCCS  =  SC         ]
 "65
-[p x WRTB  =  OFF          ]
+[p x BBSIZE  =  BBSIZE_1024  ]
 "66
-[p x WRTC  =  OFF          ]
+[p x BBEN  =  OFF            ]
 "67
-[p x WRTD  =  OFF          ]
+[p x SAFEN  =  OFF           ]
 "68
-[p x WRTSAF  =  OFF        ]
-"69
-[p x WRTAPP  =  OFF        ]
+[p x DEBUG  =  OFF           ]
+"71
+[p x WRTB  =  OFF          ]
 "72
+[p x WRTC  =  OFF          ]
+"73
+[p x WRTD  =  OFF          ]
+"74
+[p x WRTSAF  =  OFF        ]
+"75
+[p x WRTAPP  =  OFF        ]
+"78
 [p x CP  =  OFF            ]
 "270 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [; <" CLKRCON equ 039h ;# ">
@@ -1736,319 +1787,353 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"94 ./main.h
+"105 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"95
+"106
 [v _FVRC2X `us ~T0 @X0 1 e ]
-"83 init.c
+"89 init.c
 [; <" 	psect eeprom_data,class=EEDATA,noexec ;# ">
 [; <" 	db	0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF ;# ">
-"93
+"99
 [v _init_system `(v ~T0 @X0 1 ef ]
-"94
+"100
 {
 [e :U _init_system ]
 [f ]
-"95
-[e = . . _INTCON0bits 0 6 -> -> 0 `i `uc ]
-"97
-[e ( _init_oscillator ..  ]
-"98
-[e ( _init_pmd ..  ]
-"99
-[e ( _init_pin_manager ..  ]
 "101
-[e ( _init_timer0 ..  ]
-"102
-[e ( _i2c_init ..  ]
+[e = . . _INTCON0bits 0 6 -> -> 0 `i `uc ]
 "103
-[e ( _init_ina219 ..  ]
+[e ( _init_oscillator ..  ]
+"104
+[e ( _init_pmd ..  ]
 "105
-[e ( _init_fvr ..  ]
-"106
-[e ( _init_pwm1_16bit ..  ]
+[e ( _init_pin_manager ..  ]
 "107
-[e ( _init_uart1 ..  ]
+[e ( _init_timer0 ..  ]
+"108
+[e ( _i2c_init ..  ]
 "109
-[e = . . _I2C1CON0bits 0 5 -> -> 1 `i `uc ]
+[e ( _init_ina219 ..  ]
+"111
+[e ( _init_fvr ..  ]
 "112
-[e = _NVMADR -> -> 2883634 `l `um ]
+[e ( _init_pwm_16bit ..  ]
 "113
-[e = . . _NVMCON1bits 0 0 -> -> 0 `i `uc ]
-"114
-[e = . . _NVMCON0bits 0 0 -> -> 1 `i `uc ]
+[e ( _init_uart1 ..  ]
 "115
-[e $U 1873  ]
-[e :U 1874 ]
-[e :U 1873 ]
-[e $ != -> . . _NVMCON0bits 0 0 `i -> 0 `i 1874  ]
-[e :U 1875 ]
-"116
-[e = _FVRA2X _NVMDAT ]
+[e = . . _I2C1CON0bits 0 5 -> -> 1 `i `uc ]
 "118
-[e = _NVMADR -> -> 2883640 `l `um ]
+[e = _NVMADR -> -> 2883634 `l `um ]
 "119
 [e = . . _NVMCON1bits 0 0 -> -> 0 `i `uc ]
 "120
 [e = . . _NVMCON0bits 0 0 -> -> 1 `i `uc ]
 "121
+[e $U 1873  ]
+[e :U 1874 ]
+[e :U 1873 ]
+[e $ != -> . . _NVMCON0bits 0 0 `i -> 0 `i 1874  ]
+[e :U 1875 ]
+"122
+[e = _FVRA2X _NVMDAT ]
+"124
+[e = _NVMADR -> -> 2883640 `l `um ]
+"125
+[e = . . _NVMCON1bits 0 0 -> -> 0 `i `uc ]
+"126
+[e = . . _NVMCON0bits 0 0 -> -> 1 `i `uc ]
+"127
 [e $U 1876  ]
 [e :U 1877 ]
 [e :U 1876 ]
 [e $ != -> . . _NVMCON0bits 0 0 `i -> 0 `i 1877  ]
 [e :U 1878 ]
-"122
-[e = _FVRC2X _NVMDAT ]
-"125
-[e ( _interrupt_initialize ..  ]
 "128
-[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"130
-[e = . . _INTCON0bits 0 5 -> -> 1 `i `uc ]
+[e = _FVRC2X _NVMDAT ]
 "131
+[e ( _interrupt_initialize ..  ]
+"134
+[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
+"136
+[e = . . _INTCON0bits 0 5 -> -> 1 `i `uc ]
+"137
 [e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"133
+"139
 [e :UE 1872 ]
 }
-"143
+"149
 [v _init_fvr `(v ~T0 @X0 1 ef ]
-"144
+"150
 {
 [e :U _init_fvr ]
 [f ]
-"145
-[e = . . _FVRCONbits 0 2 -> -> 1 `i `uc ]
-"146
-[e = . . _FVRCONbits 0 0 -> -> 2 `i `uc ]
-"147
-[e = . . _FVRCONbits 0 1 -> -> 2 `i `uc ]
-"148
-[e = . . _FVRCONbits 1 6 -> -> 1 `i `uc ]
-"149
-[e = . . _FVRCONbits 0 3 -> -> 1 `i `uc ]
 "151
+[e = . . _FVRCONbits 0 2 -> -> 1 `i `uc ]
+"152
+[e = . . _FVRCONbits 0 0 -> -> 2 `i `uc ]
+"153
+[e = . . _FVRCONbits 0 1 -> -> 2 `i `uc ]
+"154
+[e = . . _FVRCONbits 1 6 -> -> 1 `i `uc ]
+"155
+[e = . . _FVRCONbits 0 3 -> -> 1 `i `uc ]
+"157
 [e :UE 1879 ]
 }
-"175
+"181
 [v _init_ina219 `(v ~T0 @X0 1 ef ]
-"176
+"182
 {
 [e :U _init_ina219 ]
 [f ]
-"179
+"185
 [e :UE 1880 ]
 }
-"184
+"190
 [v _init_oscillator `(v ~T0 @X0 1 ef ]
-"185
+"191
 {
 [e :U _init_oscillator ]
 [f ]
-"187
-[e = _OSCCON1 -> -> 96 `i `uc ]
-"189
-[e = _OSCCON3 -> -> 0 `i `uc ]
-"191
-[e = _OSCEN -> -> 80 `i `uc ]
 "193
-[e = _OSCFRQ -> -> 5 `i `uc ]
+[e = _OSCCON1 -> -> 96 `i `uc ]
 "195
-[e = _OSCTUNE -> -> 0 `i `uc ]
+[e = _OSCCON3 -> -> 0 `i `uc ]
 "197
-[e = _ACTCON -> -> 0 `i `uc ]
+[e = _OSCEN -> -> 80 `i `uc ]
 "199
+[e = _OSCFRQ -> -> 5 `i `uc ]
+"201
+[e = _OSCTUNE -> -> 0 `i `uc ]
+"203
+[e = _ACTCON -> -> 0 `i `uc ]
+"205
 [e :UE 1881 ]
 }
-"229
+"235
 [v _init_pin_manager `(v ~T0 @X0 1 ef ]
-"230
+"236
 {
 [e :U _init_pin_manager ]
 [f ]
-"232
-[e = _LATA -> -> 4 `i `uc ]
-"233
-[e = _LATB -> -> 0 `i `uc ]
-"234
-[e = _LATC -> -> 0 `i `uc ]
-"237
-[e = _ANSELA -> -> 3 `i `uc ]
 "238
-[e = _ANSELB -> -> 0 `i `uc ]
+[e = _LATA -> -> 4 `i `uc ]
 "239
-[e = _ANSELC -> -> 3 `i `uc ]
-"242
-[e = _WPUA -> -> 0 `i `uc ]
+[e = _LATB -> -> 0 `i `uc ]
+"240
+[e = _LATC -> -> 0 `i `uc ]
 "243
-[e = _WPUB -> -> 0 `i `uc ]
+[e = _ANSELA -> -> 3 `i `uc ]
 "244
-[e = _WPUC -> -> 0 `i `uc ]
-"247
-[e = _ODCONA -> -> 0 `i `uc ]
+[e = _ANSELB -> -> 0 `i `uc ]
+"245
+[e = _ANSELC -> -> 3 `i `uc ]
 "248
-[e = _ODCONB -> -> 80 `i `uc ]
+[e = _WPUA -> -> 0 `i `uc ]
 "249
-[e = _ODCONC -> -> 0 `i `uc ]
-"252
-[e = _TRISA -> -> 11 `i `uc ]
+[e = _WPUB -> -> 0 `i `uc ]
+"250
+[e = _WPUC -> -> 0 `i `uc ]
 "253
-[e = _TRISB -> -> 0 `i `uc ]
+[e = _ODCONA -> -> 0 `i `uc ]
 "254
-[e = _TRISC -> -> 3 `i `uc ]
-"257
-[e = _SLRCONA -> -> 255 `i `uc ]
+[e = _ODCONB -> -> 80 `i `uc ]
+"255
+[e = _ODCONC -> -> 0 `i `uc ]
 "258
-[e = _SLRCONB -> -> 255 `i `uc ]
+[e = _TRISA -> -> 11 `i `uc ]
 "259
-[e = _SLRCONC -> -> 255 `i `uc ]
-"262
-[e = _INLVLA -> -> 255 `i `uc ]
+[e = _TRISB -> -> 0 `i `uc ]
+"260
+[e = _TRISC -> -> 3 `i `uc ]
 "263
-[e = _INLVLB -> -> 255 `i `uc ]
+[e = _SLRCONA -> -> 255 `i `uc ]
 "264
-[e = _INLVLC -> -> 255 `i `uc ]
-"267
-[e = _I2C1SDAPPS -> -> 12 `i `uc ]
+[e = _SLRCONB -> -> 255 `i `uc ]
+"265
+[e = _SLRCONC -> -> 255 `i `uc ]
 "268
-[e = _RB4PPS -> -> 34 `i `uc ]
+[e = _INLVLA -> -> 255 `i `uc ]
 "269
-[e = _I2C1SCLPPS -> -> 14 `i `uc ]
+[e = _INLVLB -> -> 255 `i `uc ]
 "270
-[e = _RB6PPS -> -> 33 `i `uc ]
-"272
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
+[e = _INLVLC -> -> 255 `i `uc ]
 "273
-[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[e = _I2C1SDAPPS -> -> 12 `i `uc ]
+"274
+[e = _RB4PPS -> -> 34 `i `uc ]
+"275
+[e = _I2C1SCLPPS -> -> 14 `i `uc ]
 "276
-[e = _PWMIN1PPS -> -> 19 `i `uc ]
-"277
-[e = _PWMIN0PPS -> -> 21 `i `uc ]
+[e = _RB6PPS -> -> 33 `i `uc ]
+"278
+[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 "279
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+"282
+[e = _PWMIN1PPS -> -> 19 `i `uc ]
+"283
+[e = _PWMIN0PPS -> -> 21 `i `uc ]
+"285
 [e :UE 1882 ]
 }
-"286
+"292
 [v _init_pmd `(v ~T0 @X0 1 ef ]
-"287
+"293
 {
 [e :U _init_pmd ]
 [f ]
-"288
-[e = _PMD0 -> -> 58 `i `uc ]
-"289
-[e = _PMD1 -> -> 56 `i `uc ]
-"290
-[e = _PMD2 -> -> 97 `i `uc ]
-"291
-[e = _PMD3 -> -> 54 `i `uc ]
-"292
-[e = _PMD4 -> -> 255 `i `uc ]
-"293
-[e = _PMD5 -> -> 7 `i `uc ]
 "294
+[e = _PMD0 -> -> 58 `i `uc ]
+"295
+[e = _PMD1 -> -> 56 `i `uc ]
+"296
+[e = _PMD2 -> -> 97 `i `uc ]
+"297
+[e = _PMD3 -> -> 52 `i `uc ]
+"298
+[e = _PMD4 -> -> 255 `i `uc ]
+"299
+[e = _PMD5 -> -> 7 `i `uc ]
+"300
 [e :UE 1883 ]
 }
-"305
-[v _init_pwm1_16bit `(v ~T0 @X0 1 ef ]
-"306
-{
-[e :U _init_pwm1_16bit ]
-[f ]
-"307
-[e = _PWM1CON -> -> 0 `i `uc ]
-"309
-[e = _PWM1ERS -> -> 0 `i `uc ]
-"310
-[e = _PWM1CLK -> -> 2 `i `uc ]
-"311
-[e = _PWM1LDS -> -> 0 `i `uc ]
-"314
-[e = _PWM1PRL -> -> 255 `i `uc ]
 "315
-[e = _PWM1PRH -> -> 124 `i `uc ]
-"317
-[e = _PWM1CPRE -> -> 3 `i `uc ]
-"318
-[e = _PWM1PIPOS -> -> 0 `i `uc ]
+[v _init_pwm_16bit `(v ~T0 @X0 1 ef ]
+"316
+{
+[e :U _init_pwm_16bit ]
+[f ]
 "319
-[e = _PWM1GIR -> -> 0 `i `uc ]
+[e = _PWM1CON -> -> 0 `i `uc ]
 "321
-[e = _PWM1GIE -> -> 0 `i `uc ]
+[e = _PWM1ERS -> -> 0 `i `uc ]
 "322
-[e = _PWM1S1CFG -> -> 0 `i `uc ]
+[e = _PWM1CLK -> -> 2 `i `uc ]
+"323
+[e = _PWM1LDS -> -> 0 `i `uc ]
+"326
+[e = _PWM1PRL -> -> 255 `i `uc ]
 "327
-[e = _PWM1S1P1L -> -> 128 `i `uc ]
-"328
-[e = _PWM1S1P1H -> -> 112 `i `uc ]
+[e = _PWM1PRH -> -> 124 `i `uc ]
+"329
+[e = _PWM1CPRE -> -> 3 `i `uc ]
+"330
+[e = _PWM1PIPOS -> -> 0 `i `uc ]
+"331
+[e = _PWM1GIR -> -> 0 `i `uc ]
 "333
-[e = _PWM1S1P2L -> -> 64 `i `uc ]
+[e = _PWM1GIE -> -> 0 `i `uc ]
 "334
-[e = _PWM1S1P2H -> -> 31 `i `uc ]
-"336
-[e = . . _PIE4bits 0 7 -> -> 0 `i `uc ]
-"337
-[e = . . _PIE4bits 0 6 -> -> 0 `i `uc ]
-"338
-[e = . . _PIR4bits 0 6 -> -> 0 `i `uc ]
+[e = _PWM1S1CFG -> -> 0 `i `uc ]
+"339
+[e = _PWM1S1P1L -> -> 128 `i `uc ]
 "340
-[e = . . _PWM1GIRbits 0 0 -> -> 0 `i `uc ]
-"341
-[e = . . _PWM1GIRbits 0 1 -> -> 0 `i `uc ]
-"344
-[e = _PWM1CON -> -> 128 `i `uc ]
+[e = _PWM1S1P1H -> -> 112 `i `uc ]
+"345
+[e = _PWM1S1P2L -> -> 64 `i `uc ]
 "346
+[e = _PWM1S1P2H -> -> 31 `i `uc ]
+"348
+[e = . . _PIE4bits 0 7 -> -> 0 `i `uc ]
+"349
+[e = . . _PIE4bits 0 6 -> -> 0 `i `uc ]
+"350
+[e = . . _PIR4bits 0 6 -> -> 0 `i `uc ]
+"351
+[e = . . _PWM1GIEbits 0 1 -> -> 1 `i `uc ]
+"355
+[e = _PWM2CON -> -> 0 `i `uc ]
+"357
+[e = _PWM2ERS -> -> 0 `i `uc ]
+"358
+[e = _PWM2CLK -> -> 2 `i `uc ]
+"359
+[e = _PWM2LDS -> -> 0 `i `uc ]
+"362
+[e = _PWM2PRL -> -> 255 `i `uc ]
+"363
+[e = _PWM2PRH -> -> 124 `i `uc ]
+"365
+[e = _PWM2CPRE -> -> 3 `i `uc ]
+"366
+[e = _PWM2PIPOS -> -> 0 `i `uc ]
+"367
+[e = _PWM2GIR -> -> 0 `i `uc ]
+"369
+[e = _PWM2GIE -> -> 0 `i `uc ]
+"370
+[e = _PWM2S1CFG -> -> 0 `i `uc ]
+"375
+[e = _PWM2S1P1L -> -> 128 `i `uc ]
+"376
+[e = _PWM2S1P1H -> -> 112 `i `uc ]
+"381
+[e = _PWM2S1P2L -> -> 192 `i `uc ]
+"382
+[e = _PWM2S1P2H -> -> 118 `i `uc ]
+"384
+[e = . . _PIE5bits 0 7 -> -> 0 `i `uc ]
+"385
+[e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
+"386
+[e = . . _PWM2GIEbits 0 1 -> -> 1 `i `uc ]
+"390
+[e = _PWMEN -> -> 3 `i `uc ]
+"392
 [e :UE 1884 ]
 }
-"353
+"399
 [v _init_timer0 `(v ~T0 @X0 1 ef ]
-"354
+"400
 {
 [e :U _init_timer0 ]
 [f ]
-"355
+"401
 [e = _T0CON0 -> -> 0 `i `uc ]
-"356
+"402
 [e = _T0CON1 -> -> 84 `i `uc ]
-"357
+"403
 [e = _TMR0H -> -> 249 `i `uc ]
-"358
+"404
 [e = _TMR0L -> -> 0 `i `uc ]
-"359
+"405
 [e = . . _PIR3bits 0 7 -> -> 0 `i `uc ]
-"360
+"406
 [e = . . _PIE3bits 0 7 -> -> 1 `i `uc ]
-"361
+"407
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"363
+"409
 [e :UE 1885 ]
 }
-"373
+"419
 [v _init_uart1 `(v ~T0 @X0 1 ef ]
-"374
+"420
 {
 [e :U _init_uart1 ]
 [f ]
-"375
+"421
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-"376
+"422
 [e = . . _ANSELCbits 0 2 -> -> 0 `i `uc ]
-"379
+"425
 [e = . . _U1CON1bits 0 6 -> -> 0 `i `uc ]
-"381
+"427
 [e = _U1BRG -> -> 25 `i `us ]
-"383
+"429
 [e = _U1CON0 -> -> 48 `i `uc ]
-"385
+"431
 [e = _U1CON2 -> -> 0 `i `uc ]
-"386
+"432
 [e = . . _U1CON2bits 0 4 -> -> 0 `i `uc ]
-"387
+"433
 [e = . . _U1CON2bits 0 1 -> -> 0 `i `uc ]
-"388
+"434
 [e = _U1RXPPS -> -> 18 `i `uc ]
-"389
+"435
 [e = _RB5PPS -> -> 16 `i `uc ]
-"391
+"437
 [e = . . _U1CON1bits 0 6 -> -> 1 `i `uc ]
-"393
+"439
 [e :UE 1886 ]
 }

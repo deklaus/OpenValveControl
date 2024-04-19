@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.8.1</span>
+   &#160;<span id="projectnumber">v0.8.2</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -157,13 +157,13 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
  Vector |     Source     |  Vector  |    Source   \n
  -------+----------------+----------+---------------------------------
  0x27   | PWM1 Parameter |   0x07   |  IOC  (interrupt on change)
-        |                |   0x1B   |  TMR2 (hogged for PWM)
+ 0x2F   | PWM2 Parameter |   0x1B   |  TMR2 (hogged for PWM)
         |                |   0x1C   |  TMR1 (wake-up from sleep)
         |                |   0x1E   |  CCP1 (Capture/Compare)
         |                |   0x1F   |  TMR0 (1 ms system clock)
         |                |   0x20   |  U1RX (UART1 RX)
 </pre> 
-<p class="definition">Definition at line <a class="el" href="interrupt_8c_source.html#l00068">68</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interrupt_8c_source.html#l00072">72</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

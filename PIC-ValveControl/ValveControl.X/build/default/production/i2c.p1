@@ -1417,9 +1417,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"94 ./main.h
+"105 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"95
+"106
 [v _FVRC2X `us ~T0 @X0 1 e ]
 "24 i2c.c
 [v _i2c_init `(v ~T0 @X0 1 ef ]

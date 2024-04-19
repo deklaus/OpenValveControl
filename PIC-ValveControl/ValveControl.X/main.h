@@ -29,6 +29,17 @@
 #define interrupt_GlobalLowEnable()    (INTCON0bits.GIEL = 1)
 #define interrupt_GlobalLowDisable()   (INTCON0bits.GIEL = 0)
 
+#define pwm_InterruptsEnable() { \
+    PWM1GIR = PWM2GIR = 0;  /* clear PWM1,2 interrupts flags */ \
+    PIE4bits.PWM1IE = 1;    /* enable PWM1_16BIT param interrupts */ \
+    PIE5bits.PWM2IE = 1;    /* enable PWM2_16BIT param interrupts */ \
+}
+
+#define pwm_InterruptsDisable() { \
+    PIE4bits.PWM1IE = 0;    /* disable PWM1_16BIT param interrupts */ \
+    PIE5bits.PWM2IE = 0;    /* disable PWM2_16BIT param interrupts */ \
+}
+
 #define NUM_VZ  4           /* no. of valve zones */
 #define	MSperTICK	100     /* time [ms] to move a motor by 1 % of max. travel */
 #define	TIMEOUThome 120     /* timeout [s] for homeing */

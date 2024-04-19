@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.8.1</span>
+   &#160;<span id="projectnumber">v0.8.2</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -158,6 +158,10 @@ Macros</h2></td></tr>
 <tr class="memitem:a54c50351f11ffb2062c417961d12864d"><td class="memItemLeft" align="right" valign="top"><a id="a54c50351f11ffb2062c417961d12864d"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>interrupt_GlobalLowDisable</b>()&#160;&#160;&#160;(INTCON0bits.GIEL = 0)</td></tr>
 <tr class="separator:a54c50351f11ffb2062c417961d12864d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72856ea2f484b534ebfa94cb8fc57b34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>pwm_InterruptsEnable</b>()</td></tr>
+<tr class="separator:a72856ea2f484b534ebfa94cb8fc57b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5bf772969dbe865fa6939da23383cae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>pwm_InterruptsDisable</b>()</td></tr>
+<tr class="separator:aa5bf772969dbe865fa6939da23383cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf89414145badc644588adef8825582c"><td class="memItemLeft" align="right" valign="top"><a id="aaf89414145badc644588adef8825582c"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>NUM_VZ</b>&#160;&#160;&#160;4           /* no. of valve zones */</td></tr>
 <tr class="separator:aaf89414145badc644588adef8825582c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -292,7 +296,55 @@ volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>g_ns_cur
 see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12</a> </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="main_8h_source.html">main.h</a>.</p>
-</div><h2 class="groupheader">Variable Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aa5bf772969dbe865fa6939da23383cae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5bf772969dbe865fa6939da23383cae">&#9670;&nbsp;</a></span>pwm_InterruptsDisable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define pwm_InterruptsDisable</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    PIE4bits.PWM1IE = 0;    <span class="comment">/* disable PWM1_16BIT param interrupts */</span> \</div>
+<div class="line">    PIE5bits.PWM2IE = 0;    <span class="comment">/* disable PWM2_16BIT param interrupts */</span> \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00038">38</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+
+</div>
+</div>
+<a id="a72856ea2f484b534ebfa94cb8fc57b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72856ea2f484b534ebfa94cb8fc57b34">&#9670;&nbsp;</a></span>pwm_InterruptsEnable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define pwm_InterruptsEnable</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    PWM1GIR = PWM2GIR = 0;  <span class="comment">/* clear PWM1,2 interrupts flags */</span> \</div>
+<div class="line">    PIE4bits.PWM1IE = 1;    <span class="comment">/* enable PWM1_16BIT param interrupts */</span> \</div>
+<div class="line">    PIE5bits.PWM2IE = 1;    <span class="comment">/* enable PWM2_16BIT param interrupts */</span> \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00032">32</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
 <a id="a9bedffb2d5b51d2fc26d43837434b225"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bedffb2d5b51d2fc26d43837434b225">&#9670;&nbsp;</a></span>g_vbemf_log</h2>
 
@@ -316,7 +368,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <p>data logger: g_vbemf &gt;&gt; 4 </p>
 <dl class="section note"><dt>Note</dt><dd>Data logger indices are reset on every MOVE or HOME command. Data logger buffers are filled up with zeros in idle. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00120">120</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00124">124</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
