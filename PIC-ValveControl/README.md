@@ -41,8 +41,9 @@ Process commands and queries (?) from ESP:
   - HFINTOSC (16 MHz),
   - I²C (master, 400 kHz)
   - UART (38400 Bd, 8 data bit, 1 stop bit) 
-  - PWM1_SaP1_out: (125 Hz: 7.2 ms High + 0.8 ms Low = 8 ms) <br>
-    PWM1_SaP2_out: (125 Hz: 2.0 ms High + 6.0 ms Low = 8 ms)
+  - PWM1_S1P1_out: (125 Hz: 7.2 ms High + 0.8 ms Low = 8 ms) <br>
+    PWM1_S1P2_out: (125 Hz: 2.0 ms High + 6.0 ms Low = 8 ms) <br>
+    PWM2_S1P2_out: (125 Hz: 7.6 ms High + 0.4 ms Low = 8 ms)
   - Interrupts (see #interrupt.c)
 
 ### interrupt.c
@@ -50,7 +51,8 @@ Configures the Vectored Interrupt Manager and contains the corresponding
 interrupt service routines (ISR).
   - PWM1 Parameter Interrupt
     - on falling edge of PWM1_SaP2_out (2 ms after H-bridge ON): read motor current
-    - on falling edge of PWM1_SaP1_out (~ 100 µs after H-bridge OFF): read Back EMF
+  - PWM2 Parameter Interrupt
+    - on falling edge of PWM2_S1P2_out (~ 400 µs after H-bridge OFF): read Back EMF
   - TMR0 (1 ms system clock)
   - U1RX (UART1 RX data from ESP)
 
