@@ -52,7 +52,7 @@ interrupt service routines (ISR).
   - PWM1 Parameter Interrupt
     - on falling edge of PWM1_S1P2_out (2 ms after H-bridge ON): read motor current
   - PWM2 Parameter Interrupt
-    - on falling edge of PWM2_S1P2_out (~ 400 µs after H-bridge OFF): read Back EMF
+    - on falling edge of PWM2_S1P2_out (400 µs after H-bridge OFF): read Back EMF
   - TMR0 (1 ms system clock)
   - U1RX (UART1 RX data from ESP)
 
