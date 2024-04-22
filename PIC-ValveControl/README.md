@@ -18,23 +18,23 @@ The following paragraphs provide some insights into the software structure:
   - Measure VDD [0.01 V] (optional battery check)
   - Check RX buffer, run cmd_interpreter if flag is set
   - process state machine:
-    - move (pending MOVE command), finish at target position, abort on over_current
-    - home (pending HOME command), finish on over_current, abort on timeout (2 minutes)
-    - default (idle: check STATUSflags and switch state to move, home or bootload)
+    - **move** (pending MOVE command), finish at target position, abort on over_current
+    - **home** (pending HOME command), finish on over_current, abort on timeout (2 minutes)
+    - **default** (idle: check STATUSflags and switch state to _move_, _home_ or reboot into bootloader)
       - STATUSflags.move? set main_state to state_move
       - STATUSflags.home? set main_state to state_home
       - STATUSflags.bootload? generate RESET
 
 **cmd interpreter**
 Process commands and queries (?) from ESP:
-  - Move:    save active drive and current limit, set g_STATUSflags.move
-  - Home:    save active drive and current limit, set g_STATUSflags.home
-  - Status?  send status data (position[1..4], max. motor current, STATUSflags
-  - Version? send PIC version
-  - SetPos?  send positions[1..4]
-  - max_mA?  send max_mAx10[1..4]
-  - LogData? send logdata[]
-  - Bootload!
+  - `Move:`    save active drive and current limit, set g_STATUSflags.move
+  - `Home:`    save active drive and current limit, set g_STATUSflags.home
+  - `Status?`  send status data (position[1..4], max. motor current, STATUSflags
+  - `Version?` send PIC version
+  - `SetPos?`  send positions[1..4]
+  - `max_mA?`  send max_mAx10[1..4]
+  - `LogData?` send logdata[]
+  - `Bootload!` reboot into bootloader
 
 ### init.c
 - Configures system, I/Os, Timers etc.
