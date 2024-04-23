@@ -13,7 +13,7 @@
 - [x] Testing under real conditions (in progress).
 
 ## Block diagram
-- todo -
+<img src="../Photos/Block-Diagram.png" alt="Block-Diagram" title="Block-Diagram" width="480"/>
 
 ## Schematics
 - Schematics added as PDF
