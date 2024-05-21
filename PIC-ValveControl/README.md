@@ -8,6 +8,12 @@ Compiler:
 - Optimization Level: 2
 - Device Family Pack **PIC18F-Q_DFP (v1.14.237)**
 
+The latest binaries can be downloaded from folder 'Hexfiles'. There are always 2 versions: <br>
+- **ValveControl_v\*.hex**: This version comes without the bootloader. Its start address is 0x0800 and can be flashed OTA using the 'bootload' command, 
+provided the bootloader (the 'unified' version) has been flashed at least once into the PIC using a tool like PICkit4 or similar. <br>
+- **ValveControl_v\*.unified.hex':** This one contains the bootloader together with the OVC firmware and starts from address 0x0000.
+  When flashed OTA using the 'bootload' command, the addresses from 0x0 to 0x07FF are skipped automatically. <br>
+
 # Software
 See the **doxygen** documentation in sub folder ./ValveControl.X/doxygen/.
 The following paragraphs provide some insights into the software structure:
