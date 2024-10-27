@@ -4,9 +4,11 @@
  *  License: EUROPEAN UNION PUBLIC LICENCE v. 1.2 \n
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */ 
-/*  Change Log:
- *  2023-11-23 V0.6
- *  - First issue
+/* Change Log:
+ * 2024-10-04 v0.9
+ * - Added definitions for limits VBSUM_1pct_MIN and VBSUM_1pct_MAX
+ * 2023-11-23 V0.6
+ * - First issue
  */
 #include <stdint.h>     // defines C99 standard types as 'uint8_t' and 'int16_t'
 #include <stdbool.h>    // defines type 'bool' 
@@ -46,13 +48,15 @@
 
 #define VBEMF_NO_DIA      1     /* AD conversion without calibration */ 
 
-#define TEST_SETREF       1     /* sets ref position flags for testing */
-//#define TEST_AUTO_RETURN  1     /* MOVE auto returns to zero position */
+//#define TEST_SETREF       1     /* sets ref position flags for testing */
 //#define TEST_DACOUT_A2    1     /* monitor variables via DAC (@RA2 = /LED) */
 //#define TEST_VBEMF2DAC    1     /* output VBEMF to DAC1 */
 //#define TEST_mAMPS2DAC    1     /* output mAMPS to DAC1 */
 
 #define LOGSIZE           1024   /* size of each data logger (elements) */
+
+#define VBSUM_1pct_MIN  10000
+#define VBSUM_1pct_MAX  40000
 
 typedef union {     // 'low Byte', weak errors: mission may be continued.
     struct {
@@ -90,7 +94,10 @@ typedef union {     // 'low Byte', weak errors: mission may be continued.
 enum Errs {     /* ALL errnos must be negative (see adc_read() as example) */
     E_ADC_TIMEOUT     = -127,   // AD converter timeout
 
-    E_HOMEING_ACTIVE  = -6,     // Move command, whereas Home is active
+    E_EEWR_ARGC       = -9,     // EEPROM write: argument count != 2
+    E_EEWR_ADDR       = -8,     // EEPROM write: address out of range
+    E_HOMEING_ACTIVE  = -7,     // Move command, whereas Home is active
+    E_MOVE_ARGC       = -6,     // Move command: argument count != 3
     E_NO_REFERENCE    = -5,     // reference not set
     E_UNDEF_CMD       = -4,     // undefined command
     E_MA_MAX          = -3,     // ma_max out of range
@@ -104,6 +111,8 @@ enum Errs {     /* ALL errnos must be negative (see adc_read() as example) */
 // global variables
 uint16_t    FVRA2X;
 uint16_t    FVRC2X;
+
+uint16_t    VBSUM_1pct;
 
 extern volatile STATUSflags_t  g_STATUSflags;
 extern volatile ERRORflags_t   g_ERRORflags;

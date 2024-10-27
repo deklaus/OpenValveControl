@@ -88,7 +88,7 @@ int16_t ina219_read (void)
     }
     else
     {   // error handler
-        value = 0xFFBB;     // "bus busy", handle negative values by caller!
+        value = (int16_t) 0xFFBB;   // "bus busy", handle negative values by caller!
     }
     
     return(value);

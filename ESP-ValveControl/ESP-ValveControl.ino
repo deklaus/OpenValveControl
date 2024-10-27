@@ -15,7 +15,8 @@
  *   - Status display, p.e. positions, firmware (ESP and PIC), WiFi,...
  *   - Access point (until local WiFi has been configured)
  *   - OTA Firmware-Update ESP
- *   - Firmware-Update (PIC) via Web UI (planned)
+ *   - Write to PIC EEPROM via Web UI
+ *   - Firmware-Update (PIC) via Web UI
  *
  *  \b IDE: <c> Arduino IDE 2.2.1 &rarr; <c> esptool.py v3.0 \n
  *  \b Device: \n
@@ -38,6 +39,12 @@
  *  Doxygen:    https://www.doxygen.nl/manual/docblocks.html \n
  * 
  * Change Log:
+ * 2024-09-24 v0.9
+ * - Added new command: EEwrite EEwrite:<uint16 addr,uint16 data>
+ *   This command allows to change PIC EEPROM, p.e. VBSUM_1pct @EEPROM addr = 2. 
+ * - Error codes PICerrno and ESPerrno are exported with status report and are shown in Web-UI v0.9 and above.
+ *   Corresponding text messages may be edited in customize.js.
+ * - Read access to all files except index.html was restricted to private IP addresses Class C (192.168.x.x).
  * 2024-03-11 v0.8
  * - Added data logger: <IP>/logdata? reads curr_log[] and bemf_log[] from PIC.
  * - Added VBsum to "info?" for testing BEMF sum-up for position control.
@@ -74,9 +81,6 @@
  *
  * @todo - poor handling of refset[] (maybe by PIC?). 
  *       - home drive sometimes doesn't reset position.
- *       - Download of ovc.ini should be password protected or PSK should be encrypted in ovc.ini.
- *       - Firmware update via httpUpdater should be password protected.
- *       - Define enum ERRNOs globally (ESP + PIC)
  */
 
 // *** includes
@@ -98,6 +102,7 @@ extern float  DS18B20_TempC (uint8_t index);
 extern int    fw_download (char *rec);
 
 extern void   webUI_bootload (void);
+extern void   webUI_eewrite (void);
 extern void   webUI_home (void);
 extern void   webUI_info (void);
 extern void   webUI_move (void);
@@ -144,7 +149,8 @@ struct FLAGS  //!<   flags to start tasks within loop()
   uint8_t bootload :1;  //!< 4 update PIC firmware
   uint8_t version  :1;  //!< 5 update PIC version
   uint8_t logdata  :1;  //!< 6 reads log data from PIC
-  uint8_t          :1;  //!< 7 
+  uint8_t eewrite  :1;  //!< 7 write to PIC EEPROM
+  uint8_t          :1;  //!< 8 
 }; 
 
 /* uint16_t status word (read from PIC)
@@ -163,6 +169,36 @@ struct FLAGS  //!<   flags to start tasks within loop()
 #define MOVE(x)  ((x & 0x0100)          /* 'move' is executing */
 #define HOME(x)  ((x & 0x0200)          /* 'home' is executing */
 
+
+enum Errs {     /* ALL PIC errnos are negative, ESP errors are positive  */
+    E_ADC_TIMEOUT          = -127,   // AD converter timeout
+
+    E_EEWR_ARGC            = -9,     // EEPROM write: argument count != 2
+    E_EEWR_ADDR            = -8,     // EEPROM write: address out of range
+    E_HOMEING_ACTIVE       = -7,     // Move command, whereas Home is active
+    E_MOVE_ARGC            = -6,     // Move command: argument count != 3
+    E_NO_REFERENCE         = -5,     // Reference not set
+    E_UNDEF_CMD            = -4,     // Undefined command
+    E_MA_MAX               = -3,     // Out of range: mA_max
+    E_SET_POS_RANGE        = -2,     // Out of range: set_pos
+    E_VZ_RANGE             = -1,     // Out of range: vz
+
+    E_NO_ERR               =  0,     // No error
+
+    E_INIFILE_NOT_FOUND    =  1,     // INI file not found
+    E_IDENTIFIER_NOT_FOUND =  2,     // Identifier not found
+    E_PIC_TIMEOUT          =  3,     // PIC timeout
+    E_NACK_Move            =  4,     // Move not acknowledged by PIC
+    E_NACK_Home            =  5,     // Home not acknowledged by PIC
+    E_NACK_Status          =  6,     // Status not acknowledged by PIC
+    E_NACK_EEwrite         =  7,     // EEPROM write not acknowledged by PIC
+    E_ADDR_RANGE           =  8,     // (EEPROM write) address out of range
+    E_EEWRITE_ARGC         =  9,     // (EEPROM write) argument count != 2
+    E_DATA_RANGE           = 10,     // (EEPROM write) data out of range
+};
+
+
+
 /** LIBRARY INSTANCES */
 
 /** Webserver
@@ -179,8 +215,8 @@ PubSubClient  MQTTclient(espClient);
 
 /** Global variables
  *  =============== */
-char  ESPversion[32] = "v0.8";  // Version of ESP-Firmware
-char  PICversion[32] = "NN";    // Version of PIC-Firmware
+char  ESPversion[32] = "v0.9";   // Version of ESP-Firmware
+char  PICversion[32] = "NN";     // Version of PIC-Firmware
 
 // WiFi credentials: Initial values are used for access point!
 // The credential aof your routers WiFi can be customized in "ovc.ini" (uploaded into LittleFS)
@@ -188,12 +224,15 @@ char  ssid[64] = "OVC-access-point";  // SSID (access point)
 char  psk[64]  = "OVC-password";      // Password (access point)
 long  rssi;                           // signal strength in dBm
 
+IPAddress remoteIP;                   // the client's (remote) IP
+int16_t   ESPerrno = 0;               // ESP errno
+
 // MQTT
 char  mqtt_host[64] = "";   // IP address of mqtt host (broker)
 char  mqtt_prefix[64] = ""; // prefix (p.e. "OVC-1")
 char  mqtt_token[64] = "";  // token for publish (p.e. "OVC-1/tempC" etc.)
 
-char  jStatus[512];         // set big enough to hold the "beautifed" JSON status!
+char  jStatus[512];         // set big enough to hold the "beautyfied" JSON status!
 unsigned long mqttLastConnect = millis();
 unsigned long mqttLastPub = millis();
 unsigned long mqttCurrentTime;
@@ -206,6 +245,7 @@ char  alias4[8];
 
 // Vars sourced by PIC µC
 uint16_t  status;         // status word from PIC
+int16_t   PICerrno = 0;   // errno returned from PIC (cmd2pic)
 float     mAmps = 0.0;    // actual current [mA]
 float     tempC = 0.0;    // temperature in Celsius (DS18B20)
 float     dTemp = 0.0;    // temperature adjust (ovc.ini)
@@ -218,6 +258,8 @@ struct FLAGS  flags;      // processing flags (Web UI -> loop)
 int       vz = 0;         // selected valve zone (motor), [1 .. 4], 0 = none!
 int       set_pos[numVZ + 1]  = { -1, 0, 65, 36, 100 };       // valve set positions
 float     max_mA[numVZ + 1]   = { 0.0, 30.0, 30.0, 30.0, 30.0 };  // motor current limits [mA]
+int       EEaddr;   // address for EEPROM write
+int       EEdata;   // data for EEPROM write
 
 char      txbuf[64];
 char      rxbuf[64];
@@ -345,6 +387,7 @@ void setup ()
    */
 // server.on("/", handleRoot);  // handled by LittleFS -> invokes /index.html (our Web UI)
   server.on("/bootload", HTTP_GET, webUI_bootload);
+  server.on("/eewrite",  HTTP_GET, webUI_eewrite);
   server.on("/move",     HTTP_GET, webUI_move);
   server.on("/home",     HTTP_GET, webUI_home);
   server.on("/logdata",  HTTP_GET, webUI_logdata);
@@ -392,11 +435,12 @@ void loop ()
     */    
     sprintf(txbuf, "Move:%d,%d,%d", vz, set_pos[vz], (uint16_t)(10 * max_mA[vz]));      // Move:vz:set_pos[vz]:10 x max_mA[vz]
     OLED_show(1, txbuf);    // optional show on OLED.row 1 (0..5)
+    delay(500);    
     error = cmd2pic();
     // check if response contains command token ("Move"), else it is an error reponse
     if (strncmp(rxbuf, "Move:", 5) != 0)  // compare first N chars of response with command
     { /** @todo optional error handler, response might contain error number */
-      error = -2;
+      error = E_NACK_Move;
     }
     flags.move = 0;
   } // if flags.move
@@ -408,10 +452,11 @@ void loop ()
     */    
     sprintf(txbuf, "Home:%d,%d", vz, (uint16_t)(10 * max_mA[vz]));      // Home:vz:10 x max_mA[vz]
     OLED_show(1, txbuf);    // optional show on OLED.row 1 (0..5)
+    delay(500);    
     error = cmd2pic();
     if (strncmp(rxbuf, "Home:", 5) != 0)  // compare first N chars of response with command
     { /** @todo optional error handler, response might contain error number */
-      error = -3; 
+      error = E_NACK_Home; 
     }
     flags.home = 0;
   }
@@ -440,6 +485,20 @@ void loop ()
     flags.bootload = 0;
   }
 
+  else if (flags.eewrite)       // EEPROM write?
+  {
+    sprintf(txbuf, "EEwrite:%u,%u", EEaddr, EEdata);      // EEwrite:EEaddr,EEdata
+    OLED_show(1, txbuf);    // optional show on OLED.row 1 (0..5)
+    delay(500);    
+    error = cmd2pic();
+    // check if response contains command token ("Move"), else it is an error reponse
+    if (strncmp(rxbuf, "EEwrite:", 8) != 0)  // compare first N chars of response with command
+    { /** @todo optional error handler, response might contain error number */
+      error = E_NACK_EEwrite;
+    }
+    flags.eewrite = 0;
+  } // if flags.eewrite
+
   else if (flags.logdata)       // read logdata (curr_log[], bemf_log[]) from PIC
   {
     getPIClogdata();
@@ -465,7 +524,7 @@ void loop ()
   // check if response contains command token ("Status:"), else it is an error reponse
   if (strncmp(rxbuf, "Status:", 7) != 0)  // compare first N chars of response with command
   { /// @todo optional error handler, response might contain error number
-    error = -4; 
+    error = E_NACK_Status; 
   }
 
   /* Process status or error message  */
@@ -609,13 +668,10 @@ void create_jStatus (char *dest, int len, bool pretty)
 
   doc["mAmps"] = round(mAmps * 10) / 10.0;
   doc["tempC"] = round(tempC * 10) / 10.0;
+  doc["PICerrno"] = PICerrno;
+  doc["ESPerrno"] = ESPerrno;
 
   JsonObject VZ1 = doc.createNestedObject("VZ1");
-  VZ1["Position"] = position[1];
-  VZ1["Set_Pos"] = set_pos[1];
-  VZ1["Ref_Set"] = refset[1] ? 1 : 0;
-  VZ1["max_mA"] = max_mA[1];
-
   VZ1["Position"] = position[1];
   VZ1["Set_Pos"] = set_pos[1];
   VZ1["Ref_Set"] = refset[1] ? 1 : 0;
@@ -690,7 +746,7 @@ int cmd2pic (void)
 
     if ((millis() - tstart) > MAX_ACK_TIME)
     {
-      error = -1;  // timeout?
+      error = E_PIC_TIMEOUT;
 /*
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
       Serial.swap();    // output to serial monitor
@@ -708,7 +764,10 @@ int cmd2pic (void)
     if (str.startsWith("ERROR"))
     {
       error = str.substring(5).toInt();
+      PICerrno = error;
     }
+    else if (!str.startsWith("Status:")) PICerrno = 0;
+
     /** @todo response could contain an error mesg - how to handle this?)
       TEST: * /
       Serial.flush();   // Waits for the transmission of outgoing serial data to complete
@@ -725,7 +784,7 @@ int cmd2pic (void)
   } // if
   else  // no response (timeout)
   { 
-    error = -2; // timeout
+    error = E_PIC_TIMEOUT;
 /*
     Serial.flush();   // Waits for the transmission of outgoing serial data to complete
     Serial.swap();    // output to serial monitor
@@ -807,7 +866,7 @@ void getPIClogdata (void)
 
           if ((millis() - tstart) > MAX_ACK_TIME)
           {
-            error = -1;  // timeout?
+            error = E_PIC_TIMEOUT;
           }
           server.handleClient();      // process WebUI during reception
         } // for

@@ -11,14 +11,10 @@
 <script>
  'use strict';
  
- let version = 'v0.4';					// version of this Web UI
+ let version = 'v0.9';					// version of this Web UI
  let position = [-1, 0, 56, 36, 100];   // initial positions (javascript)
  let set_pos = [-1, 0, 65, 36, 100 ];   // valve set_positions
  let max_mA = [0.0, 41.0, 42.0, 43.0, 44.0 ];   // motor current limits [mA]  
-
- function get_floor() {
-  document.write("Erdgeschoss");
- }
 
  function get_vz() {   // returns the 'value' of the selected checkbox: [1..4]
    let inputs = document.getElementsByName('vz');
@@ -137,6 +133,25 @@
 	 set_pos[2] = data.VZ2.Set_Pos; 
 	 set_pos[3] = data.VZ3.Set_Pos; 
 	 set_pos[4] = data.VZ4.Set_Pos; 
+
+	 let msg = '';
+	 let PICerrno = data.PICerrno.valueOf(); 
+	 let ESPerrno = data.ESPerrno.valueOf(); 
+
+	 // Show up error codes in <p id='alert'>
+	 // The corresponding error messages can be defined in customize.js
+	 if (PICerrno) {
+	   msg = "PIC error " + PICerrno;
+	   if (PICerrno == -127) msg += ErrorMessage[0];
+	   else if (PICerrno >= -9 && PICerrno < 0) msg += ": " + ErrorMessage[PICerrno + 10];
+	 }
+	 if (ESPerrno) {
+	   msg += "\r\nESP error " + ESPerrno;
+	   if (ESPerrno > 0 && ESPerrno <= 10) msg += ": " +  ErrorMessage[ESPerrno + 10];
+	 }
+     let info = document.createTextNode(msg);
+     let element = document.getElementById('alert');
+     element.replaceChild(info, element.firstChild);	 
    });
  }
 
@@ -243,6 +258,12 @@
    text-align:left;
    font-size:0.9rem;
  }
+ p[id=alert] {
+   font-size:0.9rem;
+   color:#fa2a55;
+   text-align:left;
+   white-space:pre;
+}
  p[id=status] {
    text-align:left;
    font-size:0.8rem;
@@ -316,7 +337,8 @@
    <p><button class='btn' name='btn_save'   onclick='f_save();' title='Save WiFi credentials in /ovc.ini, then reboot'>
 		Save & Reboot</button></p>
    <p id='status'>  </p>
-  
+   <p id='alert'>  </p>
+ 
    <script>
      'use strict'; 	 
 	 CustomizeLabels();	/* replace default texts by custom labels given in customize.js*/

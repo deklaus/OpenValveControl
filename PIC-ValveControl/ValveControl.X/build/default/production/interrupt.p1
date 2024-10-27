@@ -53,13 +53,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _IPR3bits `VS1235 ~T0 @X0 0 e@874 ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt irq ( default ) base ( 2056 ) low_priority ]
-"81 ./main.h
+"85 ./main.h
 [s S1871 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
 [n S1871 . CRC UNEXP_INT OVER_CURR . ]
-"80
+"84
 [u S1870 `S1871 1 `uc 1 ]
 [n S1870 . . v ]
-"109
+"118
 [v _g_ERRORflags `VS1870 ~T0 @X0 0 e ]
 [t T2 __interrupt irq ( 39 ) base ( 2056 ) high_priority ]
 "34401 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
@@ -74,11 +74,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ina219_reg `(v ~T0 @X0 0 ef1`uc ]
 "32
 [v _ina219_read `(s ~T0 @X0 0 ef ]
-"126 ./main.h
+"135 ./main.h
 [v _g_mAx10 `Vs ~T0 @X0 0 e ]
-"134
+"143
 [v _g_ns_curr `Vus ~T0 @X0 0 e ]
-"132
+"141
 [v _g_curr_log `Vuc ~T0 @X0 -> 0 `x e ]
 "34395 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [v _PWM1GIR `Vuc ~T0 @X0 0 e@1127 ]
@@ -93,17 +93,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PWM2GIRbits `VS1647 ~T0 @X0 0 e@1142 ]
 "19 ./daq.h
 [v _daq_vbemf `(us ~T0 @X0 0 ef1`uc ]
-"121 ./main.h
+"130 ./main.h
 [v _g_vz `Vuc ~T0 @X0 0 e ]
-"127
+"136
 [v _g_vbemf `Vus ~T0 @X0 0 e ]
-"133
+"142
 [v _g_ns_bemf `Vus ~T0 @X0 0 e ]
-"131
+"140
 [v _g_vbemf_log `Vuc ~T0 @X0 -> 0 `x e ]
-"129
+"138
 [v _g_dir `Vc ~T0 @X0 0 e ]
-"128
+"137
 [v _g_vbemf_sum `Vl ~T0 @X0 -> 0 `x e ]
 "34786 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [v _PWM2GIR `Vuc ~T0 @X0 0 e@1142 ]
@@ -123,9 +123,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S1730 . . ]
 "36327
 [v _PIR3bits `VS1730 ~T0 @X0 0 e@1206 ]
-"118 ./main.h
+"127 ./main.h
 [v _g_timer_ms `Vus ~T0 @X0 0 e ]
-"119
+"128
 [v _g_tovfl_ms `Va ~T0 @X0 0 e ]
 [t T6 __interrupt irq ( 28 ) base ( 2056 ) low_priority ]
 [t T7 __interrupt irq ( 27 ) base ( 2056 ) low_priority ]
@@ -145,9 +145,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _U1RXB `Vuc ~T0 @X0 0 e@673 ]
 "42 ./init.h
 [v _init_uart1 `(v ~T0 @X0 0 ef ]
-"116 ./main.h
+"125 ./main.h
 [v _g_rx232_count `Vuc ~T0 @X0 0 e ]
-"111
+"120
 [v _g_rs232_request `Vuc ~T0 @X0 0 e ]
 "35731 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
 [s S1709 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -157,7 +157,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S1708 . . ]
 "35742
 [v _PIE4bits `VS1708 ~T0 @X0 0 e@1196 ]
-"114 ./main.h
+"123 ./main.h
 [v _g_rx232_buf `Vuc ~T0 @X0 -> 0 `x e ]
 "8 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/builtins.h
 [v ___nop `(v ~T0 @X0 0 ef ]
@@ -1514,10 +1514,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 04FEh ;# ">
 "38556
 [; <" TOSU equ 04FFh ;# ">
-"105 ./main.h
+"112 ./main.h
 [v _FVRA2X `us ~T0 @X0 1 e ]
-"106
+"113
 [v _FVRC2X `us ~T0 @X0 1 e ]
+"115
+[v _VBSUM_1pct `us ~T0 @X0 1 e ]
 "72 interrupt.c
 [v _interrupt_initialize `(v ~T0 @X0 1 ef ]
 "73

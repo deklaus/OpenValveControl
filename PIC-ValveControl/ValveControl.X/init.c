@@ -5,6 +5,15 @@
  *  see https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 /* Change Log:
+ * 2024-10-04 v0.9
+ * - Experimental: VBSUM_1pct is the sum of Vbemf for a 1 % travel. This 
+ *   constant may be preset in EEPROM and it is read during initialization from 
+ *   EEPROM addr 02/03 (little endian).
+ *   When in range, positions are calculated from g_vbemf_sum (sum of Vbemf, 
+ *   which is supposed to be an estimation of speed): 
+ *      g_position[i] = g_vbemf_sum[i] / VBSUM_1pct;
+ *   When out of range, positions are calculated from time of travel: 
+ *      g_position[*] += g_dir*;
  * 2024-04-18 v0.8.2
  * - PWM2 slice2 P2 falling edge invokes the interrupt to read the back EMF.
  *   By this, the ISR doesn't contain any delay at all further more.
@@ -85,8 +94,9 @@
 #include "interrupt.h"
 
 /* Macro to disable Bootlaoder after first flashing
- * by initializing EEPROM[0] with 0x00.  */
-__EEPROM_DATA(0x00,0xFF, 0xFF,0xFF, 0xFF,0xFF, 0xFF,0xFF);  
+ * by initializing EEPROM[0] with 0x00.
+ * VBEMF_SUM_1pct is preset to 2500 = 0x61A8 (stored as little endian!) */
+__EEPROM_DATA(0x00,0xFF, 0xA8,0x61, 0xFF,0xFF, 0xFF,0xFF);  
 
 // *** data type, constant and macro definitions
 // *** global variables
@@ -98,6 +108,8 @@ __EEPROM_DATA(0x00,0xFF, 0xFF,0xFF, 0xFF,0xFF, 0xFF,0xFF);
  */
 void init_system (void)
 {
+    uint8_t u8;
+    
     INTCON0bits.GIE = 0;    // Global Interrupt Disable
     
     init_oscillator();
@@ -126,7 +138,23 @@ void init_system (void)
     NVMCON0bits.GO = 1;         // start word read
     while (NVMCON0bits.GO);     // wait for the read operation to complete
     FVRC2X = NVMDAT;            // 0x0814 = 2068 (Beispiel Eval-Board: +0,98 %)    
-     
+
+    
+    // Read VBSUM_1pct from EEPROM @0x02/03 (LB/HB)
+    NVMDATL = 0x00;
+    NVMADR = EEPROM_BASE + 0x03;
+    NVMCON1bits.CMD = 0b000;    // read command (DFM: byte)
+    NVMCON0bits.GO = 1;
+    while (NVMCON0bits.GO);     // wait for the read operation to complete
+    VBSUM_1pct = NVMDATL;
+    VBSUM_1pct <<= 8;
+
+    NVMADR = EEPROM_BASE + 0x02;
+    NVMCON1bits.CMD = 0b000;    // read command (DFM: byte)
+    NVMCON0bits.GO = 1;
+    while (NVMCON0bits.GO);     // wait for the read operation to complete
+    VBSUM_1pct += NVMDATL;
+    
 /// - Initialize Interrupts
     interrupt_initialize();  // Enable Priority Vectors, set high/low priorities
     
@@ -441,48 +469,6 @@ init_uart1 (void)
 
 // *** private function bodies
 
-
-#ifdef OBSOLETE_PWM
-
-/** @brief Init the PWM (125 Hz).
- *  - 90% duty cycle (7.2 ms + 0.8 ms = 8 ms) \n
-      see datasheet 28.4.1f.
-*/
-void init_pwm (void)
-{
-/*  Use Timer2 and configure the default period. 
- *  PR2 = FREQUENCY_TO_PR_CONVERT(FREQUENCY_MIN);
- *  PWM Period = (T2PR + 1) x Tosc x TMR2_Prescaler  ; Tosc = 4/Fosc = 250 ns
- *             = (T2PR + 1) x 32 µs                  ; CKPS = 128
- *  max.Period = 256 x 32 µs = 8,192 ms = 122 Hz
- *  min.Period =   1 x 32 µs = 32 µs = 31,25 kHz
- */
-    T2CONbits.ON = 0;       // TIMERx stop during setup
-    T2TMR = 0x00;           // TIMERx counter reset (forced by stop)
-    T2CLKCONbits.CS = 1;    // TIMERx clock source is FOSC/4
-
-    // Configure the PWM period
-    T2PR = FREQUENCY_TO_PR_CONVERT(125L);      // PWM -> 125 Hz (T2PR = 249)
-    T2CONbits.CKPS = 0b111;     // TIMERx prescaler 1:128
-    T2CONbits.OUTPS = 0;        // TIMERx postscaler 1:1   
-    T2CONbits.ON = 1;           // TIMERx ON    
-    
-    /* - Configure the CCP module for the PWM mode by loading the CCPxCON 
-     *   register with the appropriate values.
-     * - Load the CCPRx register with the PWM duty cycle value and configure 
-     *   the FMT bit to set the proper register alignment.
-     */
-    CCP1CONbits.MODE = 0x0C;    // MODE PWM
-    CCP1CONbits.FMT = 1;        // FMT left_aligned
-    CCP1CONbits.EN = 1;         // EN enabled
-    CCPTMRS0bits.C1TSEL = 1;    // Selecting Timer 2
-
-    // Configure the PWM duty cycle (percent))
-    CCPR1 = (DUTYCYCLE_TO_CCPR_CONVERT(90, 125)) << 6;
-    
-} // init_pwm ()
-
-#endif
 
 /**
  End of File

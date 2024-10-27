@@ -69,6 +69,43 @@ void webUI_bootload (void)
 } // webUI_bootload ()
 
 
+/** @brief Handler for EEwrite. Arguments: <ESP_IP>/eewrite?addr=[2..510]&data=[0..65535]
+ */
+void webUI_eewrite ()
+{
+  int error = 0;
+  char  buf[64];
+  String htmlPage;
+  htmlPage.reserve(128);  // prevent ram fragmentation
+
+  if (server.hasArg("addr") && server.hasArg("data")) 
+  {
+    EEaddr = server.arg("addr").toInt();
+    EEdata = server.arg("data").toInt();
+    if      (EEaddr < 2 || EEaddr > 510)   error = E_ADDR_RANGE;
+    else if (EEdata < 0 || EEdata > 65535) error = E_DATA_RANGE;
+    else
+    {
+      htmlPage  = F("/EEwrite?addr="); htmlPage += EEaddr;  
+      htmlPage += F("&data=");         htmlPage += EEdata;  
+      htmlPage += F("\n");
+      flags.eewrite = 1;  // set flag for triggering a EEwrite command to PIC
+    }
+  }
+  else  error = E_EEWRITE_ARGC;
+  if (error) 
+  {
+    htmlPage = F("Parameter error: \n");
+    for (uint8_t i = 0; i < server.args(); i++) 
+    {
+      htmlPage += server.argName(i) + "=" + server.arg(i) + "\n";
+    }
+  }    
+  server.send(200, "text/plain", htmlPage);
+
+} // webUI_eewrite()
+
+
 /** @brief Handler for logdata request.
  */
 void webUI_logdata ()
@@ -78,7 +115,7 @@ void webUI_logdata ()
   htmlPage.reserve(128);  // prevent ram fragmentation
 
   htmlPage = F("Requesting LogData from PIC Controller...\n");
-  htmlPage += "Please allow approx. 5 seconds for completion,\n";
+  htmlPage += "Please allow approx. 10 seconds for completion,\n";
   htmlPage += "then read file 'logdata.csv' from LittleFS.\n";
 
   server.send(200, "text/plain", htmlPage);

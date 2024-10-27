@@ -13,19 +13,29 @@
  *                   - Runtime | Initialize Data: checked
  *                   - Memory Model | Rom Range:default,-0-7FF
  *  @todo
- *  - Actually all reference flags are initialized, so that move commands are
- *    allowed prior reference runs are performed. To be deleted (or not).
  *  - After HOME run, sometimes position is not reset to 0.
  *  - Implement timeout on all position jobs. Within IDLE, proper 
  *    handling of parallel jobs via UI must be solved (priority and
  *    selected valve must not accidentally be swapped.
- *  - Define unique error numbering (enums) across bootloader and application.
  *  - When battery supply is desirable, sleep mode must be used with
  *    wakeup on messages from ESP.
  */
 
 /* Change Log:
-* 2024-04-18 v0.8.2
+ * 2024-10-04 v0.9
+ * - Removed: Initialization of reference flags.
+ * - Added new command: EEwrite:<uint16 addr,uint16 data>
+ *   This command allows to change VBSUM_1pct @EEPROM addr = 2. 
+ *   Power cycle required as EEPROM is only read once at power up.
+ * - Experimental: Positions can optionally be calculated from g_vbemf_sum 
+ *   (sum of Vbemf, which is supposed to be an estimation of speed): 
+ *      g_position[i] = g_vbemf_sum[i] / VBSUM_1pct;
+ *   VBSUM_1pct is the sum of vbemf for a 1 % travel. This constant may be
+ *   initialized in EEPROM (see init.c). If not initialized (value = 0xFFFF) or 
+ *   when out of range, positions are calculated from time of travel: 
+ *      g_position[*] += g_dir*;
+ *   resulting in 1 % per timeinterval MSperTICK (actually #defined as 100 ms).
+ * 2024-04-18 v0.8.2
  *   PWM2 slice1 P2 falling edge invokes the interrupt to read the back EMF.
  *   By this, the ISR doesn't contain any delay further more.
  * - PWM2 module has to be enabled in PMD (Peripheral Module Disable).
@@ -81,7 +91,7 @@ enum states {
 };
 
 // *** global variables
-const char  *g_version = "v0.8.2";    ///< Software version
+const char  *g_version = "v0.9";    ///< Software version
 
 
 uint16_t    FVRA2X;     ///< DIA: @ADC FVR1 voltage for 2x setting (in mV)
@@ -89,6 +99,9 @@ uint16_t    FVRC2X;     ///< DIA: @CMP/DAC FVR2 voltage for 2x setting (in mV)
 uint16_t    VDD;        ///< VDD [0.01 V] (battery voltage)
 int16_t     temp_indi;  ///< temp. read from temperature indicator (future option)
 float       temp_ds;    ///< temperature read from DS18B20 (future option)
+
+uint16_t    VBSUM_1pct;  ///< sum of Vbemf for 1 % travel [10000 .. 40000]
+
 
 static void sleep_config(void);
 static void timer1_config(void);
@@ -185,7 +198,7 @@ void main(void)
 #endif
     
 #ifdef TEST_SETREF
-    //g_STATUSflags.ref1 = 1;     // set some ref positions
+    //g_STATUSflags.ref1 = 1;     // set selected ref positions
     g_STATUSflags.ref = 0x0f;   // set all  ref positions
 #endif
     
@@ -216,24 +229,7 @@ void main(void)
                     g_dir = 0;
                     g_STATUSflags.move = 0;     // position reached
                     g_STATUSflags.vz = 0;       // deselect drive
-
-#ifdef TEST_AUTO_RETURN
-                    // TEST: auto return to zero position
-                    if (0 == g_setpos[g_vz])
-                    {
-                        main_state = state_idle;
-                    }
-                    else
-                    {
-                        set_pwm(g_vz, g_dir);   // stop pwm
-                        __delay_ms(100);       // stop motor before reverse dir
-                        g_setpos[g_vz] = 0;
-                        g_vbemf = 0;
-                        g_dir = -1;
-                    }
-#else
                     main_state = state_idle;
-#endif                    
                 }
 
                 if (over_current(g_vz))     // check for over current
@@ -247,9 +243,26 @@ void main(void)
 
                 // run a defined amount of time per tick
                 if ((g_timer_ms - last_tick) > MSperTICK)
-                {   // update position: 1 tick per xxx ms
-                    g_position[g_vz] += g_dir;
+                {   
                     last_tick = g_timer_ms;
+
+                    // update position
+                    if (    (VBSUM_1pct >= VBSUM_1pct_MIN) 
+                         && (VBSUM_1pct <= VBSUM_1pct_MAX) )
+                    {   // compute pos from sum of Vbemf (dir is handled in ISR)
+                        if (g_vbemf_sum[g_vz] < 0)
+                        {   g_position[g_vz] = 0;
+                        }
+                        else 
+                        {   g_position[g_vz] = 
+                                (uint8_t) (g_vbemf_sum[g_vz] / VBSUM_1pct);
+                            if (g_position[g_vz] > 100) g_position[g_vz] = 100;
+                        }
+                    }
+                    else
+                    {   // out of range! Update position as 1 % per MSperTICK
+                        g_position[g_vz] += g_dir;                        
+                    }
                 }
 
                 break;
@@ -299,8 +312,6 @@ void main(void)
                 break;
                 
             /** - IDLE (kind of scheduler: check status bits for pending jobs). \n
-             *    + For sanity, the IOC INT is disabled and enabled only during 
-             *      MOVE and HOME.
              *    + Measure the motor current in idle mode (PWM is off) 
              *      as a control feature. 
              *    + Check the status flags for incoming requests from ESP and
@@ -409,6 +420,7 @@ void cmd_interpreter (void)
     int16_t     mAx10 = 0;
     int8_t      error = 0;
     int16_t     timeout;
+    uint16_t    addr = 0, data = 0xffff;
 
 /// Commands:
     
@@ -427,11 +439,8 @@ void cmd_interpreter (void)
     p = strstr((const char *)g_rx232_buf, "Move:");  // MOVE
     if (p != NULL) 
     {
-        if (g_STATUSflags.home)
-        {
-            error = E_HOMEING_ACTIVE;
-            goto _done;
-        }
+        if (g_STATUSflags.home) { error = E_HOMEING_ACTIVE; goto _done; }
+        
         if (sscanf(p+5, "%u,%u,%d\n", &vz, &pos, &mAx10) == 3)
         {   // vz = 0: deselect all, [1..4] selects drive 1 to 4
             if (0 == vz) { g_STATUSflags.move = 0; goto _done; }
@@ -446,6 +455,8 @@ void cmd_interpreter (void)
             if ((mAx10 > 0) && (mAx10 <= 2000))  g_mAx10_max[vz] = mAx10;
             else {  error = E_SET_POS_RANGE; goto _done; }
         }
+        else { error = E_MOVE_ARGC; goto _done; }
+        
         sprintf((char *)g_tx232_buf, "Move:%u,%u,%d\n", 
                                       vz, g_setpos[vz], g_mAx10_max[vz]);
         
@@ -455,7 +466,7 @@ void cmd_interpreter (void)
             g_STATUSflags.vz = (uint8_t) (1 << (vz - 1));   // active drive
             g_STATUSflags.move = 1;              // make move active
         }
-        else error = E_NO_REFERENCE;
+        else { error = E_NO_REFERENCE; goto _done; }
         
         goto _done;
     }
@@ -518,6 +529,47 @@ void cmd_interpreter (void)
         sprintf((char *)g_tx232_buf, "LogData:\n");
         g_STATUSflags.logdata = 1;  // transmit logdata to ESP
         goto _done;
+    }
+
+    
+    // EEPROM write (each write takes ~ 10 ms)
+    p = strstr((const char *)g_rx232_buf, "EEwrite:");
+    if (p != NULL) 
+    {
+        if (sscanf(p+8, "%u,%u\n", &addr, &data) == 2)
+        {   // don't overwrite bootloader flag
+            if (addr >=2 && addr <= _EEPROMSIZE - 2)
+            {
+                uint8_t GIEBitValue = INTCON0bits.GIEH;   // Save INT enable bit
+
+                NVMADR = EEPROM_BASE + addr;
+                NVMDATL = (uint8_t) data;   // Load data.LB (little endian)
+                NVMCON1bits.CMD = 0x03;     // byte write command
+                INTCON0bits.GIE = 0;        // Disable interrupts
+                NVMLOCK = 0x55;             // unlock sequence
+                NVMLOCK = 0xAA;
+                NVMCON0bits.GO = 1;         // Start byte write
+                while (NVMCON0bits.GO);     // Wait for write op to complete
+                
+                NVMADR++;
+                NVMDATL = (uint8_t)(data >> 8);   // Load data.HB
+                NVMCON1bits.CMD = 0x03;     // byte write command
+                INTCON0bits.GIE = 0;        // Disable interrupts
+                NVMLOCK = 0x55;             // unlock sequence
+                NVMLOCK = 0xAA;
+                NVMCON0bits.GO = 1;         // Start byte write
+                //----------------------------------------------
+                while (NVMCON0bits.GO);     // Wait for write op to complete
+                
+                INTCON0bits.GIEH = GIEBitValue; // restore interrupt enable bit
+                NVMCON1bits.CMD = 0;            // disable writes to memory    
+
+                sprintf((char *)g_tx232_buf, "EEwrite:%d,%d\n", addr, data);
+                goto _done;
+            }
+            else { error = E_EEWR_ADDR; goto _done; }
+        }
+        else { error = E_EEWR_ARGC; goto _done; }
     }
     
     // Bootloader

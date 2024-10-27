@@ -27,6 +27,7 @@
 // Die Funktion "setupFS();" muss im Setup aufgerufen werden.
 /**************************************************************************************/
 // @note (deKlaus): Changes for OpenValveControl are marked by this key.
+// - Read access to all files except index.html was restricted to private IP addresses Class C (192.168.x.x).
 
 #include <list>
 #include <tuple>
@@ -129,10 +130,18 @@ bool handleFile(String &&path) {
   if (path == "/spiffs.html") sendResponse(); // Vorübergehend für den Admin Tab
 
   // return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, mime::getContentType(path)); f.close(); true;}) : false;
-  // @note (deKlaus): For OpenValveControl this line was replaced  with:
+  // @note (deKlaus): For OpenValveControl this line was replaced with the following code:
   String ContentType = mime::getContentType(path);
   if (path.endsWith("ovc.ini")) ContentType = "text/plain; charset=UTF-8";
-  return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, ContentType); f.close(); true;}) : false;
+
+  remoteIP = server.client().remoteIP();
+  if (remoteIP.toString().startsWith("192.168.") || path.endsWith("index.html")) {
+    return LittleFS.exists(path) ? ({File f = LittleFS.open(path, "r"); server.streamFile(f, ContentType); f.close(); true;}) : false;
+  }
+  else {
+    server.send(403, "text/plain", "Access Forbidden");
+    return (true);
+  }
 }
 
 void handleUpload() {                                                                  // Dateien ins Filesystem schreiben

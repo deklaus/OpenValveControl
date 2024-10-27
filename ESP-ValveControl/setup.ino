@@ -8,6 +8,8 @@
  *  a function which reads a float value, and a WriteCString() to save values in INI file.
  */
 /*  Change Log:
+ *  2024-09-24
+ *  - Error numbers defined as enums (in main program), all identifiers are mandatory now.
  *  2023-11-15
  *  - First issue
  */
@@ -27,7 +29,7 @@ int setup_GetCstring (const char *path, const char *identifier, char *result, in
 
   if(!ovc)
   {
-    error = -1; // file not found
+    error = E_INIFILE_NOT_FOUND;
 #ifdef DEBUG_OUTPUT_INI
     Serial.flush();   // Waits for the transmission of outgoing serial data to complete
     Serial.swap();    // output to serial monitor
@@ -58,7 +60,7 @@ int setup_GetCstring (const char *path, const char *identifier, char *result, in
 
     if (!found)
     {
-      error = -2; // identifier not found
+      error = E_IDENTIFIER_NOT_FOUND; // identifier not found
 #ifdef DEBUG_OUTPUT_INI
       Serial.flush();
       Serial.swap();
@@ -89,7 +91,7 @@ int setup_GetInt (const char *path, const char *identifier, int *result)
 
   if(!ovc)
   {
-    error = -1; // file not found
+    error = E_INIFILE_NOT_FOUND;
 #ifdef DEBUG_OUTPUT_INI
     Serial.flush();   // Waits for the transmission of outgoing serial data to complete
     Serial.swap();    // output to serial monitor
@@ -118,7 +120,7 @@ int setup_GetInt (const char *path, const char *identifier, int *result)
 
     if (!found)
     {
-      error = -2; // identifier not found
+      error = E_IDENTIFIER_NOT_FOUND;
 #ifdef DEBUG_OUTPUT_INI
       Serial.flush();
       Serial.swap();
@@ -149,7 +151,7 @@ int setup_GetFloat (const char *path, const char *identifier, float *result)
 
   if(!ovc)
   {
-    error = -1; // file not found
+    error = E_INIFILE_NOT_FOUND;
 #ifdef DEBUG_OUTPUT_INI
     Serial.flush();   // Waits for the transmission of outgoing serial data to complete
     Serial.swap();    // output to serial monitor
@@ -178,7 +180,7 @@ int setup_GetFloat (const char *path, const char *identifier, float *result)
 
     if (!found)
     {
-      error = -2; // identifier not found
+      error = E_IDENTIFIER_NOT_FOUND;
 #ifdef DEBUG_OUTPUT_INI
       Serial.flush();
       Serial.swap();
@@ -202,21 +204,23 @@ int setup_ReadINI (const char *path)
   int error = 0;
   int ivalue;
 
-  error += setup_GetCstring(path, "SSID", ssid, sizeof(ssid));
-  error += setup_GetCstring(path, "PSK",  psk, sizeof(psk));
+  if (!error) error = setup_GetCstring(path, "SSID", ssid, sizeof(ssid));
+  if (!error) error = setup_GetCstring(path, "PSK",  psk, sizeof(psk));
 
-  error += setup_GetCstring(path, "MQTT_HOST", mqtt_host, sizeof(mqtt_host));
-  error += setup_GetCstring(path, "MQTT_PREFIX", mqtt_prefix, sizeof(mqtt_prefix));
-  ivalue = 0; // set default (if not found)
-  error += setup_GetInt(path, "MQTT_PERIOD", &ivalue);
-  if ((ivalue > 10) && (ivalue < 3600)) mqttPeriod = ivalue * 1000;
+  if (!error) error = setup_GetCstring(path, "MQTT_HOST", mqtt_host, sizeof(mqtt_host));
+  if (!error) error = setup_GetCstring(path, "MQTT_PREFIX", mqtt_prefix, sizeof(mqtt_prefix));
+  if (!error) { 
+    ivalue = 0; // set default (if not found)
+    error = setup_GetInt(path, "MQTT_PERIOD", &ivalue);
+    if ((ivalue > 10) && (ivalue < 3600)) mqttPeriod = ivalue * 1000;
+  }
 
-  error += setup_GetCstring(path, "VZ1",  alias1, sizeof(alias1));
-  error += setup_GetCstring(path, "VZ2",  alias2, sizeof(alias2));
-  error += setup_GetCstring(path, "VZ3",  alias3, sizeof(alias3));
-  error += setup_GetCstring(path, "VZ4",  alias4, sizeof(alias4));
+  if (!error) error = setup_GetCstring(path, "VZ1",  alias1, sizeof(alias1));
+  if (!error) error = setup_GetCstring(path, "VZ2",  alias2, sizeof(alias2));
+  if (!error) error = setup_GetCstring(path, "VZ3",  alias3, sizeof(alias3));
+  if (!error) error = setup_GetCstring(path, "VZ4",  alias4, sizeof(alias4));
   
-  error += setup_GetFloat(path, "dTemp",  &dTemp);
+  if (!error) error = setup_GetFloat(path, "dTemp",  &dTemp);
 
   return(error);
 
@@ -261,7 +265,7 @@ int setup_WriteCstring (const char *path, const char *identifier, char *s)
     ovc.close();  // close original file
   }
 
-  if (!found)
+  if (!found) // create new item
   {
     newContent += identifier + String(" = ") + s + String("\r\n");
   }

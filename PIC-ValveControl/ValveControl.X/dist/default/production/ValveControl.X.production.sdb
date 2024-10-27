@@ -6,23 +6,29 @@
 "88 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/adc.c
 [e E13221 Errs `c
 E_ADC_TIMEOUT -127
-E_HOMEING_ACTIVE -6
+E_EEWR_ARGC -9
+E_EEWR_ADDR -8
+E_HOMEING_ACTIVE -7
+E_MOVE_ARGC -6
 E_NO_REFERENCE -5
 E_UNDEF_CMD -4
 E_MA_MAX -3
 E_SET_POS_RANGE -2
 E_VZ_RANGE -1
 ]
-"235 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
-[e E13768 states `uc
+"232 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
+[e E13772 states `uc
 state_idle 0
 state_home 1
 state_move 2
 ]
-"432
+"442
 [e E13706 Errs `c
 E_ADC_TIMEOUT -127
-E_HOMEING_ACTIVE -6
+E_EEWR_ARGC -9
+E_EEWR_ADDR -8
+E_HOMEING_ACTIVE -7
+E_MOVE_ARGC -6
 E_NO_REFERENCE -5
 E_UNDEF_CMD -4
 E_MA_MAX -3
@@ -35,6 +41,8 @@ E_VZ_RANGE -1
 [v ___strtoxll __strtoxll `(uo  1 e 8 0 ]
 "1 /opt/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
 [v _abs abs `(i  1 e 2 0 ]
+"7 /opt/microchip/xc8/v2.32/pic/sources/c99/common/aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/aodiv.c
 [v ___aodiv __aodiv `(o  1 e 8 0 ]
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/aomod.c
@@ -182,23 +190,23 @@ E_VZ_RANGE -1
 "101
 [v _ina219_reg ina219_reg `(v  1 e 1 0 ]
 [v i2_ina219_reg ina219_reg `(v  1 e 1 0 ]
-"99 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
+"109 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v _init_system init_system `(v  1 e 1 0 ]
-"149
+"177
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
-"181
+"209
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
-"190
+"218
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
-"235
+"263
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
-"292
+"320
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
-"315
+"343
 [v _init_pwm_16bit init_pwm_16bit `(v  1 e 1 0 ]
-"399
+"427
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
-"419
+"447
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 "72 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
@@ -219,40 +227,42 @@ E_VZ_RANGE -1
 [v _TMR2_isr TMR2_isr `IIL(v  1 e 1 0 ]
 "246
 [v _U1RX_isr U1RX_isr `IIL(v  1 e 1 0 ]
-"149 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
+"162 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
-"164
+"177
 [v _main main `(v  1 e 1 0 ]
-"404
+"415
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
-"578
+"630
 [v _over_current over_current `(a  1 s 1 over_current ]
-"604
+"656
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
-"105 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.h
+"112 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.h
 [v _FVRA2X FVRA2X `us  1 e 2 0 ]
-"106
+"113
 [v _FVRC2X FVRC2X `us  1 e 2 0 ]
-[s S527 . 1 `uc 1 GO 1 0 :1:0 
+"115
+[v _VBSUM_1pct VBSUM_1pct `us  1 e 2 0 ]
+[s S532 . 1 `uc 1 GO 1 0 :1:0 
 ]
 "463 /opt/microchip/mplabx/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8/pic/include/proc/pic18f16q41.h
-[s S529 . 1 `uc 1 NOT_DONE 1 0 :1:0 
+[s S534 . 1 `uc 1 NOT_DONE 1 0 :1:0 
 ]
-[s S531 . 1 `uc 1 nDONE 1 0 :1:0 
+[s S536 . 1 `uc 1 nDONE 1 0 :1:0 
 ]
-[s S533 . 1 `uc 1 NVMGO 1 0 :1:0 
+[s S538 . 1 `uc 1 NVMGO 1 0 :1:0 
 ]
-[u S535 . 1 `S527 1 . 1 0 `S529 1 . 1 0 `S531 1 . 1 0 `S533 1 . 1 0 ]
-[v _NVMCON0bits NVMCON0bits `VES535  1 e 1 @64 ]
-[s S511 . 1 `uc 1 CMD 1 0 :3:0 
+[u S540 . 1 `S532 1 . 1 0 `S534 1 . 1 0 `S536 1 . 1 0 `S538 1 . 1 0 ]
+[v _NVMCON0bits NVMCON0bits `VES540  1 e 1 @64 ]
+[s S516 . 1 `uc 1 CMD 1 0 :3:0 
 `uc 1 . 1 0 :4:3 
 `uc 1 WRERR 1 0 :1:7 
 ]
 "503
-[s S515 . 1 `uc 1 NVMCMD 1 0 :3:0 
+[s S520 . 1 `uc 1 NVMCMD 1 0 :3:0 
 ]
-[u S517 . 1 `S511 1 . 1 0 `S515 1 . 1 0 ]
-[v _NVMCON1bits NVMCON1bits `VES517  1 e 1 @65 ]
+[u S522 . 1 `S516 1 . 1 0 `S520 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES522  1 e 1 @65 ]
 "523
 [v _NVMLOCK NVMLOCK `VEuc  1 e 1 @66 ]
 "544
@@ -327,7 +337,7 @@ E_VZ_RANGE -1
 [v _I2C1CNTH I2C1CNTH `VEuc  1 e 1 @653 ]
 "13915
 [v _I2C1CON0 I2C1CON0 `VEuc  1 e 1 @660 ]
-[s S480 . 1 `uc 1 MODE 1 0 :3:0 
+[s S485 . 1 `uc 1 MODE 1 0 :3:0 
 `uc 1 MDR 1 0 :1:3 
 `uc 1 CSTR 1 0 :1:4 
 `uc 1 S 1 0 :1:5 
@@ -335,21 +345,21 @@ E_VZ_RANGE -1
 `uc 1 EN 1 0 :1:7 
 ]
 "13937
-[s S487 . 1 `uc 1 MODE0 1 0 :1:0 
+[s S492 . 1 `uc 1 MODE0 1 0 :1:0 
 `uc 1 MODE1 1 0 :1:1 
 `uc 1 MODE2 1 0 :1:2 
 `uc 1 . 1 0 :4:3 
 `uc 1 I2CEN 1 0 :1:7 
 ]
-[u S493 . 1 `S480 1 . 1 0 `S487 1 . 1 0 ]
-[v _I2C1CON0bits I2C1CON0bits `VES493  1 e 1 @660 ]
+[u S498 . 1 `S485 1 . 1 0 `S492 1 . 1 0 ]
+[v _I2C1CON0bits I2C1CON0bits `VES498  1 e 1 @660 ]
 "13992
 [v _I2C1CON1 I2C1CON1 `VEuc  1 e 1 @661 ]
 "14054
 [v _I2C1CON2 I2C1CON2 `VEuc  1 e 1 @662 ]
 "14130
 [v _I2C1ERR I2C1ERR `VEuc  1 e 1 @663 ]
-[s S267 . 1 `uc 1 . 1 0 :3:0 
+[s S271 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 D 1 0 :1:3 
 `uc 1 R 1 0 :1:4 
 `uc 1 MMA 1 0 :1:5 
@@ -357,23 +367,23 @@ E_VZ_RANGE -1
 `uc 1 BFRE 1 0 :1:7 
 ]
 "14250
-[s S274 . 1 `uc 1 . 1 0 :3:0 
+[s S278 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 DATA 1 0 :1:3 
 `uc 1 READ 1 0 :1:4 
 ]
-[s S278 . 1 `uc 1 . 1 0 :3:0 
+[s S282 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_ADDRESS 1 0 :1:3 
 `uc 1 NOT_WRITE 1 0 :1:4 
 ]
-[s S282 . 1 `uc 1 . 1 0 :3:0 
+[s S286 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_A 1 0 :1:3 
 `uc 1 NOT_W 1 0 :1:4 
 ]
-[u S286 . 1 `S267 1 . 1 0 `S274 1 . 1 0 `S278 1 . 1 0 `S282 1 . 1 0 ]
-[v _I2C1STAT0bits I2C1STAT0bits `VES286  1 e 1 @664 ]
+[u S290 . 1 `S271 1 . 1 0 `S278 1 . 1 0 `S282 1 . 1 0 `S286 1 . 1 0 ]
+[v _I2C1STAT0bits I2C1STAT0bits `VES290  1 e 1 @664 ]
 "14310
 [v _I2C1STAT1 I2C1STAT1 `VEuc  1 e 1 @665 ]
-[s S311 . 1 `uc 1 RXBF 1 0 :1:0 
+[s S315 . 1 `uc 1 RXBF 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 CLRBF 1 0 :1:2 
 `uc 1 RXRE 1 0 :1:3 
@@ -383,11 +393,11 @@ E_VZ_RANGE -1
 `uc 1 TXWE 1 0 :1:7 
 ]
 "14327
-[u S320 . 1 `S311 1 . 1 0 ]
-[v _I2C1STAT1bits I2C1STAT1bits `VES320  1 e 1 @665 ]
+[u S324 . 1 `S315 1 . 1 0 ]
+[v _I2C1STAT1bits I2C1STAT1bits `VES324  1 e 1 @665 ]
 "14357
 [v _I2C1PIR I2C1PIR `VEuc  1 e 1 @666 ]
-[s S332 . 1 `uc 1 SCIF 1 0 :1:0 
+[s S336 . 1 `uc 1 SCIF 1 0 :1:0 
 `uc 1 RSCIF 1 0 :1:1 
 `uc 1 PCIF 1 0 :1:2 
 `uc 1 ADRIF 1 0 :1:3 
@@ -397,7 +407,7 @@ E_VZ_RANGE -1
 `uc 1 CNTIF 1 0 :1:7 
 ]
 "14384
-[s S341 . 1 `uc 1 SC1IF 1 0 :1:0 
+[s S345 . 1 `uc 1 SC1IF 1 0 :1:0 
 `uc 1 RSC1IF 1 0 :1:1 
 `uc 1 PC1IF 1 0 :1:2 
 `uc 1 ADR1IF 1 0 :1:3 
@@ -406,8 +416,8 @@ E_VZ_RANGE -1
 `uc 1 ACKT1IF 1 0 :1:6 
 `uc 1 CNT1IF 1 0 :1:7 
 ]
-[u S350 . 1 `S332 1 . 1 0 `S341 1 . 1 0 ]
-[v _I2C1PIRbits I2C1PIRbits `VES350  1 e 1 @666 ]
+[u S354 . 1 `S336 1 . 1 0 `S345 1 . 1 0 ]
+[v _I2C1PIRbits I2C1PIRbits `VES354  1 e 1 @666 ]
 "14459
 [v _I2C1PIE I2C1PIE `VEuc  1 e 1 @667 ]
 "14631
@@ -420,7 +430,7 @@ E_VZ_RANGE -1
 [v _U1TXB U1TXB `VEuc  1 e 1 @675 ]
 "15080
 [v _U1CON0 U1CON0 `VEuc  1 e 1 @683 ]
-[s S875 . 1 `uc 1 SENDB 1 0 :1:0 
+[s S881 . 1 `uc 1 SENDB 1 0 :1:0 
 `uc 1 BRKOVR 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 RXBIMD 1 0 :1:3 
@@ -429,7 +439,7 @@ E_VZ_RANGE -1
 `uc 1 ON 1 0 :1:7 
 ]
 "15233
-[s S883 . 1 `uc 1 U1SENDB 1 0 :1:0 
+[s S889 . 1 `uc 1 U1SENDB 1 0 :1:0 
 `uc 1 U1BRKOVR 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 U1RXBIMD 1 0 :1:3 
@@ -437,11 +447,11 @@ E_VZ_RANGE -1
 `uc 1 . 1 0 :2:5 
 `uc 1 U1ON 1 0 :1:7 
 ]
-[u S891 . 1 `S875 1 . 1 0 `S883 1 . 1 0 ]
-[v _U1CON1bits U1CON1bits `VES891  1 e 1 @684 ]
+[u S897 . 1 `S881 1 . 1 0 `S889 1 . 1 0 ]
+[v _U1CON1bits U1CON1bits `VES897  1 e 1 @684 ]
 "15288
 [v _U1CON2 U1CON2 `VEuc  1 e 1 @685 ]
-[s S914 . 1 `uc 1 FLO 1 0 :2:0 
+[s S920 . 1 `uc 1 FLO 1 0 :2:0 
 `uc 1 TXPOL 1 0 :1:2 
 `uc 1 C0EN 1 0 :1:3 
 `uc 1 STP 1 0 :2:4 
@@ -449,30 +459,30 @@ E_VZ_RANGE -1
 `uc 1 RUNOVF 1 0 :1:7 
 ]
 "15325
-[s S921 . 1 `uc 1 FLO0 1 0 :1:0 
+[s S927 . 1 `uc 1 FLO0 1 0 :1:0 
 `uc 1 FLO1 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 STP0 1 0 :1:4 
 `uc 1 STP1 1 0 :1:5 
 ]
-[s S927 . 1 `uc 1 U1FLO 1 0 :2:0 
+[s S933 . 1 `uc 1 U1FLO 1 0 :2:0 
 `uc 1 U1TXPOL 1 0 :1:2 
 `uc 1 U1C0EN 1 0 :1:3 
 `uc 1 U1STP 1 0 :2:4 
 `uc 1 U1RXPOL 1 0 :1:6 
 `uc 1 U1RUNOVF 1 0 :1:7 
 ]
-[s S934 . 1 `uc 1 U1FLO0 1 0 :1:0 
+[s S940 . 1 `uc 1 U1FLO0 1 0 :1:0 
 `uc 1 U1FLO1 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 U1STP0 1 0 :1:4 
 `uc 1 U1STP1 1 0 :1:5 
 ]
-[u S940 . 1 `S914 1 . 1 0 `S921 1 . 1 0 `S927 1 . 1 0 `S934 1 . 1 0 ]
-[v _U1CON2bits U1CON2bits `VES940  1 e 1 @685 ]
+[u S946 . 1 `S920 1 . 1 0 `S927 1 . 1 0 `S933 1 . 1 0 `S940 1 . 1 0 ]
+[v _U1CON2bits U1CON2bits `VES946  1 e 1 @685 ]
 "15430
 [v _U1BRG U1BRG `VEus  1 e 2 @686 ]
-[s S1198 . 1 `uc 1 TXCIF 1 0 :1:0 
+[s S1206 . 1 `uc 1 TXCIF 1 0 :1:0 
 `uc 1 RXFOIF 1 0 :1:1 
 `uc 1 RXBKIF 1 0 :1:2 
 `uc 1 FERIF 1 0 :1:3 
@@ -482,7 +492,7 @@ E_VZ_RANGE -1
 `uc 1 TXMTIF 1 0 :1:7 
 ]
 "15690
-[s S1207 . 1 `uc 1 U1TXCIF 1 0 :1:0 
+[s S1215 . 1 `uc 1 U1TXCIF 1 0 :1:0 
 `uc 1 U1RXFOIF 1 0 :1:1 
 `uc 1 U1RXBKIF 1 0 :1:2 
 `uc 1 U1FERIF 1 0 :1:3 
@@ -491,38 +501,38 @@ E_VZ_RANGE -1
 `uc 1 U1PERIF 1 0 :1:6 
 `uc 1 U1TXMTIF 1 0 :1:7 
 ]
-[u S1216 . 1 `S1198 1 . 1 0 `S1207 1 . 1 0 ]
-[v _U1ERRIRbits U1ERRIRbits `VES1216  1 e 1 @690 ]
+[u S1224 . 1 `S1206 1 . 1 0 `S1215 1 . 1 0 ]
+[v _U1ERRIRbits U1ERRIRbits `VES1224  1 e 1 @690 ]
 "20042
 [v _TMR0L TMR0L `VEuc  1 e 1 @792 ]
 "20180
 [v _TMR0H TMR0H `VEuc  1 e 1 @793 ]
 "20434
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @794 ]
-[s S792 . 1 `uc 1 OUTPS 1 0 :4:0 
+[s S798 . 1 `uc 1 OUTPS 1 0 :4:0 
 `uc 1 MD16 1 0 :1:4 
 `uc 1 OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 EN 1 0 :1:7 
 ]
 "20462
-[s S798 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S804 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T0MD16 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
-[s S804 . 1 `uc 1 OUTPS0 1 0 :1:0 
+[s S810 . 1 `uc 1 OUTPS0 1 0 :1:0 
 `uc 1 OUTPS1 1 0 :1:1 
 `uc 1 OUTPS2 1 0 :1:2 
 `uc 1 OUTPS3 1 0 :1:3 
 `uc 1 T016BIT 1 0 :1:4 
 ]
-[u S810 . 1 `S792 1 . 1 0 `S798 1 . 1 0 `S804 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES810  1 e 1 @794 ]
+[u S816 . 1 `S798 1 . 1 0 `S804 1 . 1 0 `S810 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES816  1 e 1 @794 ]
 "20532
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @795 ]
-[s S1557 . 1 `uc 1 SWIP 1 0 :1:0 
+[s S1577 . 1 `uc 1 SWIP 1 0 :1:0 
 `uc 1 HLVDIP 1 0 :1:1 
 `uc 1 OSFIP 1 0 :1:2 
 `uc 1 CSWIP 1 0 :1:3 
@@ -532,9 +542,9 @@ E_VZ_RANGE -1
 `uc 1 IOCIP 1 0 :1:7 
 ]
 "25515
-[u S1566 . 1 `S1557 1 . 1 0 ]
-[v _IPR0bits IPR0bits `VES1566  1 e 1 @871 ]
-[s S1627 . 1 `uc 1 SPI1RXIP 1 0 :1:0 
+[u S1586 . 1 `S1577 1 . 1 0 ]
+[v _IPR0bits IPR0bits `VES1586  1 e 1 @871 ]
+[s S1647 . 1 `uc 1 SPI1RXIP 1 0 :1:0 
 `uc 1 SPI1TXIP 1 0 :1:1 
 `uc 1 SPI1IP 1 0 :1:2 
 `uc 1 TMR2IP 1 0 :1:3 
@@ -544,9 +554,9 @@ E_VZ_RANGE -1
 `uc 1 TMR0IP 1 0 :1:7 
 ]
 "25693
-[u S1636 . 1 `S1627 1 . 1 0 ]
-[v _IPR3bits IPR3bits `VES1636  1 e 1 @874 ]
-[s S1578 . 1 `uc 1 U1RXIP 1 0 :1:0 
+[u S1656 . 1 `S1647 1 . 1 0 ]
+[v _IPR3bits IPR3bits `VES1656  1 e 1 @874 ]
+[s S1598 . 1 `uc 1 U1RXIP 1 0 :1:0 
 `uc 1 U1TXIP 1 0 :1:1 
 `uc 1 U1EIP 1 0 :1:2 
 `uc 1 U1IP 1 0 :1:3 
@@ -556,9 +566,9 @@ E_VZ_RANGE -1
 `uc 1 PWM1IP 1 0 :1:7 
 ]
 "25755
-[u S1587 . 1 `S1578 1 . 1 0 ]
-[v _IPR4bits IPR4bits `VES1587  1 e 1 @875 ]
-[s S1599 . 1 `uc 1 SPI2RXIP 1 0 :1:0 
+[u S1607 . 1 `S1598 1 . 1 0 ]
+[v _IPR4bits IPR4bits `VES1607  1 e 1 @875 ]
+[s S1619 . 1 `uc 1 SPI2RXIP 1 0 :1:0 
 `uc 1 SPI2TXIP 1 0 :1:1 
 `uc 1 SPI2IP 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -568,11 +578,11 @@ E_VZ_RANGE -1
 `uc 1 PWM2IP 1 0 :1:7 
 ]
 "25821
-[s S1608 . 1 `uc 1 . 1 0 :4:0 
+[s S1628 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CM2IP 1 0 :1:4 
 ]
-[u S1611 . 1 `S1599 1 . 1 0 `S1608 1 . 1 0 ]
-[v _IPR5bits IPR5bits `VES1611  1 e 1 @876 ]
+[u S1631 . 1 `S1619 1 . 1 0 `S1628 1 . 1 0 ]
+[v _IPR5bits IPR5bits `VES1631  1 e 1 @876 ]
 [s S97 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 CDAFVR 1 0 :2:2 
 `uc 1 TSRNG 1 0 :1:4 
@@ -668,7 +678,7 @@ E_VZ_RANGE -1
 [v _IOCBF IOCBF `VEuc  1 e 1 @1039 ]
 "32334
 [v _ANSELC ANSELC `VEuc  1 e 1 @1040 ]
-[s S854 . 1 `uc 1 ANSELC0 1 0 :1:0 
+[s S860 . 1 `uc 1 ANSELC0 1 0 :1:0 
 `uc 1 ANSELC1 1 0 :1:1 
 `uc 1 ANSELC2 1 0 :1:2 
 `uc 1 ANSELC3 1 0 :1:3 
@@ -678,8 +688,8 @@ E_VZ_RANGE -1
 `uc 1 ANSELC7 1 0 :1:7 
 ]
 "32351
-[u S863 . 1 `S854 1 . 1 0 ]
-[v _ANSELCbits ANSELCbits `VES863  1 e 1 @1040 ]
+[u S869 . 1 `S860 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES869  1 e 1 @1040 ]
 "32396
 [v _WPUC WPUC `VEuc  1 e 1 @1041 ]
 "32458
@@ -712,24 +722,24 @@ E_VZ_RANGE -1
 [v _PWM1PIPOS PWM1PIPOS `VEuc  1 e 1 @1126 ]
 "34395
 [v _PWM1GIR PWM1GIR `VEuc  1 e 1 @1127 ]
-[s S1309 . 1 `uc 1 S1P1IF 1 0 :1:0 
+[s S1320 . 1 `uc 1 S1P1IF 1 0 :1:0 
 `uc 1 S1P2IF 1 0 :1:1 
 ]
 "34406
-[u S1312 . 1 `S1309 1 . 1 0 ]
+[u S1323 . 1 `S1320 1 . 1 0 ]
 "34406
 "34406
-[v _PWM1GIRbits PWM1GIRbits `VES1312  1 e 1 @1127 ]
+[v _PWM1GIRbits PWM1GIRbits `VES1323  1 e 1 @1127 ]
 "34421
 [v _PWM1GIE PWM1GIE `VEuc  1 e 1 @1128 ]
-[s S684 . 1 `uc 1 S1P1IE 1 0 :1:0 
+[s S690 . 1 `uc 1 S1P1IE 1 0 :1:0 
 `uc 1 S1P2IE 1 0 :1:1 
 ]
 "34432
-[u S687 . 1 `S684 1 . 1 0 ]
+[u S693 . 1 `S690 1 . 1 0 ]
 "34432
 "34432
-[v _PWM1GIEbits PWM1GIEbits `VES687  1 e 1 @1128 ]
+[v _PWM1GIEbits PWM1GIEbits `VES693  1 e 1 @1128 ]
 "34447
 [v _PWM1CON PWM1CON `VEuc  1 e 1 @1129 ]
 "34486
@@ -760,12 +770,12 @@ E_VZ_RANGE -1
 [v _PWM2GIR PWM2GIR `VEuc  1 e 1 @1142 ]
 "34797
 "34797
-[v _PWM2GIRbits PWM2GIRbits `VES1312  1 e 1 @1142 ]
+[v _PWM2GIRbits PWM2GIRbits `VES1323  1 e 1 @1142 ]
 "34812
 [v _PWM2GIE PWM2GIE `VEuc  1 e 1 @1143 ]
 "34823
 "34823
-[v _PWM2GIEbits PWM2GIEbits `VES687  1 e 1 @1143 ]
+[v _PWM2GIEbits PWM2GIEbits `VES693  1 e 1 @1143 ]
 "34838
 [v _PWM2CON PWM2CON `VEuc  1 e 1 @1144 ]
 "34877
@@ -798,7 +808,7 @@ E_VZ_RANGE -1
 "35568
 "35568
 [v _PIE1bits PIE1bits `VES143  1 e 1 @1193 ]
-[s S771 . 1 `uc 1 SPI1RXIE 1 0 :1:0 
+[s S777 . 1 `uc 1 SPI1RXIE 1 0 :1:0 
 `uc 1 SPI1TXIE 1 0 :1:1 
 `uc 1 SPI1IE 1 0 :1:2 
 `uc 1 TMR2IE 1 0 :1:3 
@@ -808,11 +818,11 @@ E_VZ_RANGE -1
 `uc 1 TMR0IE 1 0 :1:7 
 ]
 "35680
-[u S780 . 1 `S771 1 . 1 0 ]
+[u S786 . 1 `S777 1 . 1 0 ]
 "35680
 "35680
-[v _PIE3bits PIE3bits `VES780  1 e 1 @1195 ]
-[s S554 . 1 `uc 1 U1RXIE 1 0 :1:0 
+[v _PIE3bits PIE3bits `VES786  1 e 1 @1195 ]
+[s S560 . 1 `uc 1 U1RXIE 1 0 :1:0 
 `uc 1 U1TXIE 1 0 :1:1 
 `uc 1 U1EIE 1 0 :1:2 
 `uc 1 U1IE 1 0 :1:3 
@@ -822,11 +832,11 @@ E_VZ_RANGE -1
 `uc 1 PWM1IE 1 0 :1:7 
 ]
 "35742
-[u S563 . 1 `S554 1 . 1 0 ]
+[u S569 . 1 `S560 1 . 1 0 ]
 "35742
 "35742
-[v _PIE4bits PIE4bits `VES563  1 e 1 @1196 ]
-[s S708 . 1 `uc 1 SPI2RXIE 1 0 :1:0 
+[v _PIE4bits PIE4bits `VES569  1 e 1 @1196 ]
+[s S714 . 1 `uc 1 SPI2RXIE 1 0 :1:0 
 `uc 1 SPI2TXIE 1 0 :1:1 
 `uc 1 SPI2IE 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -836,14 +846,14 @@ E_VZ_RANGE -1
 `uc 1 PWM2IE 1 0 :1:7 
 ]
 "35808
-[s S717 . 1 `uc 1 . 1 0 :4:0 
+[s S723 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CM2IE 1 0 :1:4 
 ]
 "35808
-[u S720 . 1 `S708 1 . 1 0 `S717 1 . 1 0 ]
+[u S726 . 1 `S714 1 . 1 0 `S723 1 . 1 0 ]
 "35808
 "35808
-[v _PIE5bits PIE5bits `VES720  1 e 1 @1197 ]
+[v _PIE5bits PIE5bits `VES726  1 e 1 @1197 ]
 [s S159 . 1 `uc 1 INT0IF 1 0 :1:0 
 `uc 1 ZCDIF 1 0 :1:1 
 `uc 1 ADIF 1 0 :1:2 
@@ -862,7 +872,7 @@ E_VZ_RANGE -1
 "36215
 "36215
 [v _PIR1bits PIR1bits `VES171  1 e 1 @1204 ]
-[s S750 . 1 `uc 1 SPI1RXIF 1 0 :1:0 
+[s S756 . 1 `uc 1 SPI1RXIF 1 0 :1:0 
 `uc 1 SPI1TXIF 1 0 :1:1 
 `uc 1 SPI1IF 1 0 :1:2 
 `uc 1 TMR2IF 1 0 :1:3 
@@ -872,11 +882,11 @@ E_VZ_RANGE -1
 `uc 1 TMR0IF 1 0 :1:7 
 ]
 "36327
-[u S759 . 1 `S750 1 . 1 0 ]
+[u S765 . 1 `S756 1 . 1 0 ]
 "36327
 "36327
-[v _PIR3bits PIR3bits `VES759  1 e 1 @1206 ]
-[s S663 . 1 `uc 1 U1RXIF 1 0 :1:0 
+[v _PIR3bits PIR3bits `VES765  1 e 1 @1206 ]
+[s S669 . 1 `uc 1 U1RXIF 1 0 :1:0 
 `uc 1 U1TXIF 1 0 :1:1 
 `uc 1 U1EIF 1 0 :1:2 
 `uc 1 U1IF 1 0 :1:3 
@@ -886,13 +896,13 @@ E_VZ_RANGE -1
 `uc 1 PWM1IF 1 0 :1:7 
 ]
 "36389
-[u S672 . 1 `S663 1 . 1 0 ]
+[u S678 . 1 `S669 1 . 1 0 ]
 "36389
 "36389
-[v _PIR4bits PIR4bits `VES672  1 e 1 @1207 ]
+[v _PIR4bits PIR4bits `VES678  1 e 1 @1207 ]
 "36779
 [v _LATA LATA `VEuc  1 e 1 @1214 ]
-[s S1171 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1179 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -900,23 +910,23 @@ E_VZ_RANGE -1
 `uc 1 LATA5 1 0 :1:5 
 ]
 "36794
-[u S1178 . 1 `S1171 1 . 1 0 ]
+[u S1186 . 1 `S1179 1 . 1 0 ]
 "36794
 "36794
-[v _LATAbits LATAbits `VES1178  1 e 1 @1214 ]
+[v _LATAbits LATAbits `VES1186  1 e 1 @1214 ]
 "36824
 [v _LATB LATB `VEuc  1 e 1 @1215 ]
-[s S625 . 1 `uc 1 . 1 0 :4:0 
+[s S631 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LATB4 1 0 :1:4 
 `uc 1 LATB5 1 0 :1:5 
 `uc 1 LATB6 1 0 :1:6 
 `uc 1 LATB7 1 0 :1:7 
 ]
 "36838
-[u S631 . 1 `S625 1 . 1 0 ]
+[u S637 . 1 `S631 1 . 1 0 ]
 "36838
 "36838
-[v _LATBbits LATBbits `VES631  1 e 1 @1215 ]
+[v _LATBbits LATBbits `VES637  1 e 1 @1215 ]
 "36863
 [v _LATC LATC `VEuc  1 e 1 @1216 ]
 "36925
@@ -925,7 +935,7 @@ E_VZ_RANGE -1
 [v _TRISB TRISB `VEuc  1 e 1 @1223 ]
 "37014
 [v _TRISC TRISC `VEuc  1 e 1 @1224 ]
-[s S833 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S839 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -935,11 +945,11 @@ E_VZ_RANGE -1
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "37031
-[u S842 . 1 `S833 1 . 1 0 ]
+[u S848 . 1 `S839 1 . 1 0 ]
 "37031
 "37031
-[v _TRISCbits TRISCbits `VES842  1 e 1 @1224 ]
-[s S421 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[v _TRISCbits TRISCbits `VES848  1 e 1 @1224 ]
+[s S426 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -948,14 +958,14 @@ E_VZ_RANGE -1
 `uc 1 GIE 1 0 :1:7 
 ]
 "37247
-[s S429 . 1 `uc 1 . 1 0 :7:0 
+[s S434 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "37247
-[u S432 . 1 `S421 1 . 1 0 `S429 1 . 1 0 ]
+[u S437 . 1 `S426 1 . 1 0 `S434 1 . 1 0 ]
 "37247
 "37247
-[v _INTCON0bits INTCON0bits `VES432  1 e 1 @1238 ]
+[v _INTCON0bits INTCON0bits `VES437  1 e 1 @1238 ]
 "55 /opt/microchip/xc8/v2.32/pic/sources/c99/common/doprnt.c
 [v _flags flags `i  1 s 2 flags ]
 [v _prec prec `i  1 s 2 prec ]
@@ -966,36 +976,36 @@ E_VZ_RANGE -1
 [v _nout nout `i  1 s 2 nout ]
 "50 /opt/microchip/xc8/v2.32/pic/sources/c99/common/doscan.c
 [v _asup asup `i  1 s 2 asup ]
-[v _width@doscan$F2599 width `i  1 s 2 width ]
+[v _width@doscan$F2620 width `i  1 s 2 width ]
 "53
 [v _ncnv ncnv `i  1 s 2 ncnv ]
 [v _nmatch nmatch `i  1 s 2 nmatch ]
 "63
-[v _dbuf@doscan$F2602 dbuf `[80]uc  1 s 80 dbuf ]
+[v _dbuf@doscan$F2623 dbuf `[80]uc  1 s 80 dbuf ]
 "3 /opt/microchip/xc8/v2.32/pic/sources/c99/common/errno.c
 [v _errno errno `i  1 e 2 0 ]
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_getc.c
 [v _ungetbuf ungetbuf `uc  1 s 1 ungetbuf ]
 "9
 [v _ungetcnt ungetcnt `uc  1 s 1 ungetcnt ]
-"89 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
+"99 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
 [v _VDD VDD `us  1 e 2 0 ]
-"96
+"109
 [v _g_rx232_buf g_rx232_buf `VE[48]uc  1 e 48 0 ]
-"97
+"110
 [v _g_rx232_count g_rx232_count `VEuc  1 e 1 0 ]
-"98
+"111
 [v _g_tx232_buf g_tx232_buf `VE[48]uc  1 e 48 0 ]
-"100
+"113
 [v _g_rs232_request g_rs232_request `VEuc  1 e 1 0 ]
-"101
+"114
 [v _g_rs232_response g_rs232_response `VEuc  1 e 1 0 ]
-[s S1088 . 2 `uc 1 ref 1 0 :4:0 
+[s S1096 . 2 `uc 1 ref 1 0 :4:0 
 `uc 1 vz 1 0 :4:4 
 `uc 1 . 1 1 :8:0 
 ]
-"103
-[s S1092 . 2 `uc 1 ref1 1 0 :1:0 
+"116
+[s S1100 . 2 `uc 1 ref1 1 0 :1:0 
 `uc 1 ref2 1 0 :1:1 
 `uc 1 ref3 1 0 :1:2 
 `uc 1 ref4 1 0 :1:3 
@@ -1009,141 +1019,141 @@ E_VZ_RANGE -1
 `uc 1 logdata 1 1 :1:3 
 `uc 1 . 1 1 :4:4 
 ]
-[u S1106 . 2 `S1088 1 . 2 0 `S1092 1 . 2 0 ]
-[v _g_STATUSflags g_STATUSflags `VES1106  1 e 2 0 ]
-[s S1109 . 1 `uc 1 CRC 1 0 :1:0 
+[u S1114 . 2 `S1096 1 . 2 0 `S1100 1 . 2 0 ]
+[v _g_STATUSflags g_STATUSflags `VES1114  1 e 2 0 ]
+[s S1117 . 1 `uc 1 CRC 1 0 :1:0 
 `uc 1 UNEXP_INT 1 0 :1:1 
 `uc 1 OVER_CURR 1 0 :1:2 
 `uc 1 . 1 0 :5:3 
 ]
-"104
-[u S1114 . 1 `S1109 1 . 1 0 `uc 1 v 1 0 ]
-[v _g_ERRORflags g_ERRORflags `VES1114  1 e 1 0 ]
-"106
-[v _g_timer_ms g_timer_ms `VEus  1 e 2 0 ]
-"107
-[v _g_tovfl_ms g_tovfl_ms `VEa  1 e 1 0 ]
-"109
-[v _g_vz g_vz `VEuc  1 e 1 0 ]
-"110
-[v _g_setpos g_setpos `VE[5]uc  1 e 5 0 ]
-"111
-[v _g_position g_position `VE[5]uc  1 e 5 0 ]
-"112
-[v _g_zcd g_zcd `VE[5]s  1 e 10 0 ]
-"113
-[v _g_mAx10_max g_mAx10_max `VE[5]s  1 e 10 0 ]
-"114
-[v _g_vbemf_sum g_vbemf_sum `VE[5]l  1 e 20 0 ]
-"116
-[v _g_mAx10 g_mAx10 `VEs  1 e 2 0 ]
 "117
-[v _g_vbemf g_vbemf `VEus  1 e 2 0 ]
-"118
-[v _g_dir g_dir `VEc  1 e 1 0 ]
+[u S1122 . 1 `S1117 1 . 1 0 `uc 1 v 1 0 ]
+[v _g_ERRORflags g_ERRORflags `VES1122  1 e 1 0 ]
+"119
+[v _g_timer_ms g_timer_ms `VEus  1 e 2 0 ]
 "120
-[v _g_zerocount g_zerocount `VEuc  1 e 1 0 ]
+[v _g_tovfl_ms g_tovfl_ms `VEa  1 e 1 0 ]
+"122
+[v _g_vz g_vz `VEuc  1 e 1 0 ]
+"123
+[v _g_setpos g_setpos `VE[5]uc  1 e 5 0 ]
 "124
-[v _g_vbemf_log g_vbemf_log `VE[1024]uc  1 e 1024 0 ]
+[v _g_position g_position `VE[5]uc  1 e 5 0 ]
 "125
-[v _g_curr_log g_curr_log `VE[1024]uc  1 e 1024 0 ]
+[v _g_zcd g_zcd `VE[5]s  1 e 10 0 ]
 "126
-[v _g_ns_bemf g_ns_bemf `VEus  1 e 2 0 ]
+[v _g_mAx10_max g_mAx10_max `VE[5]s  1 e 10 0 ]
 "127
-[v _g_ns_curr g_ns_curr `VEus  1 e 2 0 ]
+[v _g_vbemf_sum g_vbemf_sum `VE[5]l  1 e 20 0 ]
+"129
+[v _g_mAx10 g_mAx10 `VEs  1 e 2 0 ]
+"130
+[v _g_vbemf g_vbemf `VEus  1 e 2 0 ]
 "131
-[v _main_state main_state `uc  1 s 1 main_state ]
-"132
-[v _last_tick last_tick `us  1 s 2 last_tick ]
+[v _g_dir g_dir `VEc  1 e 1 0 ]
 "133
+[v _g_zerocount g_zerocount `VEuc  1 e 1 0 ]
+"137
+[v _g_vbemf_log g_vbemf_log `VE[1024]uc  1 e 1024 0 ]
+"138
+[v _g_curr_log g_curr_log `VE[1024]uc  1 e 1024 0 ]
+"139
+[v _g_ns_bemf g_ns_bemf `VEus  1 e 2 0 ]
+"140
+[v _g_ns_curr g_ns_curr `VEus  1 e 2 0 ]
+"144
+[v _main_state main_state `uc  1 s 1 main_state ]
+"145
+[v _last_tick last_tick `us  1 s 2 last_tick ]
+"146
 [v _n_overcurr n_overcurr `uc  1 s 1 n_overcurr ]
-"134
+"147
 [v _ix_logdata ix_logdata `us  1 s 2 ix_logdata ]
-"164
+"177
 [v _main main `(v  1 e 1 0 ]
 {
-"168
-[v main@t_home_ms t_home_ms `us  1 a 2 39 ]
-[v main@t_home_s t_home_s `us  1 a 2 37 ]
-"167
-[v main@diff diff `c  1 a 1 41 ]
-"389
+"181
+[v main@t_home_ms t_home_ms `us  1 a 2 19 ]
+[v main@t_home_s t_home_s `us  1 a 2 17 ]
+"180
+[v main@diff diff `c  1 a 1 21 ]
+"400
 } 0
-"578
+"630
 [v _over_current over_current `(a  1 s 1 over_current ]
 {
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"580
+"632
 [v over_current@result result `a  1 a 1 8 ]
-"578
+"630
 [v over_current@vz vz `uc  1 a 1 wreg ]
-"580
+"632
 [v over_current@vz vz `uc  1 a 1 9 ]
-"596
+"648
 } 0
-"604
+"656
 [v _set_pwm set_pwm `(v  1 s 1 set_pwm ]
 {
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"610
+"662
 [v set_pwm@timout timout `uc  1 a 1 4 ]
-"604
+"656
 [v set_pwm@vz vz `uc  1 a 1 wreg ]
-"605
+"657
 [v set_pwm@dir dir `c  1 p 1 0 ]
-"609
+"661
 [v set_pwm@vz vz `uc  1 a 1 3 ]
-"703
+"755
 } 0
-"99 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
+"109 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v _init_system init_system `(v  1 e 1 0 ]
 {
-"139
+"167
 } 0
 "72 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _interrupt_initialize interrupt_initialize `(v  1 e 1 0 ]
 {
 "97
 } 0
-"419 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
+"447 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v _init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"439
+"467
 } 0
-"399
+"427
 [v _init_timer0 init_timer0 `(v  1 e 1 0 ]
 {
-"409
+"437
 } 0
-"315
+"343
 [v _init_pwm_16bit init_pwm_16bit `(v  1 e 1 0 ]
 {
-"392
+"420
 } 0
-"292
+"320
 [v _init_pmd init_pmd `(v  1 e 1 0 ]
 {
-"300
+"328
 } 0
-"235
+"263
 [v _init_pin_manager init_pin_manager `(v  1 e 1 0 ]
 {
-"285
+"313
 } 0
-"190
+"218
 [v _init_oscillator init_oscillator `(v  1 e 1 0 ]
 {
-"205
+"233
 } 0
-"181
+"209
 [v _init_ina219 init_ina219 `(v  1 e 1 0 ]
 {
-"185
+"213
 } 0
-"149
+"177
 [v _init_fvr init_fvr `(v  1 e 1 0 ]
 {
-"157
+"185
 } 0
 "24 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/i2c.c
 [v _i2c_init i2c_init `(v  1 e 1 0 ]
@@ -1155,9 +1165,9 @@ E_VZ_RANGE -1
 {
 [v ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
 "120
-[v ina219_reg@timeout_412 timeout `uc  1 a 1 4 ]
+[v ina219_reg@timeout_417 timeout `uc  1 a 1 4 ]
 "116
-[v ina219_reg@timeout_411 timeout `uc  1 a 1 3 ]
+[v ina219_reg@timeout_416 timeout `uc  1 a 1 3 ]
 "103
 [v ina219_reg@timeout timeout `uc  1 a 1 2 ]
 "101
@@ -1170,11 +1180,11 @@ E_VZ_RANGE -1
 [v _ina219_read ina219_read `(s  1 e 2 0 ]
 {
 "84
-[v ina219_read@timeout_407 timeout `uc  1 a 1 5 ]
+[v ina219_read@timeout_412 timeout `uc  1 a 1 5 ]
 "80
-[v ina219_read@timeout_406 timeout `uc  1 a 1 4 ]
+[v ina219_read@timeout_411 timeout `uc  1 a 1 4 ]
 "77
-[v ina219_read@timeout_405 timeout `uc  1 a 1 3 ]
+[v ina219_read@timeout_410 timeout `uc  1 a 1 3 ]
 "62
 [v ina219_read@timeout timeout `uc  1 a 1 2 ]
 "60
@@ -1229,24 +1239,31 @@ E_VZ_RANGE -1
 [v ___lldiv@divisor divisor `ul  1 p 4 16 ]
 "30
 } 0
-"404 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
+"415 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
 [v _cmd_interpreter cmd_interpreter `(v  1 s 1 cmd_interpreter ]
 {
-"535
-[v cmd_interpreter@timeout_1469 timeout `uc  1 a 1 0 ]
-"561
-[v cmd_interpreter@i i `uc  1 a 1 1 ]
-"408
-[v cmd_interpreter@vz vz `ui  1 a 2 9 ]
-"409
-[v cmd_interpreter@mAx10 mAx10 `s  1 a 2 7 ]
-"408
-[v cmd_interpreter@pos pos `ui  1 a 2 5 ]
-"406
-[v cmd_interpreter@p p `*.39uc  1 a 2 3 ]
-"410
-[v cmd_interpreter@error error `c  1 a 1 2 ]
-"566
+"543
+[v cmd_interpreter@GIEBitValue GIEBitValue `uc  1 a 1 1 ]
+"587
+[v cmd_interpreter@timeout_1488 timeout `uc  1 a 1 2 ]
+"615
+[v cmd_interpreter@c c `uc  1 a 1 0 ]
+"613
+[v cmd_interpreter@i i `uc  1 a 1 3 ]
+"419
+[v cmd_interpreter@vz vz `ui  1 a 2 15 ]
+"420
+[v cmd_interpreter@mAx10 mAx10 `s  1 a 2 13 ]
+"423
+[v cmd_interpreter@addr addr `us  1 a 2 11 ]
+[v cmd_interpreter@data data `us  1 a 2 9 ]
+"419
+[v cmd_interpreter@pos pos `ui  1 a 2 7 ]
+"417
+[v cmd_interpreter@p p `*.39uc  1 a 2 5 ]
+"421
+[v cmd_interpreter@error error `c  1 a 1 4 ]
+"618
 } 0
 "4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/strstr.c
 [v _strstr strstr `(*.39uc  1 e 2 0 ]
@@ -1268,9 +1285,9 @@ E_VZ_RANGE -1
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_sscanf.c
 [v _sscanf sscanf `(i  1 e 2 0 ]
 {
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "12
-[v sscanf@f f `S2265  1 a 6 22 ]
+[v sscanf@f f `S2286  1 a 6 22 ]
 "14
 [v sscanf@ap ap `[1]*.39v  1 a 2 28 ]
 "11
@@ -1287,9 +1304,9 @@ E_VZ_RANGE -1
 [v vfscanf@cfmt cfmt `*.25uc  1 a 2 8 ]
 "1057
 [v vfscanf@n n `i  1 a 2 6 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "1054
-[v vfscanf@fp fp `*.39S2549  1 p 2 0 ]
+[v vfscanf@fp fp `*.39S2570  1 p 2 0 ]
 [v vfscanf@fmt fmt `*.25Cuc  1 p 2 2 ]
 [v vfscanf@ap ap `*.39*.39v  1 p 2 4 ]
 "1074
@@ -1315,9 +1332,9 @@ E_VZ_RANGE -1
 [v vfsfcnvrt@c c `i  1 a 2 129 ]
 "365
 [v vfsfcnvrt@cp cp `*.35uc  1 a 2 121 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "363
-[v vfsfcnvrt@fp fp `*.39S2549  1 p 2 107 ]
+[v vfsfcnvrt@fp fp `*.39S2570  1 p 2 107 ]
 [v vfsfcnvrt@fmt fmt `*.39*.25uc  1 p 2 109 ]
 [v vfsfcnvrt@ap ap `*.39*.39v  1 p 2 111 ]
 "1052
@@ -1337,9 +1354,9 @@ E_VZ_RANGE -1
 [v atox@w w `i  1 a 2 99 ]
 "327
 [v atox@ep ep `*.39uc  1 a 2 97 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "325
-[v atox@fp fp `*.39S2549  1 p 2 85 ]
+[v atox@fp fp `*.39S2570  1 p 2 85 ]
 [v atox@pll pll `*.39uo  1 p 2 87 ]
 "359
 } 0
@@ -1352,9 +1369,9 @@ E_VZ_RANGE -1
 [v atou@w w `i  1 a 2 99 ]
 "283
 [v atou@ep ep `*.39uc  1 a 2 97 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "281
-[v atou@fp fp `*.39S2549  1 p 2 85 ]
+[v atou@fp fp `*.39S2570  1 p 2 85 ]
 [v atou@pll pll `*.39uo  1 p 2 87 ]
 "321
 } 0
@@ -1365,9 +1382,9 @@ E_VZ_RANGE -1
 [v atos@c c `i  1 a 2 37 ]
 [v atos@i i `i  1 a 2 35 ]
 [v atos@w w `i  1 a 2 33 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "247
-[v atos@fp fp `*.39S2549  1 p 2 22 ]
+[v atos@fp fp `*.39S2570  1 p 2 22 ]
 [v atos@s s `*.35uc  1 p 2 24 ]
 "277
 } 0
@@ -1380,9 +1397,9 @@ E_VZ_RANGE -1
 [v atoo@w w `i  1 a 2 99 ]
 "211
 [v atoo@ep ep `*.39uc  1 a 2 97 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "209
-[v atoo@fp fp `*.39S2549  1 p 2 85 ]
+[v atoo@fp fp `*.39S2570  1 p 2 85 ]
 [v atoo@pll pll `*.39uo  1 p 2 87 ]
 "243
 } 0
@@ -1403,9 +1420,9 @@ E_VZ_RANGE -1
 [v atod@w w `i  1 a 2 99 ]
 "110
 [v atod@ep ep `*.39uc  1 a 2 97 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "108
-[v atod@fp fp `*.39S2549  1 p 2 85 ]
+[v atod@fp fp `*.39S2570  1 p 2 85 ]
 [v atod@pll pll `*.39o  1 p 2 87 ]
 "148
 } 0
@@ -1455,9 +1472,9 @@ E_VZ_RANGE -1
 [v atoc@c c `i  1 a 2 26 ]
 [v atoc@i i `i  1 a 2 24 ]
 [v atoc@w w `i  1 a 2 19 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "80
-[v atoc@fp fp `*.39S2549  1 p 2 11 ]
+[v atoc@fp fp `*.39S2570  1 p 2 11 ]
 [v atoc@s s `*.35uc  1 p 2 13 ]
 "104
 } 0
@@ -1474,18 +1491,18 @@ E_VZ_RANGE -1
 [v atoaefg@w w `i  1 a 2 75 ]
 [v atoaefg@e e `i  1 a 2 73 ]
 [v atoaefg@d d `i  1 a 2 71 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "152
-[v atoaefg@fp fp `*.39S2549  1 p 2 63 ]
+[v atoaefg@fp fp `*.39S2570  1 p 2 63 ]
 [v atoaefg@pld pld `*.39d  1 p 2 65 ]
 "205
 } 0
 "95 /opt/microchip/xc8/v2.32/pic/sources/c99/common/strtof.c
 [v _strtof strtof `(f  1 e 4 0 ]
 {
-[u S3013 . 4 `f 1 _l 4 0 `ul 1 _v 4 0 ]
+[u S3034 . 4 `f 1 _l 4 0 `ul 1 _v 4 0 ]
 "113
-[v strtof@_u _u `S3013  1 a 4 58 ]
+[v strtof@_u _u `S3034  1 a 4 58 ]
 "109
 [v strtof@eexp eexp `i  1 a 2 56 ]
 "108
@@ -1503,9 +1520,9 @@ E_VZ_RANGE -1
 "4 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nanf.c
 [v _nanf nanf `(f  1 e 4 0 ]
 {
-[u S3068 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S3089 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v nanf@u u `S3068  1 a 4 4 ]
+[v nanf@u u `S3089  1 a 4 4 ]
 "4
 [v nanf@s s `*.25Cuc  1 p 2 0 ]
 "9
@@ -1550,17 +1567,17 @@ E_VZ_RANGE -1
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S2130 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S2151 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S2135 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S2138 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2130 1 fAsBytes 4 0 `S2135 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S2138  1 a 4 19 ]
+[s S2156 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S2159 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2151 1 fAsBytes 4 0 `S2156 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S2159  1 a 4 19 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 15 ]
-[s S2206 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S2227 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S2209 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2206 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S2209  1 a 2 23 ]
+[u S2230 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2227 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2230  1 a 2 23 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 14 ]
 "11
@@ -1611,17 +1628,17 @@ E_VZ_RANGE -1
 {
 "68
 [v skipws@c c `i  1 a 2 20 ]
-[s S2549 _IO_FILE 0 ]
+[s S2570 _IO_FILE 0 ]
 "66
-[v skipws@fp fp `*.39S2549  1 p 2 11 ]
+[v skipws@fp fp `*.39S2570  1 p 2 11 ]
 "76
 } 0
 "31 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_getc.c
 [v _ungetc ungetc `(i  1 e 2 0 ]
 {
 [v ungetc@c c `i  1 p 2 0 ]
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v ungetc@fp fp `*.39S2265  1 p 2 2 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v ungetc@fp fp `*.39S2286  1 p 2 2 ]
 "46
 } 0
 "11
@@ -1629,9 +1646,9 @@ E_VZ_RANGE -1
 {
 "13
 [v fgetc@c c `i  1 a 2 9 ]
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "11
-[v fgetc@fp fp `*.39S2265  1 p 2 2 ]
+[v fgetc@fp fp `*.39S2286  1 p 2 2 ]
 "29
 } 0
 "7 /opt/microchip/xc8/v2.32/pic/sources/c99/common/getch.c
@@ -1642,9 +1659,9 @@ E_VZ_RANGE -1
 "9 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
 "13
-[v sprintf@f f `S2265  1 a 6 143 ]
+[v sprintf@f f `S2286  1 a 6 143 ]
 "12
 [v sprintf@ap ap `[1]*.39v  1 a 2 141 ]
 "9
@@ -1666,9 +1683,9 @@ E_VZ_RANGE -1
 {
 "1393
 [v vfprintf@cfmt cfmt `*.35uc  1 a 2 119 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "1390
-[v vfprintf@fp fp `*.39S2291  1 p 2 113 ]
+[v vfprintf@fp fp `*.39S2312  1 p 2 113 ]
 [v vfprintf@fmt fmt `*.35Cuc  1 p 2 115 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 117 ]
 "1404
@@ -1687,9 +1704,9 @@ E_VZ_RANGE -1
 "694
 [v vfpfcnvrt@cp cp `*.35uc  1 a 2 88 ]
 [v vfpfcnvrt@c c `uc  1 a 1 104 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "692
-[v vfpfcnvrt@fp fp `*.39S2291  1 p 2 68 ]
+[v vfpfcnvrt@fp fp `*.39S2312  1 p 2 68 ]
 [v vfpfcnvrt@fmt fmt `*.39*.35uc  1 p 2 70 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 72 ]
 "1387
@@ -1704,9 +1721,9 @@ E_VZ_RANGE -1
 [v xtoa@i i `i  1 a 2 64 ]
 [v xtoa@w w `i  1 a 2 54 ]
 [v xtoa@p p `i  1 a 2 52 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "645
-[v xtoa@fp fp `*.39S2291  1 p 2 29 ]
+[v xtoa@fp fp `*.39S2312  1 p 2 29 ]
 [v xtoa@d d `uo  1 p 8 31 ]
 [v xtoa@x x `uc  1 p 1 39 ]
 "687
@@ -1744,9 +1761,9 @@ E_VZ_RANGE -1
 [v utoa@i i `i  1 a 2 59 ]
 [v utoa@w w `i  1 a 2 49 ]
 [v utoa@p p `i  1 a 2 47 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "615
-[v utoa@fp fp `*.39S2291  1 p 2 29 ]
+[v utoa@fp fp `*.39S2312  1 p 2 29 ]
 [v utoa@d d `uo  1 p 8 31 ]
 "641
 } 0
@@ -1797,9 +1814,9 @@ E_VZ_RANGE -1
 "571
 [v stoa@w w `i  1 a 2 25 ]
 [v stoa@i i `i  1 a 2 23 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "568
-[v stoa@fp fp `*.39S2291  1 p 2 11 ]
+[v stoa@fp fp `*.39S2312  1 p 2 11 ]
 [v stoa@s s `*.35uc  1 p 2 13 ]
 "570
 [v stoa@F1141 F1141 `[7]uc  1 s 7 F1141 ]
@@ -1815,9 +1832,9 @@ E_VZ_RANGE -1
 [v dtoa@s s `i  1 a 2 53 ]
 [v dtoa@w w `i  1 a 2 51 ]
 [v dtoa@p p `i  1 a 2 49 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "287
-[v dtoa@fp fp `*.39S2291  1 p 2 29 ]
+[v dtoa@fp fp `*.39S2312  1 p 2 29 ]
 [v dtoa@d d `o  1 p 8 31 ]
 "328
 } 0
@@ -1827,9 +1844,9 @@ E_VZ_RANGE -1
 "74
 [v pad@w w `i  1 a 2 27 ]
 [v pad@i i `i  1 a 2 25 ]
-[s S2291 _IO_FILE 0 ]
+[s S2312 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.39S2291  1 p 2 18 ]
+[v pad@fp fp `*.39S2312  1 p 2 18 ]
 [v pad@buf buf `*.39uc  1 p 2 20 ]
 [v pad@p p `i  1 p 2 22 ]
 "95
@@ -1852,29 +1869,29 @@ E_VZ_RANGE -1
 [v fputs@c c `uc  1 a 1 15 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 11 ]
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.39S2265  1 p 2 13 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.39S2286  1 p 2 13 ]
 "19
 } 0
 "8 /opt/microchip/xc8/v2.32/pic/sources/c99/common/nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 2 ]
-[s S2265 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.39S2265  1 p 2 4 ]
+[s S2286 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.39S2286  1 p 2 4 ]
 "24
 } 0
-"149 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
+"162 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/main.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@data data `uc  1 a 1 wreg ]
-"151
+"164
 [v putch@timeout timeout `uc  1 a 1 1 ]
-"149
+"162
 [v putch@data data `uc  1 a 1 wreg ]
-"151
+"164
 [v putch@data data `uc  1 a 1 0 ]
-"159
+"172
 } 0
 "1 /opt/microchip/xc8/v2.32/pic/sources/c99/common/abs.c
 [v _abs abs `(i  1 e 2 0 ]
@@ -1938,6 +1955,19 @@ E_VZ_RANGE -1
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
+"7 /opt/microchip/xc8/v2.32/pic/sources/c99/common/aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"10
+[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+"11
+[v ___aldiv@sign sign `uc  1 a 1 9 ]
+[v ___aldiv@counter counter `uc  1 a 1 8 ]
+"7
+[v ___aldiv@dividend dividend `l  1 p 4 0 ]
+[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+"41
+} 0
 "105 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _default_isr default_isr `IIL(v  1 e 1 0 ]
 {
@@ -1972,10 +2002,10 @@ E_VZ_RANGE -1
 [v U1RX_isr@ch ch `uc  1 a 1 31 ]
 "287
 } 0
-"419 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
+"447 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/init.c
 [v i1_init_uart1 init_uart1 `(v  1 e 1 0 ]
 {
-"439
+"467
 } 0
 "118 /media/usr1/Usr/GmbH/Projekte/OpenValveControl/git/PIC-ValveControl/ValveControl.X/interrupt.c
 [v _PWM1_isr PWM1_isr `IIH(v  1 e 1 0 ]
@@ -1989,9 +2019,9 @@ E_VZ_RANGE -1
 {
 [v i2ina219_reg@ina219reg ina219reg `uc  1 a 1 wreg ]
 "120
-[v i2ina219_reg@timeout_412 timeout `uc  1 a 1 4 ]
+[v i2ina219_reg@timeout_417 timeout `uc  1 a 1 4 ]
 "116
-[v i2ina219_reg@timeout_411 timeout `uc  1 a 1 3 ]
+[v i2ina219_reg@timeout_416 timeout `uc  1 a 1 3 ]
 "103
 [v i2ina219_reg@timeout timeout `uc  1 a 1 2 ]
 "101
@@ -2006,11 +2036,11 @@ E_VZ_RANGE -1
 "60
 [v i2ina219_read@value value `s  1 a 2 6 ]
 "84
-[v i2ina219_read@timeout_407 timeout `uc  1 a 1 5 ]
+[v i2ina219_read@timeout_412 timeout `uc  1 a 1 5 ]
 "80
-[v i2ina219_read@timeout_406 timeout `uc  1 a 1 4 ]
+[v i2ina219_read@timeout_411 timeout `uc  1 a 1 4 ]
 "77
-[v i2ina219_read@timeout_405 timeout `uc  1 a 1 3 ]
+[v i2ina219_read@timeout_410 timeout `uc  1 a 1 3 ]
 "62
 [v i2ina219_read@timeout timeout `uc  1 a 1 2 ]
 "96

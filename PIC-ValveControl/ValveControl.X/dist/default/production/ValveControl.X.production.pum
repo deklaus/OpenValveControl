@@ -9,116 +9,117 @@ Psect Usage Map:
  text26     | Program and library code   | 0008BEh - 0038D9h |  301C bytes  
  text39     | Program and library code   | 0038DAh - 004669h |   D90 bytes  
  text56     | Program and library code   | 00466Ah - 005137h |   ACE bytes  
- text21     | Program and library code   | 005138h - 005719h |   5E2 bytes  
- text35     | Program and library code   | 00571Ah - 005B15h |   3FC bytes  
- text0      | Program and library code   | 005B16h - 005EC1h |   3AC bytes  
- text45     | Program and library code   | 005EC2h - 006211h |   350 bytes  
- text48     | Program and library code   | 006212h - 006499h |   288 bytes  
- text67     | Program and library code   | 00649Ah - 0066DFh |   246 bytes  
- text57     | Program and library code   | 0066E0h - 006911h |   232 bytes  
- text38     | Program and library code   | 006912h - 006AF5h |   1E4 bytes  
- text76     | Program and library code   | 006AF6h - 006CC9h |   1D4 bytes  
- text62     | Program and library code   | 006CCAh - 006E79h |   1B0 bytes  
- text29     | Program and library code   | 006E7Ah - 007021h |   1A8 bytes  
- text33     | Program and library code   | 007022h - 0071C9h |   1A8 bytes  
- text2      | Program and library code   | 0071CAh - 00734Fh |   186 bytes  
- text31     | Program and library code   | 007350h - 0074BBh |   16C bytes  
- text28     | Program and library code   | 0074BCh - 007623h |   168 bytes  
- text30     | Program and library code   | 007624h - 007775h |   152 bytes  
- text66     | Program and library code   | 007776h - 0078BDh |   148 bytes  
- text75     | Program and library code   | 0078BEh - 007A05h |   148 bytes  
- text42     | Program and library code   | 007A06h - 007B47h |   142 bytes  
- text74     | Program and library code   | 007B48h - 007C6Bh |   124 bytes  
- text37     | Program and library code   | 007C6Ch - 007D7Bh |   110 bytes  
- text65     | Program and library code   | 007D7Ch - 007E87h |   10C bytes  
- text46     | Program and library code   | 007E88h - 007F57h |    D0 bytes  
- text64     | Program and library code   | 007F58h - 008025h |    CE bytes  
- text16     | Program and library code   | 008026h - 0080D5h |    B0 bytes  
- text63     | Program and library code   | 0080D6h - 008183h |    AE bytes  
- text71     | Program and library code   | 008184h - 008231h |    AE bytes  
- text90     | Program and library code   | 008234h - 0082DDh |    AA bytes  
- text15     | Program and library code   | 0082DEh - 008383h |    A6 bytes  
- text22     | Program and library code   | 008384h - 00841Fh |    9C bytes  
- text91     | Program and library code   | 008420h - 0084B9h |    9A bytes  
- text68     | Program and library code   | 0084BAh - 00854Fh |    96 bytes  
- text36     | Program and library code   | 008550h - 0085D9h |    8A bytes  
- text47     | Program and library code   | 0085DAh - 008663h |    8A bytes  
- text51     | Program and library code   | 008664h - 0086EDh |    8A bytes  
- text85     | Program and library code   | 0086F0h - 008779h |    8A bytes  
- text7      | Program and library code   | 00877Ah - 008801h |    88 bytes  
- text89     | Program and library code   | 008802h - 008889h |    88 bytes  
- text20     | Program and library code   | 00888Ah - 00890Bh |    82 bytes  
- text25     | Program and library code   | 00890Ch - 00898Dh |    82 bytes  
- text14     | Program and library code   | 00898Eh - 008A0Dh |    80 bytes  
- text49     | Program and library code   | 008A0Eh - 008A89h |    7C bytes  
- text50     | Program and library code   | 008A8Ah - 008B05h |    7C bytes  
- text3      | Program and library code   | 008B06h - 008B7Fh |    7A bytes  
- cinit      |                            | 008B80h - 008BEFh |    70 bytes  
- text55     | Program and library code   | 008BF0h - 008C5Dh |    6E bytes  
- text9      | Program and library code   | 008C5Eh - 008CC7h |    6A bytes  
- text87     | Program and library code   | 008CC8h - 008D31h |    6A bytes  
- text88     | Program and library code   | 008D32h - 008D9Bh |    6A bytes  
- text1      | Program and library code   | 008D9Ch - 008DFBh |    60 bytes  
- text41     | Program and library code   | 008DFCh - 008E57h |    5C bytes  
- text43     | Program and library code   | 008E58h - 008EADh |    56 bytes  
- text53     | Program and library code   | 008EAEh - 008EFFh |    52 bytes  
- text19     | Program and library code   | 008F00h - 008F4Fh |    50 bytes  
- text94     | Program and library code   | 008F50h - 008F9Dh |    4E bytes  
- text27     | Program and library code   | 008F9Eh - 008FE9h |    4C bytes  
- text69     | Program and library code   | 008FEAh - 009035h |    4C bytes  
- text58     | Program and library code   | 009036h - 00907Fh |    4A bytes  
- text24     | Program and library code   | 009080h - 0090C5h |    46 bytes  
- text32     | Program and library code   | 0090C6h - 009107h |    42 bytes  
- text34     | Program and library code   | 009108h - 009149h |    42 bytes  
- text77     | Program and library code   | 00914Ah - 009189h |    40 bytes  
- text23     | Program and library code   | 00918Ah - 0091C7h |    3E bytes  
- text70     | Program and library code   | 0091C8h - 0091FFh |    38 bytes  
- text61     | Program and library code   | 009200h - 009235h |    36 bytes  
- text17     | Program and library code   | 009236h - 009269h |    34 bytes  
- text59     | Program and library code   | 00926Ah - 00929Bh |    32 bytes  
- text60     | Program and library code   | 00929Ch - 0092CDh |    32 bytes  
- text73     | Program and library code   | 0092CEh - 0092FFh |    32 bytes  
- text78     | Program and library code   | 009300h - 009331h |    32 bytes  
- text44     | Program and library code   | 009332h - 00935Fh |    2E bytes  
- text13     | Program and library code   | 009360h - 00938Bh |    2C bytes  
- text72     | Program and library code   | 00938Ch - 0093B7h |    2C bytes  
- text5      | Program and library code   | 0093B8h - 0093E1h |    2A bytes  
- text79     | Program and library code   | 0093E2h - 00940Bh |    2A bytes  
- text86     | Program and library code   | 00940Ch - 009435h |    2A bytes  
- text92     | Program and library code   | 009436h - 00945Dh |    28 bytes  
- text4      | Program and library code   | 00945Eh - 009483h |    26 bytes  
- text54     | Program and library code   | 009484h - 0094A9h |    26 bytes  
- text40     | Program and library code   | 0094AAh - 0094CBh |    22 bytes  
- text82     | Program and library code   | 0094CCh - 0094EDh |    22 bytes  
- text10     | Program and library code   | 0094EEh - 009509h |    1C bytes  
- text18     | Program and library code   | 00950Ah - 009525h |    1C bytes  
- text81     | Program and library code   | 009528h - 009543h |    1C bytes  
- text6      | Program and library code   | 009544h - 00955Dh |    1A bytes  
- text12     | Program and library code   | 00955Eh - 009577h |    1A bytes  
- text93     | Program and library code   | 009578h - 009591h |    1A bytes  
- text8      | Program and library code   | 009592h - 0095A9h |    18 bytes  
- idataBANK6 |                            | 0095AAh - 0095B2h |     9 bytes  
- text52     | Program and library code   | 0095B4h - 0095B9h |     6 bytes  
- text80     | Program and library code   | 0095BCh - 0095BFh |     4 bytes  
- text83     | Program and library code   | 0095C0h - 0095C3h |     4 bytes  
- text84     | Program and library code   | 0095C4h - 0095C7h |     4 bytes  
- text11     | Program and library code   | 0095C8h - 0095C9h |     2 bytes  
+ text21     | Program and library code   | 005138h - 005867h |   730 bytes  
+ text0      | Program and library code   | 005868h - 005CDBh |   474 bytes  
+ text35     | Program and library code   | 005CDCh - 0060D7h |   3FC bytes  
+ text45     | Program and library code   | 0060D8h - 006427h |   350 bytes  
+ text48     | Program and library code   | 006428h - 0066AFh |   288 bytes  
+ text67     | Program and library code   | 0066B0h - 0068F5h |   246 bytes  
+ text57     | Program and library code   | 0068F6h - 006B27h |   232 bytes  
+ text38     | Program and library code   | 006B28h - 006D0Bh |   1E4 bytes  
+ text76     | Program and library code   | 006D0Ch - 006EDFh |   1D4 bytes  
+ text62     | Program and library code   | 006EE0h - 00708Fh |   1B0 bytes  
+ text29     | Program and library code   | 007090h - 007237h |   1A8 bytes  
+ text33     | Program and library code   | 007238h - 0073DFh |   1A8 bytes  
+ text2      | Program and library code   | 0073E0h - 007565h |   186 bytes  
+ text31     | Program and library code   | 007566h - 0076D1h |   16C bytes  
+ text28     | Program and library code   | 0076D2h - 007839h |   168 bytes  
+ text30     | Program and library code   | 00783Ah - 00798Bh |   152 bytes  
+ text66     | Program and library code   | 00798Ch - 007AD3h |   148 bytes  
+ text75     | Program and library code   | 007AD4h - 007C1Bh |   148 bytes  
+ text42     | Program and library code   | 007C1Ch - 007D5Dh |   142 bytes  
+ text74     | Program and library code   | 007D5Eh - 007E81h |   124 bytes  
+ text37     | Program and library code   | 007E82h - 007F91h |   110 bytes  
+ text65     | Program and library code   | 007F92h - 00809Dh |   10C bytes  
+ text46     | Program and library code   | 00809Eh - 00816Dh |    D0 bytes  
+ text64     | Program and library code   | 00816Eh - 00823Bh |    CE bytes  
+ text80     | Program and library code   | 00823Ch - 008307h |    CC bytes  
+ text3      | Program and library code   | 008308h - 0083CDh |    C6 bytes  
+ text16     | Program and library code   | 0083CEh - 00847Dh |    B0 bytes  
+ text63     | Program and library code   | 00847Eh - 00852Bh |    AE bytes  
+ text71     | Program and library code   | 00852Ch - 0085D9h |    AE bytes  
+ text91     | Program and library code   | 0085DCh - 008685h |    AA bytes  
+ text15     | Program and library code   | 008686h - 00872Bh |    A6 bytes  
+ text22     | Program and library code   | 00872Ch - 0087C7h |    9C bytes  
+ text92     | Program and library code   | 0087C8h - 008861h |    9A bytes  
+ text68     | Program and library code   | 008862h - 0088F7h |    96 bytes  
+ text36     | Program and library code   | 0088F8h - 008981h |    8A bytes  
+ text47     | Program and library code   | 008982h - 008A0Bh |    8A bytes  
+ text51     | Program and library code   | 008A0Ch - 008A95h |    8A bytes  
+ text86     | Program and library code   | 008A98h - 008B21h |    8A bytes  
+ text7      | Program and library code   | 008B22h - 008BA9h |    88 bytes  
+ text90     | Program and library code   | 008BAAh - 008C31h |    88 bytes  
+ text20     | Program and library code   | 008C32h - 008CB3h |    82 bytes  
+ text25     | Program and library code   | 008CB4h - 008D35h |    82 bytes  
+ text14     | Program and library code   | 008D36h - 008DB5h |    80 bytes  
+ text49     | Program and library code   | 008DB6h - 008E31h |    7C bytes  
+ text50     | Program and library code   | 008E32h - 008EADh |    7C bytes  
+ cinit      |                            | 008EAEh - 008F1Dh |    70 bytes  
+ text55     | Program and library code   | 008F1Eh - 008F8Bh |    6E bytes  
+ text9      | Program and library code   | 008F8Ch - 008FF5h |    6A bytes  
+ text88     | Program and library code   | 008FF8h - 009061h |    6A bytes  
+ text89     | Program and library code   | 009062h - 0090CBh |    6A bytes  
+ text1      | Program and library code   | 0090CCh - 00912Bh |    60 bytes  
+ text41     | Program and library code   | 00912Ch - 009187h |    5C bytes  
+ text43     | Program and library code   | 009188h - 0091DDh |    56 bytes  
+ text53     | Program and library code   | 0091DEh - 00922Fh |    52 bytes  
+ text19     | Program and library code   | 009230h - 00927Fh |    50 bytes  
+ text95     | Program and library code   | 009280h - 0092CDh |    4E bytes  
+ text27     | Program and library code   | 0092CEh - 009319h |    4C bytes  
+ text69     | Program and library code   | 00931Ah - 009365h |    4C bytes  
+ text58     | Program and library code   | 009366h - 0093AFh |    4A bytes  
+ text24     | Program and library code   | 0093B0h - 0093F5h |    46 bytes  
+ text32     | Program and library code   | 0093F6h - 009437h |    42 bytes  
+ text34     | Program and library code   | 009438h - 009479h |    42 bytes  
+ text77     | Program and library code   | 00947Ah - 0094B9h |    40 bytes  
+ text23     | Program and library code   | 0094BAh - 0094F7h |    3E bytes  
+ text70     | Program and library code   | 0094F8h - 00952Fh |    38 bytes  
+ text61     | Program and library code   | 009530h - 009565h |    36 bytes  
+ text17     | Program and library code   | 009566h - 009599h |    34 bytes  
+ text59     | Program and library code   | 00959Ah - 0095CBh |    32 bytes  
+ text60     | Program and library code   | 0095CCh - 0095FDh |    32 bytes  
+ text73     | Program and library code   | 0095FEh - 00962Fh |    32 bytes  
+ text78     | Program and library code   | 009630h - 009661h |    32 bytes  
+ text44     | Program and library code   | 009662h - 00968Fh |    2E bytes  
+ text13     | Program and library code   | 009690h - 0096BBh |    2C bytes  
+ text72     | Program and library code   | 0096BCh - 0096E7h |    2C bytes  
+ text5      | Program and library code   | 0096E8h - 009711h |    2A bytes  
+ text79     | Program and library code   | 009712h - 00973Bh |    2A bytes  
+ text87     | Program and library code   | 00973Ch - 009765h |    2A bytes  
+ text93     | Program and library code   | 009766h - 00978Dh |    28 bytes  
+ text4      | Program and library code   | 00978Eh - 0097B3h |    26 bytes  
+ text54     | Program and library code   | 0097B4h - 0097D9h |    26 bytes  
+ text40     | Program and library code   | 0097DAh - 0097FBh |    22 bytes  
+ text83     | Program and library code   | 0097FCh - 00981Dh |    22 bytes  
+ text10     | Program and library code   | 00981Eh - 009839h |    1C bytes  
+ text18     | Program and library code   | 00983Ah - 009855h |    1C bytes  
+ text82     | Program and library code   | 009858h - 009873h |    1C bytes  
+ text6      | Program and library code   | 009874h - 00988Dh |    1A bytes  
+ text12     | Program and library code   | 00988Eh - 0098A7h |    1A bytes  
+ text94     | Program and library code   | 0098A8h - 0098C1h |    1A bytes  
+ text8      | Program and library code   | 0098C2h - 0098D9h |    18 bytes  
+ idataBANK6 |                            | 0098DAh - 0098E2h |     9 bytes  
+ text52     | Program and library code   | 0098E4h - 0098E9h |     6 bytes  
+ text81     | Program and library code   | 0098ECh - 0098EFh |     4 bytes  
+ text84     | Program and library code   | 0098F0h - 0098F3h |     4 bytes  
+ text85     | Program and library code   | 0098F4h - 0098F7h |     4 bytes  
+ text11     | Program and library code   | 0098F8h - 0098F9h |     2 bytes  
             |                            |                   |               
- mediumcons |                            | 00FE80h - 00FFFFh |   180 bytes  
+ mediumcons |                            | 00FE6Ah - 00FFFFh |   196 bytes  
 ------------|----------------------------|-------------------|---------------
  bssCOMRAM  |                            | 000501h - 000520h |    20 bytes  
  cstackCOMR |                            | 000521h - 000540h |    20 bytes  
             |                            |                   |               
- bssBIGRAM  |                            | 00075Bh - 000F5Ah |   800 bytes  
+ bssBIGRAM  |                            | 000766h - 000F65h |   800 bytes  
             |                            |                   |               
  cstackBANK |                            | 000560h - 0005FDh |    9E bytes  
             |                            |                   |               
- bssBANK6   |                            | 000600h - 0006CBh |    CC bytes  
- cstackBANK |                            | 0006CCh - 0006F5h |    2A bytes  
- dataBANK6  |                            | 0006F6h - 0006FEh |     9 bytes  
+ bssBANK6   |                            | 000600h - 0006CDh |    CE bytes  
+ cstackBANK |                            | 0006CEh - 0006F2h |    25 bytes  
+ dataBANK6  |                            | 0006F3h - 0006FBh |     9 bytes  
             |                            |                   |               
  bssBANK7   |                            | 000700h - 00074Fh |    50 bytes  
- cstackBANK |                            | 000750h - 00075Ah |     B bytes  
+ cstackBANK |                            | 000750h - 000765h |    16 bytes  
 ------------|----------------------------|-------------------|---------------
  config     | Device configuration words | 300000h - 300009h |     A bytes  
 ------------|----------------------------|-------------------|---------------
