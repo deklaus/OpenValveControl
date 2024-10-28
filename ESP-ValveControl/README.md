@@ -42,7 +42,7 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
   ``` http://192.168.2.108/move?vz=1&set_pos=25&max_mA=50 ``` <br>
   ``` http://192.168.2.108/home?vz=1&max_mA=35 ``` <br>
   ``` http://192.168.2.108/eewrite?addr=2&data=2500 ``` <br>
-  ``` http://192.168.2.108/bootload?hexfile=/ValveControl_v0.8.2.hex ``` <br>
+  ``` http://192.168.2.108/bootload?hexfile=/ValveControl_v0.9.hex ``` <br>
 
 #### loop
 - Process request handler and execute commands from UI
