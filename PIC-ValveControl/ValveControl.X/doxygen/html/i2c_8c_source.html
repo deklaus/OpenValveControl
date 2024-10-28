@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.8.2</span>
+   &#160;<span id="projectnumber">v0.9</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -178,7 +178,7 @@ $(document).ready(function(){initNavTree('i2c_8c_source.html',''); initResizable
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {   <span class="comment">// error handler</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        value = 0xFFBB;     <span class="comment">// &quot;bus busy&quot;, handle negative values by caller!</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        value = (int16_t) 0xFFBB;   <span class="comment">// &quot;bus busy&quot;, handle negative values by caller!</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    </div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span>(value);</div>

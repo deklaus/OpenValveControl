@@ -35,5 +35,6 @@ var main_8c =
     [ "g_zerocount", "main_8c.html#a2497d67b98c3df3ef57d855223e4b546", null ],
     [ "temp_ds", "main_8c.html#a2383c31e7ff0c120122c343fc6eaf576", null ],
     [ "temp_indi", "main_8c.html#aecc7aff13acd391d8b86d6ee3c8f705a", null ],
+    [ "VBSUM_1pct", "main_8c.html#a08d47045b3a1815752ac2df8ef1e3c37", null ],
     [ "VDD", "main_8c.html#a2a93545fa9f658a21678c90ae0fdb882", null ]
 ];

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.8.2</span>
+   &#160;<span id="projectnumber">v0.9</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -174,23 +174,30 @@ Macros</h2></td></tr>
 <tr class="memitem:a52af2ac0e078f9476e1a7ac144bccde1"><td class="memItemLeft" align="right" valign="top"><a id="a52af2ac0e078f9476e1a7ac144bccde1"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>VBEMF_NO_DIA</b>&#160;&#160;&#160;1     /* AD conversion without calibration */</td></tr>
 <tr class="separator:a52af2ac0e078f9476e1a7ac144bccde1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a3ea1d5ce15b95611ad768bb2eede2b"><td class="memItemLeft" align="right" valign="top"><a id="a3a3ea1d5ce15b95611ad768bb2eede2b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEST_SETREF</b>&#160;&#160;&#160;1     /* sets ref position flags for testing */</td></tr>
-<tr class="separator:a3a3ea1d5ce15b95611ad768bb2eede2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc7694167c7840a913939a1b90808b4c"><td class="memItemLeft" align="right" valign="top"><a id="acc7694167c7840a913939a1b90808b4c"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>LOGSIZE</b>&#160;&#160;&#160;1024   /* size of each data logger (elements) */</td></tr>
 <tr class="separator:acc7694167c7840a913939a1b90808b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5147bea2f7e6857869fb67a01d71a284"><td class="memItemLeft" align="right" valign="top"><a id="a5147bea2f7e6857869fb67a01d71a284"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VBSUM_1pct_MIN</b>&#160;&#160;&#160;10000</td></tr>
+<tr class="separator:a5147bea2f7e6857869fb67a01d71a284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ca603a195031f23f0ccc0e76574cfe"><td class="memItemLeft" align="right" valign="top"><a id="a96ca603a195031f23f0ccc0e76574cfe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VBSUM_1pct_MAX</b>&#160;&#160;&#160;40000</td></tr>
+<tr class="separator:a96ca603a195031f23f0ccc0e76574cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a3af9312956646d1faf4f68495774345e"><td class="memItemLeft" align="right" valign="top"><a id="a3af9312956646d1faf4f68495774345e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Errs</b> { <br />
 &#160;&#160;<b>E_ADC_TIMEOUT</b> = -127
-, <b>E_HOMEING_ACTIVE</b> = -6
+, <b>E_EEWR_ARGC</b> = -9
+, <b>E_EEWR_ADDR</b> = -8
+, <b>E_HOMEING_ACTIVE</b> = -7
+, <br />
+&#160;&#160;<b>E_MOVE_ARGC</b> = -6
 , <b>E_NO_REFERENCE</b> = -5
 , <b>E_UNDEF_CMD</b> = -4
+, <b>E_MA_MAX</b> = -3
 , <br />
-&#160;&#160;<b>E_MA_MAX</b> = -3
-, <b>E_SET_POS_RANGE</b> = -2
+&#160;&#160;<b>E_SET_POS_RANGE</b> = -2
 , <b>E_VZ_RANGE</b> = -1
 <br />
  }</td></tr>
@@ -204,6 +211,9 @@ uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>FVRA2X</b></td></
 <tr class="memitem:abafa1acf1ee382518644fd1fc3d5d716"><td class="memItemLeft" align="right" valign="top"><a id="abafa1acf1ee382518644fd1fc3d5d716"></a>
 uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>FVRC2X</b></td></tr>
 <tr class="separator:abafa1acf1ee382518644fd1fc3d5d716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d47045b3a1815752ac2df8ef1e3c37"><td class="memItemLeft" align="right" valign="top"><a id="a08d47045b3a1815752ac2df8ef1e3c37"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>VBSUM_1pct</b></td></tr>
+<tr class="separator:a08d47045b3a1815752ac2df8ef1e3c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd367e9227568324bc998926141ca01"><td class="memItemLeft" align="right" valign="top"><a id="a1fd367e9227568324bc998926141ca01"></a>
 volatile <a class="el" href="union_s_t_a_t_u_sflags__t.html">STATUSflags_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a1fd367e9227568324bc998926141ca01">g_STATUSflags</a></td></tr>
 <tr class="memdesc:a1fd367e9227568324bc998926141ca01"><td class="mdescLeft">&#160;</td><td class="mdescRight">status feedback for ESP <br /></td></tr>
@@ -316,7 +326,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <div class="line">    PIE5bits.PWM2IE = 0;    <span class="comment">/* disable PWM2_16BIT param interrupts */</span> \</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00038">38</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00040">40</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
 
 </div>
 </div>
@@ -340,7 +350,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <div class="line">    PIE5bits.PWM2IE = 1;    <span class="comment">/* enable PWM2_16BIT param interrupts */</span> \</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00032">32</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8h_source.html#l00034">34</a> of file <a class="el" href="main_8h_source.html">main.h</a>.</p>
 
 </div>
 </div>
@@ -368,7 +378,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <p>data logger: g_vbemf &gt;&gt; 4 </p>
 <dl class="section note"><dt>Note</dt><dd>Data logger indices are reset on every MOVE or HOME command. Data logger buffers are filled up with zeros in idle. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00124">124</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00137">137</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>

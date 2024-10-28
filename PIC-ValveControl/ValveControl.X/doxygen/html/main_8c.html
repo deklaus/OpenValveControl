@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="Logo.bmp"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PIC Valve Control Firmware
-   &#160;<span id="projectnumber">v0.8.2</span>
+   &#160;<span id="projectnumber">v0.9</span>
    </div>
    <div id="projectbrief">PIC firmware for project OpenValveControl</div>
   </td>
@@ -151,7 +151,7 @@ When the TXIF bit is not set within approx. 1 ms, the function returns and data 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="memItemLeft" align="right" valign="top"><a id="a1c6f3c5d9981b36cacd7ce8339630ae4"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c6f3c5d9981b36cacd7ce8339630ae4">g_version</a> = &quot;v0.8.2&quot;</td></tr>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c6f3c5d9981b36cacd7ce8339630ae4">g_version</a> = &quot;v0.9&quot;</td></tr>
 <tr class="memdesc:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software version. <br /></td></tr>
 <tr class="separator:a1c6f3c5d9981b36cacd7ce8339630ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ddfafef81dbae12a5088a0ef08625b7"><td class="memItemLeft" align="right" valign="top"><a id="a2ddfafef81dbae12a5088a0ef08625b7"></a>
@@ -174,6 +174,10 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2383c31e7ff0c120122c343fc6eaf576">temp_ds</a></td></tr>
 <tr class="memdesc:a2383c31e7ff0c120122c343fc6eaf576"><td class="mdescLeft">&#160;</td><td class="mdescRight">temperature read from DS18B20 (future option) <br /></td></tr>
 <tr class="separator:a2383c31e7ff0c120122c343fc6eaf576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d47045b3a1815752ac2df8ef1e3c37"><td class="memItemLeft" align="right" valign="top"><a id="a08d47045b3a1815752ac2df8ef1e3c37"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a08d47045b3a1815752ac2df8ef1e3c37">VBSUM_1pct</a></td></tr>
+<tr class="memdesc:a08d47045b3a1815752ac2df8ef1e3c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">sum of Vbemf for 1 % travel [10000 .. 40000] <br /></td></tr>
+<tr class="separator:a08d47045b3a1815752ac2df8ef1e3c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e8d838711ff74231fd62e308d2de4ed"><td class="memItemLeft" align="right" valign="top"><a id="a3e8d838711ff74231fd62e308d2de4ed"></a>
 volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a3e8d838711ff74231fd62e308d2de4ed">g_rx232_buf</a> [48]</td></tr>
 <tr class="memdesc:a3e8d838711ff74231fd62e308d2de4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">RS232 RX buffer (&gt; sizeof(S1-record)! <br /></td></tr>
@@ -302,7 +306,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00077">77</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00087">87</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -334,14 +338,13 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <li>HOME command (close direction)</li>
 <li>IDLE (kind of scheduler: check status bits for pending jobs). <br  />
 <ul>
-<li>For sanity, the IOC INT is disabled and enabled only during MOVE and HOME.</li>
 <li>Measure the motor current in idle mode (PWM is off) as a control feature.</li>
 <li>Check the status flags for incoming requests from ESP and set main_state and parameters as needed.</li>
 </ul>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00164">164</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00177">177</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -361,7 +364,7 @@ see <a href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">http
 <p>data logger: g_vbemf &gt;&gt; 4 </p>
 <dl class="section note"><dt>Note</dt><dd>Data logger indices are reset on every MOVE or HOME command. Data logger buffers are filled up with zeros in idle. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00124">124</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00137">137</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>

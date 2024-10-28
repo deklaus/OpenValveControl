@@ -15,12 +15,16 @@ var main_8h =
     [ "NUM_VZ", "main_8h.html#aaf89414145badc644588adef8825582c", null ],
     [ "pwm_InterruptsDisable", "main_8h.html#aa5bf772969dbe865fa6939da23383cae", null ],
     [ "pwm_InterruptsEnable", "main_8h.html#a72856ea2f484b534ebfa94cb8fc57b34", null ],
-    [ "TEST_SETREF", "main_8h.html#a3a3ea1d5ce15b95611ad768bb2eede2b", null ],
     [ "TIMEOUThome", "main_8h.html#ac9d3a84d37d7363c8490212e57691ccb", null ],
     [ "VBEMF_NO_DIA", "main_8h.html#a52af2ac0e078f9476e1a7ac144bccde1", null ],
+    [ "VBSUM_1pct_MAX", "main_8h.html#a96ca603a195031f23f0ccc0e76574cfe", null ],
+    [ "VBSUM_1pct_MIN", "main_8h.html#a5147bea2f7e6857869fb67a01d71a284", null ],
     [ "Errs", "main_8h.html#a3af9312956646d1faf4f68495774345e", [
       [ "E_ADC_TIMEOUT", "main_8h.html#a3af9312956646d1faf4f68495774345ea816f5bc2244e70a88e82ef5bf5b95dde", null ],
+      [ "E_EEWR_ARGC", "main_8h.html#a3af9312956646d1faf4f68495774345ea09313cbb74555894073801b552421967", null ],
+      [ "E_EEWR_ADDR", "main_8h.html#a3af9312956646d1faf4f68495774345eae0b04fba7458130379c3273a37ae4bd3", null ],
       [ "E_HOMEING_ACTIVE", "main_8h.html#a3af9312956646d1faf4f68495774345eab4604770360f50e924dc252ddf06db23", null ],
+      [ "E_MOVE_ARGC", "main_8h.html#a3af9312956646d1faf4f68495774345eae45a5234195a0e79b0b7df7b97db550c", null ],
       [ "E_NO_REFERENCE", "main_8h.html#a3af9312956646d1faf4f68495774345ea15289fff0e809f0ffc40cf2ab32c9ede", null ],
       [ "E_UNDEF_CMD", "main_8h.html#a3af9312956646d1faf4f68495774345ea2eb55f723da6e6bf6e27f9fba5a07d70", null ],
       [ "E_MA_MAX", "main_8h.html#a3af9312956646d1faf4f68495774345eaf325c6986e21858b9631f062f0a7eca8", null ],
@@ -50,5 +54,6 @@ var main_8h =
     [ "g_vbemf_log", "main_8h.html#a9bedffb2d5b51d2fc26d43837434b225", null ],
     [ "g_vbemf_sum", "main_8h.html#a05283c5d122d1108d12eac526e46841a", null ],
     [ "g_vz", "main_8h.html#a56c631bc28e032aec0a755603bd47301", null ],
-    [ "g_zcd", "main_8h.html#a401b894278cc743850b50e132dd06e14", null ]
+    [ "g_zcd", "main_8h.html#a401b894278cc743850b50e132dd06e14", null ],
+    [ "VBSUM_1pct", "main_8h.html#a08d47045b3a1815752ac2df8ef1e3c37", null ]
 ];
