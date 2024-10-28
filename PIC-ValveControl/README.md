@@ -35,6 +35,7 @@ The following paragraphs provide some insights into the software structure:
 Process commands and queries (?) from ESP:
   - `Move:`    set active drive and current limit, set g_STATUSflags.move
   - `Home:`    set active drive and current limit, set g_STATUSflags.home
+  - `EEwrite:` write word to EEPROM
   - `Status?`  query status data (position[1..4], max. motor current, STATUSflags
   - `Version?` query PIC version
   - `SetPos?`  query positions[1..4]
