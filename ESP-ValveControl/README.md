@@ -41,7 +41,7 @@ As usual, it contains the **setup()** and the main **loop()** blocs.
   You can append the commands and parameters to the URI, e.g. <br>
   ``` http://192.168.2.108/move?vz=1&set_pos=25&max_mA=50 ``` <br>
   ``` http://192.168.2.108/home?vz=1&max_mA=35 ``` <br>
-  ``` http://192.168.2.108/eewrite?addr=2&data=2500 ``` <br>
+  ``` http://192.168.2.108/eewrite?addr=2&data=25000 ``` <br>
   ``` http://192.168.2.108/bootload?hexfile=/ValveControl_v0.9.hex ``` <br>
 
 #### loop
